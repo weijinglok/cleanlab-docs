@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="cleanlab.models package" href="cleanlab.models.html" /><link rel="prev" title="Introduction" href="index.html" />
 
     <link rel="shortcut icon" href="_static/logo.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
-        <title>Classification - cleanlab Docs</title>
+        <title>Classification - cleanlab docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">cleanlab Docs</div></a>
+      <a href="index.html"><div class="brand">cleanlab docs</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">cleanlab Docs</span>
+  <span class="sidebar-brand-text">cleanlab docs</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -244,7 +244,39 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="module-cleanlab.classification">
+          
+
+<p id="doc_ver_warning"></p>
+
+<script type="text/javascript" src="../versioning.js"></script>
+<script type="text/javascript">
+  function genDocVerWarning() {
+    var version_number = Version.version_number;
+    var path_arr = window.location.pathname.split("/");
+
+    if (path_arr.includes("master")) {
+      document.getElementById("doc_ver_warning").innerHTML = `
+      <div class="admonition warning">
+      <p class="admonition-title">Warning</p>
+      <p>You're reading the developer's version of the doc. If you're looking for the stable version of the doc, click <a href="../stable/index.html">here</a>.</p>
+      </div>      
+      `;
+    } else if (!path_arr.includes(version_number)) {
+      document.getElementById("doc_ver_warning").innerHTML = `
+        <div class="admonition warning">
+        <p class="admonition-title">Warning</p>
+        <p>You're reading an old version of the doc. If you're looking for the stable version of the doc, click <a href="../stable/index.html">here</a>.</p>
+        </div>      
+      `;
+    } else {
+      document.getElementById("doc_ver_warning").remove();
+    }
+  }
+
+  genDocVerWarning();
+</script>
+
+<div class="section" id="module-cleanlab.classification">
 <span id="classification"></span><h1>Classification<a class="headerlink" href="#module-cleanlab.classification" title="Permalink to this headline">¶</a></h1>
 <p>cleanlab package for multiclass learning with noisy labels for any model.</p>
 <p>The LearningWithNoisyLabels class wraps around an instance of a
@@ -2206,6 +2238,7 @@ joint distribution, given the trace of the noise matrix and p(y).</p>
 </ul>
 </div>
 </div>
+ 
 
         </article>
       </div>
