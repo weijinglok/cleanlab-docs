@@ -258,14 +258,14 @@
       document.getElementById("doc_ver_warning").innerHTML = `
       <div class="admonition warning">
       <p class="admonition-title">Warning</p>
-      <p>You're reading the developer's version of the doc. If you're looking for the stable version of the doc, click <a href="../stable/index.html">here</a>.</p>
+      <p>You're reading the unreleased developer's version of the doc. If you're looking for the stable version, click <a href="../stable/index.html">here</a>.</p>
       </div>      
       `;
     } else if (!path_arr.includes(version_number)) {
       document.getElementById("doc_ver_warning").innerHTML = `
         <div class="admonition warning">
         <p class="admonition-title">Warning</p>
-        <p>You're reading an old version of the doc. If you're looking for the stable version of the doc, click <a href="../stable/index.html">here</a>.</p>
+        <p>You're reading an old version of the doc. If you're looking for the stable version, click <a href="../stable/index.html">here</a>.</p>
         </div>      
       `;
     } else {
@@ -648,7 +648,6 @@
         <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pred</span></div></div>
 </pre></div> 
-
         </article>
       </div>
       <footer>
