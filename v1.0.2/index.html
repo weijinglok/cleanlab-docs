@@ -210,7 +210,7 @@
       version_number +
       ")</span></code>";
     document.getElementById("commit_hash").innerHTML =
-      "developer <code class='docutils literal notranslate'><span class='pre'> (" +
+      "master <code class='docutils literal notranslate'><span class='pre'> (" +
       commit_hash.slice(0, 7) +
       "&hellip;)</span></code>";
   };
@@ -295,7 +295,7 @@
 <div class="section" id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h1>
 <div class="section" id="install-cleanlab">
-<h2>#. Install <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>.<a class="headerlink" href="#install-cleanlab" title="Permalink to this headline">#</a></h2>
+<h2>1. Install <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>.<a class="headerlink" href="#install-cleanlab" title="Permalink to this headline">#</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">pip</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">conda</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">source</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cleanlab</span>
 </pre></div>
@@ -309,7 +309,7 @@
 </div></div>
 </div>
 <div class="section" id="find-label-errors-with-get-noise-indices">
-<h2>#. Find label errors with <code class="docutils literal notranslate"><span class="pre">get_noise_indices</span></code>.<a class="headerlink" href="#find-label-errors-with-get-noise-indices" title="Permalink to this headline">#</a></h2>
+<h2>2. Find label errors with <code class="docutils literal notranslate"><span class="pre">get_noise_indices</span></code>.<a class="headerlink" href="#find-label-errors-with-get-noise-indices" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s <code class="docutils literal notranslate"><span class="pre">get_noise_indices</span></code> function tells you which examples in your dataset are likely mislabeled. At a minimum, it expects two inputs - your data’s given labels, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pyx</span></code>, from some trained model (Note: these must be out-of-sample predictions where the data points were held out from the model during training, which can be obtained via cross-validation).</p>
 <p>Setting <code class="docutils literal notranslate"><span class="pre">sorted_index_method</span></code> instructs <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> to return the indices of potential mislabeled examples, ordered by the likelihood of label error estimate via <code class="docutils literal notranslate"><span class="pre">prob_given_label</span></code> scores (predicted probability of given label according to the model).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.pruning</span> <span class="kn">import</span> <span class="n">get_noise_indices</span>
@@ -326,7 +326,7 @@
 </div>
 </div>
 <div class="section" id="train-robust-models-with-noisy-labels-using-learningwithnoisylabels">
-<h2>#. Train robust models with noisy labels using <code class="docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code>.<a class="headerlink" href="#train-robust-models-with-noisy-labels-using-learningwithnoisylabels" title="Permalink to this headline">#</a></h2>
+<h2>3. Train robust models with noisy labels using <code class="docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code>.<a class="headerlink" href="#train-robust-models-with-noisy-labels-using-learningwithnoisylabels" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s <code class="docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code> adapts any classification model, <code class="docutils literal notranslate"><span class="pre">clf</span></code>, to a more reliable one by allowing it to train directly on partially mislabeled datasets.</p>
 <p>When the <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> method is called, it automatically identifies and removes any examples that are deemed “noisy” in the provided dataset before returning a final trained model.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -411,9 +411,9 @@
             <ul>
 <li><a class="reference internal" href="#">Introduction</a></li>
 <li><a class="reference internal" href="#quickstart">Quickstart</a><ul>
-<li><a class="reference internal" href="#install-cleanlab">#. Install <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>.</a></li>
-<li><a class="reference internal" href="#find-label-errors-with-get-noise-indices">#. Find label errors with <code class="docutils literal notranslate"><span class="pre">get_noise_indices</span></code>.</a></li>
-<li><a class="reference internal" href="#train-robust-models-with-noisy-labels-using-learningwithnoisylabels">#. Train robust models with noisy labels using <code class="docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code>.</a><ul>
+<li><a class="reference internal" href="#install-cleanlab">1. Install <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>.</a></li>
+<li><a class="reference internal" href="#find-label-errors-with-get-noise-indices">2. Find label errors with <code class="docutils literal notranslate"><span class="pre">get_noise_indices</span></code>.</a></li>
+<li><a class="reference internal" href="#train-robust-models-with-noisy-labels-using-learningwithnoisylabels">3. Train robust models with noisy labels using <code class="docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code>.</a><ul>
 </ul>
 </li>
 </ul>
