@@ -1,3 +1,5 @@
+:hide-toc:
+
 Classification
 ==============
 
@@ -79,10 +81,10 @@ Polyplex
    :undoc-members:
    :show-inheritance:
 
-
 Models
 ======
 
 .. toctree::
 
    cleanlab.models
+

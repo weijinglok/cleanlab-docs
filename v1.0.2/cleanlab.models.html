@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Classification" href="cleanlab.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
-        <title>cleanlab.models package - cleanlab docs</title>
+        <title>CIFAR CNN - cleanlab docs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -131,7 +131,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -140,8 +140,11 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
+  </div>
   
   <span class="sidebar-brand-text">cleanlab docs</span>
   
@@ -167,7 +170,8 @@
 <li class="toctree-l1"><a class="reference internal" href="cleanlab.html#module-cleanlab.util">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cleanlab.html#module-cleanlab.polyplex">Polyplex</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="cleanlab.html#models">Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">cleanlab.models package</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">CIFAR CNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cleanlab.models.mnist_pytorch">MNIST PyTorch</a></li>
 </ul>
 </li>
 </ul>
@@ -240,13 +244,14 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
           
+
 
 <!-- Start of Version Warning Banner -->
 
@@ -285,13 +290,9 @@
 
 <!-- End of Version Warning Banner -->
 
-<div class="section" id="cleanlab-models-package">
-<h1>cleanlab.models package<a class="headerlink" href="#cleanlab-models-package" title="Permalink to this headline">#</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
-</div>
+
 <div class="section" id="module-cleanlab.models.cifar_cnn">
-<span id="cleanlab-models-cifar-cnn-module"></span><h2>cleanlab.models.cifar_cnn module<a class="headerlink" href="#module-cleanlab.models.cifar_cnn" title="Permalink to this headline">#</a></h2>
+<span id="cifar-cnn"></span><h1>CIFAR CNN<a class="headerlink" href="#module-cleanlab.models.cifar_cnn" title="Permalink to this headline">#</a></h1>
 <p>A PyTorch CNN for training CIFAR-10 using Co-Teaching.</p>
 <p>Code adapted from: <a class="reference external" href="https://github.com/bhanML/Co-teaching/blob/master/model.py">https://github.com/bhanML/Co-teaching/blob/master/model.py</a></p>
 <p>This code requires you have PyTorch installed</p>
@@ -303,7 +304,7 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN" title="cleanlab.models.cifar_cnn.CNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNN</span></code></a>([input_channel, n_outputs, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN" title="cleanlab.models.cifar_cnn.CNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNN</span></code></a>([input_channel, n_outputs, ...])</p></td>
 <td><p>A CNN architecture shown to be a good baseline for a CIFAR-10 benchmark.</p></td>
 </tr>
 </tbody>
@@ -315,7 +316,7 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.call_bn" title="cleanlab.models.cifar_cnn.call_bn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_bn</span></code></a>(bn, x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.call_bn" title="cleanlab.models.cifar_cnn.call_bn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_bn</span></code></a>(bn, x)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -330,7 +331,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input_channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – </p></li>
 <li><p><strong>n_outputs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – </p></li>
-<li><p><strong>dropout_rate</strong> (<a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.float" title="cleanlab.models.cifar_cnn.CNN.float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – </p></li>
+<li><p><strong>dropout_rate</strong> (<a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.float" title="cleanlab.models.cifar_cnn.CNN.float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – </p></li>
 <li><p><strong>top_bn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – </p></li>
 </ul>
 </dd>
@@ -347,11 +348,11 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.T_destination" title="cleanlab.models.cifar_cnn.CNN.T_destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T_destination</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.T_destination" title="cleanlab.models.cifar_cnn.CNN.T_destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T_destination</span></code></a></p></td>
 <td><p>alias of TypeVar('T_destination', bound=<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>])</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.dump_patches" title="cleanlab.models.cifar_cnn.CNN.dump_patches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump_patches</span></code></a></p></td>
-<td><p>This allows better BC support for <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.dump_patches" title="cleanlab.models.cifar_cnn.CNN.dump_patches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump_patches</span></code></a></p></td>
+<td><p>This allows better BC support for <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -362,127 +363,127 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.__call__" title="cleanlab.models.cifar_cnn.CNN.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*input, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.__call__" title="cleanlab.models.cifar_cnn.CNN.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*input, **kwargs)</p></td>
 <td><p>Call self as a function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.add_module" title="cleanlab.models.cifar_cnn.CNN.add_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_module</span></code></a>(name, module)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.add_module" title="cleanlab.models.cifar_cnn.CNN.add_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_module</span></code></a>(name, module)</p></td>
 <td><p>Adds a child module to the current module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.apply" title="cleanlab.models.cifar_cnn.CNN.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(fn)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.apply" title="cleanlab.models.cifar_cnn.CNN.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(fn)</p></td>
 <td><p>Applies <code class="docutils literal notranslate"><span class="pre">fn</span></code> recursively to every submodule (as returned by <code class="docutils literal notranslate"><span class="pre">.children()</span></code>) as well as self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.bfloat16" title="cleanlab.models.cifar_cnn.CNN.bfloat16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfloat16</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.bfloat16" title="cleanlab.models.cifar_cnn.CNN.bfloat16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfloat16</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.buffers" title="cleanlab.models.cifar_cnn.CNN.buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buffers</span></code></a>([recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.buffers" title="cleanlab.models.cifar_cnn.CNN.buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buffers</span></code></a>([recurse])</p></td>
 <td><p>Returns an iterator over module buffers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.children" title="cleanlab.models.cifar_cnn.CNN.children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.children" title="cleanlab.models.cifar_cnn.CNN.children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></a>()</p></td>
 <td><p>Returns an iterator over immediate children modules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.cpu" title="cleanlab.models.cifar_cnn.CNN.cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cpu</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.cpu" title="cleanlab.models.cifar_cnn.CNN.cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cpu</span></code></a>()</p></td>
 <td><p>Moves all model parameters and buffers to the CPU.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda</span></code></a>([device])</p></td>
 <td><p>Moves all model parameters and buffers to the GPU.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.double" title="cleanlab.models.cifar_cnn.CNN.double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">double</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.double" title="cleanlab.models.cifar_cnn.CNN.double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">double</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">double</span></code> datatype.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.eval" title="cleanlab.models.cifar_cnn.CNN.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.eval" title="cleanlab.models.cifar_cnn.CNN.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>()</p></td>
 <td><p>Sets the module in evaluation mode.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.extra_repr" title="cleanlab.models.cifar_cnn.CNN.extra_repr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.extra_repr" title="cleanlab.models.cifar_cnn.CNN.extra_repr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code></a>()</p></td>
 <td><p>Set the extra representation of the module</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.float" title="cleanlab.models.cifar_cnn.CNN.float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.float" title="cleanlab.models.cifar_cnn.CNN.float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">float</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(x)</p></td>
 <td><p>Defines the computation performed at every call.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.get_buffer" title="cleanlab.models.cifar_cnn.CNN.get_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_buffer</span></code></a>(target)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.get_buffer" title="cleanlab.models.cifar_cnn.CNN.get_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_buffer</span></code></a>(target)</p></td>
 <td><p>Returns the buffer given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.get_extra_state" title="cleanlab.models.cifar_cnn.CNN.get_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_extra_state</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.get_extra_state" title="cleanlab.models.cifar_cnn.CNN.get_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_extra_state</span></code></a>()</p></td>
 <td><p>Returns any extra state to include in the module's state_dict.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.get_parameter" title="cleanlab.models.cifar_cnn.CNN.get_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameter</span></code></a>(target)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.get_parameter" title="cleanlab.models.cifar_cnn.CNN.get_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameter</span></code></a>(target)</p></td>
 <td><p>Returns the parameter given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.get_submodule" title="cleanlab.models.cifar_cnn.CNN.get_submodule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_submodule</span></code></a>(target)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.get_submodule" title="cleanlab.models.cifar_cnn.CNN.get_submodule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_submodule</span></code></a>(target)</p></td>
 <td><p>Returns the submodule given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.half" title="cleanlab.models.cifar_cnn.CNN.half"><code class="xref py py-obj docutils literal notranslate"><span class="pre">half</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.half" title="cleanlab.models.cifar_cnn.CNN.half"><code class="xref py py-obj docutils literal notranslate"><span class="pre">half</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">half</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_state_dict</span></code></a>(state_dict[, strict])</p></td>
-<td><p>Copies parameters and buffers from <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into this module and its descendants.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_state_dict</span></code></a>(state_dict[, strict])</p></td>
+<td><p>Copies parameters and buffers from <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into this module and its descendants.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.modules" title="cleanlab.models.cifar_cnn.CNN.modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modules</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.modules" title="cleanlab.models.cifar_cnn.CNN.modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modules</span></code></a>()</p></td>
 <td><p>Returns an iterator over all modules in the network.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.named_buffers" title="cleanlab.models.cifar_cnn.CNN.named_buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_buffers</span></code></a>([prefix, recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.named_buffers" title="cleanlab.models.cifar_cnn.CNN.named_buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_buffers</span></code></a>([prefix, recurse])</p></td>
 <td><p>Returns an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.named_children" title="cleanlab.models.cifar_cnn.CNN.named_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_children</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.named_children" title="cleanlab.models.cifar_cnn.CNN.named_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_children</span></code></a>()</p></td>
 <td><p>Returns an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.named_modules" title="cleanlab.models.cifar_cnn.CNN.named_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_modules</span></code></a>([memo, prefix, remove_duplicate])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.named_modules" title="cleanlab.models.cifar_cnn.CNN.named_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_modules</span></code></a>([memo, prefix, remove_duplicate])</p></td>
 <td><p>Returns an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.named_parameters" title="cleanlab.models.cifar_cnn.CNN.named_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_parameters</span></code></a>([prefix, recurse])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.named_parameters" title="cleanlab.models.cifar_cnn.CNN.named_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_parameters</span></code></a>([prefix, recurse])</p></td>
 <td><p>Returns an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.parameters" title="cleanlab.models.cifar_cnn.CNN.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a>([recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.parameters" title="cleanlab.models.cifar_cnn.CNN.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a>([recurse])</p></td>
 <td><p>Returns an iterator over module parameters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_backward_hook" title="cleanlab.models.cifar_cnn.CNN.register_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_backward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_backward_hook" title="cleanlab.models.cifar_cnn.CNN.register_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_backward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a backward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_buffer" title="cleanlab.models.cifar_cnn.CNN.register_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_buffer</span></code></a>(name, tensor[, persistent])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_buffer" title="cleanlab.models.cifar_cnn.CNN.register_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_buffer</span></code></a>(name, tensor[, persistent])</p></td>
 <td><p>Adds a buffer to the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_forward_hook" title="cleanlab.models.cifar_cnn.CNN.register_forward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_forward_hook" title="cleanlab.models.cifar_cnn.CNN.register_forward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a forward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook" title="cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_pre_hook</span></code></a>(hook)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook" title="cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_pre_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a forward pre-hook on the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_full_backward_hook" title="cleanlab.models.cifar_cnn.CNN.register_full_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_full_backward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_full_backward_hook" title="cleanlab.models.cifar_cnn.CNN.register_full_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_full_backward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a backward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.register_parameter" title="cleanlab.models.cifar_cnn.CNN.register_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_parameter</span></code></a>(name, param)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.register_parameter" title="cleanlab.models.cifar_cnn.CNN.register_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_parameter</span></code></a>(name, param)</p></td>
 <td><p>Adds a parameter to the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.requires_grad_" title="cleanlab.models.cifar_cnn.CNN.requires_grad_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">requires_grad_</span></code></a>([requires_grad])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.requires_grad_" title="cleanlab.models.cifar_cnn.CNN.requires_grad_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">requires_grad_</span></code></a>([requires_grad])</p></td>
 <td><p>Change if autograd should record operations on parameters in this module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.set_extra_state" title="cleanlab.models.cifar_cnn.CNN.set_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_extra_state</span></code></a>(state)</p></td>
-<td><p>This function is called from <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state found within the <cite>state_dict</cite>.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.set_extra_state" title="cleanlab.models.cifar_cnn.CNN.set_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_extra_state</span></code></a>(state)</p></td>
+<td><p>This function is called from <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state found within the <cite>state_dict</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.share_memory" title="cleanlab.models.cifar_cnn.CNN.share_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">share_memory</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.share_memory" title="cleanlab.models.cifar_cnn.CNN.share_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">share_memory</span></code></a>()</p></td>
 <td><p>See <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.share_memory_()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dict</span></code></a>([destination, prefix, keep_vars])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dict</span></code></a>([destination, prefix, keep_vars])</p></td>
 <td><p>Returns a dictionary containing a whole state of the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.to" title="cleanlab.models.cifar_cnn.CNN.to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.to" title="cleanlab.models.cifar_cnn.CNN.to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Moves and/or casts the parameters and buffers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.to_empty" title="cleanlab.models.cifar_cnn.CNN.to_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_empty</span></code></a>(*, device)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.to_empty" title="cleanlab.models.cifar_cnn.CNN.to_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_empty</span></code></a>(*, device)</p></td>
 <td><p>Moves the parameters and buffers to the specified device without copying storage.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.train" title="cleanlab.models.cifar_cnn.CNN.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>([mode])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.train" title="cleanlab.models.cifar_cnn.CNN.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>([mode])</p></td>
 <td><p>Sets the module in training mode.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.type" title="cleanlab.models.cifar_cnn.CNN.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a>(dst_type)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.type" title="cleanlab.models.cifar_cnn.CNN.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a>(dst_type)</p></td>
 <td><p>Casts all parameters and buffers to <code class="xref py py-attr docutils literal notranslate"><span class="pre">dst_type</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.xpu" title="cleanlab.models.cifar_cnn.CNN.xpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xpu</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.xpu" title="cleanlab.models.cifar_cnn.CNN.xpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xpu</span></code></a>([device])</p></td>
 <td><p>Moves all model parameters and buffers to the XPU.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.zero_grad" title="cleanlab.models.cifar_cnn.CNN.zero_grad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_grad</span></code></a>([set_to_none])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.zero_grad" title="cleanlab.models.cifar_cnn.CNN.zero_grad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_grad</span></code></a>([set_to_none])</p></td>
 <td><p>Sets gradients of all model parameters to zero.</p></td>
 </tr>
 </tbody>
@@ -645,8 +646,8 @@ live on GPU while being optimized.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.dump_patches">
 <span class="sig-name descname"><span class="pre">dump_patches</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.dump_patches" title="Permalink to this definition">#</a></dt>
-<dd><p>This allows better BC support for <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>. In
-<a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code></a>, the version number will be saved as in the attribute
+<dd><p>This allows better BC support for <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>. In
+<a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code></a>, the version number will be saved as in the attribute
 <cite>_metadata</cite> of the returned state dict, and thus pickled. <cite>_metadata</cite> is a
 dictionary with keys that follow the naming convention of state dict. See
 <code class="docutils literal notranslate"><span class="pre">_load_from_state_dict</span></code> on how to use this information in loading.</p>
@@ -734,7 +735,7 @@ buffer</p>
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.get_extra_state">
 <span class="sig-name descname"><span class="pre">get_extra_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.get_extra_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns any extra state to include in the module’s state_dict.
-Implement this and a corresponding <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.set_extra_state" title="cleanlab.models.cifar_cnn.CNN.set_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_extra_state()</span></code></a> for your module
+Implement this and a corresponding <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.set_extra_state" title="cleanlab.models.cifar_cnn.CNN.set_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_extra_state()</span></code></a> for your module
 if you need to store extra state. This function is called when building the
 module’s <cite>state_dict()</cite>.</p>
 <p>Note that extra state should be pickleable to ensure working serialization
@@ -824,15 +825,15 @@ fully-qualified string.)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.load_state_dict">
 <span class="sig-name descname"><span class="pre">load_state_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OrderedDict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="Permalink to this definition">#</a></dt>
-<dd><p>Copies parameters and buffers from <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into
+<dd><p>Copies parameters and buffers from <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into
 this module and its descendants. If <code class="xref py py-attr docutils literal notranslate"><span class="pre">strict</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then
-the keys of <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> must exactly match the keys returned
+the keys of <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> must exactly match the keys returned
 by this module’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code> function.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>state_dict (dict): a dict containing parameters and</dt><dd><p>persistent buffers.</p>
 </dd>
-<dt>strict (bool, optional): whether to strictly enforce that the keys</dt><dd><p>in <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> match the keys returned by this module’s
+<dt>strict (bool, optional): whether to strictly enforce that the keys</dt><dd><p>in <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> match the keys returned by this module’s
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code> function. Default: <code class="docutils literal notranslate"><span class="pre">True</span></code></p>
 </dd>
 </dl>
@@ -846,7 +847,7 @@ by this module’s <code class="xref py py-meth docutils literal notranslate"><s
 </dl>
 </dd>
 <dt>Note:</dt><dd><p>If a parameter or buffer is registered as <code class="docutils literal notranslate"><span class="pre">None</span></code> and its corresponding key
-exists in <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>, <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> will raise a
+exists in <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>, <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> will raise a
 <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code>.</p>
 </dd>
 </dl>
@@ -1018,16 +1019,16 @@ default, are persistent and will be saved alongside parameters. This
 behavior can be changed by setting <code class="xref py py-attr docutils literal notranslate"><span class="pre">persistent</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>. The
 only difference between a persistent buffer and a non-persistent buffer
 is that the latter will not be a part of this module’s
-<a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 <p>Buffers can be accessed as attributes using given names.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>name (string): name of the buffer. The buffer can be accessed</dt><dd><p>from this module using the given name</p>
 </dd>
-<dt>tensor (Tensor or None): buffer to be registered. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations</dt><dd><p>that run on buffers, such as <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>, are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
-the buffer is <strong>not</strong> included in the module’s <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<dt>tensor (Tensor or None): buffer to be registered. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations</dt><dd><p>that run on buffers, such as <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>, are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+the buffer is <strong>not</strong> included in the module’s <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
-<dt>persistent (bool): whether the buffer is part of this module’s</dt><dd><p><a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<dt>persistent (bool): whether the buffer is part of this module’s</dt><dd><p><a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -1041,7 +1042,7 @@ the buffer is <strong>not</strong> included in the module’s <a class="referenc
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.register_forward_hook">
 <span class="sig-name descname"><span class="pre">register_forward_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">torch.utils.hooks.RemovableHandle</span></span></span><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.register_forward_hook" title="Permalink to this definition">#</a></dt>
 <dd><p>Registers a forward hook on the module.</p>
-<p>The hook will be called every time after <a class="reference internal" href="#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> has computed an output.
+<p>The hook will be called every time after <a class="reference internal" href="cleanlab.models/cifar_cnn.html#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> has computed an output.
 It should have the following signature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hook</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">modified</span> <span class="n">output</span>
 </pre></div>
@@ -1050,7 +1051,7 @@ It should have the following signature:</p>
 Keyword arguments won’t be passed to the hooks and only to the <code class="docutils literal notranslate"><span class="pre">forward</span></code>.
 The hook can modify the output. It can modify the input inplace but
 it will not have effect on forward since this is called after
-<a class="reference internal" href="#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is called.</p>
+<a class="reference internal" href="cleanlab.models/cifar_cnn.html#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is called.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><dl class="simple">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.hooks.RemovableHandle</span></code>:</dt><dd><p>a handle that can be used to remove the added hook by calling
@@ -1064,7 +1065,7 @@ it will not have effect on forward since this is called after
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook">
 <span class="sig-name descname"><span class="pre">register_forward_pre_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">torch.utils.hooks.RemovableHandle</span></span></span><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.register_forward_pre_hook" title="Permalink to this definition">#</a></dt>
 <dd><p>Registers a forward pre-hook on the module.</p>
-<p>The hook will be called every time before <a class="reference internal" href="#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is invoked.
+<p>The hook will be called every time before <a class="reference internal" href="cleanlab.models/cifar_cnn.html#id0" title="cleanlab.models.cifar_cnn.CNN.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is invoked.
 It should have the following signature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hook</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">modified</span> <span class="nb">input</span>
 </pre></div>
@@ -1126,9 +1127,9 @@ will raise an error.</p>
 <dt>Args:</dt><dd><dl class="simple">
 <dt>name (string): name of the parameter. The parameter can be accessed</dt><dd><p>from this module using the given name</p>
 </dd>
-<dt>param (Parameter or None): parameter to be added to the module. If</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations that run on parameters, such as <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>,
+<dt>param (Parameter or None): parameter to be added to the module. If</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations that run on parameters, such as <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.cuda" title="cleanlab.models.cifar_cnn.CNN.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>,
 are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the parameter is <strong>not</strong> included in the
-module’s <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+module’s <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.state_dict" title="cleanlab.models.cifar_cnn.CNN.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -1158,9 +1159,9 @@ or training parts of a model individually (e.g., GAN training).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.models.cifar_cnn.CNN.set_extra_state">
 <span class="sig-name descname"><span class="pre">set_extra_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.models.cifar_cnn.CNN.set_extra_state" title="Permalink to this definition">#</a></dt>
-<dd><p>This function is called from <a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state
+<dd><p>This function is called from <a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.load_state_dict" title="cleanlab.models.cifar_cnn.CNN.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state
 found within the <cite>state_dict</cite>. Implement this function and a corresponding
-<a class="reference internal" href="#cleanlab.models.cifar_cnn.CNN.get_extra_state" title="cleanlab.models.cifar_cnn.CNN.get_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_extra_state()</span></code></a> for your module if you need to store extra state within its
+<a class="reference internal" href="cleanlab.models/cifar_cnn.html#cleanlab.models.cifar_cnn.CNN.get_extra_state" title="cleanlab.models.cifar_cnn.CNN.get_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_extra_state()</span></code></a> for your module if you need to store extra state within its
 <cite>state_dict</cite>.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>state (dict): Extra state from the <cite>state_dict</cite></p>
@@ -1373,7 +1374,7 @@ under <code class="xref py py-class docutils literal notranslate"><span class="p
 <dd></dd></dl>
 </div>
 <div class="section" id="module-cleanlab.models.mnist_pytorch">
-<span id="cleanlab-models-mnist-pytorch-module"></span><h2>cleanlab.models.mnist_pytorch module<a class="headerlink" href="#module-cleanlab.models.mnist_pytorch" title="Permalink to this headline">#</a></h2>
+<span id="mnist-pytorch"></span><h1>MNIST PyTorch<a class="headerlink" href="#module-cleanlab.models.mnist_pytorch" title="Permalink to this headline">#</a></h1>
 <p><strong>Classes:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -1381,10 +1382,10 @@ under <code class="xref py py-class docutils literal notranslate"><span class="p
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.CNN" title="cleanlab.models.mnist_pytorch.CNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNN</span></code></a>([batch_size, epochs, log_interval, lr, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.CNN" title="cleanlab.models.mnist_pytorch.CNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNN</span></code></a>([batch_size, epochs, log_interval, lr, ...])</p></td>
 <td><p>Wraps a PyTorch CNN for the MNIST dataset within an sklearn template</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet" title="cleanlab.models.mnist_pytorch.SimpleNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleNet</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet" title="cleanlab.models.mnist_pytorch.SimpleNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleNet</span></code></a>()</p></td>
 <td><p>Basic Pytorch CNN for MNIST-like data.</p></td>
 </tr>
 </tbody>
@@ -1396,10 +1397,10 @@ under <code class="xref py py-class docutils literal notranslate"><span class="p
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.get_mnist_dataset" title="cleanlab.models.mnist_pytorch.get_mnist_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mnist_dataset</span></code></a>(loader)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.get_mnist_dataset" title="cleanlab.models.mnist_pytorch.get_mnist_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_mnist_dataset</span></code></a>(loader)</p></td>
 <td><p>Downloads MNIST as PyTorch dataset.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.get_sklearn_digits_dataset" title="cleanlab.models.mnist_pytorch.get_sklearn_digits_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sklearn_digits_dataset</span></code></a>(loader)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.get_sklearn_digits_dataset" title="cleanlab.models.mnist_pytorch.get_sklearn_digits_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sklearn_digits_dataset</span></code></a>(loader)</p></td>
 <td><p>Downloads Sklearn handwritten digits dataset.</p></td>
 </tr>
 </tbody>
@@ -1551,19 +1552,19 @@ then .predict() will still predict on test!</p>
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id1" title="cleanlab.models.mnist_pytorch.CNN.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(train_idx[, train_labels, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#id0" title="cleanlab.models.mnist_pytorch.CNN.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(train_idx[, train_labels, ...])</p></td>
 <td><p>This function adheres to sklearn's "fit(X, y)" format for compatibility with scikit-learn.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.CNN.get_params" title="cleanlab.models.mnist_pytorch.CNN.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.CNN.get_params" title="cleanlab.models.mnist_pytorch.CNN.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id2" title="cleanlab.models.mnist_pytorch.CNN.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>([idx, loader])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#id1" title="cleanlab.models.mnist_pytorch.CNN.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>([idx, loader])</p></td>
 <td><p>Get predicted labels from trained model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#id3" title="cleanlab.models.mnist_pytorch.CNN.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>([idx, loader])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#id2" title="cleanlab.models.mnist_pytorch.CNN.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>([idx, loader])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.CNN.set_params" title="cleanlab.models.mnist_pytorch.CNN.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.CNN.set_params" title="cleanlab.models.mnist_pytorch.CNN.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
@@ -1637,11 +1638,11 @@ possible to update each component of a nested object.</p>
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.T_destination" title="cleanlab.models.mnist_pytorch.SimpleNet.T_destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T_destination</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.T_destination" title="cleanlab.models.mnist_pytorch.SimpleNet.T_destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T_destination</span></code></a></p></td>
 <td><p>alias of TypeVar('T_destination', bound=<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code>])</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.dump_patches" title="cleanlab.models.mnist_pytorch.SimpleNet.dump_patches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump_patches</span></code></a></p></td>
-<td><p>This allows better BC support for <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.dump_patches" title="cleanlab.models.mnist_pytorch.SimpleNet.dump_patches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump_patches</span></code></a></p></td>
+<td><p>This allows better BC support for <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -1652,127 +1653,127 @@ possible to update each component of a nested object.</p>
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.__call__" title="cleanlab.models.mnist_pytorch.SimpleNet.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*input, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.__call__" title="cleanlab.models.mnist_pytorch.SimpleNet.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*input, **kwargs)</p></td>
 <td><p>Call self as a function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.add_module" title="cleanlab.models.mnist_pytorch.SimpleNet.add_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_module</span></code></a>(name, module)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.add_module" title="cleanlab.models.mnist_pytorch.SimpleNet.add_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_module</span></code></a>(name, module)</p></td>
 <td><p>Adds a child module to the current module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.apply" title="cleanlab.models.mnist_pytorch.SimpleNet.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(fn)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.apply" title="cleanlab.models.mnist_pytorch.SimpleNet.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply</span></code></a>(fn)</p></td>
 <td><p>Applies <code class="docutils literal notranslate"><span class="pre">fn</span></code> recursively to every submodule (as returned by <code class="docutils literal notranslate"><span class="pre">.children()</span></code>) as well as self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.bfloat16" title="cleanlab.models.mnist_pytorch.SimpleNet.bfloat16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfloat16</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.bfloat16" title="cleanlab.models.mnist_pytorch.SimpleNet.bfloat16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bfloat16</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.buffers" title="cleanlab.models.mnist_pytorch.SimpleNet.buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buffers</span></code></a>([recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.buffers" title="cleanlab.models.mnist_pytorch.SimpleNet.buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buffers</span></code></a>([recurse])</p></td>
 <td><p>Returns an iterator over module buffers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.children" title="cleanlab.models.mnist_pytorch.SimpleNet.children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.children" title="cleanlab.models.mnist_pytorch.SimpleNet.children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></a>()</p></td>
 <td><p>Returns an iterator over immediate children modules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.cpu" title="cleanlab.models.mnist_pytorch.SimpleNet.cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cpu</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.cpu" title="cleanlab.models.mnist_pytorch.SimpleNet.cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cpu</span></code></a>()</p></td>
 <td><p>Moves all model parameters and buffers to the CPU.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda</span></code></a>([device])</p></td>
 <td><p>Moves all model parameters and buffers to the GPU.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.double" title="cleanlab.models.mnist_pytorch.SimpleNet.double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">double</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.double" title="cleanlab.models.mnist_pytorch.SimpleNet.double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">double</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">double</span></code> datatype.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.eval" title="cleanlab.models.mnist_pytorch.SimpleNet.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.eval" title="cleanlab.models.mnist_pytorch.SimpleNet.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>()</p></td>
 <td><p>Sets the module in evaluation mode.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.extra_repr" title="cleanlab.models.mnist_pytorch.SimpleNet.extra_repr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.extra_repr" title="cleanlab.models.mnist_pytorch.SimpleNet.extra_repr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extra_repr</span></code></a>()</p></td>
 <td><p>Set the extra representation of the module</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.float" title="cleanlab.models.mnist_pytorch.SimpleNet.float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.float" title="cleanlab.models.mnist_pytorch.SimpleNet.float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">float</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(x[, T])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(x[, T])</p></td>
 <td><p>Defines the computation performed at every call.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_buffer" title="cleanlab.models.mnist_pytorch.SimpleNet.get_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_buffer</span></code></a>(target)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.get_buffer" title="cleanlab.models.mnist_pytorch.SimpleNet.get_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_buffer</span></code></a>(target)</p></td>
 <td><p>Returns the buffer given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_extra_state</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_extra_state</span></code></a>()</p></td>
 <td><p>Returns any extra state to include in the module's state_dict.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_parameter" title="cleanlab.models.mnist_pytorch.SimpleNet.get_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameter</span></code></a>(target)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.get_parameter" title="cleanlab.models.mnist_pytorch.SimpleNet.get_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameter</span></code></a>(target)</p></td>
 <td><p>Returns the parameter given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_submodule" title="cleanlab.models.mnist_pytorch.SimpleNet.get_submodule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_submodule</span></code></a>(target)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.get_submodule" title="cleanlab.models.mnist_pytorch.SimpleNet.get_submodule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_submodule</span></code></a>(target)</p></td>
 <td><p>Returns the submodule given by <code class="docutils literal notranslate"><span class="pre">target</span></code> if it exists, otherwise throws an error.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.half" title="cleanlab.models.mnist_pytorch.SimpleNet.half"><code class="xref py py-obj docutils literal notranslate"><span class="pre">half</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.half" title="cleanlab.models.mnist_pytorch.SimpleNet.half"><code class="xref py py-obj docutils literal notranslate"><span class="pre">half</span></code></a>()</p></td>
 <td><p>Casts all floating point parameters and buffers to <code class="docutils literal notranslate"><span class="pre">half</span></code> datatype.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_state_dict</span></code></a>(state_dict[, strict])</p></td>
-<td><p>Copies parameters and buffers from <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into this module and its descendants.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_state_dict</span></code></a>(state_dict[, strict])</p></td>
+<td><p>Copies parameters and buffers from <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into this module and its descendants.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.modules" title="cleanlab.models.mnist_pytorch.SimpleNet.modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modules</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.modules" title="cleanlab.models.mnist_pytorch.SimpleNet.modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modules</span></code></a>()</p></td>
 <td><p>Returns an iterator over all modules in the network.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.named_buffers" title="cleanlab.models.mnist_pytorch.SimpleNet.named_buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_buffers</span></code></a>([prefix, recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.named_buffers" title="cleanlab.models.mnist_pytorch.SimpleNet.named_buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_buffers</span></code></a>([prefix, recurse])</p></td>
 <td><p>Returns an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.named_children" title="cleanlab.models.mnist_pytorch.SimpleNet.named_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_children</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.named_children" title="cleanlab.models.mnist_pytorch.SimpleNet.named_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_children</span></code></a>()</p></td>
 <td><p>Returns an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.named_modules" title="cleanlab.models.mnist_pytorch.SimpleNet.named_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_modules</span></code></a>([memo, prefix, remove_duplicate])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.named_modules" title="cleanlab.models.mnist_pytorch.SimpleNet.named_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_modules</span></code></a>([memo, prefix, remove_duplicate])</p></td>
 <td><p>Returns an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.named_parameters" title="cleanlab.models.mnist_pytorch.SimpleNet.named_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_parameters</span></code></a>([prefix, recurse])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.named_parameters" title="cleanlab.models.mnist_pytorch.SimpleNet.named_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_parameters</span></code></a>([prefix, recurse])</p></td>
 <td><p>Returns an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.parameters" title="cleanlab.models.mnist_pytorch.SimpleNet.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a>([recurse])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.parameters" title="cleanlab.models.mnist_pytorch.SimpleNet.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a>([recurse])</p></td>
 <td><p>Returns an iterator over module parameters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_backward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_backward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_backward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_backward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a backward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_buffer" title="cleanlab.models.mnist_pytorch.SimpleNet.register_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_buffer</span></code></a>(name, tensor[, persistent])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_buffer" title="cleanlab.models.mnist_pytorch.SimpleNet.register_buffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_buffer</span></code></a>(name, tensor[, persistent])</p></td>
 <td><p>Adds a buffer to the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a forward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_pre_hook</span></code></a>(hook)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_forward_pre_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a forward pre-hook on the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_full_backward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_full_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_full_backward_hook</span></code></a>(hook)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_full_backward_hook" title="cleanlab.models.mnist_pytorch.SimpleNet.register_full_backward_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_full_backward_hook</span></code></a>(hook)</p></td>
 <td><p>Registers a backward hook on the module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_parameter" title="cleanlab.models.mnist_pytorch.SimpleNet.register_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_parameter</span></code></a>(name, param)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.register_parameter" title="cleanlab.models.mnist_pytorch.SimpleNet.register_parameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_parameter</span></code></a>(name, param)</p></td>
 <td><p>Adds a parameter to the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.requires_grad_" title="cleanlab.models.mnist_pytorch.SimpleNet.requires_grad_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">requires_grad_</span></code></a>([requires_grad])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.requires_grad_" title="cleanlab.models.mnist_pytorch.SimpleNet.requires_grad_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">requires_grad_</span></code></a>([requires_grad])</p></td>
 <td><p>Change if autograd should record operations on parameters in this module.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_extra_state</span></code></a>(state)</p></td>
-<td><p>This function is called from <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state found within the <cite>state_dict</cite>.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_extra_state</span></code></a>(state)</p></td>
+<td><p>This function is called from <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state found within the <cite>state_dict</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.share_memory" title="cleanlab.models.mnist_pytorch.SimpleNet.share_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">share_memory</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.share_memory" title="cleanlab.models.mnist_pytorch.SimpleNet.share_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">share_memory</span></code></a>()</p></td>
 <td><p>See <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.share_memory_()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dict</span></code></a>([destination, prefix, keep_vars])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dict</span></code></a>([destination, prefix, keep_vars])</p></td>
 <td><p>Returns a dictionary containing a whole state of the module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.to" title="cleanlab.models.mnist_pytorch.SimpleNet.to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.to" title="cleanlab.models.mnist_pytorch.SimpleNet.to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Moves and/or casts the parameters and buffers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.to_empty" title="cleanlab.models.mnist_pytorch.SimpleNet.to_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_empty</span></code></a>(*, device)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.to_empty" title="cleanlab.models.mnist_pytorch.SimpleNet.to_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_empty</span></code></a>(*, device)</p></td>
 <td><p>Moves the parameters and buffers to the specified device without copying storage.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.train" title="cleanlab.models.mnist_pytorch.SimpleNet.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>([mode])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.train" title="cleanlab.models.mnist_pytorch.SimpleNet.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>([mode])</p></td>
 <td><p>Sets the module in training mode.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.type" title="cleanlab.models.mnist_pytorch.SimpleNet.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a>(dst_type)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.type" title="cleanlab.models.mnist_pytorch.SimpleNet.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a>(dst_type)</p></td>
 <td><p>Casts all parameters and buffers to <code class="xref py py-attr docutils literal notranslate"><span class="pre">dst_type</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.xpu" title="cleanlab.models.mnist_pytorch.SimpleNet.xpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xpu</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.xpu" title="cleanlab.models.mnist_pytorch.SimpleNet.xpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xpu</span></code></a>([device])</p></td>
 <td><p>Moves all model parameters and buffers to the XPU.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.zero_grad" title="cleanlab.models.mnist_pytorch.SimpleNet.zero_grad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_grad</span></code></a>([set_to_none])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.zero_grad" title="cleanlab.models.mnist_pytorch.SimpleNet.zero_grad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_grad</span></code></a>([set_to_none])</p></td>
 <td><p>Sets gradients of all model parameters to zero.</p></td>
 </tr>
 </tbody>
@@ -1935,8 +1936,8 @@ live on GPU while being optimized.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.dump_patches">
 <span class="sig-name descname"><span class="pre">dump_patches</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.dump_patches" title="Permalink to this definition">#</a></dt>
-<dd><p>This allows better BC support for <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>. In
-<a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code></a>, the version number will be saved as in the attribute
+<dd><p>This allows better BC support for <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a>. In
+<a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code></a>, the version number will be saved as in the attribute
 <cite>_metadata</cite> of the returned state dict, and thus pickled. <cite>_metadata</cite> is a
 dictionary with keys that follow the naming convention of state dict. See
 <code class="docutils literal notranslate"><span class="pre">_load_from_state_dict</span></code> on how to use this information in loading.</p>
@@ -2024,7 +2025,7 @@ buffer</p>
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state">
 <span class="sig-name descname"><span class="pre">get_extra_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns any extra state to include in the module’s state_dict.
-Implement this and a corresponding <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_extra_state()</span></code></a> for your module
+Implement this and a corresponding <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_extra_state()</span></code></a> for your module
 if you need to store extra state. This function is called when building the
 module’s <cite>state_dict()</cite>.</p>
 <p>Note that extra state should be pickleable to ensure working serialization
@@ -2114,15 +2115,15 @@ fully-qualified string.)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict">
 <span class="sig-name descname"><span class="pre">load_state_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OrderedDict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="Permalink to this definition">#</a></dt>
-<dd><p>Copies parameters and buffers from <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into
+<dd><p>Copies parameters and buffers from <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> into
 this module and its descendants. If <code class="xref py py-attr docutils literal notranslate"><span class="pre">strict</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then
-the keys of <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> must exactly match the keys returned
+the keys of <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> must exactly match the keys returned
 by this module’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code> function.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>state_dict (dict): a dict containing parameters and</dt><dd><p>persistent buffers.</p>
 </dd>
-<dt>strict (bool, optional): whether to strictly enforce that the keys</dt><dd><p>in <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> match the keys returned by this module’s
+<dt>strict (bool, optional): whether to strictly enforce that the keys</dt><dd><p>in <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a> match the keys returned by this module’s
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">state_dict()</span></code> function. Default: <code class="docutils literal notranslate"><span class="pre">True</span></code></p>
 </dd>
 </dl>
@@ -2136,7 +2137,7 @@ by this module’s <code class="xref py py-meth docutils literal notranslate"><s
 </dl>
 </dd>
 <dt>Note:</dt><dd><p>If a parameter or buffer is registered as <code class="docutils literal notranslate"><span class="pre">None</span></code> and its corresponding key
-exists in <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>, <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> will raise a
+exists in <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>, <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> will raise a
 <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code>.</p>
 </dd>
 </dl>
@@ -2308,16 +2309,16 @@ default, are persistent and will be saved alongside parameters. This
 behavior can be changed by setting <code class="xref py py-attr docutils literal notranslate"><span class="pre">persistent</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>. The
 only difference between a persistent buffer and a non-persistent buffer
 is that the latter will not be a part of this module’s
-<a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 <p>Buffers can be accessed as attributes using given names.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>name (string): name of the buffer. The buffer can be accessed</dt><dd><p>from this module using the given name</p>
 </dd>
-<dt>tensor (Tensor or None): buffer to be registered. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations</dt><dd><p>that run on buffers, such as <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>, are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
-the buffer is <strong>not</strong> included in the module’s <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<dt>tensor (Tensor or None): buffer to be registered. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations</dt><dd><p>that run on buffers, such as <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>, are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+the buffer is <strong>not</strong> included in the module’s <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
-<dt>persistent (bool): whether the buffer is part of this module’s</dt><dd><p><a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+<dt>persistent (bool): whether the buffer is part of this module’s</dt><dd><p><a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -2331,7 +2332,7 @@ the buffer is <strong>not</strong> included in the module’s <a class="referenc
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook">
 <span class="sig-name descname"><span class="pre">register_forward_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">torch.utils.hooks.RemovableHandle</span></span></span><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_hook" title="Permalink to this definition">#</a></dt>
 <dd><p>Registers a forward hook on the module.</p>
-<p>The hook will be called every time after <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> has computed an output.
+<p>The hook will be called every time after <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> has computed an output.
 It should have the following signature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hook</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">modified</span> <span class="n">output</span>
 </pre></div>
@@ -2340,7 +2341,7 @@ It should have the following signature:</p>
 Keyword arguments won’t be passed to the hooks and only to the <code class="docutils literal notranslate"><span class="pre">forward</span></code>.
 The hook can modify the output. It can modify the input inplace but
 it will not have effect on forward since this is called after
-<a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is called.</p>
+<a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is called.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><dl class="simple">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.hooks.RemovableHandle</span></code>:</dt><dd><p>a handle that can be used to remove the added hook by calling
@@ -2354,7 +2355,7 @@ it will not have effect on forward since this is called after
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook">
 <span class="sig-name descname"><span class="pre">register_forward_pre_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">torch.utils.hooks.RemovableHandle</span></span></span><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.register_forward_pre_hook" title="Permalink to this definition">#</a></dt>
 <dd><p>Registers a forward pre-hook on the module.</p>
-<p>The hook will be called every time before <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is invoked.
+<p>The hook will be called every time before <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.forward" title="cleanlab.models.mnist_pytorch.SimpleNet.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> is invoked.
 It should have the following signature:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hook</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">modified</span> <span class="nb">input</span>
 </pre></div>
@@ -2416,9 +2417,9 @@ will raise an error.</p>
 <dt>Args:</dt><dd><dl class="simple">
 <dt>name (string): name of the parameter. The parameter can be accessed</dt><dd><p>from this module using the given name</p>
 </dd>
-<dt>param (Parameter or None): parameter to be added to the module. If</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations that run on parameters, such as <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>,
+<dt>param (Parameter or None): parameter to be added to the module. If</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>, then operations that run on parameters, such as <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.cuda" title="cleanlab.models.mnist_pytorch.SimpleNet.cuda"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cuda</span></code></a>,
 are ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the parameter is <strong>not</strong> included in the
-module’s <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
+module’s <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.state_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state_dict</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -2448,9 +2449,9 @@ or training parts of a model individually (e.g., GAN training).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state">
 <span class="sig-name descname"><span class="pre">set_extra_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.models.mnist_pytorch.SimpleNet.set_extra_state" title="Permalink to this definition">#</a></dt>
-<dd><p>This function is called from <a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state
+<dd><p>This function is called from <a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict" title="cleanlab.models.mnist_pytorch.SimpleNet.load_state_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_state_dict()</span></code></a> to handle any extra state
 found within the <cite>state_dict</cite>. Implement this function and a corresponding
-<a class="reference internal" href="#cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_extra_state()</span></code></a> for your module if you need to store extra state within its
+<a class="reference internal" href="cleanlab.models/mnist_pytorch.html#cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state" title="cleanlab.models.mnist_pytorch.SimpleNet.get_extra_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_extra_state()</span></code></a> for your module if you need to store extra state within its
 <cite>state_dict</cite>.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>state (dict): Extra state from the <cite>state_dict</cite></p>
@@ -2680,7 +2681,6 @@ This is (hard-coded) – do not change.</p>
 </dl>
 </dd></dl>
 </div>
-</div>
  
 
         </article>
@@ -2728,7 +2728,7 @@ This is (hard-coded) – do not change.</p>
   function genPypiMsg() {
     var d1 = document.getElementsByClassName("left-details");
     console.log(d1[0])
-    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a>.');
+    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
   }
 
   genPypiMsg()
@@ -2737,29 +2737,8 @@ This is (hard-coded) – do not change.</p>
 
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">cleanlab.models package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-cleanlab.models.cifar_cnn">cleanlab.models.cifar_cnn module</a></li>
-<li><a class="reference internal" href="#module-cleanlab.models.mnist_pytorch">cleanlab.models.mnist_pytorch module</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
