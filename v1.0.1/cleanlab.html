@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="cleanlab.models package" href="cleanlab.models.html" /><link rel="prev" title="Introduction" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CIFAR CNN" href="cleanlab.models.html" /><link rel="prev" title="Introduction" href="index.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>Classification - cleanlab docs</title>
@@ -131,7 +131,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -140,8 +140,11 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
+  </div>
   
   <span class="sidebar-brand-text">cleanlab docs</span>
   
@@ -167,7 +170,8 @@
 <li class="toctree-l1"><a class="reference internal" href="#module-cleanlab.util">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#module-cleanlab.polyplex">Polyplex</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="#models">Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html">cleanlab.models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html">CIFAR CNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html#module-cleanlab.models.mnist_pytorch">MNIST PyTorch</a></li>
 </ul>
 </li>
 </ul>
@@ -240,13 +244,14 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
           
+
 
 <!-- Start of Version Warning Banner -->
 
@@ -284,6 +289,7 @@
 </script>
 
 <!-- End of Version Warning Banner -->
+
 
 <div class="section" id="module-cleanlab.classification">
 <span id="classification"></span><h1>Classification<a class="headerlink" href="#module-cleanlab.classification" title="Permalink to this headline">#</a></h1>
@@ -2238,12 +2244,8 @@ joint distribution, given the trace of the noise matrix and p(y).</p>
 <h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cleanlab.models.html">cleanlab.models package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html#module-cleanlab.models.cifar_cnn">cleanlab.models.cifar_cnn module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cleanlab.models.html#module-cleanlab.models.mnist_pytorch">cleanlab.models.mnist_pytorch module</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cleanlab.models.html">CIFAR CNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cleanlab.models.html#module-cleanlab.models.mnist_pytorch">MNIST PyTorch</a></li>
 </ul>
 </div>
 </div>
@@ -2260,7 +2262,7 @@ joint distribution, given the trace of the noise matrix and p(y).</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">cleanlab.models package</div>
+                <div class="title">CIFAR CNN</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -2302,7 +2304,7 @@ joint distribution, given the trace of the noise matrix and p(y).</p>
   function genPypiMsg() {
     var d1 = document.getElementsByClassName("left-details");
     console.log(d1[0])
-    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a>.');
+    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
   }
 
   genPypiMsg()
@@ -2311,33 +2313,8 @@ joint distribution, given the trace of the noise matrix and p(y).</p>
 
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Classification</a></li>
-<li><a class="reference internal" href="#module-cleanlab.latent_estimation">Latent Estimation</a></li>
-<li><a class="reference internal" href="#module-cleanlab.noise_generation">Noise Generation</a></li>
-<li><a class="reference internal" href="#module-cleanlab.baseline_methods">Baseline Methods</a></li>
-<li><a class="reference internal" href="#module-cleanlab.coteaching">Co-Teaching</a></li>
-<li><a class="reference internal" href="#module-cleanlab.latent_algebra">Latent Algebra</a></li>
-<li><a class="reference internal" href="#module-cleanlab.pruning">Pruning</a></li>
-<li><a class="reference internal" href="#module-cleanlab.util">Utilities</a></li>
-<li><a class="reference internal" href="#module-cleanlab.polyplex">Polyplex</a></li>
-<li><a class="reference internal" href="#models">Models</a></li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
