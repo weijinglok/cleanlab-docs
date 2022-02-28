@@ -140,8 +140,11 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
+  </div>
   
   <span class="sidebar-brand-text">cleanlab docs</span>
   
@@ -167,7 +170,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.util">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.polyplex">Polyplex</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab.html#models">Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html">cleanlab.models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html">CIFAR CNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html#module-cleanlab.models.mnist_pytorch">MNIST PyTorch</a></li>
 </ul>
 </li>
 </ul>
@@ -248,6 +252,7 @@
         <article role="main">
           
 
+
 <!-- Start of Version Warning Banner -->
 
 <p id="doc_ver_warning"></p>
@@ -284,6 +289,7 @@
 </script>
 
 <!-- End of Version Warning Banner -->
+
 
 <h1>Source code for cleanlab.classification</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Copyright (C) 2017-2022  Cleanlab Inc.</span>
@@ -783,7 +789,7 @@
   function genPypiMsg() {
     var d1 = document.getElementsByClassName("left-details");
     console.log(d1[0])
-    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a>.');
+    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
   }
 
   genPypiMsg()
