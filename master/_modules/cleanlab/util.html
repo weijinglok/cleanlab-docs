@@ -1,0 +1,824 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/logo.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+        <title>cleanlab.util - Cleanlab Docs</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Cleanlab Docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Cleanlab Docs</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.latent_estimation">Latent Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.noise_generation">Noise Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.baseline_methods">Baseline Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.coteaching">Co-Teaching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.latent_algebra">Latent Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.pruning">Pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.util">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.polyplex">Polyplex</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab.html#models">Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html">cleanlab.models package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<!-- Start of versioning -->
+
+<div class="sidebar-tree">
+  <p class="caption" role="heading">
+    <span class="caption-text">Versions</span>
+  </p>
+  <ul>
+    <li class="toctree-l1">
+      <a
+        id="version_number"
+        class="reference internal"
+        href="../stable/index.html"
+        >stable</a
+      >
+    </li>
+    <li class="toctree-l1">
+      <a id="commit_hash" class="reference internal" href="../master/index.html"
+        >developer</a
+      >
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../versioning.js"></script>
+
+<script type="text/javascript">
+  window.onload = function () {
+    var version_number = Version.version_number;
+    var commit_hash = Version.commit_hash;
+
+    document.getElementById("version_number").innerHTML =
+      "stable <code class='docutils literal notranslate'><span class='pre'> (" +
+      version_number +
+      ")</span></code>";
+    document.getElementById("commit_hash").innerHTML =
+      "master <code class='docutils literal notranslate'><span class='pre'> (" +
+      commit_hash.slice(0, 7) +
+      "&hellip;)</span></code>";
+  };
+</script>
+
+<!-- End of versioning -->
+
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+
+
+<!-- Start of Version Warning Banner -->
+
+<p id="doc_ver_warning"></p>
+
+<script type="text/javascript" src="../versioning.js"></script>
+<script type="text/javascript">
+  function genDocVerWarning() {
+    var version_number = Version.version_number;
+    var path_arr = window.location.pathname.split("/");
+
+    if (path_arr.includes("master")) {
+      document.getElementById("doc_ver_warning").innerHTML = `
+      <div class="admonition warning">
+      <p class="admonition-title">Warning</p>
+      <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="../stable/index.html">here</a>.</p>
+      </div>
+      `;
+    } else if (!path_arr.includes(version_number)) {
+      document.getElementById("doc_ver_warning").innerHTML =
+        `
+        <div class="admonition warning">
+        <p class="admonition-title">Warning</p>
+        <p>This documentation is for an old version (<code class="docutils literal notranslate"><span class="pre">master</span></code>) of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>. To see the documentation for the latest stable version (<code class="docutils literal notranslate"><span class="pre">` +
+        version_number +
+        `</span></code>), click <a href="../stable/index.html">here</a>.</p>
+        </div>
+      `;
+    } else {
+      document.getElementById("doc_ver_warning").remove();
+    }
+  }
+
+  genDocVerWarning();
+</script>
+
+<!-- End of Version Warning Banner -->
+
+
+<h1>Source code for cleanlab.util</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2017-2022  Cleanlab Inc.</span>
+<span class="c1"># This file is part of cleanlab.</span>
+<span class="c1"># </span>
+<span class="c1"># cleanlab is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Affero General Public License as published</span>
+<span class="c1"># by the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1"># </span>
+<span class="c1"># cleanlab is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Affero General Public License for more details.</span>
+<span class="c1"># </span>
+<span class="c1"># You should have received a copy of the GNU Affero General Public License</span>
+<span class="c1"># along with cleanlab.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+
+<span class="c1"># ## Confident Learning Utilties</span>
+<span class="c1"># </span>
+<span class="c1"># #### Contains ancillarly helper functions used throughout this package.</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">with_statement</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_X_y</span>
+
+
+<div class="viewcode-block" id="assert_inputs_are_valid"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.assert_inputs_are_valid">[docs]</a><span class="k">def</span> <span class="nf">assert_inputs_are_valid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">psx</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">"""Checks that X, s, and psx</span>
+<span class="sd">    are correctly formatted"""</span>
+
+    <span class="k">if</span> <span class="n">psx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">psx</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"psx should be a numpy array."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">psx</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"psx and s must have same length."</span><span class="p">)</span>
+        <span class="c1"># Check for valid probabilities.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">psx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">psx</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Values in psx must be between 0 and 1."</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"s should be a numpy array."</span><span class="p">)</span>
+
+    <span class="c1"># Check that s is zero-indexed (first label is 0).</span>
+    <span class="n">unique_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">unique_classes</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">))):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"cleanlab requires zero-indexed labels (0,1,2,..,m-1), but in "</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s2">"your case: np.unique(s) = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># Allow sparse matrices and check that they are valid format.</span>
+    <span class="n">check_X_y</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="remove_noise_from_class"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.remove_noise_from_class">[docs]</a><span class="k">def</span> <span class="nf">remove_noise_from_class</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">class_without_noise</span><span class="p">):</span>
+    <span class="sd">"""A helper function in the setting of PU learning.</span>
+<span class="sd">    Sets all P(s=class_without_noise|y=any_other_class) = 0</span>
+<span class="sd">    in noise_matrix for pulearning setting, where we have</span>
+<span class="sd">    generalized the positive class in PU learning to be any</span>
+<span class="sd">    class of choosing, denoted by class_without_noise.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    noise_matrix : np.array of shape (K, K), K = number of classes</span>
+<span class="sd">        A conditional probablity matrix of the form P(s=k_s|y=k_y) containing</span>
+<span class="sd">        the fraction of examples in every class, labeled as every other class.</span>
+<span class="sd">        Assumes columns of noise_matrix sum to 1.</span>
+
+<span class="sd">    class_without_noise : int</span>
+<span class="sd">        Integer value of the class that has no noise. Traditionally,</span>
+<span class="sd">        this is 1 (positive) for PU learning."""</span>
+
+    <span class="c1"># Number of classes</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">)</span>
+
+    <span class="n">cwn</span> <span class="o">=</span> <span class="n">class_without_noise</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Set P( s = cwn | y != cwn) = 0 (no noise)</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">cwn</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">cwn</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Normalize columns by increasing diagnol terms</span>
+    <span class="c1"># Ensures noise_matrix is a valid probability matrix</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="clip_noise_rates"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.clip_noise_rates">[docs]</a><span class="k">def</span> <span class="nf">clip_noise_rates</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">):</span>
+    <span class="sd">"""Clip all noise rates to proper range [0,1), but</span>
+<span class="sd">    do not modify the diagonal terms because they are not</span>
+<span class="sd">    noise rates.</span>
+
+<span class="sd">    ASSUMES noise_matrix columns sum to 1.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    noise_matrix : np.array of shape (K, K), K = number of classes</span>
+<span class="sd">        A conditional probablity matrix containing the fraction of</span>
+<span class="sd">        examples in every class, labeled as every other class.</span>
+<span class="sd">        Diagonal terms are not noise rates, but are consistency P(s=k|y=k)</span>
+<span class="sd">        Assumes columns of noise_matrix sum to 1"""</span>
+
+    <span class="k">def</span> <span class="nf">clip_noise_rate_range</span><span class="p">(</span><span class="n">noise_rate</span><span class="p">):</span>
+        <span class="sd">"""Clip noise rate P(s=k'|y=k) or P(y=k|s=k')</span>
+<span class="sd">        into proper range [0,1)"""</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">noise_rate</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.9999</span><span class="p">)</span>
+
+    <span class="c1"># Vectorize clip_noise_rate_range for efficiency with np.arrays.  </span>
+    <span class="n">vectorized_clip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">clip_noise_rate_range</span><span class="p">)</span>
+
+    <span class="c1"># Preserve because diagonal entries are not noise rates.</span>
+    <span class="n">diagonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Clip all noise rates (efficiently).</span>
+    <span class="n">noise_matrix</span> <span class="o">=</span> <span class="n">vectorized_clip</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Put unmodified diagonal back.</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">diagonal</span><span class="p">)</span>
+
+    <span class="c1"># Re-normalized noise_matrix so that columns sum to one.</span>
+    <span class="n">noise_matrix</span> <span class="o">=</span> <span class="n">noise_matrix</span> <span class="o">/</span> <span class="n">noise_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">noise_matrix</span></div>
+
+
+<div class="viewcode-block" id="clip_values"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.clip_values">[docs]</a><span class="k">def</span> <span class="nf">clip_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">new_sum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">"""Clip all values in p to range [low,high].</span>
+<span class="sd">    Preserves sum of x.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    x : np.array</span>
+<span class="sd">        An array / list of values to be clipped.</span>
+
+<span class="sd">    low : float</span>
+<span class="sd">        values in x greater than 'low' are clipped to this value</span>
+
+<span class="sd">    high : float</span>
+<span class="sd">        values in x greater than 'high' are clipped to this value</span>
+
+<span class="sd">    new_sum : float</span>
+<span class="sd">        normalizes x after clipping to sum to new_sum</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+
+<span class="sd">    x : np.array</span>
+<span class="sd">        A list of clipped values, summing to the same sum as x."""</span>
+
+    <span class="k">def</span> <span class="nf">clip_range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">):</span>
+        <span class="sd">"""Clip a into range [low,high]"""</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">low</span><span class="p">),</span> <span class="n">high</span><span class="p">)</span>
+
+    <span class="c1"># Vectorize clip_range for efficiency with np.arrays.  </span>
+    <span class="n">vectorized_clip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">clip_range</span><span class="p">)</span>
+
+    <span class="c1"># Store previous sum</span>
+    <span class="n">prev_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">new_sum</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">new_sum</span>
+
+    <span class="c1"># Clip all values (efficiently).</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">vectorized_clip</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Re-normalized values to sum to previous sum.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">prev_sum</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="value_counts"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.value_counts">[docs]</a><span class="k">def</span> <span class="nf">value_counts</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">"""Returns an np.array of shape (K, 1), with the</span>
+<span class="sd">    value counts for every unique item in the labels list/array,</span>
+<span class="sd">    where K is the number of unique entries in labels.</span>
+
+<span class="sd">    Why this matters? Here is an example:</span>
+<span class="sd">        x = [np.random.randint(0,100) for i in range(100000)]</span>
+
+<span class="sd">    %timeit np.bincount(x)</span>
+<span class="sd">        --Result: 100 loops, best of 3: 3.9 ms per loop</span>
+
+<span class="sd">    %timeit np.unique(x, return_counts=True)[1]</span>
+<span class="sd">        --Result: 100 loops, best of 3: 7.47 ms per loop</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    x : list or np.array (one dimensional)</span>
+<span class="sd">        A list of discrete objects, like lists or strings, for</span>
+<span class="sd">        example, class labels 'y' when training a classifier.</span>
+<span class="sd">        e.g. ["dog","dog","cat"] or [1,2,0,1,1,0,2]"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">and</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="round_preserving_sum"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.round_preserving_sum">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_sum</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="sd">"""Rounds an iterable of floats while retaining the original summed value.</span>
+<span class="sd">    The name of each parameter is required. The type and description of each</span>
+<span class="sd">    parameter is optional, but should be included if not obvious.</span>
+
+<span class="sd">    The while loop in this code was adapted from:</span>
+<span class="sd">    https://github.com/cgdeboer/iteround</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    iterable : list&lt;float&gt; or np.array&lt;float&gt;</span>
+<span class="sd">        An iterable of floats</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list&lt;int&gt; or np.array&lt;int&gt;</span>
+<span class="sd">        The iterable rounded to int, preserving sum."""</span>
+
+    <span class="n">floats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">ints</span> <span class="o">=</span> <span class="n">floats</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="n">orig_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">floats</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="n">int_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ints</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="c1"># Adjust the integers so that they sum to orig_sum</span>
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">int_sum</span> <span class="o">-</span> <span class="n">orig_sum</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">orig_sum</span> <span class="o">-</span> <span class="n">int_sum</span><span class="p">)</span>
+        <span class="n">increment</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">changes</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">))</span>
+        <span class="c1"># Orders indices by difference. Increments # of changes.</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">floats</span> <span class="o">-</span> <span class="n">ints</span><span class="p">)[::</span><span class="o">-</span><span class="n">increment</span><span class="p">][:</span><span class="n">changes</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="n">ints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">increment</span>
+        <span class="n">int_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ints</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ints</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="round_preserving_row_totals"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.round_preserving_row_totals">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_row_totals</span><span class="p">(</span><span class="n">confident_joint</span><span class="p">):</span>
+    <span class="sd">"""Rounds confident_joint cj to type int</span>
+<span class="sd">    while preserving the totals of reach row.</span>
+<span class="sd">    Assumes that cj is a 2D np.array of type float.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    confident_joint : 2D np.array&lt;float&gt; of shape (K, K)</span>
+<span class="sd">        See compute_confident_joint docstring for details.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    confident_joint : 2D np.array&lt;int&gt; of shape (K,K)</span>
+<span class="sd">        Rounded to int while preserving row totals."""</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span>
+        <span class="n">func1d</span><span class="o">=</span><span class="n">round_preserving_sum</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">arr</span><span class="o">=</span><span class="n">confident_joint</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="int2onehot"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.int2onehot">[docs]</a><span class="k">def</span> <span class="nf">int2onehot</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="sd">"""Convert list of lists to a onehot matrix for multi-labels</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    labels: list of lists of integers</span>
+<span class="sd">      e.g. [[0,1], [3], [1,2,3], [1], [2]]</span>
+<span class="sd">      All integers from 0,1,...,K-1 must be represented."""</span>
+
+    <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MultiLabelBinarizer</span>
+    <span class="n">mlb</span> <span class="o">=</span> <span class="n">MultiLabelBinarizer</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">mlb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="onehot2int"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.onehot2int">[docs]</a><span class="k">def</span> <span class="nf">onehot2int</span><span class="p">(</span><span class="n">onehot_matrix</span><span class="p">):</span>
+    <span class="sd">"""Convert a onehot matrix for multi-labels to a list of lists of ints</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    onehot_matrix: 2D np.array of 0s and 1s</span>
+<span class="sd">      A one hot encoded matrix representation of multi-labels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    labels: list of lists of integers</span>
+<span class="sd">      e.g. [[0,1], [3], [1,2,3], [1], [2]]</span>
+<span class="sd">      All integers from 0,1,...,K-1 must be represented."""</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">onehot_matrix</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="estimate_pu_f1"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.estimate_pu_f1">[docs]</a><span class="k">def</span> <span class="nf">estimate_pu_f1</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prob_s_eq_1</span><span class="p">):</span>
+    <span class="sd">"""Computes Claesen's estimate of f1 in the pulearning setting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    s : iterable (list or np.array)</span>
+<span class="sd">      Binary label (whether each element is labeled or not) in pu learning.</span>
+
+<span class="sd">    prob_s_eq_1 : iterable (list or np.array)</span>
+<span class="sd">      The probability, for each example, whether it is s==1 P(s==1|x)</span>
+
+<span class="sd">    Output (float)</span>
+<span class="sd">    ------</span>
+<span class="sd">    Claesen's estimate for f1 in the pulearning setting."""</span>
+
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">prob_s_eq_1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+    <span class="n">true_positives</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">all_positives</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">true_positives</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">all_positives</span><span class="p">)</span>
+    <span class="n">frac_positive</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">recall</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">frac_positive</span><span class="p">)</span> <span class="k">if</span> <span class="n">frac_positive</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span></div>
+
+
+<div class="viewcode-block" id="confusion_matrix"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.confusion_matrix">[docs]</a><span class="k">def</span> <span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+    <span class="sd">"""Implements a confusion matrix for true labels</span>
+<span class="sd">    and predicted labels. true and pred MUST BE the same length</span>
+<span class="sd">    and have the same distinct set of class labels represtented.</span>
+
+<span class="sd">    Results are identical (and similar computation time) to:</span>
+<span class="sd">        "sklearn.metrics.confusion_matrix"</span>
+
+<span class="sd">    However, this function avoids the dependency on sklearn.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : np.array 1d</span>
+<span class="sd">      Contains labels.</span>
+<span class="sd">      Assumes s and y contains the same distinct set of labels.</span>
+
+<span class="sd">    s : np.array 1d</span>
+<span class="sd">      Contains labels.</span>
+<span class="sd">      Assumes s and y contains the same distinct set of labels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    confusion_matrix : np.array (2D)</span>
+<span class="sd">      matrix of confusion counts with true on rows and pred on columns."""</span>
+
+    <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span>
+    <span class="n">true_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+    <span class="n">pred_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+    <span class="n">K_true</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_classes</span><span class="p">)</span>  <span class="c1"># Number of classes in true</span>
+    <span class="n">K_pred</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_classes</span><span class="p">)</span>  <span class="c1"># Number of classes in pred</span>
+    <span class="n">map_true</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">true_classes</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">K_true</span><span class="p">)))</span>
+    <span class="n">map_pred</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pred_classes</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">K_pred</span><span class="p">)))</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K_true</span><span class="p">,</span> <span class="n">K_pred</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true</span><span class="p">)):</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">map_true</span><span class="p">[</span><span class="n">true</span><span class="p">[</span><span class="n">i</span><span class="p">]]][</span><span class="n">map_pred</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="print_square_matrix"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.print_square_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_square_matrix</span><span class="p">(</span>
+        <span class="n">matrix</span><span class="p">,</span>
+        <span class="n">left_name</span><span class="o">=</span><span class="s1">'s'</span><span class="p">,</span>
+        <span class="n">top_name</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">' A square matrix'</span><span class="p">,</span>
+        <span class="n">short_title</span><span class="o">=</span><span class="s1">'s,y'</span><span class="p">,</span>
+        <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">"""Pretty prints a matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    matrix : np.array</span>
+<span class="sd">        the matrix to be printed</span>
+<span class="sd">    left_name : str</span>
+<span class="sd">        the name of the variable on the left of the matrix</span>
+<span class="sd">    top_name : str</span>
+<span class="sd">        the name of the variable on the top of the matrix</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Prints this string above the printed square matrix.</span>
+<span class="sd">    short_title : str</span>
+<span class="sd">        A short title (6 characters or less) like P(s|y) or P(s,y).</span>
+<span class="sd">    round_places : int</span>
+<span class="sd">        Number of decimals to show for each matrix value."""</span>
+
+    <span class="n">short_title</span> <span class="o">=</span> <span class="n">short_title</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>  <span class="c1"># Number of classes</span>
+    <span class="c1"># Make sure matrix is 2d array</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">matrix</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">matrix</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="s1">'of shape'</span><span class="p">,</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">" "</span> <span class="o">+</span> <span class="n">short_title</span> <span class="o">+</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span> <span class="o">+</span> <span class="n">top_name</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">---'</span> <span class="o">*</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">round_places</span><span class="p">)[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">left_name</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" |</span><span class="se">\t</span><span class="s2">"</span> <span class="o">+</span> <span class="n">entry</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">Trace(matrix) ="</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="n">round_places</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="print_noise_matrix"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.print_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_noise_matrix</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">"""Pretty prints the noise matrix."""</span>
+    <span class="n">print_square_matrix</span><span class="p">(</span>
+        <span class="n">noise_matrix</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">' Noise Matrix (aka Noisy Channel) P(s|y)'</span><span class="p">,</span>
+        <span class="n">short_title</span><span class="o">=</span><span class="s1">'p(s|y)'</span><span class="p">,</span>
+        <span class="n">round_places</span><span class="o">=</span><span class="n">round_places</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="print_inverse_noise_matrix"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.print_inverse_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_inverse_noise_matrix</span><span class="p">(</span><span class="n">inverse_noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">"""Pretty prints the inverse noise matrix."""</span>
+    <span class="n">print_square_matrix</span><span class="p">(</span>
+        <span class="n">inverse_noise_matrix</span><span class="p">,</span>
+        <span class="n">left_name</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span>
+        <span class="n">top_name</span><span class="o">=</span><span class="s1">'s'</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">' Inverse Noise Matrix P(y|s)'</span><span class="p">,</span>
+        <span class="n">short_title</span><span class="o">=</span><span class="s1">'p(y|s)'</span><span class="p">,</span>
+        <span class="n">round_places</span><span class="o">=</span><span class="n">round_places</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="print_joint_matrix"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.print_joint_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_joint_matrix</span><span class="p">(</span><span class="n">joint_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">"""Pretty prints the joint label noise matrix."""</span>
+    <span class="n">print_square_matrix</span><span class="p">(</span>
+        <span class="n">joint_matrix</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">' Joint Label Noise Distribution Matrix P(s,y)'</span><span class="p">,</span>
+        <span class="n">short_title</span><span class="o">=</span><span class="s1">'p(s,y)'</span><span class="p">,</span>
+        <span class="n">round_places</span><span class="o">=</span><span class="n">round_places</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_python_version_is_compatible</span><span class="p">(</span>
+        <span class="n">warning_str</span><span class="o">=</span><span class="s2">"pyTorch supports Python version 2.7, 3.5, 3.6, 3.7, 3.8"</span><span class="p">,</span>
+        <span class="n">warning_already_issued</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">list_of_compatible_versions</span><span class="o">=</span><span class="p">[</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="sd">"""Helper function for VersionWarning class that issues</span>
+<span class="sd">    a warning (if a warning has not already been issued),</span>
+<span class="sd">    whenever the python version is not in the</span>
+<span class="sd">    list_of_compatible_versions.</span>
+<span class="sd">    """</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">list_of_compatible_versions</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">warning_already_issued</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">warnings</span>
+        <span class="n">warning</span> <span class="o">=</span> <span class="s1">'''</span>
+<span class="s1">        </span><span class="si">{}</span><span class="s1"></span>
+<span class="s1">        cleanlab supports Python versions 2.7, 3.4, 3.5, 3.6.</span>
+<span class="s1">        You are using Python version </span><span class="si">{}</span><span class="s1">.</span>
+<span class="s1">        You'll need to use a version compatible with both.'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">warning_str</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warning</span><span class="p">)</span>
+        <span class="n">warning_already_issued</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<div class="viewcode-block" id="VersionWarning"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.VersionWarning">[docs]</a><span class="k">class</span> <span class="nc">VersionWarning</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">"""Functor that calls _python_version_is_compatible</span>
+<span class="sd">    and manages the state of the bool variable</span>
+<span class="sd">    warning_already_issued to make sure the same warning</span>
+<span class="sd">    is never displayed multiple times. """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">warning_str</span><span class="p">,</span> <span class="n">list_of_compatible_versions</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_str</span> <span class="o">=</span> <span class="n">warning_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_already_issued</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_of_compatible_versions</span> <span class="o">=</span> <span class="n">list_of_compatible_versions</span>
+
+<div class="viewcode-block" id="VersionWarning.is_compatible"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.util.VersionWarning.is_compatible">[docs]</a>    <span class="k">def</span> <span class="nf">is_compatible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compatible</span> <span class="o">=</span> <span class="n">_python_version_is_compatible</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_str</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_already_issued</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_of_compatible_versions</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">compatible</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_already_issued</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">compatible</span></div></div>
+</pre></div> 
+
+        </article>
+      </div>
+      <footer>
+        
+
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Cleanlab Inc.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+         
+<script type="text/javascript">
+  function genPypiMsg() {
+    var d1 = document.getElementsByClassName("left-details");
+    console.log(d1[0])
+    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
+  }
+
+  genPypiMsg()
+</script>
+
+
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    </body>
+</html>
