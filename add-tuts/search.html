@@ -305,13 +305,12 @@
         </div>
          
 <script type="text/javascript">
-  function genPypiMsg() {
-    var d1 = document.getElementsByClassName("left-details");
-    console.log(d1[0])
-    d1[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
+  function genDistMsg() {
+    var element = document.getElementsByClassName("left-details");
+    element[0].insertAdjacentHTML('afterbegin', '<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.');
   }
 
-  genPypiMsg()
+  genDistMsg();
 </script>
 
 
