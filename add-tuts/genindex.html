@@ -215,7 +215,7 @@
 <script type="text/javascript" src="../versioning.js"></script>
 
 <script type="text/javascript">
-  window.onload = function () {
+  function updateVersionInSidebar() {
     var version_number = Version.version_number;
     var commit_hash = Version.commit_hash;
 
@@ -228,6 +228,8 @@
       commit_hash.slice(0, 7) +
       "&hellip;)</span></code>";
   };
+
+  updateVersionInSidebar();
 </script>
 
 <!-- End of versioning -->
