@@ -76,9 +76,6 @@ When the ``.fit()`` method is called, it automatically identifies and removes an
 
    Quickstart <self>
    notebooks/Image_Tut
-   notebooks/Text_Tut
-   notebooks/Tabular_Tut
-   notebooks/Audio_Tut
    
 .. toctree::
    :caption: API Reference
