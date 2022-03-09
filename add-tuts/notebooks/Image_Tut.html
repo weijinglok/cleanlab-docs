@@ -685,16 +685,16 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.8320</span>       <span class="ansi-green-fg">0.7889</span>        <span class="ansi-magenta-fg">1.2112</span>  1.6338
-      2        <span class="ansi-cyan-fg">0.9944</span>       <span class="ansi-green-fg">0.8401</span>        <span class="ansi-magenta-fg">0.7022</span>  1.6285
-      3        <span class="ansi-cyan-fg">0.7244</span>       <span class="ansi-green-fg">0.8634</span>        <span class="ansi-magenta-fg">0.5510</span>  1.6233
-      4        <span class="ansi-cyan-fg">0.6142</span>       <span class="ansi-green-fg">0.8776</span>        <span class="ansi-magenta-fg">0.4782</span>  1.6253
-      5        <span class="ansi-cyan-fg">0.5516</span>       <span class="ansi-green-fg">0.8855</span>        <span class="ansi-magenta-fg">0.4331</span>  1.6244
-      6        <span class="ansi-cyan-fg">0.5094</span>       <span class="ansi-green-fg">0.8917</span>        <span class="ansi-magenta-fg">0.4032</span>  1.6275
-      7        <span class="ansi-cyan-fg">0.4771</span>       <span class="ansi-green-fg">0.8975</span>        <span class="ansi-magenta-fg">0.3796</span>  1.6291
-      8        <span class="ansi-cyan-fg">0.4549</span>       <span class="ansi-green-fg">0.9011</span>        <span class="ansi-magenta-fg">0.3613</span>  1.6313
-      9        <span class="ansi-cyan-fg">0.4331</span>       <span class="ansi-green-fg">0.9054</span>        <span class="ansi-magenta-fg">0.3454</span>  1.6285
-     10        <span class="ansi-cyan-fg">0.4179</span>       <span class="ansi-green-fg">0.9074</span>        <span class="ansi-magenta-fg">0.3337</span>  1.6290
+      1        <span class="ansi-cyan-fg">1.8016</span>       <span class="ansi-green-fg">0.7799</span>        <span class="ansi-magenta-fg">1.1919</span>  2.1515
+      2        <span class="ansi-cyan-fg">0.9895</span>       <span class="ansi-green-fg">0.8371</span>        <span class="ansi-magenta-fg">0.7081</span>  2.1486
+      3        <span class="ansi-cyan-fg">0.7259</span>       <span class="ansi-green-fg">0.8620</span>        <span class="ansi-magenta-fg">0.5557</span>  2.1440
+      4        <span class="ansi-cyan-fg">0.6192</span>       <span class="ansi-green-fg">0.8766</span>        <span class="ansi-magenta-fg">0.4828</span>  2.1468
+      5        <span class="ansi-cyan-fg">0.5540</span>       <span class="ansi-green-fg">0.8855</span>        <span class="ansi-magenta-fg">0.4365</span>  2.1469
+      6        <span class="ansi-cyan-fg">0.5096</span>       <span class="ansi-green-fg">0.8934</span>        <span class="ansi-magenta-fg">0.4050</span>  2.1447
+      7        <span class="ansi-cyan-fg">0.4799</span>       <span class="ansi-green-fg">0.8968</span>        <span class="ansi-magenta-fg">0.3829</span>  2.1441
+      8        <span class="ansi-cyan-fg">0.4579</span>       <span class="ansi-green-fg">0.8999</span>        <span class="ansi-magenta-fg">0.3648</span>  2.1494
+      9        <span class="ansi-cyan-fg">0.4379</span>       <span class="ansi-green-fg">0.9026</span>        <span class="ansi-magenta-fg">0.3499</span>  2.1449
+     10        <span class="ansi-cyan-fg">0.4208</span>       <span class="ansi-green-fg">0.9059</span>        <span class="ansi-magenta-fg">0.3370</span>  2.1797
 </pre></div></div>
 </div>
 <p>Compute the cross-validated predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pyx</span></code>, sometimes also known as the out-of-sample predicted probabilities.</p>
@@ -715,40 +715,40 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0181</span>       <span class="ansi-green-fg">0.7307</span>        <span class="ansi-magenta-fg">1.6157</span>  0.6917
-      2        <span class="ansi-cyan-fg">1.2953</span>       <span class="ansi-green-fg">0.7914</span>        <span class="ansi-magenta-fg">0.9846</span>  0.7690
-      3        <span class="ansi-cyan-fg">0.9122</span>       <span class="ansi-green-fg">0.8254</span>        <span class="ansi-magenta-fg">0.7380</span>  0.6999
-      4        <span class="ansi-cyan-fg">0.7462</span>       <span class="ansi-green-fg">0.8443</span>        <span class="ansi-magenta-fg">0.6222</span>  0.6991
-      5        <span class="ansi-cyan-fg">0.6551</span>       <span class="ansi-green-fg">0.8569</span>        <span class="ansi-magenta-fg">0.5540</span>  0.7073
-      6        <span class="ansi-cyan-fg">0.5922</span>       <span class="ansi-green-fg">0.8666</span>        <span class="ansi-magenta-fg">0.5084</span>  0.7025
-      7        <span class="ansi-cyan-fg">0.5556</span>       <span class="ansi-green-fg">0.8735</span>        <span class="ansi-magenta-fg">0.4754</span>  0.7058
-      8        <span class="ansi-cyan-fg">0.5206</span>       <span class="ansi-green-fg">0.8779</span>        <span class="ansi-magenta-fg">0.4506</span>  0.7076
-      9        <span class="ansi-cyan-fg">0.4976</span>       <span class="ansi-green-fg">0.8804</span>        <span class="ansi-magenta-fg">0.4312</span>  0.7016
-     10        <span class="ansi-cyan-fg">0.4721</span>       <span class="ansi-green-fg">0.8842</span>        <span class="ansi-magenta-fg">0.4157</span>  0.7148
+      1        <span class="ansi-cyan-fg">2.0125</span>       <span class="ansi-green-fg">0.7299</span>        <span class="ansi-magenta-fg">1.6115</span>  1.1373
+      2        <span class="ansi-cyan-fg">1.2938</span>       <span class="ansi-green-fg">0.7945</span>        <span class="ansi-magenta-fg">0.9828</span>  1.1852
+      3        <span class="ansi-cyan-fg">0.9124</span>       <span class="ansi-green-fg">0.8282</span>        <span class="ansi-magenta-fg">0.7384</span>  1.1605
+      4        <span class="ansi-cyan-fg">0.7503</span>       <span class="ansi-green-fg">0.8456</span>        <span class="ansi-magenta-fg">0.6226</span>  1.1361
+      5        <span class="ansi-cyan-fg">0.6568</span>       <span class="ansi-green-fg">0.8571</span>        <span class="ansi-magenta-fg">0.5548</span>  1.1648
+      6        <span class="ansi-cyan-fg">0.6003</span>       <span class="ansi-green-fg">0.8631</span>        <span class="ansi-magenta-fg">0.5107</span>  1.1334
+      7        <span class="ansi-cyan-fg">0.5556</span>       <span class="ansi-green-fg">0.8698</span>        <span class="ansi-magenta-fg">0.4787</span>  1.1322
+      8        <span class="ansi-cyan-fg">0.5252</span>       <span class="ansi-green-fg">0.8759</span>        <span class="ansi-magenta-fg">0.4535</span>  1.1756
+      9        <span class="ansi-cyan-fg">0.4980</span>       <span class="ansi-green-fg">0.8796</span>        <span class="ansi-magenta-fg">0.4347</span>  1.1315
+     10        <span class="ansi-cyan-fg">0.4808</span>       <span class="ansi-green-fg">0.8816</span>        <span class="ansi-magenta-fg">0.4175</span>  1.1316
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9876</span>       <span class="ansi-green-fg">0.7609</span>        <span class="ansi-magenta-fg">1.5595</span>  0.7045
-      2        <span class="ansi-cyan-fg">1.2625</span>       <span class="ansi-green-fg">0.8124</span>        <span class="ansi-magenta-fg">0.9352</span>  0.7835
-      3        <span class="ansi-cyan-fg">0.8897</span>       <span class="ansi-green-fg">0.8408</span>        <span class="ansi-magenta-fg">0.6976</span>  0.7118
-      4        <span class="ansi-cyan-fg">0.7314</span>       <span class="ansi-green-fg">0.8568</span>        <span class="ansi-magenta-fg">0.5858</span>  0.7026
-      5        <span class="ansi-cyan-fg">0.6475</span>       <span class="ansi-green-fg">0.8674</span>        <span class="ansi-magenta-fg">0.5201</span>  0.7011
-      6        <span class="ansi-cyan-fg">0.5868</span>       <span class="ansi-green-fg">0.8773</span>        <span class="ansi-magenta-fg">0.4762</span>  0.6941
-      7        <span class="ansi-cyan-fg">0.5494</span>       <span class="ansi-green-fg">0.8823</span>        <span class="ansi-magenta-fg">0.4451</span>  0.6938
-      8        <span class="ansi-cyan-fg">0.5215</span>       <span class="ansi-green-fg">0.8870</span>        <span class="ansi-magenta-fg">0.4218</span>  0.6951
-      9        <span class="ansi-cyan-fg">0.4953</span>       <span class="ansi-green-fg">0.8904</span>        <span class="ansi-magenta-fg">0.4033</span>  0.6998
-     10        <span class="ansi-cyan-fg">0.4718</span>       <span class="ansi-green-fg">0.8940</span>        <span class="ansi-magenta-fg">0.3874</span>  0.6975
+      1        <span class="ansi-cyan-fg">1.9813</span>       <span class="ansi-green-fg">0.7484</span>        <span class="ansi-magenta-fg">1.5579</span>  1.1305
+      2        <span class="ansi-cyan-fg">1.2589</span>       <span class="ansi-green-fg">0.8108</span>        <span class="ansi-magenta-fg">0.9392</span>  1.1295
+      3        <span class="ansi-cyan-fg">0.8897</span>       <span class="ansi-green-fg">0.8390</span>        <span class="ansi-magenta-fg">0.7044</span>  1.1305
+      4        <span class="ansi-cyan-fg">0.7336</span>       <span class="ansi-green-fg">0.8541</span>        <span class="ansi-magenta-fg">0.5939</span>  1.1314
+      5        <span class="ansi-cyan-fg">0.6437</span>       <span class="ansi-green-fg">0.8653</span>        <span class="ansi-magenta-fg">0.5265</span>  1.1287
+      6        <span class="ansi-cyan-fg">0.5875</span>       <span class="ansi-green-fg">0.8759</span>        <span class="ansi-magenta-fg">0.4823</span>  1.1311
+      7        <span class="ansi-cyan-fg">0.5488</span>       <span class="ansi-green-fg">0.8819</span>        <span class="ansi-magenta-fg">0.4498</span>  1.1295
+      8        <span class="ansi-cyan-fg">0.5191</span>       <span class="ansi-green-fg">0.8865</span>        <span class="ansi-magenta-fg">0.4262</span>  1.1302
+      9        <span class="ansi-cyan-fg">0.4914</span>       <span class="ansi-green-fg">0.8905</span>        <span class="ansi-magenta-fg">0.4067</span>  1.1310
+     10        <span class="ansi-cyan-fg">0.4709</span>       <span class="ansi-green-fg">0.8928</span>        <span class="ansi-magenta-fg">0.3911</span>  1.1325
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9860</span>       <span class="ansi-green-fg">0.7598</span>        <span class="ansi-magenta-fg">1.5585</span>  0.6996
-      2        <span class="ansi-cyan-fg">1.2837</span>       <span class="ansi-green-fg">0.8111</span>        <span class="ansi-magenta-fg">0.9467</span>  0.6951
-      3        <span class="ansi-cyan-fg">0.9154</span>       <span class="ansi-green-fg">0.8445</span>        <span class="ansi-magenta-fg">0.7044</span>  0.6969
-      4        <span class="ansi-cyan-fg">0.7581</span>       <span class="ansi-green-fg">0.8627</span>        <span class="ansi-magenta-fg">0.5881</span>  0.7008
-      5        <span class="ansi-cyan-fg">0.6679</span>       <span class="ansi-green-fg">0.8738</span>        <span class="ansi-magenta-fg">0.5207</span>  0.6991
-      6        <span class="ansi-cyan-fg">0.6115</span>       <span class="ansi-green-fg">0.8809</span>        <span class="ansi-magenta-fg">0.4758</span>  0.6997
-      7        <span class="ansi-cyan-fg">0.5724</span>       <span class="ansi-green-fg">0.8859</span>        <span class="ansi-magenta-fg">0.4434</span>  0.6981
-      8        <span class="ansi-cyan-fg">0.5396</span>       <span class="ansi-green-fg">0.8906</span>        <span class="ansi-magenta-fg">0.4190</span>  0.6997
-      9        <span class="ansi-cyan-fg">0.5150</span>       <span class="ansi-green-fg">0.8937</span>        <span class="ansi-magenta-fg">0.3992</span>  0.7074
-     10        <span class="ansi-cyan-fg">0.4919</span>       <span class="ansi-green-fg">0.8968</span>        <span class="ansi-magenta-fg">0.3827</span>  0.7010
+      1        <span class="ansi-cyan-fg">2.0120</span>       <span class="ansi-green-fg">0.7296</span>        <span class="ansi-magenta-fg">1.5990</span>  1.1536
+      2        <span class="ansi-cyan-fg">1.3193</span>       <span class="ansi-green-fg">0.8031</span>        <span class="ansi-magenta-fg">0.9716</span>  1.1338
+      3        <span class="ansi-cyan-fg">0.9458</span>       <span class="ansi-green-fg">0.8408</span>        <span class="ansi-magenta-fg">0.7216</span>  1.1342
+      4        <span class="ansi-cyan-fg">0.7841</span>       <span class="ansi-green-fg">0.8594</span>        <span class="ansi-magenta-fg">0.6022</span>  1.1337
+      5        <span class="ansi-cyan-fg">0.6870</span>       <span class="ansi-green-fg">0.8710</span>        <span class="ansi-magenta-fg">0.5309</span>  1.1324
+      6        <span class="ansi-cyan-fg">0.6238</span>       <span class="ansi-green-fg">0.8800</span>        <span class="ansi-magenta-fg">0.4845</span>  1.1411
+      7        <span class="ansi-cyan-fg">0.5824</span>       <span class="ansi-green-fg">0.8878</span>        <span class="ansi-magenta-fg">0.4495</span>  1.1288
+      8        <span class="ansi-cyan-fg">0.5478</span>       <span class="ansi-green-fg">0.8925</span>        <span class="ansi-magenta-fg">0.4234</span>  1.1312
+      9        <span class="ansi-cyan-fg">0.5231</span>       <span class="ansi-green-fg">0.8958</span>        <span class="ansi-magenta-fg">0.4036</span>  1.1346
+     10        <span class="ansi-cyan-fg">0.5013</span>       <span class="ansi-green-fg">0.8995</span>        <span class="ansi-magenta-fg">0.3871</span>  1.1336
 </pre></div></div>
 </div>
 </div>
@@ -785,9 +785,9 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Cleanlab found 1243 potential label errors. Here are the indices of the top 15 most likely ones:
- [24798 18598  8729 12679 61790  1352 59915 20820 15942 20735 12585 39457
- 55739  7010  2676]
+Cleanlab found 1255 potential label errors. Here are the indices of the top 15 most likely ones:
+ [24798 18598  8729 61790 31134 55739  1352 32776 15942 59915 50239 53216
+ 40466 13031 39457]
 </pre></div></div>
 </div>
 <p>We’ll define a new <code class="docutils literal notranslate"><span class="pre">plot_examples</span></code> function to display any examples in a subplot conveniently.</p>
@@ -916,76 +916,76 @@ Cleanlab found 1243 potential label errors. Here are the indices of the top 15 m
 <div class="highlight"><pre>
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0008</span>       <span class="ansi-green-fg">0.7304</span>        <span class="ansi-magenta-fg">1.5852</span>  0.6984
-      2        <span class="ansi-cyan-fg">1.3004</span>       <span class="ansi-green-fg">0.8132</span>        <span class="ansi-magenta-fg">0.9659</span>  0.6869
-      3        <span class="ansi-cyan-fg">0.9195</span>       <span class="ansi-green-fg">0.8479</span>        <span class="ansi-magenta-fg">0.7122</span>  0.7029
-      4        <span class="ansi-cyan-fg">0.7595</span>       <span class="ansi-green-fg">0.8648</span>        <span class="ansi-magenta-fg">0.5941</span>  0.6840
-      5        <span class="ansi-cyan-fg">0.6700</span>       <span class="ansi-green-fg">0.8737</span>        <span class="ansi-magenta-fg">0.5260</span>  0.6793
-      6        <span class="ansi-cyan-fg">0.6062</span>       <span class="ansi-green-fg">0.8791</span>        <span class="ansi-magenta-fg">0.4807</span>  0.6772
-      7        <span class="ansi-cyan-fg">0.5632</span>       <span class="ansi-green-fg">0.8862</span>        <span class="ansi-magenta-fg">0.4483</span>  0.6778
-      8        <span class="ansi-cyan-fg">0.5305</span>       <span class="ansi-green-fg">0.8893</span>        <span class="ansi-magenta-fg">0.4241</span>  0.6782
-      9        <span class="ansi-cyan-fg">0.5094</span>       <span class="ansi-green-fg">0.8925</span>        <span class="ansi-magenta-fg">0.4058</span>  0.6788
-     10        <span class="ansi-cyan-fg">0.4884</span>       <span class="ansi-green-fg">0.8952</span>        <span class="ansi-magenta-fg">0.3901</span>  0.6807
+      1        <span class="ansi-cyan-fg">1.9860</span>       <span class="ansi-green-fg">0.7342</span>        <span class="ansi-magenta-fg">1.5742</span>  1.0862
+      2        <span class="ansi-cyan-fg">1.2904</span>       <span class="ansi-green-fg">0.8134</span>        <span class="ansi-magenta-fg">0.9646</span>  1.0902
+      3        <span class="ansi-cyan-fg">0.9217</span>       <span class="ansi-green-fg">0.8439</span>        <span class="ansi-magenta-fg">0.7157</span>  1.0908
+      4        <span class="ansi-cyan-fg">0.7585</span>       <span class="ansi-green-fg">0.8590</span>        <span class="ansi-magenta-fg">0.5963</span>  1.1031
+      5        <span class="ansi-cyan-fg">0.6666</span>       <span class="ansi-green-fg">0.8719</span>        <span class="ansi-magenta-fg">0.5264</span>  1.1042
+      6        <span class="ansi-cyan-fg">0.6103</span>       <span class="ansi-green-fg">0.8792</span>        <span class="ansi-magenta-fg">0.4817</span>  1.1025
+      7        <span class="ansi-cyan-fg">0.5644</span>       <span class="ansi-green-fg">0.8846</span>        <span class="ansi-magenta-fg">0.4486</span>  1.1183
+      8        <span class="ansi-cyan-fg">0.5336</span>       <span class="ansi-green-fg">0.8879</span>        <span class="ansi-magenta-fg">0.4238</span>  1.1188
+      9        <span class="ansi-cyan-fg">0.5080</span>       <span class="ansi-green-fg">0.8906</span>        <span class="ansi-magenta-fg">0.4048</span>  1.1155
+     10        <span class="ansi-cyan-fg">0.4881</span>       <span class="ansi-green-fg">0.8930</span>        <span class="ansi-magenta-fg">0.3887</span>  1.1180
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9990</span>       <span class="ansi-green-fg">0.7449</span>        <span class="ansi-magenta-fg">1.5936</span>  0.6719
-      2        <span class="ansi-cyan-fg">1.3054</span>       <span class="ansi-green-fg">0.8126</span>        <span class="ansi-magenta-fg">0.9733</span>  0.6616
-      3        <span class="ansi-cyan-fg">0.9304</span>       <span class="ansi-green-fg">0.8427</span>        <span class="ansi-magenta-fg">0.7218</span>  0.6579
-      4        <span class="ansi-cyan-fg">0.7649</span>       <span class="ansi-green-fg">0.8578</span>        <span class="ansi-magenta-fg">0.6029</span>  0.6635
-      5        <span class="ansi-cyan-fg">0.6759</span>       <span class="ansi-green-fg">0.8680</span>        <span class="ansi-magenta-fg">0.5349</span>  0.6623
-      6        <span class="ansi-cyan-fg">0.6166</span>       <span class="ansi-green-fg">0.8762</span>        <span class="ansi-magenta-fg">0.4891</span>  0.6661
-      7        <span class="ansi-cyan-fg">0.5734</span>       <span class="ansi-green-fg">0.8821</span>        <span class="ansi-magenta-fg">0.4563</span>  0.6596
-      8        <span class="ansi-cyan-fg">0.5411</span>       <span class="ansi-green-fg">0.8858</span>        <span class="ansi-magenta-fg">0.4317</span>  0.6616
-      9        <span class="ansi-cyan-fg">0.5169</span>       <span class="ansi-green-fg">0.8877</span>        <span class="ansi-magenta-fg">0.4129</span>  0.6592
-     10        <span class="ansi-cyan-fg">0.4891</span>       <span class="ansi-green-fg">0.8916</span>        <span class="ansi-magenta-fg">0.3955</span>  0.6660
+      1        <span class="ansi-cyan-fg">1.9942</span>       <span class="ansi-green-fg">0.7525</span>        <span class="ansi-magenta-fg">1.5752</span>  1.1309
+      2        <span class="ansi-cyan-fg">1.2917</span>       <span class="ansi-green-fg">0.8141</span>        <span class="ansi-magenta-fg">0.9520</span>  1.1000
+      3        <span class="ansi-cyan-fg">0.9187</span>       <span class="ansi-green-fg">0.8435</span>        <span class="ansi-magenta-fg">0.7055</span>  1.1090
+      4        <span class="ansi-cyan-fg">0.7610</span>       <span class="ansi-green-fg">0.8602</span>        <span class="ansi-magenta-fg">0.5899</span>  1.1135
+      5        <span class="ansi-cyan-fg">0.6692</span>       <span class="ansi-green-fg">0.8705</span>        <span class="ansi-magenta-fg">0.5213</span>  1.1065
+      6        <span class="ansi-cyan-fg">0.6082</span>       <span class="ansi-green-fg">0.8787</span>        <span class="ansi-magenta-fg">0.4749</span>  1.0979
+      7        <span class="ansi-cyan-fg">0.5673</span>       <span class="ansi-green-fg">0.8834</span>        <span class="ansi-magenta-fg">0.4434</span>  1.0878
+      8        <span class="ansi-cyan-fg">0.5370</span>       <span class="ansi-green-fg">0.8879</span>        <span class="ansi-magenta-fg">0.4186</span>  1.1159
+      9        <span class="ansi-cyan-fg">0.5119</span>       <span class="ansi-green-fg">0.8906</span>        <span class="ansi-magenta-fg">0.3990</span>  1.1137
+     10        <span class="ansi-cyan-fg">0.4874</span>       <span class="ansi-green-fg">0.8938</span>        <span class="ansi-magenta-fg">0.3827</span>  1.0990
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0170</span>       <span class="ansi-green-fg">0.7129</span>        <span class="ansi-magenta-fg">1.6255</span>  0.6702
-      2        <span class="ansi-cyan-fg">1.3352</span>       <span class="ansi-green-fg">0.8051</span>        <span class="ansi-magenta-fg">1.0027</span>  0.6669
-      3        <span class="ansi-cyan-fg">0.9505</span>       <span class="ansi-green-fg">0.8398</span>        <span class="ansi-magenta-fg">0.7407</span>  0.6685
-      4        <span class="ansi-cyan-fg">0.7787</span>       <span class="ansi-green-fg">0.8564</span>        <span class="ansi-magenta-fg">0.6167</span>  0.6655
-      5        <span class="ansi-cyan-fg">0.6839</span>       <span class="ansi-green-fg">0.8674</span>        <span class="ansi-magenta-fg">0.5446</span>  0.6634
-      6        <span class="ansi-cyan-fg">0.6256</span>       <span class="ansi-green-fg">0.8757</span>        <span class="ansi-magenta-fg">0.4967</span>  0.6642
-      7        <span class="ansi-cyan-fg">0.5770</span>       <span class="ansi-green-fg">0.8816</span>        <span class="ansi-magenta-fg">0.4616</span>  0.6649
-      8        <span class="ansi-cyan-fg">0.5445</span>       <span class="ansi-green-fg">0.8860</span>        <span class="ansi-magenta-fg">0.4354</span>  0.6643
-      9        <span class="ansi-cyan-fg">0.5196</span>       <span class="ansi-green-fg">0.8896</span>        <span class="ansi-magenta-fg">0.4154</span>  0.6706
-     10        <span class="ansi-cyan-fg">0.4955</span>       <span class="ansi-green-fg">0.8933</span>        <span class="ansi-magenta-fg">0.3986</span>  0.6672
+      1        <span class="ansi-cyan-fg">1.9894</span>       <span class="ansi-green-fg">0.7459</span>        <span class="ansi-magenta-fg">1.5701</span>  1.0899
+      2        <span class="ansi-cyan-fg">1.2881</span>       <span class="ansi-green-fg">0.8137</span>        <span class="ansi-magenta-fg">0.9587</span>  1.0900
+      3        <span class="ansi-cyan-fg">0.9159</span>       <span class="ansi-green-fg">0.8463</span>        <span class="ansi-magenta-fg">0.7112</span>  1.0929
+      4        <span class="ansi-cyan-fg">0.7502</span>       <span class="ansi-green-fg">0.8590</span>        <span class="ansi-magenta-fg">0.5946</span>  1.0903
+      5        <span class="ansi-cyan-fg">0.6656</span>       <span class="ansi-green-fg">0.8698</span>        <span class="ansi-magenta-fg">0.5268</span>  1.0898
+      6        <span class="ansi-cyan-fg">0.6068</span>       <span class="ansi-green-fg">0.8766</span>        <span class="ansi-magenta-fg">0.4825</span>  1.0917
+      7        <span class="ansi-cyan-fg">0.5631</span>       <span class="ansi-green-fg">0.8810</span>        <span class="ansi-magenta-fg">0.4506</span>  1.0898
+      8        <span class="ansi-cyan-fg">0.5301</span>       <span class="ansi-green-fg">0.8843</span>        <span class="ansi-magenta-fg">0.4259</span>  1.0913
+      9        <span class="ansi-cyan-fg">0.5066</span>       <span class="ansi-green-fg">0.8875</span>        <span class="ansi-magenta-fg">0.4068</span>  1.0903
+     10        <span class="ansi-cyan-fg">0.4830</span>       <span class="ansi-green-fg">0.8902</span>        <span class="ansi-magenta-fg">0.3909</span>  1.0904
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0356</span>       <span class="ansi-green-fg">0.7152</span>        <span class="ansi-magenta-fg">1.6539</span>  0.6614
-      2        <span class="ansi-cyan-fg">1.3455</span>       <span class="ansi-green-fg">0.7975</span>        <span class="ansi-magenta-fg">1.0027</span>  0.6632
-      3        <span class="ansi-cyan-fg">0.9514</span>       <span class="ansi-green-fg">0.8398</span>        <span class="ansi-magenta-fg">0.7335</span>  0.6606
-      4        <span class="ansi-cyan-fg">0.7725</span>       <span class="ansi-green-fg">0.8569</span>        <span class="ansi-magenta-fg">0.6054</span>  0.6584
-      5        <span class="ansi-cyan-fg">0.6758</span>       <span class="ansi-green-fg">0.8717</span>        <span class="ansi-magenta-fg">0.5330</span>  0.7320
-      6        <span class="ansi-cyan-fg">0.6133</span>       <span class="ansi-green-fg">0.8788</span>        <span class="ansi-magenta-fg">0.4854</span>  0.6769
-      7        <span class="ansi-cyan-fg">0.5686</span>       <span class="ansi-green-fg">0.8847</span>        <span class="ansi-magenta-fg">0.4516</span>  0.6742
-      8        <span class="ansi-cyan-fg">0.5345</span>       <span class="ansi-green-fg">0.8890</span>        <span class="ansi-magenta-fg">0.4261</span>  0.6777
-      9        <span class="ansi-cyan-fg">0.5102</span>       <span class="ansi-green-fg">0.8915</span>        <span class="ansi-magenta-fg">0.4071</span>  0.6810
-     10        <span class="ansi-cyan-fg">0.4853</span>       <span class="ansi-green-fg">0.8943</span>        <span class="ansi-magenta-fg">0.3903</span>  0.6772
+      1        <span class="ansi-cyan-fg">1.9715</span>       <span class="ansi-green-fg">0.7259</span>        <span class="ansi-magenta-fg">1.5525</span>  1.0888
+      2        <span class="ansi-cyan-fg">1.2754</span>       <span class="ansi-green-fg">0.8068</span>        <span class="ansi-magenta-fg">0.9518</span>  1.0881
+      3        <span class="ansi-cyan-fg">0.9131</span>       <span class="ansi-green-fg">0.8382</span>        <span class="ansi-magenta-fg">0.7135</span>  1.0862
+      4        <span class="ansi-cyan-fg">0.7574</span>       <span class="ansi-green-fg">0.8559</span>        <span class="ansi-magenta-fg">0.6006</span>  1.0873
+      5        <span class="ansi-cyan-fg">0.6680</span>       <span class="ansi-green-fg">0.8667</span>        <span class="ansi-magenta-fg">0.5341</span>  1.0963
+      6        <span class="ansi-cyan-fg">0.6125</span>       <span class="ansi-green-fg">0.8760</span>        <span class="ansi-magenta-fg">0.4896</span>  1.0861
+      7        <span class="ansi-cyan-fg">0.5669</span>       <span class="ansi-green-fg">0.8807</span>        <span class="ansi-magenta-fg">0.4568</span>  1.0908
+      8        <span class="ansi-cyan-fg">0.5346</span>       <span class="ansi-green-fg">0.8837</span>        <span class="ansi-magenta-fg">0.4327</span>  1.0899
+      9        <span class="ansi-cyan-fg">0.5136</span>       <span class="ansi-green-fg">0.8871</span>        <span class="ansi-magenta-fg">0.4136</span>  1.0886
+     10        <span class="ansi-cyan-fg">0.4880</span>       <span class="ansi-green-fg">0.8903</span>        <span class="ansi-magenta-fg">0.3973</span>  1.0877
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0053</span>       <span class="ansi-green-fg">0.7487</span>        <span class="ansi-magenta-fg">1.6071</span>  0.6782
-      2        <span class="ansi-cyan-fg">1.3119</span>       <span class="ansi-green-fg">0.8073</span>        <span class="ansi-magenta-fg">0.9792</span>  0.6741
-      3        <span class="ansi-cyan-fg">0.9306</span>       <span class="ansi-green-fg">0.8446</span>        <span class="ansi-magenta-fg">0.7223</span>  0.6745
-      4        <span class="ansi-cyan-fg">0.7615</span>       <span class="ansi-green-fg">0.8631</span>        <span class="ansi-magenta-fg">0.6011</span>  0.6937
-      5        <span class="ansi-cyan-fg">0.6709</span>       <span class="ansi-green-fg">0.8718</span>        <span class="ansi-magenta-fg">0.5317</span>  0.6585
-      6        <span class="ansi-cyan-fg">0.6124</span>       <span class="ansi-green-fg">0.8794</span>        <span class="ansi-magenta-fg">0.4854</span>  0.6613
-      7        <span class="ansi-cyan-fg">0.5681</span>       <span class="ansi-green-fg">0.8856</span>        <span class="ansi-magenta-fg">0.4524</span>  0.6571
-      8        <span class="ansi-cyan-fg">0.5365</span>       <span class="ansi-green-fg">0.8878</span>        <span class="ansi-magenta-fg">0.4278</span>  0.6586
-      9        <span class="ansi-cyan-fg">0.5101</span>       <span class="ansi-green-fg">0.8910</span>        <span class="ansi-magenta-fg">0.4080</span>  0.6586
-     10        <span class="ansi-cyan-fg">0.4891</span>       <span class="ansi-green-fg">0.8942</span>        <span class="ansi-magenta-fg">0.3923</span>  0.6587
+      1        <span class="ansi-cyan-fg">1.9868</span>       <span class="ansi-green-fg">0.7282</span>        <span class="ansi-magenta-fg">1.5739</span>  1.0912
+      2        <span class="ansi-cyan-fg">1.2945</span>       <span class="ansi-green-fg">0.8040</span>        <span class="ansi-magenta-fg">0.9669</span>  1.1153
+      3        <span class="ansi-cyan-fg">0.9215</span>       <span class="ansi-green-fg">0.8356</span>        <span class="ansi-magenta-fg">0.7203</span>  1.0933
+      4        <span class="ansi-cyan-fg">0.7594</span>       <span class="ansi-green-fg">0.8559</span>        <span class="ansi-magenta-fg">0.6031</span>  1.0916
+      5        <span class="ansi-cyan-fg">0.6666</span>       <span class="ansi-green-fg">0.8663</span>        <span class="ansi-magenta-fg">0.5337</span>  1.0909
+      6        <span class="ansi-cyan-fg">0.6111</span>       <span class="ansi-green-fg">0.8732</span>        <span class="ansi-magenta-fg">0.4879</span>  1.0923
+      7        <span class="ansi-cyan-fg">0.5678</span>       <span class="ansi-green-fg">0.8781</span>        <span class="ansi-magenta-fg">0.4553</span>  1.0914
+      8        <span class="ansi-cyan-fg">0.5355</span>       <span class="ansi-green-fg">0.8842</span>        <span class="ansi-magenta-fg">0.4297</span>  1.0898
+      9        <span class="ansi-cyan-fg">0.5076</span>       <span class="ansi-green-fg">0.8869</span>        <span class="ansi-magenta-fg">0.4102</span>  1.0887
+     10        <span class="ansi-cyan-fg">0.4833</span>       <span class="ansi-green-fg">0.8898</span>        <span class="ansi-magenta-fg">0.3938</span>  1.0951
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9083</span>       <span class="ansi-green-fg">0.7671</span>        <span class="ansi-magenta-fg">1.3836</span>  0.8146
-      2        <span class="ansi-cyan-fg">1.1100</span>       <span class="ansi-green-fg">0.8493</span>        <span class="ansi-magenta-fg">0.7805</span>  0.8128
-      3        <span class="ansi-cyan-fg">0.7744</span>       <span class="ansi-green-fg">0.8723</span>        <span class="ansi-magenta-fg">0.5726</span>  0.8314
-      4        <span class="ansi-cyan-fg">0.6337</span>       <span class="ansi-green-fg">0.8877</span>        <span class="ansi-magenta-fg">0.4744</span>  0.8120
-      5        <span class="ansi-cyan-fg">0.5550</span>       <span class="ansi-green-fg">0.8949</span>        <span class="ansi-magenta-fg">0.4165</span>  0.8125
-      6        <span class="ansi-cyan-fg">0.5008</span>       <span class="ansi-green-fg">0.9004</span>        <span class="ansi-magenta-fg">0.3775</span>  0.8160
-      7        <span class="ansi-cyan-fg">0.4653</span>       <span class="ansi-green-fg">0.9054</span>        <span class="ansi-magenta-fg">0.3503</span>  0.8343
-      8        <span class="ansi-cyan-fg">0.4385</span>       <span class="ansi-green-fg">0.9095</span>        <span class="ansi-magenta-fg">0.3298</span>  0.8210
-      9        <span class="ansi-cyan-fg">0.4156</span>       <span class="ansi-green-fg">0.9119</span>        <span class="ansi-magenta-fg">0.3131</span>  0.8128
-     10        <span class="ansi-cyan-fg">0.3965</span>       <span class="ansi-green-fg">0.9153</span>        <span class="ansi-magenta-fg">0.2994</span>  0.8098
+      1        <span class="ansi-cyan-fg">1.9118</span>       <span class="ansi-green-fg">0.7721</span>        <span class="ansi-magenta-fg">1.3993</span>  1.3401
+      2        <span class="ansi-cyan-fg">1.1256</span>       <span class="ansi-green-fg">0.8486</span>        <span class="ansi-magenta-fg">0.7917</span>  1.3415
+      3        <span class="ansi-cyan-fg">0.7792</span>       <span class="ansi-green-fg">0.8707</span>        <span class="ansi-magenta-fg">0.5793</span>  1.3396
+      4        <span class="ansi-cyan-fg">0.6358</span>       <span class="ansi-green-fg">0.8846</span>        <span class="ansi-magenta-fg">0.4801</span>  1.3398
+      5        <span class="ansi-cyan-fg">0.5561</span>       <span class="ansi-green-fg">0.8928</span>        <span class="ansi-magenta-fg">0.4226</span>  1.3455
+      6        <span class="ansi-cyan-fg">0.5021</span>       <span class="ansi-green-fg">0.8995</span>        <span class="ansi-magenta-fg">0.3844</span>  1.3515
+      7        <span class="ansi-cyan-fg">0.4690</span>       <span class="ansi-green-fg">0.9033</span>        <span class="ansi-magenta-fg">0.3576</span>  1.3434
+      8        <span class="ansi-cyan-fg">0.4422</span>       <span class="ansi-green-fg">0.9081</span>        <span class="ansi-magenta-fg">0.3365</span>  1.3366
+      9        <span class="ansi-cyan-fg">0.4179</span>       <span class="ansi-green-fg">0.9090</span>        <span class="ansi-magenta-fg">0.3204</span>  1.3424
+     10        <span class="ansi-cyan-fg">0.3988</span>       <span class="ansi-green-fg">0.9112</span>        <span class="ansi-magenta-fg">0.3067</span>  1.3401
 </pre></div></div>
 </div>
 </div>
@@ -1008,7 +1008,7 @@ Cleanlab found 1243 potential label errors. Here are the indices of the top 15 m
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.9002857142857142
+0.9029285714285714
 </pre></div></div>
 </div>
 </div>
