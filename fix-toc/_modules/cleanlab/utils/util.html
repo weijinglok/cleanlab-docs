@@ -161,19 +161,20 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/count.html">Count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/rank.html">Rank</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/filter.html">Filter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/noise_generation.html">Noise Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/coteaching.html">Co-Teaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/utils/util.html">Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/utils/latent_algebra.html">Latent Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/count.html">count</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/noise_generation.html">noise_generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/coteaching.html">coteaching</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/cifar_cnn.html">cifar.cnn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/example_models/index.html">Example Models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/cifar_cnn.html">CIFAR CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/mnist_pytorch.html">MNIST PyTorch</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/internal/util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 </ul>
 </li>
 </ul>
@@ -335,7 +336,7 @@
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_X_y</span>
 
 
-<div class="viewcode-block" id="assert_inputs_are_valid"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.assert_inputs_are_valid">[docs]</a><span class="k">def</span> <span class="nf">assert_inputs_are_valid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">pred_probs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<div class="viewcode-block" id="assert_inputs_are_valid"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.assert_inputs_are_valid">[docs]</a><span class="k">def</span> <span class="nf">assert_inputs_are_valid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">pred_probs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
     <span class="sd">"""Checks that X, labels, and pred_probs</span>
 <span class="sd">    are correctly formatted"""</span>
 
@@ -369,7 +370,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="remove_noise_from_class"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.remove_noise_from_class">[docs]</a><span class="k">def</span> <span class="nf">remove_noise_from_class</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">class_without_noise</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_noise_from_class"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.remove_noise_from_class">[docs]</a><span class="k">def</span> <span class="nf">remove_noise_from_class</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">class_without_noise</span><span class="p">):</span>
     <span class="sd">"""A helper function in the setting of PU learning.</span>
 <span class="sd">    Sets all P(label=class_without_noise|true_label=any_other_class) = 0</span>
 <span class="sd">    in noise_matrix for pulearning setting, where we have</span>
@@ -405,7 +406,7 @@
     <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="clip_noise_rates"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.clip_noise_rates">[docs]</a><span class="k">def</span> <span class="nf">clip_noise_rates</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">):</span>
+<div class="viewcode-block" id="clip_noise_rates"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.clip_noise_rates">[docs]</a><span class="k">def</span> <span class="nf">clip_noise_rates</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">):</span>
     <span class="sd">"""Clip all noise rates to proper range [0,1), but</span>
 <span class="sd">    do not modify the diagonal terms because they are not</span>
 <span class="sd">    noise rates.</span>
@@ -444,7 +445,7 @@
     <span class="k">return</span> <span class="n">noise_matrix</span></div>
 
 
-<div class="viewcode-block" id="clip_values"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.clip_values">[docs]</a><span class="k">def</span> <span class="nf">clip_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">new_sum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="clip_values"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.clip_values">[docs]</a><span class="k">def</span> <span class="nf">clip_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">new_sum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">"""Clip all values in p to range [low,high].</span>
 <span class="sd">    Preserves sum of x.</span>
 
@@ -488,7 +489,7 @@
     <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="value_counts"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.value_counts">[docs]</a><span class="k">def</span> <span class="nf">value_counts</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="value_counts"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.value_counts">[docs]</a><span class="k">def</span> <span class="nf">value_counts</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">"""Returns an np.array of shape (K, 1), with the</span>
 <span class="sd">    value counts for every unique item in the labels list/array,</span>
 <span class="sd">    where K is the number of unique entries in labels.</span>
@@ -518,7 +519,7 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="round_preserving_sum"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.round_preserving_sum">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_sum</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+<div class="viewcode-block" id="round_preserving_sum"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.round_preserving_sum">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_sum</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
     <span class="sd">"""Rounds an iterable of floats while retaining the original summed value.</span>
 <span class="sd">    The name of each parameter is required. The type and description of each</span>
 <span class="sd">    parameter is optional, but should be included if not obvious.</span>
@@ -553,7 +554,7 @@
     <span class="k">return</span> <span class="n">ints</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="round_preserving_row_totals"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.round_preserving_row_totals">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_row_totals</span><span class="p">(</span><span class="n">confident_joint</span><span class="p">):</span>
+<div class="viewcode-block" id="round_preserving_row_totals"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.round_preserving_row_totals">[docs]</a><span class="k">def</span> <span class="nf">round_preserving_row_totals</span><span class="p">(</span><span class="n">confident_joint</span><span class="p">):</span>
     <span class="sd">"""Rounds confident_joint cj to type int</span>
 <span class="sd">    while preserving the totals of reach row.</span>
 <span class="sd">    Assumes that cj is a 2D np.array of type float.</span>
@@ -575,7 +576,7 @@
     <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="int2onehot"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.int2onehot">[docs]</a><span class="k">def</span> <span class="nf">int2onehot</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+<div class="viewcode-block" id="int2onehot"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.int2onehot">[docs]</a><span class="k">def</span> <span class="nf">int2onehot</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
     <span class="sd">"""Convert list of lists to a onehot matrix for multi-labels</span>
 
 <span class="sd">    Parameters</span>
@@ -590,7 +591,7 @@
     <span class="k">return</span> <span class="n">mlb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="onehot2int"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.onehot2int">[docs]</a><span class="k">def</span> <span class="nf">onehot2int</span><span class="p">(</span><span class="n">onehot_matrix</span><span class="p">):</span>
+<div class="viewcode-block" id="onehot2int"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.onehot2int">[docs]</a><span class="k">def</span> <span class="nf">onehot2int</span><span class="p">(</span><span class="n">onehot_matrix</span><span class="p">):</span>
     <span class="sd">"""Convert a onehot matrix for multi-labels to a list of lists of ints</span>
 
 <span class="sd">    Parameters</span>
@@ -607,7 +608,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">onehot_matrix</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="estimate_pu_f1"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.estimate_pu_f1">[docs]</a><span class="k">def</span> <span class="nf">estimate_pu_f1</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prob_s_eq_1</span><span class="p">):</span>
+<div class="viewcode-block" id="estimate_pu_f1"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.estimate_pu_f1">[docs]</a><span class="k">def</span> <span class="nf">estimate_pu_f1</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prob_s_eq_1</span><span class="p">):</span>
     <span class="sd">"""Computes Claesen's estimate of f1 in the pulearning setting.</span>
 
 <span class="sd">    Parameters</span>
@@ -630,7 +631,7 @@
     <span class="k">return</span> <span class="n">recall</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">frac_positive</span><span class="p">)</span> <span class="k">if</span> <span class="n">frac_positive</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span></div>
 
 
-<div class="viewcode-block" id="confusion_matrix"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.confusion_matrix">[docs]</a><span class="k">def</span> <span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+<div class="viewcode-block" id="confusion_matrix"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.confusion_matrix">[docs]</a><span class="k">def</span> <span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
     <span class="sd">"""Implements a confusion matrix for true labels</span>
 <span class="sd">    and predicted labels. true and pred MUST BE the same length</span>
 <span class="sd">    and have the same distinct set of class labels represented.</span>
@@ -670,7 +671,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="print_square_matrix"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.print_square_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_square_matrix</span><span class="p">(</span>
+<div class="viewcode-block" id="print_square_matrix"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.print_square_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_square_matrix</span><span class="p">(</span>
     <span class="n">matrix</span><span class="p">,</span>
     <span class="n">left_name</span><span class="o">=</span><span class="s2">"labels"</span><span class="p">,</span>
     <span class="n">top_name</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span>
@@ -711,7 +712,7 @@
     <span class="nb">print</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="print_noise_matrix"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.print_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_noise_matrix</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="print_noise_matrix"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.print_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_noise_matrix</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="sd">"""Pretty prints the noise matrix."""</span>
     <span class="n">print_square_matrix</span><span class="p">(</span>
         <span class="n">noise_matrix</span><span class="p">,</span>
@@ -721,7 +722,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="print_inverse_noise_matrix"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.print_inverse_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_inverse_noise_matrix</span><span class="p">(</span><span class="n">inverse_noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="print_inverse_noise_matrix"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.print_inverse_noise_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_inverse_noise_matrix</span><span class="p">(</span><span class="n">inverse_noise_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="sd">"""Pretty prints the inverse noise matrix."""</span>
     <span class="n">print_square_matrix</span><span class="p">(</span>
         <span class="n">inverse_noise_matrix</span><span class="p">,</span>
@@ -733,7 +734,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="print_joint_matrix"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.print_joint_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_joint_matrix</span><span class="p">(</span><span class="n">joint_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="print_joint_matrix"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.print_joint_matrix">[docs]</a><span class="k">def</span> <span class="nf">print_joint_matrix</span><span class="p">(</span><span class="n">joint_matrix</span><span class="p">,</span> <span class="n">round_places</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="sd">"""Pretty prints the joint label noise matrix."""</span>
     <span class="n">print_square_matrix</span><span class="p">(</span>
         <span class="n">joint_matrix</span><span class="p">,</span>
@@ -772,7 +773,7 @@
         <span class="k">return</span> <span class="kc">False</span>
 
 
-<div class="viewcode-block" id="VersionWarning"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.VersionWarning">[docs]</a><span class="k">class</span> <span class="nc">VersionWarning</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="VersionWarning"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.VersionWarning">[docs]</a><span class="k">class</span> <span class="nc">VersionWarning</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">"""Functor that calls _python_version_is_compatible</span>
 <span class="sd">    and manages the state of the bool variable</span>
 <span class="sd">    warning_already_issued to make sure the same warning</span>
@@ -783,7 +784,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">warning_already_issued</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">list_of_compatible_versions</span> <span class="o">=</span> <span class="n">list_of_compatible_versions</span>
 
-<div class="viewcode-block" id="VersionWarning.is_compatible"><a class="viewcode-back" href="../../../cleanlab/utils/util.html#cleanlab.utils.util.VersionWarning.is_compatible">[docs]</a>    <span class="k">def</span> <span class="nf">is_compatible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VersionWarning.is_compatible"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.utils.util.VersionWarning.is_compatible">[docs]</a>    <span class="k">def</span> <span class="nf">is_compatible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">compatible</span> <span class="o">=</span> <span class="n">_python_version_is_compatible</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_str</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_already_issued</span><span class="p">,</span>

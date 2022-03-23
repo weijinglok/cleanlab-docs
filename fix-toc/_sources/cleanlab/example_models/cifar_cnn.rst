@@ -1,4 +1,4 @@
-CIFAR CNN
+cifar.cnn
 =========
 
 .. automodule:: cleanlab.example_models.cifar_cnn

@@ -1,4 +1,4 @@
-Filter
+filter
 =======
 
 .. automodule:: cleanlab.filter

@@ -1,5 +1,5 @@
-Co-Teaching
-===========
+coteaching
+==========
 
 .. automodule:: cleanlab.coteaching
    :autosummary:

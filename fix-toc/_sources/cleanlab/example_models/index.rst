@@ -1,4 +1,4 @@
-Example Models
+example_models
 ==============
 
 .. toctree::

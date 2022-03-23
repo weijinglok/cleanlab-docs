@@ -1,4 +1,4 @@
-MNIST PyTorch
+mnist_pytorch
 =============
 
 .. automodule:: cleanlab.example_models.mnist_pytorch

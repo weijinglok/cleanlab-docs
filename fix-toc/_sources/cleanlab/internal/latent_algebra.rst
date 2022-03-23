@@ -1,7 +1,7 @@
-classification
+latent_algebra
 ==============
 
-.. automodule:: cleanlab.classification
+.. automodule:: cleanlab.utils.latent_algebra
    :autosummary:
    :members:
    :undoc-members:

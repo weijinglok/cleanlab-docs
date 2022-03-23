@@ -1,4 +1,4 @@
-Count
+count
 =====
 
 .. automodule:: cleanlab.count

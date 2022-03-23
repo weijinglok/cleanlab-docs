@@ -1,4 +1,4 @@
-Rank
+rank
 ====
 
 .. automodule:: cleanlab.rank

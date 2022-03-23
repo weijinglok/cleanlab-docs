@@ -88,8 +88,8 @@ When the ``.fit()`` method is called, it automatically identifies and removes an
    cleanlab/filter
    cleanlab/noise_generation
    cleanlab/coteaching
-   cleanlab/utils/util
    cleanlab/example_models/index
+   cleanlab/internal/index
 
 .. toctree::
    :caption: Links

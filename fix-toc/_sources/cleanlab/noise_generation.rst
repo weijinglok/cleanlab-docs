@@ -1,4 +1,4 @@
-Noise Generation
+noise_generation
 ================
 
 .. automodule:: cleanlab.noise_generation
