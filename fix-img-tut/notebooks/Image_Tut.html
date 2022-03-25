@@ -619,7 +619,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">X</span> <span class="o">/=</span> <span class="mf">255.0</span>  <span class="c1"># Scale the features to the [0, 1] range</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>  <span class="c1"># 1D numpy array of the image labels</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="admonition note">
@@ -643,7 +643,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
     <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
 <span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 </div>
@@ -657,7 +657,7 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skorch</span> <span class="kn">import</span> <span class="n">NeuralNetClassifier</span>
 
 <span class="n">model_skorch</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 </div>
@@ -671,7 +671,7 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
 
 <span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">model_skorch</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"predict_proba"</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -681,40 +681,40 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0159</span>       <span class="ansi-green-fg">0.7214</span>        <span class="ansi-magenta-fg">1.6292</span>  1.1722
-      2        <span class="ansi-cyan-fg">1.3117</span>       <span class="ansi-green-fg">0.7907</span>        <span class="ansi-magenta-fg">0.9983</span>  1.1336
-      3        <span class="ansi-cyan-fg">0.9239</span>       <span class="ansi-green-fg">0.8256</span>        <span class="ansi-magenta-fg">0.7454</span>  1.1321
-      4        <span class="ansi-cyan-fg">0.7538</span>       <span class="ansi-green-fg">0.8452</span>        <span class="ansi-magenta-fg">0.6276</span>  1.1373
-      5        <span class="ansi-cyan-fg">0.6628</span>       <span class="ansi-green-fg">0.8591</span>        <span class="ansi-magenta-fg">0.5589</span>  1.1296
-      6        <span class="ansi-cyan-fg">0.6021</span>       <span class="ansi-green-fg">0.8650</span>        <span class="ansi-magenta-fg">0.5140</span>  1.1294
-      7        <span class="ansi-cyan-fg">0.5597</span>       <span class="ansi-green-fg">0.8728</span>        <span class="ansi-magenta-fg">0.4798</span>  1.1313
-      8        <span class="ansi-cyan-fg">0.5305</span>       <span class="ansi-green-fg">0.8755</span>        <span class="ansi-magenta-fg">0.4560</span>  1.1301
-      9        <span class="ansi-cyan-fg">0.5029</span>       <span class="ansi-green-fg">0.8793</span>        <span class="ansi-magenta-fg">0.4356</span>  1.1339
-     10        <span class="ansi-cyan-fg">0.4827</span>       <span class="ansi-green-fg">0.8805</span>        <span class="ansi-magenta-fg">0.4207</span>  1.1488
+      1        <span class="ansi-cyan-fg">1.9710</span>       <span class="ansi-green-fg">0.7369</span>        <span class="ansi-magenta-fg">1.5498</span>  1.1344
+      2        <span class="ansi-cyan-fg">1.2433</span>       <span class="ansi-green-fg">0.7997</span>        <span class="ansi-magenta-fg">0.9464</span>  1.1362
+      3        <span class="ansi-cyan-fg">0.8768</span>       <span class="ansi-green-fg">0.8301</span>        <span class="ansi-magenta-fg">0.7170</span>  1.1338
+      4        <span class="ansi-cyan-fg">0.7226</span>       <span class="ansi-green-fg">0.8485</span>        <span class="ansi-magenta-fg">0.6089</span>  1.1332
+      5        <span class="ansi-cyan-fg">0.6406</span>       <span class="ansi-green-fg">0.8589</span>        <span class="ansi-magenta-fg">0.5471</span>  1.1340
+      6        <span class="ansi-cyan-fg">0.5816</span>       <span class="ansi-green-fg">0.8683</span>        <span class="ansi-magenta-fg">0.5037</span>  1.1329
+      7        <span class="ansi-cyan-fg">0.5488</span>       <span class="ansi-green-fg">0.8734</span>        <span class="ansi-magenta-fg">0.4743</span>  1.1326
+      8        <span class="ansi-cyan-fg">0.5157</span>       <span class="ansi-green-fg">0.8749</span>        <span class="ansi-magenta-fg">0.4508</span>  1.1329
+      9        <span class="ansi-cyan-fg">0.4915</span>       <span class="ansi-green-fg">0.8786</span>        <span class="ansi-magenta-fg">0.4316</span>  1.1316
+     10        <span class="ansi-cyan-fg">0.4753</span>       <span class="ansi-green-fg">0.8804</span>        <span class="ansi-magenta-fg">0.4171</span>  1.1346
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0156</span>       <span class="ansi-green-fg">0.7340</span>        <span class="ansi-magenta-fg">1.6170</span>  1.1255
-      2        <span class="ansi-cyan-fg">1.3098</span>       <span class="ansi-green-fg">0.8070</span>        <span class="ansi-magenta-fg">0.9756</span>  1.1275
-      3        <span class="ansi-cyan-fg">0.9236</span>       <span class="ansi-green-fg">0.8349</span>        <span class="ansi-magenta-fg">0.7221</span>  1.1283
-      4        <span class="ansi-cyan-fg">0.7527</span>       <span class="ansi-green-fg">0.8540</span>        <span class="ansi-magenta-fg">0.6033</span>  1.1305
-      5        <span class="ansi-cyan-fg">0.6604</span>       <span class="ansi-green-fg">0.8673</span>        <span class="ansi-magenta-fg">0.5338</span>  1.1299
-      6        <span class="ansi-cyan-fg">0.5994</span>       <span class="ansi-green-fg">0.8764</span>        <span class="ansi-magenta-fg">0.4884</span>  1.1280
-      7        <span class="ansi-cyan-fg">0.5560</span>       <span class="ansi-green-fg">0.8820</span>        <span class="ansi-magenta-fg">0.4556</span>  1.1287
-      8        <span class="ansi-cyan-fg">0.5236</span>       <span class="ansi-green-fg">0.8864</span>        <span class="ansi-magenta-fg">0.4316</span>  1.1300
-      9        <span class="ansi-cyan-fg">0.5010</span>       <span class="ansi-green-fg">0.8910</span>        <span class="ansi-magenta-fg">0.4122</span>  1.1282
-     10        <span class="ansi-cyan-fg">0.4775</span>       <span class="ansi-green-fg">0.8943</span>        <span class="ansi-magenta-fg">0.3962</span>  1.1329
+      1        <span class="ansi-cyan-fg">1.9678</span>       <span class="ansi-green-fg">0.7533</span>        <span class="ansi-magenta-fg">1.5298</span>  1.1330
+      2        <span class="ansi-cyan-fg">1.2380</span>       <span class="ansi-green-fg">0.8132</span>        <span class="ansi-magenta-fg">0.9208</span>  1.1320
+      3        <span class="ansi-cyan-fg">0.8746</span>       <span class="ansi-green-fg">0.8394</span>        <span class="ansi-magenta-fg">0.6905</span>  1.1317
+      4        <span class="ansi-cyan-fg">0.7220</span>       <span class="ansi-green-fg">0.8561</span>        <span class="ansi-magenta-fg">0.5833</span>  1.1487
+      5        <span class="ansi-cyan-fg">0.6376</span>       <span class="ansi-green-fg">0.8683</span>        <span class="ansi-magenta-fg">0.5197</span>  1.1345
+      6        <span class="ansi-cyan-fg">0.5846</span>       <span class="ansi-green-fg">0.8758</span>        <span class="ansi-magenta-fg">0.4782</span>  1.1325
+      7        <span class="ansi-cyan-fg">0.5469</span>       <span class="ansi-green-fg">0.8824</span>        <span class="ansi-magenta-fg">0.4478</span>  1.1323
+      8        <span class="ansi-cyan-fg">0.5151</span>       <span class="ansi-green-fg">0.8876</span>        <span class="ansi-magenta-fg">0.4240</span>  1.1329
+      9        <span class="ansi-cyan-fg">0.4928</span>       <span class="ansi-green-fg">0.8917</span>        <span class="ansi-magenta-fg">0.4059</span>  1.1403
+     10        <span class="ansi-cyan-fg">0.4716</span>       <span class="ansi-green-fg">0.8943</span>        <span class="ansi-magenta-fg">0.3905</span>  1.1336
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0275</span>       <span class="ansi-green-fg">0.7349</span>        <span class="ansi-magenta-fg">1.6295</span>  1.1272
-      2        <span class="ansi-cyan-fg">1.3382</span>       <span class="ansi-green-fg">0.8076</span>        <span class="ansi-magenta-fg">0.9848</span>  1.1303
-      3        <span class="ansi-cyan-fg">0.9489</span>       <span class="ansi-green-fg">0.8428</span>        <span class="ansi-magenta-fg">0.7248</span>  1.1290
-      4        <span class="ansi-cyan-fg">0.7772</span>       <span class="ansi-green-fg">0.8605</span>        <span class="ansi-magenta-fg">0.6024</span>  1.1302
-      5        <span class="ansi-cyan-fg">0.6851</span>       <span class="ansi-green-fg">0.8712</span>        <span class="ansi-magenta-fg">0.5338</span>  1.1347
-      6        <span class="ansi-cyan-fg">0.6244</span>       <span class="ansi-green-fg">0.8785</span>        <span class="ansi-magenta-fg">0.4872</span>  1.1310
-      7        <span class="ansi-cyan-fg">0.5839</span>       <span class="ansi-green-fg">0.8852</span>        <span class="ansi-magenta-fg">0.4535</span>  1.1278
-      8        <span class="ansi-cyan-fg">0.5459</span>       <span class="ansi-green-fg">0.8899</span>        <span class="ansi-magenta-fg">0.4278</span>  1.1290
-      9        <span class="ansi-cyan-fg">0.5204</span>       <span class="ansi-green-fg">0.8937</span>        <span class="ansi-magenta-fg">0.4084</span>  1.1285
-     10        <span class="ansi-cyan-fg">0.5027</span>       <span class="ansi-green-fg">0.8964</span>        <span class="ansi-magenta-fg">0.3929</span>  1.1495
+      1        <span class="ansi-cyan-fg">1.9819</span>       <span class="ansi-green-fg">0.7541</span>        <span class="ansi-magenta-fg">1.5477</span>  1.1354
+      2        <span class="ansi-cyan-fg">1.2707</span>       <span class="ansi-green-fg">0.8135</span>        <span class="ansi-magenta-fg">0.9338</span>  1.1387
+      3        <span class="ansi-cyan-fg">0.9056</span>       <span class="ansi-green-fg">0.8463</span>        <span class="ansi-magenta-fg">0.6966</span>  1.1344
+      4        <span class="ansi-cyan-fg">0.7466</span>       <span class="ansi-green-fg">0.8619</span>        <span class="ansi-magenta-fg">0.5850</span>  1.1349
+      5        <span class="ansi-cyan-fg">0.6680</span>       <span class="ansi-green-fg">0.8733</span>        <span class="ansi-magenta-fg">0.5213</span>  1.1397
+      6        <span class="ansi-cyan-fg">0.6036</span>       <span class="ansi-green-fg">0.8804</span>        <span class="ansi-magenta-fg">0.4764</span>  1.1387
+      7        <span class="ansi-cyan-fg">0.5662</span>       <span class="ansi-green-fg">0.8862</span>        <span class="ansi-magenta-fg">0.4444</span>  1.1557
+      8        <span class="ansi-cyan-fg">0.5350</span>       <span class="ansi-green-fg">0.8909</span>        <span class="ansi-magenta-fg">0.4201</span>  1.1343
+      9        <span class="ansi-cyan-fg">0.5119</span>       <span class="ansi-green-fg">0.8949</span>        <span class="ansi-magenta-fg">0.4014</span>  1.1396
+     10        <span class="ansi-cyan-fg">0.4933</span>       <span class="ansi-green-fg">0.8984</span>        <span class="ansi-magenta-fg">0.3860</span>  1.1359
 </pre></div></div>
 </div>
 </div>
@@ -727,10 +727,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.filter</span> <span class="kn">import</span> <span class="n">find_label_issues</span>
 
-<span class="n">ranked_label_issues</span> <span class="o">=</span> <span class="n">find_label_issues</span><span class="p">(</span>
-    <span class="n">y</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="n">return_indices_ranked_by</span><span class="o">=</span><span class="s2">"self_confidence"</span>
-<span class="p">)</span>
-</pre></div>
+<span class="n">ranked_label_issues</span> <span class="o">=</span> <span class="n">find_label_issues</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="n">return_indices_ranked_by</span><span class="o">=</span><span class="s2">"self_confidence"</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 </div>
@@ -741,10 +739,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cleanlab found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">)</span><span class="si">}</span><span class="s2"> potential label errors."</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">"Here are the indices of the top 15 most likely ones: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">ranked_label_issues</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
-<span class="p">)</span>
-</pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Here are the indices of the top 15 most likely ones: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">ranked_label_issues</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -752,16 +748,16 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Cleanlab found 1292 potential label errors.
+Cleanlab found 1284 potential label errors.
 Here are the indices of the top 15 most likely ones:
- [24798 18598  8729 61790 12679  1352 15942 20820 31134  7010 55739 59915
- 53216 39457 13031]
+ [24798 18598  8729 61790  1352 31134 15942 12679 39457 53216 20735 55739
+ 59915 13031 12585]
 </pre></div></div>
 </div>
 <p>We’ll define a new <code class="docutils literal notranslate"><span class="pre">plot_examples</span></code> function to display any examples in a subplot conveniently.</p>
 <!-- This cell is for the collapsible block in the doc site -->
 <details>
-<summary markdown="1">Click here to view its code.</summary><div class="nbinput docutils container">
+<summary markdown="1">Click here to view its code.</summary><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -776,16 +772,8 @@ Here are the indices of the top 15 most likely ones:
         <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Matplotlib is building the font cache; this may take a moment.
-</pre></div></div>
 </div>
 <!-- This cell is for the collapsible block in the doc site -->
 </details><p>Let’s start by having an overview of the top 15 most likely label errors. From here, we can see a few label errors and edge cases. Feel free to change the parameters to display more or fewer examples.</p>
@@ -794,7 +782,7 @@ Matplotlib is building the font cache; this may take a moment.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">)],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -811,7 +799,7 @@ Matplotlib is building the font cache; this may take a moment.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">59915</span><span class="p">])</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -827,7 +815,7 @@ Matplotlib is building the font cache; this may take a moment.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">24798</span><span class="p">])</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -843,7 +831,7 @@ Matplotlib is building the font cache; this may take a moment.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">18598</span><span class="p">,</span> <span class="mi">1352</span><span class="p">,</span> <span class="mi">61247</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
