@@ -154,25 +154,29 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+  <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../notebooks/Image_Tut.html">Image Classification with PyTorch and Cleanlab</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#latent-estimation">Latent Estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.noise_generation">Noise Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#baseline-methods">Baseline Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.coteaching">Co-Teaching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#latent-algebra">Latent Algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#pruning">Pruning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#module-cleanlab.util">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab.html#polyplex">Polyplex</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab.html#models">Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html">CIFAR CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cleanlab.models.html#mnist-pytorch">MNIST PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/noise_generation.html">noise_generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/coteaching.html">coteaching</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/cifar_cnn.html">cifar.cnn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/mnist_pytorch.html">mnist_pytorch</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +219,7 @@
 
 <script
     type="text/javascript"
-    src="/cleanlab-docs//versioning.js"
+    src="/cleanlab-docs/versioning.js"
 ></script>
 
 <script type="text/javascript">
@@ -281,7 +285,7 @@
 
 <script
     type="text/javascript"
-    src="/cleanlab-docs//versioning.js"
+    src="/cleanlab-docs/versioning.js"
 ></script>
 <script type="text/javascript">
     window.addEventListener("load", () => {
@@ -431,7 +435,7 @@
 <span class="kn">from</span> <span class="nn">cleanlab.filter</span> <span class="kn">import</span> <span class="n">find_label_issues</span>
 
 
-<div class="viewcode-block" id="LearningWithNoisyLabels"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels">[docs]</a><span class="k">class</span> <span class="nc">LearningWithNoisyLabels</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>  <span class="c1"># Inherits sklearn classifier</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels">[docs]</a><span class="k">class</span> <span class="nc">LearningWithNoisyLabels</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>  <span class="c1"># Inherits sklearn classifier</span>
     <span class="sd">"""Automated and robust learning with noisy labels using any dataset and any model. This class</span>
 <span class="sd">    trains a model `clf` with error-prone, noisy labels as if the model had been instead trained</span>
 <span class="sd">    on a dataset with perfect labels. It achieves this by cleaning out the error and providing</span>
@@ -547,7 +551,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">noise_matrix</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inverse_noise_matrix</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="LearningWithNoisyLabels.fit"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels.fit"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">X</span><span class="p">,</span>
         <span class="n">labels</span><span class="p">,</span>
@@ -725,7 +729,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span></div>
 
-<div class="viewcode-block" id="LearningWithNoisyLabels.predict"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels.predict"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">"""Returns a vector of predictions.</span>
 
 <span class="sd">        Parameters</span>
@@ -735,7 +739,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LearningWithNoisyLabels.predict_proba"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels.predict_proba"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">"""Returns a vector of probabilities P(true_label=k)</span>
 <span class="sd">        for each example in X.</span>
 
@@ -746,7 +750,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LearningWithNoisyLabels.score"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels.score"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">"""Returns the clf's score on a test set X with labels y.</span>
 <span class="sd">        Uses the model/clf's default scoring function.</span>
 
@@ -775,7 +779,7 @@
                 <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
             <span class="p">)</span></div>
 
-<div class="viewcode-block" id="LearningWithNoisyLabels.get_label_issues"><a class="viewcode-back" href="../../cleanlab.html#cleanlab.classification.LearningWithNoisyLabels.get_label_issues">[docs]</a>    <span class="k">def</span> <span class="nf">get_label_issues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LearningWithNoisyLabels.get_label_issues"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.LearningWithNoisyLabels.get_label_issues">[docs]</a>    <span class="k">def</span> <span class="nf">get_label_issues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">"""Accessor. Returns `self.label_issues_mask` computed via `filter.find_label_issues()`"""</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span></div></div>
