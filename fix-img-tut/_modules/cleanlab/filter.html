@@ -553,6 +553,7 @@
     <span class="n">confident_joint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">filter_by</span><span class="o">=</span><span class="s2">"prune_by_noise_rate"</span><span class="p">,</span>
     <span class="n">return_indices_ranked_by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rank_by_kwargs</span><span class="o">=</span><span class="p">{},</span>
     <span class="n">multi_label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">frac_noise</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">num_to_remove_per_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -612,12 +613,19 @@
 <span class="sd">      5. 'predicted_neq_given': Find examples where the predicted class</span>
 <span class="sd">      (i.e. argmax of the predicted probabilities) does not match the given label.</span>
 
-<span class="sd">    return_indices_ranked_by : {:obj:`None`, :obj:`self_confidence`, :obj:`normalized_margin`}</span>
+<span class="sd">    return_indices_ranked_by : {:obj:`None`, :obj:`self_confidence`, :obj:`normalized_margin`, :obj:`confidence_weighted_entropy`}</span>
 <span class="sd">      If None, returns a boolean mask (true if example at index is label error)</span>
 <span class="sd">      If not None, returns an array of the label error indices</span>
 <span class="sd">      (instead of a bool mask) where error indices are ordered by the either:</span>
 <span class="sd">      ``'normalized_margin' := normalized margin (p(label = k) - max(p(label != k)))``</span>
 <span class="sd">      ``'self_confidence' := [pred_probs[i][labels[i]] for i in label_issues_idx]``</span>
+<span class="sd">      ``'confidence_weighted_entropy' := entropy(pred_probs) / self_confidence``</span>
+
+<span class="sd">    rank_by_kwargs : dict</span>
+<span class="sd">      Optional keyword arguments to pass into scoring functions for ranking by label quality score</span>
+<span class="sd">      (see: `get_label_quality_scores()` in cleanlab/rank.py).</span>
+<span class="sd">      Accepted args include:</span>
+<span class="sd">      adjust_pred_probs : bool, default = False</span>
 
 <span class="sd">    multi_label : bool</span>
 <span class="sd">      If true, labels should be an iterable (e.g. list) of iterables, containing a</span>
@@ -838,6 +846,7 @@
             <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
             <span class="n">pred_probs</span><span class="o">=</span><span class="n">pred_probs</span><span class="p">,</span>
             <span class="n">rank_by</span><span class="o">=</span><span class="n">return_indices_ranked_by</span><span class="p">,</span>
+            <span class="n">rank_by_kwargs</span><span class="o">=</span><span class="n">rank_by_kwargs</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">er</span>
     <span class="n">confident_joint</span>
