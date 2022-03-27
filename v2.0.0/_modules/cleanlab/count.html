@@ -1264,6 +1264,35 @@
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inverse_noise_matrix</span></div>
+
+
+<div class="viewcode-block" id="get_confident_thresholds"><a class="viewcode-back" href="../../cleanlab/count.html#cleanlab.count.get_confident_thresholds">[docs]</a><span class="k">def</span> <span class="nf">get_confident_thresholds</span><span class="p">(</span><span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="sd">"""Returns expected (average) "self-confidence" for each class.</span>
+
+<span class="sd">    The confident class threshold for a class j is the expected (average) "self-confidence" for class j.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    labels : np.array</span>
+<span class="sd">      A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
+<span class="sd">      *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
+
+<span class="sd">    pred_probs : np.array (shape (N, K))</span>
+<span class="sd">      P(label=k|x) is a matrix with K model-predicted probabilities.</span>
+<span class="sd">      Each row of this matrix corresponds to an example x and contains the model-predicted</span>
+<span class="sd">      probabilities that x belongs to each possible class.</span>
+<span class="sd">      The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
+<span class="sd">      `pred_probs` should have been computed using 3 (or higher) fold cross-validation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    confident_thresholds : np.array (shape (K,))</span>
+
+<span class="sd">    """</span>
+    <span class="n">confident_thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">[:,</span> <span class="n">k</span><span class="p">][</span><span class="n">labels</span> <span class="o">==</span> <span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pred_probs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">confident_thresholds</span></div>
 </pre></div> 
         </article>
       </div>
