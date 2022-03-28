@@ -1,7 +1,7 @@
 cleanlab documentation
 ======================
 
-`cleanlab <https://github.com/cleanlab/cleanlab>`_ **automatically finds and fixes label errors in your ML datasets.**
+`cleanlab <https://github.com/cleanlab/cleanlab>`_ **automatically finds and fixes label issues in your ML datasets.**
 
 | This reduces manual work needed to fix data errors and helps train reliable ML models on noisy real-world datasets. ``cleanlab`` has already found thousands of `label errors <https://labelerrors.com>`_ in ImageNet, MNIST, and other popular ML benchmarking datasets, so let's get started with yours!
 
@@ -59,7 +59,7 @@ Setting ``return_indices_ranked_by`` instructs ``cleanlab`` to return the indice
 
 ``cleanlab``'s ``LearningWithNoisyLabels`` adapts any existing (scikit-learn compatible) classification model, ``clf``, to a more reliable one by allowing it to train directly on partially mislabeled datasets. 
 
-When the ``.fit()`` method is called, it automatically identifies and removes any examples that are deemed "noisy" in the provided dataset before returning a final trained model.
+When the ``.fit()`` method is called, it automatically removes any examples identified as "noisy" in the provided dataset and returns a model trained only on the clean data.
 
 .. code-block:: python
 
