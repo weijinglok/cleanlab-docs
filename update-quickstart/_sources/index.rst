@@ -54,7 +54,7 @@ Setting ``return_indices_ranked_by`` instructs ``cleanlab`` to return the indice
 ..
    TODO - include the url for tf and torch beginner tutorials
 
-1. Train robust models with noisy labels using ``LearningWithNoisyLabels``.
+3. Train robust models with noisy labels using ``LearningWithNoisyLabels``.
 ---------------------------------------------------------------------------
 
 ``cleanlab``'s ``LearningWithNoisyLabels`` adapts any scikit-learn compatible classification model, ``clf``, to a more reliable one by allowing it to train directly on partially mislabeled datasets. 
