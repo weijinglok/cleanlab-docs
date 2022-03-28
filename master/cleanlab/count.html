@@ -351,7 +351,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba" title="cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_py_noise_matrices_and_cv_pred_proba</span></code></a>(X, ...)</p></td>
 <td><p>This function computes the out-of-sample predicted probability P(label=k|x) for every example x in X using cross validation while also computing the confident counts noise rates within each cross-validated subset and returning the average noise rate across all examples.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.num_label_issues" title="cleanlab.count.num_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_label_issues</span></code></a>(labels, pred_probs[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.get_confident_thresholds" title="cleanlab.count.get_confident_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_confident_thresholds</span></code></a>(labels, pred_probs)</p></td>
+<td><p>Returns expected (average) "self-confidence" for each class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.num_label_issues" title="cleanlab.count.num_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_label_issues</span></code></a>(labels, pred_probs[, ...])</p></td>
 <td><p>Estimates the number of label issues in <cite>labels</cite>.</p></td>
 </tr>
 </tbody>
@@ -764,6 +767,31 @@ the cross-validated folds. If None, uses np.random current random state.</p></li
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">joint</span> <span class="pre">count</span> <span class="pre">matrix</span> <span class="pre">i.e.</span> <span class="pre">confident</span> <span class="pre">joint</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">predicted</span> <span class="pre">probability</span> <span class="pre">matrix)</span></code></p></li>
 </ul>
 </p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="cleanlab.count.get_confident_thresholds">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.count.</span></span><span class="sig-name descname"><span class="pre">get_confident_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="../_modules/cleanlab/count.html#get_confident_thresholds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.count.get_confident_thresholds" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns expected (average) “self-confidence” for each class.</p>
+<p>The confident class threshold for a class j is the expected (average) “self-confidence” for class j.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
+<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – P(label=k|x) is a matrix with K model-predicted probabilities.
+Each row of this matrix corresponds to an example x and contains the model-predicted
+probabilities that x belongs to each possible class.
+The columns must be ordered such that these probabilities correspond to class 0,1,2,…
+<cite>pred_probs</cite> should have been computed using 3 (or higher) fold cross-validation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>confident_thresholds</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(K,))</span></code></p>
 </dd>
 </dl>
 </dd></dl>
