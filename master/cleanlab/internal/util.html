@@ -177,6 +177,7 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latent_algebra.html">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
 </ul>
@@ -312,8 +313,8 @@
 
 <!-- End of Version Warning Banner -->
 
- <div class="section" id="module-cleanlab.utils.util">
-<span id="util"></span><h1>util<a class="headerlink" href="#module-cleanlab.utils.util" title="Permalink to this headline">#</a></h1>
+ <div class="section" id="module-cleanlab.internal.util">
+<span id="util"></span><h1>util<a class="headerlink" href="#module-cleanlab.internal.util" title="Permalink to this headline">#</a></h1>
 <p><strong>Classes:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -321,7 +322,7 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.VersionWarning" title="cleanlab.utils.util.VersionWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionWarning</span></code></a>(warning_str, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.VersionWarning" title="cleanlab.internal.util.VersionWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionWarning</span></code></a>(warning_str, ...)</p></td>
 <td><p>Functor that calls _python_version_is_compatible and manages the state of the bool variable warning_already_issued to make sure the same warning is never displayed multiple times.</p></td>
 </tr>
 </tbody>
@@ -333,56 +334,56 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.assert_inputs_are_valid" title="cleanlab.utils.util.assert_inputs_are_valid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_inputs_are_valid</span></code></a>(X, s[, pred_probs])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.assert_inputs_are_valid" title="cleanlab.internal.util.assert_inputs_are_valid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assert_inputs_are_valid</span></code></a>(X, s[, pred_probs])</p></td>
 <td><p>Checks that X, labels, and pred_probs are correctly formatted</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.clip_noise_rates" title="cleanlab.utils.util.clip_noise_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_noise_rates</span></code></a>(noise_matrix)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.clip_noise_rates" title="cleanlab.internal.util.clip_noise_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_noise_rates</span></code></a>(noise_matrix)</p></td>
 <td><p>Clip all noise rates to proper range [0,1), but do not modify the diagonal terms because they are not noise rates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.clip_values" title="cleanlab.utils.util.clip_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_values</span></code></a>(x[, low, high, new_sum])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.clip_values" title="cleanlab.internal.util.clip_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_values</span></code></a>(x[, low, high, new_sum])</p></td>
 <td><p>Clip all values in p to range [low,high].</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.confusion_matrix" title="cleanlab.utils.util.confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_matrix</span></code></a>(true, pred)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.confusion_matrix" title="cleanlab.internal.util.confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_matrix</span></code></a>(true, pred)</p></td>
 <td><p>Implements a confusion matrix for true labels and predicted labels.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.estimate_pu_f1" title="cleanlab.utils.util.estimate_pu_f1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_pu_f1</span></code></a>(s, prob_s_eq_1)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.estimate_pu_f1" title="cleanlab.internal.util.estimate_pu_f1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_pu_f1</span></code></a>(s, prob_s_eq_1)</p></td>
 <td><p>Computes Claesen's estimate of f1 in the pulearning setting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.int2onehot" title="cleanlab.utils.util.int2onehot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int2onehot</span></code></a>(labels)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.int2onehot" title="cleanlab.internal.util.int2onehot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int2onehot</span></code></a>(labels)</p></td>
 <td><p>Convert list of lists to a onehot matrix for multi-labels</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.onehot2int" title="cleanlab.utils.util.onehot2int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">onehot2int</span></code></a>(onehot_matrix)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.onehot2int" title="cleanlab.internal.util.onehot2int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">onehot2int</span></code></a>(onehot_matrix)</p></td>
 <td><p>Convert a onehot matrix for multi-labels to a list of lists of ints</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.print_inverse_noise_matrix" title="cleanlab.utils.util.print_inverse_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_inverse_noise_matrix</span></code></a>(inverse_noise_matrix)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_inverse_noise_matrix" title="cleanlab.internal.util.print_inverse_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_inverse_noise_matrix</span></code></a>(inverse_noise_matrix)</p></td>
 <td><p>Pretty prints the inverse noise matrix.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.print_joint_matrix" title="cleanlab.utils.util.print_joint_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_joint_matrix</span></code></a>(joint_matrix[, round_places])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_joint_matrix" title="cleanlab.internal.util.print_joint_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_joint_matrix</span></code></a>(joint_matrix[, round_places])</p></td>
 <td><p>Pretty prints the joint label noise matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.print_noise_matrix" title="cleanlab.utils.util.print_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_noise_matrix</span></code></a>(noise_matrix[, round_places])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_noise_matrix" title="cleanlab.internal.util.print_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_noise_matrix</span></code></a>(noise_matrix[, round_places])</p></td>
 <td><p>Pretty prints the noise matrix.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.print_square_matrix" title="cleanlab.utils.util.print_square_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_square_matrix</span></code></a>(matrix[, left_name, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_square_matrix" title="cleanlab.internal.util.print_square_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_square_matrix</span></code></a>(matrix[, left_name, ...])</p></td>
 <td><p>Pretty prints a matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.remove_noise_from_class" title="cleanlab.utils.util.remove_noise_from_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_noise_from_class</span></code></a>(noise_matrix, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.remove_noise_from_class" title="cleanlab.internal.util.remove_noise_from_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_noise_from_class</span></code></a>(noise_matrix, ...)</p></td>
 <td><p>A helper function in the setting of PU learning.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.round_preserving_row_totals" title="cleanlab.utils.util.round_preserving_row_totals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_row_totals</span></code></a>(confident_joint)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_row_totals" title="cleanlab.internal.util.round_preserving_row_totals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_row_totals</span></code></a>(confident_joint)</p></td>
 <td><p>Rounds confident_joint cj to type int while preserving the totals of reach row.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.util.round_preserving_sum" title="cleanlab.utils.util.round_preserving_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_sum</span></code></a>(iterable)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_sum" title="cleanlab.internal.util.round_preserving_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_sum</span></code></a>(iterable)</p></td>
 <td><p>Rounds an iterable of floats while retaining the original summed value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.value_counts" title="cleanlab.utils.util.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.value_counts" title="cleanlab.internal.util.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>(x)</p></td>
 <td><p>Returns an np.array of shape (K, 1), with the value counts for every unique item in the labels list/array, where K is the number of unique entries in labels.</p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py class">
-<dt class="sig sig-object py" id="cleanlab.utils.util.VersionWarning">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">VersionWarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">warning_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_compatible_versions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#VersionWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.VersionWarning" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.VersionWarning">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">VersionWarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">warning_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_compatible_versions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#VersionWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.VersionWarning" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Functor that calls _python_version_is_compatible
 and manages the state of the bool variable
@@ -395,25 +396,25 @@ is never displayed multiple times.</p>
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.util.VersionWarning.is_compatible" title="cleanlab.utils.util.VersionWarning.is_compatible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_compatible</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.VersionWarning.is_compatible" title="cleanlab.internal.util.VersionWarning.is_compatible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_compatible</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.utils.util.VersionWarning.is_compatible">
-<span class="sig-name descname"><span class="pre">is_compatible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#VersionWarning.is_compatible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.VersionWarning.is_compatible" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.VersionWarning.is_compatible">
+<span class="sig-name descname"><span class="pre">is_compatible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#VersionWarning.is_compatible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.VersionWarning.is_compatible" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.assert_inputs_are_valid">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">assert_inputs_are_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#assert_inputs_are_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.assert_inputs_are_valid" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.assert_inputs_are_valid">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">assert_inputs_are_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#assert_inputs_are_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.assert_inputs_are_valid" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks that X, labels, and pred_probs
 are correctly formatted</p>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.clip_noise_rates">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">clip_noise_rates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#clip_noise_rates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.clip_noise_rates" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.clip_noise_rates">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">clip_noise_rates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#clip_noise_rates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.clip_noise_rates" title="Permalink to this definition">#</a></dt>
 <dd><p>Clip all noise rates to proper range [0,1), but
 do not modify the diagonal terms because they are not
 noise rates.</p>
@@ -428,8 +429,8 @@ Assumes columns of noise_matrix sum to 1</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.clip_values">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">clip_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_sum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#clip_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.clip_values" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.clip_values">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">clip_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_sum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#clip_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.clip_values" title="Permalink to this definition">#</a></dt>
 <dd><p>Clip all values in p to range [low,high].
 Preserves sum of x.</p>
 <dl class="field-list simple">
@@ -450,8 +451,8 @@ Preserves sum of x.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.confusion_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#confusion_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.confusion_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.confusion_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#confusion_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.confusion_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Implements a confusion matrix for true labels
 and predicted labels. true and pred MUST BE the same length
 and have the same distinct set of class labels represented.</p>
@@ -478,8 +479,8 @@ Assumes true and pred contains the same set of distinct labels.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.estimate_pu_f1">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">estimate_pu_f1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob_s_eq_1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#estimate_pu_f1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.estimate_pu_f1" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.estimate_pu_f1">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">estimate_pu_f1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob_s_eq_1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#estimate_pu_f1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.estimate_pu_f1" title="Permalink to this definition">#</a></dt>
 <dd><p>Computes Claesen’s estimate of f1 in the pulearning setting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -494,8 +495,8 @@ Assumes true and pred contains the same set of distinct labels.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.int2onehot">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">int2onehot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#int2onehot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.int2onehot" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.int2onehot">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">int2onehot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#int2onehot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.int2onehot" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert list of lists to a onehot matrix for multi-labels</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -505,8 +506,8 @@ All integers from 0,1,…,K-1 must be represented.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.onehot2int">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">onehot2int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onehot_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#onehot2int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.onehot2int" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.onehot2int">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">onehot2int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onehot_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#onehot2int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.onehot2int" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert a onehot matrix for multi-labels to a list of lists of ints</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -522,23 +523,23 @@ All integers from 0,1,…,K-1 must be represented.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.print_inverse_noise_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">print_inverse_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#print_inverse_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.print_inverse_noise_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.print_inverse_noise_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_inverse_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_inverse_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_inverse_noise_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Pretty prints the inverse noise matrix.</p>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.print_joint_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">print_joint_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#print_joint_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.print_joint_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.print_joint_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_joint_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_joint_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_joint_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Pretty prints the joint label noise matrix.</p>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.print_noise_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">print_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#print_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.print_noise_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.print_noise_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_noise_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Pretty prints the noise matrix.</p>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.print_square_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">print_square_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">A</span> <span class="pre">square</span> <span class="pre">matrix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels,y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#print_square_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.print_square_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.print_square_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_square_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">A</span> <span class="pre">square</span> <span class="pre">matrix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels,y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_square_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_square_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Pretty prints a matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -554,8 +555,8 @@ All integers from 0,1,…,K-1 must be represented.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.remove_noise_from_class">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">remove_noise_from_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_without_noise</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#remove_noise_from_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.remove_noise_from_class" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.remove_noise_from_class">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">remove_noise_from_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_without_noise</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#remove_noise_from_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.remove_noise_from_class" title="Permalink to this definition">#</a></dt>
 <dd><p>A helper function in the setting of PU learning.
 Sets all P(label=class_without_noise|true_label=any_other_class) = 0
 in noise_matrix for pulearning setting, where we have
@@ -574,8 +575,8 @@ this is 1 (positive) for PU learning.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.round_preserving_row_totals">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">round_preserving_row_totals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#round_preserving_row_totals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.round_preserving_row_totals" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.round_preserving_row_totals">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">round_preserving_row_totals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#round_preserving_row_totals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.round_preserving_row_totals" title="Permalink to this definition">#</a></dt>
 <dd><p>Rounds confident_joint cj to type int
 while preserving the totals of reach row.
 Assumes that cj is a 2D np.array of type float.</p>
@@ -592,8 +593,8 @@ Assumes that cj is a 2D np.array of type float.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.round_preserving_sum">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">round_preserving_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#round_preserving_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.round_preserving_sum" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.round_preserving_sum">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">round_preserving_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#round_preserving_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.round_preserving_sum" title="Permalink to this definition">#</a></dt>
 <dd><p>Rounds an iterable of floats while retaining the original summed value.
 The name of each parameter is required. The type and description of each
 parameter is optional, but should be included if not obvious.</p>
@@ -612,8 +613,8 @@ parameter is optional, but should be included if not obvious.</p>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.util.value_counts">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.util.</span></span><span class="sig-name descname"><span class="pre">value_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/util.html#value_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.util.value_counts" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.util.value_counts">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">value_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#value_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.value_counts" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns an np.array of shape (K, 1), with the
 value counts for every unique item in the labels list/array,
 where K is the number of unique entries in labels.</p>

@@ -177,6 +177,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
 </ul>
@@ -328,6 +329,11 @@ meaning it must define four functions:</p>
 contains the contains targets formatted as <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">K-1</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> (of length <em>n</em>) re-weights examples in the loss function while
 training.</p>
+<p>Furthermore, your estimator should be correctly clonable via
+<cite>sklearn.base.clone</cite>: cleanlab internally creates multiple instances of your
+estimator, and if you e.g. manually wrap a PyTorch model, you must ensure that
+every call to your estimator’s <cite>__init__()</cite> creates an independent instance of
+the model.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There are two new notions of confidence in this package:</p>
@@ -401,7 +407,7 @@ tilde(y) (used in confident learning paper), for ASCII encoding reasons.</p>
 </table></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">LearningWithNoisyLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prune_by_noise_rate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">LearningWithNoisyLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
 <p>Automated and robust learning with noisy labels using any dataset and any model. This class
 trains a model <cite>clf</cite> with error-prone, noisy labels as if the model had been instead trained
@@ -423,32 +429,12 @@ the cross-validated folds. If None, uses np.random current random state.</p></li
 and if not provided, uses cross-validation to compute them.
 cv_n_folds sets the number of cross-validation folds used to compute
 out-of-sample probabilities for each example in X.</p></li>
-<li><p><strong>filter_by</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <em>default</em>: <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code>) – <dl class="simple">
-<dt>Possible Values: {‘prune_by_class’, ‘prune_by_noise_rate’, ‘both’,</dt><dd><p>’confident_learning’, ‘predicted_neq_given’}</p>
-</dd>
-</dl>
-<p>Determines the method used to filter label issues.</p>
-<p>1. <code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by=prune_by_noise_rate</span></code>: works by removing examples with
-<em>high probability</em> of being mislabeled for every non-diagonal in the confident joint
-(see <cite>prune_counts_matrix</cite> in <cite>filter.py</cite>). These are the examples where (with high
-confidence) the given label is unlikely to match the predicted label.</p>
-<p>2. <code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by=prune_by_class</span></code>: works by removing the examples with
-<em>smallest probability</em> of belonging to their given class label for every class.</p>
-<p>3. <code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by=both</span></code>: Finds the examples satisfying (1) AND (2)
-and removes their set conjunction.</p>
-<p>4. <code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by=confident_learning</span></code>: Find examples that are confidently
-labeled as a different class from their given label while computing the confident joint.</p>
-<p>5. <code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_by=predicted_neq_given</span></code>: Find examples where the argmax prediction
-does not match the given label.</p>
-</p></li>
 <li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code> (Default: <code class="xref py py-class docutils literal notranslate"><span class="pre">False)</span></code>) – If true, forces numerical consistency of latent estimates. Each is
 estimated independently, but they are related mathematically with closed
 form equivalences. This will iteratively enforce consistency.</p></li>
 <li><p><strong>pulearning</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> (0 or <code class="docutils literal notranslate"><span class="pre">1</span></code>, <em>default</em>: <code class="xref py py-class docutils literal notranslate"><span class="pre">None)</span></code>) – Only works for 2 class datasets. Set to the integer of the class that is
 perfectly labeled (certain no errors in that class).</p></li>
-<li><p><strong>n_jobs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> (Windows users may see a speed-up with n_jobs = 1)) – Number of processing threads used by multiprocessing. Default None
-sets to the number of processing threads on your CPU.
-Set this to 1 to REMOVE parallel processing (if it’s causing issues).</p></li>
+<li><p><strong>verbose</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> (0 or <code class="docutils literal notranslate"><span class="pre">1</span></code>, <em>default</em>: <code class="xref py py-class docutils literal notranslate"><span class="pre">1)</span></code>) – Controls how much output is printed. Set = 0 to suppress print statements.</p></li>
 </ul>
 </dd>
 </dl>
@@ -460,7 +446,7 @@ Set this to 1 to REMOVE parallel processing (if it’s causing issues).</p></li>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="cleanlab.classification.LearningWithNoisyLabels.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, labels, *[, pred_probs, thresholds, ...])</p></td>
-<td><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if the model had been instead trained on a dataset with perfect labels.</p></td>
+<td><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if the model had been instead trained on a dataset with the correct labels.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.get_label_issues" title="cleanlab.classification.LearningWithNoisyLabels.get_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_label_issues</span></code></a>()</p></td>
 <td><p>Accessor.</p></td>
@@ -484,10 +470,12 @@ Set this to 1 to REMOVE parallel processing (if it’s causing issues).</p></li>
 </table></div>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_label_issues_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_final_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if
-the model had been instead trained on a dataset with perfect labels.
-It achieves this by cleaning out the error and providing cleaned data while training.</p>
+the model had been instead trained on a dataset with the correct labels.
+It achieves this by: first training <cite>clf</cite> via cross-validation on the noisy data,
+using the resulting predicted probabilities to identify label issues,
+pruning the data with label issues, and finally training <cite>clf</cite> on the remaining clean data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -504,8 +492,8 @@ It achieves this by cleaning out the error and providing cleaned data while trai
 <li><p><strong>...</strong> – </p></li>
 <li><p><strong>cross-validation.</strong> (<em>pred_probs should have been computed using 3</em><em> (or </em><em>higher</em><em>) </em><em>fold</em>) – <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are not sure, leave <cite>pred_probs = None</cite> (default) and it will be computed for you using
-cross-validation with your model.</p>
+<p>If you are not sure, leave <cite>pred_probs = None</cite> (default) and it will be computed
+for you using cross-validation with your model.</p>
 </div>
 </p></li>
 <li><p><strong>thresholds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> (list or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array)</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, 1)  or <code class="xref py py-class docutils literal notranslate"><span class="pre">(K,)</span></code>) – P(label^=k|label=k). List of probabilities used to determine the cutoff
@@ -524,6 +512,19 @@ the estimated fraction observed examples in each class k_s, that are
 mislabeled examples from every other class k_y. If None, the
 inverse_noise_matrix will be computed from pred_probs and labels.
 Assumes columns of inverse_noise_matrix sum to 1.</p></li>
+<li><p><strong>find_label_issues_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – <p>Optional keyword arguments to pass into <cite>filter.find_label_issues()</cite>.
+Options that may especially impact accuracy include:</p>
+<blockquote>
+<div><p><cite>filter_by</cite>, <cite>frac_noise</cite>, <cite>min_examples_per_class</cite></p>
+</div></blockquote>
+</p></li>
+<li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
+<li><p><strong>clf_final_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional extra keyword arguments to pass into the final <cite>clf</cite> fit() on the cleaned data
+but not the <cite>clf</cite> fit() in each fold of cross-validation on the noisy data.
+The final fit() will also receive <cite>clf_kwargs</cite>,
+but these may be overwritten by values in <cite>clf_final_kwargs</cite>.
+This can be useful for training differently in the final fit()
+than during cross-validation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

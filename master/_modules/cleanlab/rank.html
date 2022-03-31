@@ -177,6 +177,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
 </ul>
@@ -338,14 +339,19 @@
 <span class="sd">every example. You can then do something like: `np.argsort(label_quality_score)` to obtain ranked</span>
 <span class="sd">indices of individual data.</span>
 
-<span class="sd">If you aren't sure which method to use, try `get_normalized_margin_for_each_label()`.</span>
+<span class="sd">CAUTION: These label quality scores are computed based on `pred_probs` from your model that must be out-of-sample!</span>
+<span class="sd">You should never provide predictions on the same datapoints used to train the model,</span>
+<span class="sd">as these will be overfit and unsuitable for finding label-errors.</span>
+<span class="sd">To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.</span>
+<span class="sd">Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
+<span class="sd">labels in data that was previously held-out.</span>
 <span class="sd">"""</span>
 
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">cleanlab.utils.label_quality_utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">cleanlab.internal.label_quality_utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">_subtract_confident_thresholds</span><span class="p">,</span>
     <span class="n">get_normalized_entropy</span><span class="p">,</span>
 <span class="p">)</span>
@@ -356,13 +362,12 @@
     <span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
     <span class="n">pred_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"normalized_margin"</span><span class="p">,</span>
+    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"self_confidence"</span><span class="p">,</span>
     <span class="n">rank_by_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
     <span class="sd">"""Sorts label issues by label quality score.</span>
 
-<span class="sd">    Default label quality score is "normalized margin".</span>
-<span class="sd">    See https://arxiv.org/pdf/1810.05369.pdf (eqn 2.2)</span>
+<span class="sd">    Default label quality score is "self_confidence".</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -413,7 +418,7 @@
     <span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
     <span class="n">pred_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"normalized_margin"</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"self_confidence"</span><span class="p">,</span>
     <span class="n">adjust_pred_probs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
     <span class="sd">"""Returns label quality scores for each datapoint.</span>
@@ -436,9 +441,15 @@
 <span class="sd">      Each row of this matrix corresponds to an example x and contains the model-predicted</span>
 <span class="sd">      probabilities that x belongs to each possible class.</span>
 <span class="sd">      The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
-<span class="sd">      `pred_probs` should have been computed using 3 (or higher) fold cross-validation.</span>
 
-<span class="sd">    method : {"self_confidence", "normalized_margin", "confidence_weighted_entropy"}, default="normalized_margin"</span>
+<span class="sd">      CAUTION: `pred_probs` from your model must be out-of-sample!</span>
+<span class="sd">      You should never provide predictions on the same datapoints used to train the model,</span>
+<span class="sd">      as these will be overfit and unsuitable for finding label-errors.</span>
+<span class="sd">      To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.</span>
+<span class="sd">      Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
+<span class="sd">      labels in data that was previously held-out.</span>
+
+<span class="sd">    method : {"self_confidence", "normalized_margin", "confidence_weighted_entropy"}, default="self_confidence"</span>
 <span class="sd">      Label quality scoring method.</span>
 
 <span class="sd">      Letting `k := labels[i]` and `P := pred_probs[i]` denote the given label and predicted class-probabilities</span>
@@ -522,7 +533,7 @@
     <span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
     <span class="n">pred_probs_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"normalized_margin"</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"self_confidence"</span><span class="p">,</span>
     <span class="n">adjust_pred_probs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">weight_ensemble_members_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"accuracy"</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -549,10 +560,10 @@
 <span class="sd">    pred_probs_list : List of np.array (shape (N, K))</span>
 <span class="sd">      Each element in this list should be an array of pred_probs in the same format</span>
 <span class="sd">      expected by the `get_label_quality_scores()` method.</span>
-<span class="sd">      Each element of pred_probs_list corresponds to the predictions from one model for all datapoints.</span>
+<span class="sd">      Each element of `pred_probs_list` corresponds to the predictions from one model for all datapoints.</span>
 
-<span class="sd">    method : {"self_confidence", "normalized_margin", "confidence_weighted_entropy"}, default="normalized_margin"</span>
-<span class="sd">      Label quality scoring method. Default is "normalized_margin".</span>
+<span class="sd">    method : {"self_confidence", "normalized_margin", "confidence_weighted_entropy"}, default="self_confidence"</span>
+<span class="sd">      Label quality scoring method. Default is "self_confidence".</span>
 <span class="sd">      See `get_label_quality_scores()` for scenarios on when to use each method.</span>
 
 <span class="sd">      .. seealso::</span>
@@ -615,7 +626,6 @@
             <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred_probs</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
             <span class="n">accuracy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
 
-    <span class="c1"># Print statements if enabled by verbose</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weighting scheme for ensemble: </span><span class="si">{</span><span class="n">weight_ensemble_members_by</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
@@ -624,19 +634,12 @@
 
     <span class="c1"># Aggregate scores with chosen weighting scheme</span>
     <span class="k">if</span> <span class="n">weight_ensemble_members_by</span> <span class="o">==</span> <span class="s2">"uniform"</span><span class="p">:</span>
-
-        <span class="c1"># Uniform weights (simple average)</span>
-        <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="n">scores_ensemble</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="n">scores_ensemble</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Uniform weights (simple average)</span>
 
     <span class="k">elif</span> <span class="n">weight_ensemble_members_by</span> <span class="o">==</span> <span class="s2">"accuracy"</span><span class="p">:</span>
-
-        <span class="c1"># Weight by accuracy</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span>
-
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span>  <span class="c1"># Weight by relative accuracy</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span>
-                <span class="s2">"Ensemble members will be weighted by: accuracy of member / (sum of accuracy from all members)"</span>
-            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Ensemble members will be weighted by: their relative accuracy"</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">acc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> accuracy : </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> weights  : </span><span class="si">{</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>

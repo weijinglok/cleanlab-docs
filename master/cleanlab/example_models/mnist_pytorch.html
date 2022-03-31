@@ -177,6 +177,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../internal/latent_algebra.html">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
 </ul>
@@ -503,7 +504,7 @@ then .predict() will still predict on test!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#id2" title="cleanlab.example_models.mnist_pytorch.CNN.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>([idx, loader])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.example_models.mnist_pytorch.CNN.set_params" title="cleanlab.example_models.mnist_pytorch.CNN.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.example_models.mnist_pytorch.CNN.set_params" title="cleanlab.example_models.mnist_pytorch.CNN.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**parameters)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
@@ -520,7 +521,7 @@ train_idx via the train_loader.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.example_models.mnist_pytorch.CNN.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.example_models.mnist_pytorch.CNN.get_params" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/example_models/mnist_pytorch.html#CNN.get_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.example_models.mnist_pytorch.CNN.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -546,7 +547,7 @@ contained subobjects that are estimators.</p>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.example_models.mnist_pytorch.CNN.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.example_models.mnist_pytorch.CNN.set_params" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/example_models/mnist_pytorch.html#CNN.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.example_models.mnist_pytorch.CNN.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have

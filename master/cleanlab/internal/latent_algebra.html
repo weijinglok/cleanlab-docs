@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="prev" title="util" href="util.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="label_quality_utils" href="label_quality_utils.html" /><link rel="prev" title="util" href="util.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>latent_algebra - cleanlab</title>
@@ -177,6 +177,7 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="util.html">util</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
 </ul>
@@ -312,8 +313,8 @@
 
 <!-- End of Version Warning Banner -->
 
- <div class="section" id="module-cleanlab.utils.latent_algebra">
-<span id="latent-algebra"></span><h1>latent_algebra<a class="headerlink" href="#module-cleanlab.utils.latent_algebra" title="Permalink to this headline">#</a></h1>
+ <div class="section" id="module-cleanlab.internal.latent_algebra">
+<span id="latent-algebra"></span><h1>latent_algebra<a class="headerlink" href="#module-cleanlab.internal.latent_algebra" title="Permalink to this headline">#</a></h1>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -321,29 +322,29 @@
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_inv_noise_matrix" title="cleanlab.utils.latent_algebra.compute_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_inv_noise_matrix</span></code></a>(py, noise_matrix, *)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_inv_noise_matrix" title="cleanlab.internal.latent_algebra.compute_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_inv_noise_matrix</span></code></a>(py, noise_matrix, *)</p></td>
 <td><p>Compute the inverse noise matrix if py := P(true_label=k) is given.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_noise_matrix_from_inverse" title="cleanlab.utils.latent_algebra.compute_noise_matrix_from_inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_noise_matrix_from_inverse</span></code></a>(ps, ...[, py])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_noise_matrix_from_inverse" title="cleanlab.internal.latent_algebra.compute_noise_matrix_from_inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_noise_matrix_from_inverse</span></code></a>(ps, ...[, py])</p></td>
 <td><p>Compute the noise matrix P(label=k_s|true_label=k_y).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_ps_py_inv_noise_matrix" title="cleanlab.utils.latent_algebra.compute_ps_py_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_ps_py_inv_noise_matrix</span></code></a>(labels, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_ps_py_inv_noise_matrix" title="cleanlab.internal.latent_algebra.compute_ps_py_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_ps_py_inv_noise_matrix</span></code></a>(labels, ...)</p></td>
 <td><p>Compute ps := P(labels=k), py := P(true_labels=k), and the inverse noise matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_py" title="cleanlab.utils.latent_algebra.compute_py"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_py</span></code></a>(ps, noise_matrix, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_py" title="cleanlab.internal.latent_algebra.compute_py"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_py</span></code></a>(ps, noise_matrix, ...[, ...])</p></td>
 <td><p>Compute py := P(true_labels=k) from ps := P(labels=k), noise_matrix, and the inverse noise matrix.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_py_inv_noise_matrix" title="cleanlab.utils.latent_algebra.compute_py_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_py_inv_noise_matrix</span></code></a>(ps, noise_matrix)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_py_inv_noise_matrix" title="cleanlab.internal.latent_algebra.compute_py_inv_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_py_inv_noise_matrix</span></code></a>(ps, noise_matrix)</p></td>
 <td><p>Compute py := P(true_label=k), and the inverse noise matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.utils.latent_algebra.compute_pyx" title="cleanlab.utils.latent_algebra.compute_pyx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pyx</span></code></a>(pred_probs, noise_matrix, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.latent_algebra.compute_pyx" title="cleanlab.internal.latent_algebra.compute_pyx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pyx</span></code></a>(pred_probs, noise_matrix, ...)</p></td>
 <td><p>Compute pyx := P(true_label=k|x) from pred_probs := P(label=k|x), and the noise_matrix and inverse noise matrix.</p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_inv_noise_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_inv_noise_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute the inverse noise matrix if py := P(true_label=k) is given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -380,8 +381,8 @@ already been precomputed, to increase code efficiency.</p></li>
 </div>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_noise_matrix_from_inverse">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_noise_matrix_from_inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_noise_matrix_from_inverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_noise_matrix_from_inverse" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_noise_matrix_from_inverse">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_noise_matrix_from_inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_noise_matrix_from_inverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_noise_matrix_from_inverse" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute the noise matrix P(label=k_s|true_label=k_y).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -428,8 +429,8 @@ Columns of noise_matrix sum to 1.</p>
 </div>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_ps_py_inv_noise_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_ps_py_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_ps_py_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_ps_py_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_ps_py_inv_noise_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_ps_py_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_ps_py_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_ps_py_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute ps := P(labels=k), py := P(true_labels=k), and the inverse noise matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -444,8 +445,8 @@ Assumes columns of noise_matrix sum to 1.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_py">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cnt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_labels_class_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_py" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_py">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cnt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_labels_class_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_py" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute py := P(true_labels=k) from ps := P(labels=k), noise_matrix, and the
 inverse noise matrix.</p>
 <p>This method is ** ROBUST ** when py_method = ‘cnt’
@@ -479,8 +480,8 @@ the matrix diagonals instead of all the probabilities.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_py_inv_noise_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_py_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_py_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_py_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_py_inv_noise_matrix">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_py_inv_noise_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_py_inv_noise_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_py_inv_noise_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute py := P(true_label=k), and the inverse noise matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -494,8 +495,8 @@ Assumes columns of noise_matrix sum to 1.</p></li>
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.utils.latent_algebra.compute_pyx">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.utils.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_pyx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/utils/latent_algebra.html#compute_pyx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.utils.latent_algebra.compute_pyx" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.internal.latent_algebra.compute_pyx">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.latent_algebra.</span></span><span class="sig-name descname"><span class="pre">compute_pyx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/latent_algebra.html#compute_pyx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.latent_algebra.compute_pyx" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute pyx := P(true_label=k|x) from pred_probs := P(label=k|x), and the noise_matrix and
 inverse noise matrix.</p>
 <p>This method is ROBUST - meaning it works well even when the
@@ -538,7 +539,15 @@ The columns must be ordered such that these probabilities correspond to class 0,
       <footer>
          
         <div class="related-pages">
-          
+          <a class="next-page" href="label_quality_utils.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">label_quality_utils</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="util.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
