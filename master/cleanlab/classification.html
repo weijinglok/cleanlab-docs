@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="count" href="count.html" /><link rel="prev" title="Image Classification with PyTorch and Cleanlab" href="../notebooks/Image_Tut.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="count" href="count.html" /><link rel="prev" title="Classification with Tabular Data using scikit-learn and cleanlab" href="../notebooks/tabular_tutorial.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>classification - cleanlab</title>
@@ -160,6 +160,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/Image_Tut.html">Image Classification with PyTorch and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tabular_tutorial.html">Classification with Tabular Data using scikit-learn and cleanlab</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
@@ -407,7 +408,7 @@ tilde(y) (used in confident learning paper), for ASCII encoding reasons.</p>
 </table></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">LearningWithNoisyLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">LearningWithNoisyLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_label_issues_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
 <p>Automated and robust learning with noisy labels using any dataset and any model. This class
 trains a model <cite>clf</cite> with error-prone, noisy labels as if the model had been instead trained
@@ -434,6 +435,9 @@ estimated independently, but they are related mathematically with closed
 form equivalences. This will iteratively enforce consistency.</p></li>
 <li><p><strong>pulearning</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> (0 or <code class="docutils literal notranslate"><span class="pre">1</span></code>, <em>default</em>: <code class="xref py py-class docutils literal notranslate"><span class="pre">None)</span></code>) – Only works for 2 class datasets. Set to the integer of the class that is
 perfectly labeled (certain no errors in that class).</p></li>
+<li><p><strong>find_label_issues_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>filter.find_label_issues()</cite>.
+Options that may especially impact accuracy include:
+<cite>filter_by</cite>, <cite>frac_noise</cite>, <cite>min_examples_per_class</cite></p></li>
 <li><p><strong>verbose</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> (0 or <code class="docutils literal notranslate"><span class="pre">1</span></code>, <em>default</em>: <code class="xref py py-class docutils literal notranslate"><span class="pre">1)</span></code>) – Controls how much output is printed. Set = 0 to suppress print statements.</p></li>
 </ul>
 </dd>
@@ -470,7 +474,7 @@ perfectly labeled (certain no errors in that class).</p></li>
 </table></div>
 <dl class="py method">
 <dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_label_issues_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_final_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_final_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if
 the model had been instead trained on a dataset with the correct labels.
 It achieves this by: first training <cite>clf</cite> via cross-validation on the noisy data,
@@ -512,12 +516,6 @@ the estimated fraction observed examples in each class k_s, that are
 mislabeled examples from every other class k_y. If None, the
 inverse_noise_matrix will be computed from pred_probs and labels.
 Assumes columns of inverse_noise_matrix sum to 1.</p></li>
-<li><p><strong>find_label_issues_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – <p>Optional keyword arguments to pass into <cite>filter.find_label_issues()</cite>.
-Options that may especially impact accuracy include:</p>
-<blockquote>
-<div><p><cite>filter_by</cite>, <cite>frac_noise</cite>, <cite>min_examples_per_class</cite></p>
-</div></blockquote>
-</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 <li><p><strong>clf_final_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional extra keyword arguments to pass into the final <cite>clf</cite> fit() on the cleaned data
 but not the <cite>clf</cite> fit() in each fold of cross-validation on the noisy data.
@@ -630,14 +628,14 @@ possible to update each component of a nested object.</p>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../notebooks/Image_Tut.html">
+          <a class="prev-page" href="../notebooks/tabular_tutorial.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Image Classification with PyTorch and Cleanlab</div>
+                <div class="title">Classification with Tabular Data using scikit-learn and cleanlab</div>
                 
               </div>
             </a>
