@@ -606,12 +606,26 @@ div.rendered_html tbody tr:hover {
 <li><p>sklearn</p></li>
 <li><p>pandas</p></li>
 </ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="2.-Load-and-process-the-data">
 <h2><strong>2. Load and process the data</strong><a class="headerlink" href="#2.-Load-and-process-the-data" title="Permalink to this headline">#</a></h2>
 <p>We first load the data features and labels.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
@@ -624,7 +638,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>Next we preprocess the data. Here we apply one-hot encoding to features with categorical data, and standardize features with numeric data. We also perform label encoding on the labels - “bad” is encoded as 0 and “good” is encoded as 1.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -651,7 +665,7 @@ div.rendered_html tbody tr:hover {
 <h2><strong>3. Select a classification model and compute out-of-sample predicted probabilities</strong><a class="headerlink" href="#3.-Select-a-classification-model-and-compute-out-of-sample-predicted-probabilities" title="Permalink to this headline">#</a></h2>
 <p>Here we use a simple Logistic Regression model, but you can choose <em>any</em> suitable scikit-learn model for this tutorial.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -664,7 +678,7 @@ div.rendered_html tbody tr:hover {
 <p>K-fold cross-validation is a straightforward way to produce out-of-sample predicted probabilities for every datapoint in the dataset by training K copies of our model on different data subsets and using each copy to predict on the subset of data it did not see during training. An additional benefit of cross-validation is that it provides a more reliable evaluation of our model than a single training/validation split. We can obtain cross-validated out-of-sample predicted probabilities from any
 classifier via a simple scikit-learn wrapper:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
@@ -679,7 +693,7 @@ classifier via a simple scikit-learn wrapper:</p>
 <h2><strong>4. Use cleanlab to find potential label errors</strong><a class="headerlink" href="#4.-Use-cleanlab-to-find-potential-label-errors" title="Permalink to this headline">#</a></h2>
 <p>Based on the given labels and out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> can quickly help us identify label issues. Here we request that the indices of the identified label issues be sorted by <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s self-confidence score, which measures the quality of each given label via the probability assigned to it in our model’s prediction.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.filter</span> <span class="kn">import</span> <span class="n">find_label_issues</span>
@@ -702,7 +716,7 @@ Cleanlab found 173 potential label errors.
 </div>
 <p>Let’s review some of the most likely label errors:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ranked_label_issues</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">y_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ranked_label_issues</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -710,7 +724,7 @@ Cleanlab found 173 potential label errors.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -887,18 +901,18 @@ Cleanlab found 173 potential label errors.
 <h2><strong>5. Train a more robust model from noisy labels</strong><a class="headerlink" href="#5.-Train-a-more-robust-model-from-noisy-labels" title="Permalink to this headline">#</a></h2>
 <p>Following proper ML practice, let’s split our data into train and test sets.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
 <p>We again standardize the numeric features, this time fitting the scaling parameters solely on the training set.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
@@ -914,7 +928,7 @@ Cleanlab found 173 potential label errors.
 </div>
 <p>Let’s now train and evaluate the original logistic regression model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
@@ -930,12 +944,12 @@ Cleanlab found 173 potential label errors.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Test acuracy of original logistic regression: 0.74
+Test acuracy of original logistic regression: 0.752
 </pre></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> provides a wrapper class that can be easily applied to any scikit-learn compatible model. Once wrapped, the resulting model can still be used in the exact same manner, but it will now train more robustly if the data have noisy labels.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.classification</span> <span class="kn">import</span> <span class="n">LearningWithNoisyLabels</span>
@@ -947,7 +961,7 @@ Test acuracy of original logistic regression: 0.74
 </div>
 <p>The following operations take place when we train the <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>-wrapped model: The original model is trained in a cross-validated fashion to produce out-of-sample predicted probabilities. Then, these predicted probabilities are used to identify label issues, which are then removed from the dataset. Finally, the original model is trained on the remaining clean subset of the data once more.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">lnl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -961,15 +975,15 @@ Test acuracy of original logistic regression: 0.74
 <div class="highlight"><pre>
 Computing out of sample predicted probabilites via 5-fold cross validation. May take a while ...
 Using predicted probabilities to identify label issues ...
-Pruning 130 datapoints with label issues ...
-Remaining clean data has 620 datapoints.
+Pruning 143 datapoints with label issues ...
+Remaining clean data has 607 datapoints.
 Assigning sample weights for final training based on estimated label quality ...
 Fitting final model on the clean data ...
 </pre></div></div>
 </div>
 <p>We can get predictions from the resulting model and evaluate them, just like how we did it for the original scikit-learn model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">lnl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -983,7 +997,7 @@ Fitting final model on the clean data ...
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Test acuracy of cleanlab's logistic regression: 0.736
+Test acuracy of cleanlab's logistic regression: 0.76
 </pre></div></div>
 </div>
 <p>We can see that the test set accuracy slightly improved as a result of the data cleaning. Note that this will not always be the case, especially when we evaluate on test data that are themselves noisy. The best practice is to run <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> to identify potential label issues and then manually review them, before blindly trusting any accuracy metrics. In particular, the most effort should be made to ensure high-quality test data, which is supposed to reflect the expected performance of our
