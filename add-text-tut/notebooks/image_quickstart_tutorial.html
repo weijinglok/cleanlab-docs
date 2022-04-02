@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Text Classification with TensorFlow, Keras, and Cleanlab" href="text_quickstart_tutorial.html" /><link rel="prev" title="cleanlab documentation" href="../index.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
-        <title>&lt;no title&gt; - cleanlab</title>
+        <title>Image Classification with PyTorch and Cleanlab - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -131,7 +131,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -158,7 +158,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Quickstart</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="text_quickstart_tutorial.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tabular_quickstart_tutorial.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 </ul>
@@ -264,7 +265,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -314,546 +315,538 @@
 
 <!-- End of Version Warning Banner -->
 
- <dl>
-<dt>{</dt><dd><dl>
-<dt>“cells”: [</dt><dd><dl>
-<dt>{</dt><dd><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“# Image Classification with PyTorch and Cleanlabn”</p>
-</div></blockquote>
-<p>]</p>
-</dd>
-</dl>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“This 5-minute quickstart tutorial demonstrates how to find potential label errors in image classification data. Here we use the MNIST dataset containing 70,000 images of handwritten digits from 0 to 9.n”,
-“n”,
-“<strong>Overview of what we’ll do in this tutorial:</strong>n”,
-“n”,
-“- Build a simple PyTorch neural net and wrap it with Skorch to make it scikit-learn compatible.n”,
-“n”,
-“- Use this model to compute out-of-sample predicted probabilities, <cite>pred_probs</cite>, via cross-validation.n”,
-“n”,
-“- Compute a list of potential label errors with Cleanlab’s <cite>find_label_issues</cite> method.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 1. Install the required dependenciesn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Install the following dependencies with <cite>pip install</cite>:n”,
-“n”,
-“1. cleanlabn”,
-“2. pandasn”,
-“3. matplotlibn”,
-“4. torchn”,
-“5. torchvisionn”,
-“6. skorchn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {</p>
-<blockquote>
-<div><p>“nbsphinx”: “hidden”</p>
-</div></blockquote>
-<p>},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“dependencies = ["cleanlab", "pandas", "matplotlib", "torch", "torchvision", "skorch"]n”,
-“n”,
-“if "google.colab" in str(get_ipython()):  # Check if it’s running in Google Colabn”,
-”    %pip install git+https://github.com/weijinglok/cleanlab.git@be301eb3da59e32e2bb2d7efbb3a689ce17ded56n”,
-”    cmd = ‘ ‘.join([dep for dep in dependencies if dep != "cleanlab"])n”,
-”    %pip install $cmdn”,
-“else:n”,
-”    missing_dependencies = []n”,
-”    for dependency in dependencies:n”,
-”        try:n”,
-”            __import__(dependency)n”,
-”        except ImportError:n”,
-”            missing_dependencies.append(dependency)n”,
-“n”,
-”    if len(missing_dependencies) &gt; 0:n”,
-”        print("Missing required dependencies:")n”,
-”        print(<a href="#id1"><span class="problematic" id="id2">*</span></a>missing_dependencies, sep=", ")n”,
-”        print("\nPlease install them before running the rest of this notebook.")n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 2. Fetch and scale the MNIST datasetn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“from sklearn.datasets import fetch_openmln”,
-“n”,
-“mnist = fetch_openml("mnist_784")  # Fetch the MNIST datasetn”,
-“n”,
-“X = mnist.data.astype("float32").to_numpy()  # 2D numpy array of image featuresn”,
-“X /= 255.0  # Scale the features to the [0, 1] rangen”,
-“n”,
-“y = mnist.target.astype("int64").to_numpy()  # 1D numpy array of the image labelsn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“&lt;div class="alert alert-info"&gt;n”,
-“Bringing Your Own Data (BYOD)?n”,
-“n”,
-“Assign your data’s features to variable <cite>X</cite> and its labels to variable <cite>y</cite> instead.n”,
-“n”,
-“&lt;/div&gt;n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 3. Define a classification modeln”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Here, we define a simple neural network with PyTorch.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“from torch import nnn”,
-“n”,
-“model = nn.Sequential(n”,
-”    nn.Linear(28 * 28, 128),n”,
-”    nn.ReLU(),n”,
-”    nn.Dropout(0.5),n”,
-”    nn.Linear(128, 10),n”,
-”    nn.Softmax(dim=-1),n”,
-“)n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 4. Ensure your classifier is scikit-learn compatiblen”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“As some of Cleanlab’s features requires scikit-learn compatibility, we will need to adapt the above PyTorch neural net accordingly. [Skorch](<a class="reference external" href="https://skorch.readthedocs.io">https://skorch.readthedocs.io</a>) is a convenient package that helps with this. You can also easily wrap an arbitrary model to be scikit-learn compatible as demonstrated [here](<a class="reference external" href="https://github.com/cleanlab/cleanlab#use-cleanlab-with-any-model-tensorflow-pytorch-sklearn-xgboost-etc).n">https://github.com/cleanlab/cleanlab#use-cleanlab-with-any-model-tensorflow-pytorch-sklearn-xgboost-etc).n</a>”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“from skorch import NeuralNetClassifiern”,
-“n”,
-“model_skorch = NeuralNetClassifier(model)n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 5. Compute out-of-sample predicted probabilitiesn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“If we’d like Cleanlab to identify potential label errors in the whole dataset and not just the training set, we can consider using the entire dataset when computing the out-of-sample predicted probabilities, <cite>pred_probs</cite>, via cross-validation.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“from sklearn.model_selection import cross_val_predictn”,
-“n”,
-“pred_probs = cross_val_predict(model_skorch, X, y, cv=3, method="predict_proba")n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 6. Run Cleanlab to find potential label errorsn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Cleanlab has a <cite>find_label_issues</cite> function to generate a list of potential label errors. Setting <cite>return_indices_ranked_by="self_confidence"</cite> returns the indices of all the most likely label errors, sorted by the most suspicious example first.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“from cleanlab.filter import find_label_issuesn”,
-“n”,
-“ranked_label_issues = find_label_issues(y, pred_probs, return_indices_ranked_by="self_confidence")n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“## 7. Review some of the most likely mislabeled examplesn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“print(f"Cleanlab found {len(ranked_label_issues)} potential label errors.")n”,
-“print(f"Here are the indices of the top 15 most likely ones: \n {ranked_label_issues[:15]}")n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“We’ll define a new <cite>plot_examples</cite> function to display any examples in a subplot conveniently.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “raw”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“&lt;!– This cell is for the collapsible block in the doc site –&gt;n”,
-“n”,
-“&lt;details&gt;n”,
-”    &lt;summary markdown="1"&gt;Click here to view its code.&lt;/summary&gt;”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“import matplotlib.pyplot as pltn”,
-“n”,
-“n”,
-“def plot_examples(id_iter, nrows=1, ncols=1):n”,
-”    for count, id in enumerate(id_iter):n”,
-”        plt.subplot(nrows, ncols, count + 1)n”,
-”        plt.imshow(X[id].reshape(28, 28), cmap="gray")n”,
-”        plt.title(f"id: {id} \n label: {y[id]}")n”,
-”        plt.axis("off")n”,
-“n”,
-”    plt.tight_layout(h_pad=2.0)n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “raw”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“&lt;!– This cell is for the collapsible block in the doc site –&gt;n”,
-“n”,
-“&lt;/details&gt;”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Let’s start by having an overview of the top 15 most likely label errors. From here, we can see a few label errors and edge cases. Feel free to change the parameters to display more or fewer examples.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“plot_examples(ranked_label_issues[range(15)], 3, 5)n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Let’s zoom into specific examples:n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Given label is <strong>4</strong> but looks more like a <strong>7</strong>n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“plot_examples([59915])n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Given label is <strong>4</strong> but also looks like <strong>9</strong>n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“plot_examples([24798])n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Edge case of odd looking <a href="#id3"><span class="problematic" id="id4">**</span></a>9**sn”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “code”,
-“execution_count”: null,
-“metadata”: {},
-“outputs”: [],
-“source”: [</p>
-<blockquote>
-<div><p>“plot_examples([18598, 1352, 61247], 1, 3)n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>“cell_type”: “markdown”,
-“metadata”: {},
-“source”: [</p>
-<blockquote>
-<div><p>“Cleanlab has shortlisted the most likely label errors to speed up your data cleaning process. With this list, you can decide whether to fix label errors, augment edge cases, or remove obscure examples.n”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},</p>
-</dd>
-</dl>
-<p>],
-“metadata”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“interpreter”: {</dt><dd><p>“hash”: “ced20e3e49bb4fa4ce8ad38f8f2535b7fc4c39b2b89554502b5dbdad1ad67eda”</p>
-</dd>
-</dl>
-<p>},
-“kernelspec”: {</p>
-<blockquote>
-<div><p>“display_name”: “Python 3.10.0 64-bit”,
-“language”: “python”,
-“name”: “python3”</p>
-</div></blockquote>
-<p>},
-“language_info”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“codemirror_mode”: {</dt><dd><p>“name”: “ipython”,
-“version”: 3</p>
-</dd>
-</dl>
-<p>},
-“file_extension”: “.py”,
-“mimetype”: “text/x-python”,
-“name”: “python”,
-“nbconvert_exporter”: “python”,
-“pygments_lexer”: “ipython3”,
-“version”: “3.8.10”</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p>},
-“nbformat”: 4,
-“nbformat_minor”: 2</p>
-</dd>
-</dl>
-<p>}</p>
+ 
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<style>
+    .nbinput .prompt,
+    .nboutput .prompt {
+        display: none;
+    }
+
+    .output_area {
+        max-height: 300px;
+        overflow: auto;
+    }
+</style>
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        const h1_element = document.getElementsByTagName("h1");
+        h1_element[0].insertAdjacentHTML("afterend", `
+        <p>
+            <a style="background-color:white;color:black;padding:4px 12px;text-decoration:none;display:inline-block;border-radius:8px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)" href="https://colab.research.google.com/github/weijinglok/cleanlab-docs/blob/master/add-text-tut/notebooks/image_quickstart_tutorial.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Google Colab Logo" style="width:40px;height:40px;vertical-align:middle">
+            <span style="vertical-align:middle">Run in Google Colab</span>
+            </a>
+        </p>
+        `);
+    })
+
+</script><div class="section" id="Image-Classification-with-PyTorch-and-Cleanlab">
+<h1>Image Classification with PyTorch and Cleanlab<a class="headerlink" href="#Image-Classification-with-PyTorch-and-Cleanlab" title="Permalink to this headline">#</a></h1>
+<p>This 5-minute quickstart tutorial demonstrates how to find potential label errors in image classification data. Here we use the MNIST dataset containing 70,000 images of handwritten digits from 0 to 9.</p>
+<p><strong>Overview of what we’ll do in this tutorial:</strong></p>
+<ul class="simple">
+<li><p>Build a simple PyTorch neural net and wrap it with Skorch to make it scikit-learn compatible.</p></li>
+<li><p>Use this model to compute out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, via cross-validation.</p></li>
+<li><p>Compute a list of potential label errors with Cleanlab’s <code class="docutils literal notranslate"><span class="pre">find_label_issues</span></code> method.</p></li>
+</ul>
+<div class="section" id="1.-Install-the-required-dependencies">
+<h2>1. Install the required dependencies<a class="headerlink" href="#1.-Install-the-required-dependencies" title="Permalink to this headline">#</a></h2>
+<p>Install the following dependencies with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>:</p>
+<ol class="arabic simple">
+<li><p>cleanlab</p></li>
+<li><p>pandas</p></li>
+<li><p>matplotlib</p></li>
+<li><p>torch</p></li>
+<li><p>torchvision</p></li>
+<li><p>skorch</p></li>
+</ol>
+</div>
+<div class="section" id="2.-Fetch-and-scale-the-MNIST-dataset">
+<h2>2. Fetch and scale the MNIST dataset<a class="headerlink" href="#2.-Fetch-and-scale-the-MNIST-dataset" title="Permalink to this headline">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s2">"mnist_784"</span><span class="p">)</span>  <span class="c1"># Fetch the MNIST dataset</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>  <span class="c1"># 2D numpy array of image features</span>
+<span class="n">X</span> <span class="o">/=</span> <span class="mf">255.0</span>  <span class="c1"># Scale the features to the [0, 1] range</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>  <span class="c1"># 1D numpy array of the image labels</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bringing Your Own Data (BYOD)?</p>
+<p>Assign your data’s features to variable <code class="docutils literal notranslate"><span class="pre">X</span></code> and its labels to variable <code class="docutils literal notranslate"><span class="pre">y</span></code> instead.</p>
+</div>
+</div>
+<div class="section" id="3.-Define-a-classification-model">
+<h2>3. Define a classification model<a class="headerlink" href="#3.-Define-a-classification-model" title="Permalink to this headline">#</a></h2>
+<p>Here, we define a simple neural network with PyTorch.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="4.-Ensure-your-classifier-is-scikit-learn-compatible">
+<h2>4. Ensure your classifier is scikit-learn compatible<a class="headerlink" href="#4.-Ensure-your-classifier-is-scikit-learn-compatible" title="Permalink to this headline">#</a></h2>
+<p>As some of Cleanlab’s features requires scikit-learn compatibility, we will need to adapt the above PyTorch neural net accordingly. <a class="reference external" href="https://skorch.readthedocs.io">Skorch</a> is a convenient package that helps with this. You can also easily wrap an arbitrary model to be scikit-learn compatible as demonstrated <a class="reference external" href="https://github.com/cleanlab/cleanlab#use-cleanlab-with-any-model-tensorflow-pytorch-sklearn-xgboost-etc">here</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skorch</span> <span class="kn">import</span> <span class="n">NeuralNetClassifier</span>
+
+<span class="n">model_skorch</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="5.-Compute-out-of-sample-predicted-probabilities">
+<h2>5. Compute out-of-sample predicted probabilities<a class="headerlink" href="#5.-Compute-out-of-sample-predicted-probabilities" title="Permalink to this headline">#</a></h2>
+<p>If we’d like Cleanlab to identify potential label errors in the whole dataset and not just the training set, we can consider using the entire dataset when computing the out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, via cross-validation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+
+<span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">model_skorch</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"predict_proba"</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  epoch    train_loss    valid_acc    valid_loss     dur
+-------  ------------  -----------  ------------  ------
+      1        <span class="ansi-cyan-fg">1.9945</span>       <span class="ansi-green-fg">0.7315</span>        <span class="ansi-magenta-fg">1.5932</span>  0.7463
+      2        <span class="ansi-cyan-fg">1.2783</span>       <span class="ansi-green-fg">0.7933</span>        <span class="ansi-magenta-fg">0.9684</span>  0.6747
+      3        <span class="ansi-cyan-fg">0.8996</span>       <span class="ansi-green-fg">0.8271</span>        <span class="ansi-magenta-fg">0.7280</span>  0.6734
+      4        <span class="ansi-cyan-fg">0.7373</span>       <span class="ansi-green-fg">0.8455</span>        <span class="ansi-magenta-fg">0.6169</span>  0.6770
+      5        <span class="ansi-cyan-fg">0.6533</span>       <span class="ansi-green-fg">0.8589</span>        <span class="ansi-magenta-fg">0.5516</span>  0.6756
+      6        <span class="ansi-cyan-fg">0.5917</span>       <span class="ansi-green-fg">0.8661</span>        <span class="ansi-magenta-fg">0.5074</span>  0.6693
+      7        <span class="ansi-cyan-fg">0.5516</span>       <span class="ansi-green-fg">0.8704</span>        <span class="ansi-magenta-fg">0.4767</span>  0.6716
+      8        <span class="ansi-cyan-fg">0.5191</span>       <span class="ansi-green-fg">0.8745</span>        <span class="ansi-magenta-fg">0.4518</span>  0.6781
+      9        <span class="ansi-cyan-fg">0.4970</span>       <span class="ansi-green-fg">0.8772</span>        <span class="ansi-magenta-fg">0.4336</span>  0.6747
+     10        <span class="ansi-cyan-fg">0.4786</span>       <span class="ansi-green-fg">0.8807</span>        <span class="ansi-magenta-fg">0.4181</span>  0.6740
+  epoch    train_loss    valid_acc    valid_loss     dur
+-------  ------------  -----------  ------------  ------
+      1        <span class="ansi-cyan-fg">1.9964</span>       <span class="ansi-green-fg">0.7415</span>        <span class="ansi-magenta-fg">1.5770</span>  0.6815
+      2        <span class="ansi-cyan-fg">1.2765</span>       <span class="ansi-green-fg">0.8077</span>        <span class="ansi-magenta-fg">0.9420</span>  0.6874
+      3        <span class="ansi-cyan-fg">0.8992</span>       <span class="ansi-green-fg">0.8378</span>        <span class="ansi-magenta-fg">0.7017</span>  0.6769
+      4        <span class="ansi-cyan-fg">0.7390</span>       <span class="ansi-green-fg">0.8540</span>        <span class="ansi-magenta-fg">0.5902</span>  0.6719
+      5        <span class="ansi-cyan-fg">0.6494</span>       <span class="ansi-green-fg">0.8670</span>        <span class="ansi-magenta-fg">0.5239</span>  0.6730
+      6        <span class="ansi-cyan-fg">0.5911</span>       <span class="ansi-green-fg">0.8764</span>        <span class="ansi-magenta-fg">0.4792</span>  0.6779
+      7        <span class="ansi-cyan-fg">0.5483</span>       <span class="ansi-green-fg">0.8830</span>        <span class="ansi-magenta-fg">0.4473</span>  0.6753
+      8        <span class="ansi-cyan-fg">0.5195</span>       <span class="ansi-green-fg">0.8874</span>        <span class="ansi-magenta-fg">0.4244</span>  0.6725
+      9        <span class="ansi-cyan-fg">0.4936</span>       <span class="ansi-green-fg">0.8909</span>        <span class="ansi-magenta-fg">0.4048</span>  0.6771
+     10        <span class="ansi-cyan-fg">0.4742</span>       <span class="ansi-green-fg">0.8947</span>        <span class="ansi-magenta-fg">0.3891</span>  0.6763
+  epoch    train_loss    valid_acc    valid_loss     dur
+-------  ------------  -----------  ------------  ------
+      1        <span class="ansi-cyan-fg">2.0088</span>       <span class="ansi-green-fg">0.7362</span>        <span class="ansi-magenta-fg">1.5928</span>  0.6726
+      2        <span class="ansi-cyan-fg">1.3101</span>       <span class="ansi-green-fg">0.8108</span>        <span class="ansi-magenta-fg">0.9548</span>  0.6745
+      3        <span class="ansi-cyan-fg">0.9303</span>       <span class="ansi-green-fg">0.8425</span>        <span class="ansi-magenta-fg">0.7062</span>  0.6820
+      4        <span class="ansi-cyan-fg">0.7649</span>       <span class="ansi-green-fg">0.8610</span>        <span class="ansi-magenta-fg">0.5908</span>  0.6818
+      5        <span class="ansi-cyan-fg">0.6746</span>       <span class="ansi-green-fg">0.8717</span>        <span class="ansi-magenta-fg">0.5223</span>  0.6824
+      6        <span class="ansi-cyan-fg">0.6145</span>       <span class="ansi-green-fg">0.8822</span>        <span class="ansi-magenta-fg">0.4770</span>  0.6768
+      7        <span class="ansi-cyan-fg">0.5733</span>       <span class="ansi-green-fg">0.8871</span>        <span class="ansi-magenta-fg">0.4449</span>  0.6766
+      8        <span class="ansi-cyan-fg">0.5407</span>       <span class="ansi-green-fg">0.8922</span>        <span class="ansi-magenta-fg">0.4209</span>  0.6793
+      9        <span class="ansi-cyan-fg">0.5179</span>       <span class="ansi-green-fg">0.8961</span>        <span class="ansi-magenta-fg">0.4008</span>  0.6771
+     10        <span class="ansi-cyan-fg">0.4991</span>       <span class="ansi-green-fg">0.8992</span>        <span class="ansi-magenta-fg">0.3852</span>  0.6769
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.-Run-Cleanlab-to-find-potential-label-errors">
+<h2>6. Run Cleanlab to find potential label errors<a class="headerlink" href="#6.-Run-Cleanlab-to-find-potential-label-errors" title="Permalink to this headline">#</a></h2>
+<p>Cleanlab has a <code class="docutils literal notranslate"><span class="pre">find_label_issues</span></code> function to generate a list of potential label errors. Setting <code class="docutils literal notranslate"><span class="pre">return_indices_ranked_by="self_confidence"</span></code> returns the indices of all the most likely label errors, sorted by the most suspicious example first.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.filter</span> <span class="kn">import</span> <span class="n">find_label_issues</span>
+
+<span class="n">ranked_label_issues</span> <span class="o">=</span> <span class="n">find_label_issues</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="n">return_indices_ranked_by</span><span class="o">=</span><span class="s2">"self_confidence"</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="7.-Review-some-of-the-most-likely-mislabeled-examples">
+<h2>7. Review some of the most likely mislabeled examples<a class="headerlink" href="#7.-Review-some-of-the-most-likely-mislabeled-examples" title="Permalink to this headline">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cleanlab found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">)</span><span class="si">}</span><span class="s2"> potential label errors."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Here are the indices of the top 15 most likely ones: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">ranked_label_issues</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Cleanlab found 1230 potential label errors.
+Here are the indices of the top 15 most likely ones:
+ [24798 18598  8729 12679 61790 31134 39457  7010 20820  1352 59915 53216
+ 55739 12585 20735]
+</pre></div></div>
+</div>
+<p>We’ll define a new <code class="docutils literal notranslate"><span class="pre">plot_examples</span></code> function to display any examples in a subplot conveniently.</p>
+<!-- This cell is for the collapsible block in the doc site -->
+<details>
+<summary markdown="1">Click here to view its code.</summary><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">plot_examples</span><span class="p">(</span><span class="n">id_iter</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">id_iter</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">,</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"id: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> label: </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<!-- This cell is for the collapsible block in the doc site -->
+</details><p>Let’s start by having an overview of the top 15 most likely label errors. From here, we can see a few label errors and edge cases. Feel free to change the parameters to display more or fewer examples.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">)],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_image_quickstart_tutorial_27_0.png" src="../_images/notebooks_image_quickstart_tutorial_27_0.png"/>
+</div>
+</div>
+<p>Let’s zoom into specific examples:</p>
+<p>Given label is <strong>4</strong> but looks more like a <strong>7</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">59915</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_image_quickstart_tutorial_30_0.png" src="../_images/notebooks_image_quickstart_tutorial_30_0.png"/>
+</div>
+</div>
+<p>Given label is <strong>4</strong> but also looks like <strong>9</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">24798</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_image_quickstart_tutorial_32_0.png" src="../_images/notebooks_image_quickstart_tutorial_32_0.png"/>
+</div>
+</div>
+<p>Edge case of odd looking <strong>9</strong>s</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">18598</span><span class="p">,</span> <span class="mi">1352</span><span class="p">,</span> <span class="mi">61247</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_image_quickstart_tutorial_34_0.png" src="../_images/notebooks_image_quickstart_tutorial_34_0.png"/>
+</div>
+</div>
+<p>Cleanlab has shortlisted the most likely label errors to speed up your data cleaning process. With this list, you can decide whether to fix label errors, augment edge cases, or remove obscure examples.</p>
+</div>
+</div>
  
         </article>
       </div>
@@ -918,8 +911,33 @@
 
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Image Classification with PyTorch and Cleanlab</a><ul>
+<li><a class="reference internal" href="#1.-Install-the-required-dependencies">1. Install the required dependencies</a></li>
+<li><a class="reference internal" href="#2.-Fetch-and-scale-the-MNIST-dataset">2. Fetch and scale the MNIST dataset</a></li>
+<li><a class="reference internal" href="#3.-Define-a-classification-model">3. Define a classification model</a></li>
+<li><a class="reference internal" href="#4.-Ensure-your-classifier-is-scikit-learn-compatible">4. Ensure your classifier is scikit-learn compatible</a></li>
+<li><a class="reference internal" href="#5.-Compute-out-of-sample-predicted-probabilities">5. Compute out-of-sample predicted probabilities</a></li>
+<li><a class="reference internal" href="#6.-Run-Cleanlab-to-find-potential-label-errors">6. Run Cleanlab to find potential label errors</a></li>
+<li><a class="reference internal" href="#7.-Review-some-of-the-most-likely-mislabeled-examples">7. Review some of the most likely mislabeled examples</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
