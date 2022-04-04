@@ -79,9 +79,9 @@ When the ``.fit()`` method is called, it automatically removes any examples iden
    :hidden:
    :caption: Tutorials
 
-   notebooks/image_quickstart_tutorial
-   notebooks/text_quickstart_tutorial
-   notebooks/tabular_quickstart_tutorial
+   tutorials/image
+   tutorials/text
+   tutorials/tabular
 
 .. toctree::
    :caption: API Reference
