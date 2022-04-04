@@ -1,4 +1,4 @@
 var Version = {
   version_number: "v2.0.0",
-  commit_hash: "2a2e8dca12c047ced1af4a9b8b1c725bce5d6074",
+  commit_hash: "c557f6545a687226e8b3d7e782ec32e0f9085222",
 };
