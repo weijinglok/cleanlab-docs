@@ -609,11 +609,30 @@ div.rendered_html tbody tr:hover {
 <li><p>torchvision</p></li>
 <li><p>skorch</p></li>
 </ol>
+<p>Let’s first set some seeds for reproducibility.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed_all</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="2.-Fetch-and-scale-the-MNIST-dataset">
 <h2>2. Fetch and scale the MNIST dataset<a class="headerlink" href="#2.-Fetch-and-scale-the-MNIST-dataset" title="Permalink to this headline">#</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
@@ -621,6 +640,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s2">"mnist_784"</span><span class="p">)</span>  <span class="c1"># Fetch the MNIST dataset</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>  <span class="c1"># 2D numpy array of image features</span>
+<span class="c1"># Note that each image is unrolled as a 1D row vector.</span>
 <span class="n">X</span> <span class="o">/=</span> <span class="mf">255.0</span>  <span class="c1"># Scale the features to the [0, 1] range</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>  <span class="c1"># 1D numpy array of the image labels</span>
@@ -636,18 +656,38 @@ div.rendered_html tbody tr:hover {
 <h2>3. Define a classification model<a class="headerlink" href="#3.-Define-a-classification-model" title="Permalink to this headline">#</a></h2>
 <p>Here, we define a simple neural network with PyTorch.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
-<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ClassifierModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">LazyLinear</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>  <span class="c1"># rearrange 1D row-vector into 28x28 image tensor for convnet</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cnn</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -656,12 +696,12 @@ div.rendered_html tbody tr:hover {
 <h2>4. Ensure your classifier is scikit-learn compatible<a class="headerlink" href="#4.-Ensure-your-classifier-is-scikit-learn-compatible" title="Permalink to this headline">#</a></h2>
 <p>As some of Cleanlab’s features requires scikit-learn compatibility, we will need to adapt the above PyTorch neural net accordingly. <a class="reference external" href="https://skorch.readthedocs.io">Skorch</a> is a convenient package that helps with this. You can also easily wrap an arbitrary model to be scikit-learn compatible as demonstrated <a class="reference external" href="https://github.com/cleanlab/cleanlab#use-cleanlab-with-any-model-tensorflow-pytorch-sklearn-xgboost-etc">here</a>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skorch</span> <span class="kn">import</span> <span class="n">NeuralNetClassifier</span>
 
-<span class="n">model_skorch</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">model_skorch</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span><span class="n">ClassifierModule</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -670,7 +710,7 @@ div.rendered_html tbody tr:hover {
 <h2>5. Compute out-of-sample predicted probabilities<a class="headerlink" href="#5.-Compute-out-of-sample-predicted-probabilities" title="Permalink to this headline">#</a></h2>
 <p>If we’d like Cleanlab to identify potential label errors in the whole dataset and not just the training set, we can consider using the entire dataset when computing the out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, via cross-validation.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
@@ -686,40 +726,40 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9924</span>       <span class="ansi-green-fg">0.7311</span>        <span class="ansi-magenta-fg">1.5788</span>  0.7317
-      2        <span class="ansi-cyan-fg">1.2629</span>       <span class="ansi-green-fg">0.7972</span>        <span class="ansi-magenta-fg">0.9601</span>  0.7031
-      3        <span class="ansi-cyan-fg">0.8889</span>       <span class="ansi-green-fg">0.8312</span>        <span class="ansi-magenta-fg">0.7236</span>  0.7127
-      4        <span class="ansi-cyan-fg">0.7317</span>       <span class="ansi-green-fg">0.8477</span>        <span class="ansi-magenta-fg">0.6127</span>  0.7149
-      5        <span class="ansi-cyan-fg">0.6412</span>       <span class="ansi-green-fg">0.8590</span>        <span class="ansi-magenta-fg">0.5468</span>  0.7165
-      6        <span class="ansi-cyan-fg">0.5826</span>       <span class="ansi-green-fg">0.8674</span>        <span class="ansi-magenta-fg">0.5022</span>  0.7178
-      7        <span class="ansi-cyan-fg">0.5459</span>       <span class="ansi-green-fg">0.8705</span>        <span class="ansi-magenta-fg">0.4723</span>  0.7103
-      8        <span class="ansi-cyan-fg">0.5164</span>       <span class="ansi-green-fg">0.8747</span>        <span class="ansi-magenta-fg">0.4491</span>  0.7085
-      9        <span class="ansi-cyan-fg">0.4891</span>       <span class="ansi-green-fg">0.8786</span>        <span class="ansi-magenta-fg">0.4293</span>  0.7087
-     10        <span class="ansi-cyan-fg">0.4696</span>       <span class="ansi-green-fg">0.8824</span>        <span class="ansi-magenta-fg">0.4131</span>  0.7005
+      1        <span class="ansi-cyan-fg">0.6908</span>       <span class="ansi-green-fg">0.9136</span>        <span class="ansi-magenta-fg">0.3099</span>  3.0808
+      2        <span class="ansi-cyan-fg">0.2112</span>       <span class="ansi-green-fg">0.9412</span>        <span class="ansi-magenta-fg">0.1999</span>  3.1233
+      3        <span class="ansi-cyan-fg">0.1521</span>       <span class="ansi-green-fg">0.9514</span>        <span class="ansi-magenta-fg">0.1575</span>  3.1021
+      4        <span class="ansi-cyan-fg">0.1240</span>       <span class="ansi-green-fg">0.9593</span>        <span class="ansi-magenta-fg">0.1332</span>  3.0823
+      5        <span class="ansi-cyan-fg">0.1066</span>       <span class="ansi-green-fg">0.9634</span>        <span class="ansi-magenta-fg">0.1178</span>  3.0807
+      6        <span class="ansi-cyan-fg">0.0948</span>       <span class="ansi-green-fg">0.9661</span>        <span class="ansi-magenta-fg">0.1072</span>  3.0675
+      7        <span class="ansi-cyan-fg">0.0860</span>       <span class="ansi-green-fg">0.9683</span>        <span class="ansi-magenta-fg">0.0995</span>  3.1321
+      8        <span class="ansi-cyan-fg">0.0792</span>       <span class="ansi-green-fg">0.9703</span>        <span class="ansi-magenta-fg">0.0933</span>  3.0988
+      9        <span class="ansi-cyan-fg">0.0737</span>       <span class="ansi-green-fg">0.9724</span>        <span class="ansi-magenta-fg">0.0887</span>  3.0844
+     10        <span class="ansi-cyan-fg">0.0691</span>       <span class="ansi-green-fg">0.9736</span>        <span class="ansi-magenta-fg">0.0848</span>  3.0475
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">1.9916</span>       <span class="ansi-green-fg">0.7482</span>        <span class="ansi-magenta-fg">1.5606</span>  0.7059
-      2        <span class="ansi-cyan-fg">1.2552</span>       <span class="ansi-green-fg">0.8129</span>        <span class="ansi-magenta-fg">0.9330</span>  0.6997
-      3        <span class="ansi-cyan-fg">0.8846</span>       <span class="ansi-green-fg">0.8402</span>        <span class="ansi-magenta-fg">0.6972</span>  0.6941
-      4        <span class="ansi-cyan-fg">0.7285</span>       <span class="ansi-green-fg">0.8547</span>        <span class="ansi-magenta-fg">0.5861</span>  0.6964
-      5        <span class="ansi-cyan-fg">0.6402</span>       <span class="ansi-green-fg">0.8673</span>        <span class="ansi-magenta-fg">0.5199</span>  0.6895
-      6        <span class="ansi-cyan-fg">0.5848</span>       <span class="ansi-green-fg">0.8762</span>        <span class="ansi-magenta-fg">0.4769</span>  0.7040
-      7        <span class="ansi-cyan-fg">0.5434</span>       <span class="ansi-green-fg">0.8828</span>        <span class="ansi-magenta-fg">0.4456</span>  0.6945
-      8        <span class="ansi-cyan-fg">0.5137</span>       <span class="ansi-green-fg">0.8885</span>        <span class="ansi-magenta-fg">0.4224</span>  0.7130
-      9        <span class="ansi-cyan-fg">0.4898</span>       <span class="ansi-green-fg">0.8931</span>        <span class="ansi-magenta-fg">0.4035</span>  0.6992
-     10        <span class="ansi-cyan-fg">0.4674</span>       <span class="ansi-green-fg">0.8958</span>        <span class="ansi-magenta-fg">0.3875</span>  0.7223
+      1        <span class="ansi-cyan-fg">0.7043</span>       <span class="ansi-green-fg">0.9249</span>        <span class="ansi-magenta-fg">0.2786</span>  3.2555
+      2        <span class="ansi-cyan-fg">0.1907</span>       <span class="ansi-green-fg">0.9465</span>        <span class="ansi-magenta-fg">0.1817</span>  3.0612
+      3        <span class="ansi-cyan-fg">0.1355</span>       <span class="ansi-green-fg">0.9561</span>        <span class="ansi-magenta-fg">0.1476</span>  3.0745
+      4        <span class="ansi-cyan-fg">0.1100</span>       <span class="ansi-green-fg">0.9616</span>        <span class="ansi-magenta-fg">0.1290</span>  3.0588
+      5        <span class="ansi-cyan-fg">0.0943</span>       <span class="ansi-green-fg">0.9644</span>        <span class="ansi-magenta-fg">0.1168</span>  3.0505
+      6        <span class="ansi-cyan-fg">0.0834</span>       <span class="ansi-green-fg">0.9685</span>        <span class="ansi-magenta-fg">0.1079</span>  3.0668
+      7        <span class="ansi-cyan-fg">0.0752</span>       <span class="ansi-green-fg">0.9701</span>        <span class="ansi-magenta-fg">0.1015</span>  3.0525
+      8        <span class="ansi-cyan-fg">0.0687</span>       <span class="ansi-green-fg">0.9711</span>        <span class="ansi-magenta-fg">0.0965</span>  3.0632
+      9        <span class="ansi-cyan-fg">0.0634</span>       <span class="ansi-green-fg">0.9724</span>        <span class="ansi-magenta-fg">0.0921</span>  3.1113
+     10        <span class="ansi-cyan-fg">0.0589</span>       <span class="ansi-green-fg">0.9734</span>        <span class="ansi-magenta-fg">0.0889</span>  3.0786
   epoch    train_loss    valid_acc    valid_loss     dur
 -------  ------------  -----------  ------------  ------
-      1        <span class="ansi-cyan-fg">2.0039</span>       <span class="ansi-green-fg">0.7355</span>        <span class="ansi-magenta-fg">1.5780</span>  0.7035
-      2        <span class="ansi-cyan-fg">1.2935</span>       <span class="ansi-green-fg">0.8142</span>        <span class="ansi-magenta-fg">0.9466</span>  0.7036
-      3        <span class="ansi-cyan-fg">0.9179</span>       <span class="ansi-green-fg">0.8474</span>        <span class="ansi-magenta-fg">0.7028</span>  0.7040
-      4        <span class="ansi-cyan-fg">0.7576</span>       <span class="ansi-green-fg">0.8616</span>        <span class="ansi-magenta-fg">0.5873</span>  0.7011
-      5        <span class="ansi-cyan-fg">0.6695</span>       <span class="ansi-green-fg">0.8725</span>        <span class="ansi-magenta-fg">0.5212</span>  0.7097
-      6        <span class="ansi-cyan-fg">0.6090</span>       <span class="ansi-green-fg">0.8800</span>        <span class="ansi-magenta-fg">0.4765</span>  0.7100
-      7        <span class="ansi-cyan-fg">0.5692</span>       <span class="ansi-green-fg">0.8858</span>        <span class="ansi-magenta-fg">0.4439</span>  0.7015
-      8        <span class="ansi-cyan-fg">0.5352</span>       <span class="ansi-green-fg">0.8899</span>        <span class="ansi-magenta-fg">0.4195</span>  0.7055
-      9        <span class="ansi-cyan-fg">0.5136</span>       <span class="ansi-green-fg">0.8947</span>        <span class="ansi-magenta-fg">0.3997</span>  0.7175
-     10        <span class="ansi-cyan-fg">0.4926</span>       <span class="ansi-green-fg">0.8990</span>        <span class="ansi-magenta-fg">0.3839</span>  0.7045
+      1        <span class="ansi-cyan-fg">0.7931</span>       <span class="ansi-green-fg">0.9115</span>        <span class="ansi-magenta-fg">0.3373</span>  3.1659
+      2        <span class="ansi-cyan-fg">0.2282</span>       <span class="ansi-green-fg">0.9487</span>        <span class="ansi-magenta-fg">0.1950</span>  3.1318
+      3        <span class="ansi-cyan-fg">0.1533</span>       <span class="ansi-green-fg">0.9589</span>        <span class="ansi-magenta-fg">0.1499</span>  3.1829
+      4        <span class="ansi-cyan-fg">0.1218</span>       <span class="ansi-green-fg">0.9642</span>        <span class="ansi-magenta-fg">0.1277</span>  3.1482
+      5        <span class="ansi-cyan-fg">0.1032</span>       <span class="ansi-green-fg">0.9680</span>        <span class="ansi-magenta-fg">0.1136</span>  3.1000
+      6        <span class="ansi-cyan-fg">0.0904</span>       <span class="ansi-green-fg">0.9704</span>        <span class="ansi-magenta-fg">0.1038</span>  3.2689
+      7        <span class="ansi-cyan-fg">0.0809</span>       <span class="ansi-green-fg">0.9731</span>        <span class="ansi-magenta-fg">0.0963</span>  3.1671
+      8        <span class="ansi-cyan-fg">0.0736</span>       <span class="ansi-green-fg">0.9745</span>        <span class="ansi-magenta-fg">0.0905</span>  3.2160
+      9        <span class="ansi-cyan-fg">0.0678</span>       <span class="ansi-green-fg">0.9762</span>        <span class="ansi-magenta-fg">0.0859</span>  3.2597
+     10        <span class="ansi-cyan-fg">0.0630</span>       <span class="ansi-green-fg">0.9766</span>        <span class="ansi-magenta-fg">0.0826</span>  3.1879
 </pre></div></div>
 </div>
 </div>
@@ -727,7 +767,7 @@ div.rendered_html tbody tr:hover {
 <h2>6. Run Cleanlab to find potential label errors<a class="headerlink" href="#6.-Run-Cleanlab-to-find-potential-label-errors" title="Permalink to this headline">#</a></h2>
 <p>Cleanlab has a <code class="docutils literal notranslate"><span class="pre">find_label_issues</span></code> function to generate a list of potential label errors. Setting <code class="docutils literal notranslate"><span class="pre">return_indices_ranked_by="self_confidence"</span></code> returns the indices of all the most likely label errors, sorted by the most suspicious example first.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cleanlab.filter</span> <span class="kn">import</span> <span class="n">find_label_issues</span>
@@ -740,7 +780,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="7.-Review-some-of-the-most-likely-mislabeled-examples">
 <h2>7. Review some of the most likely mislabeled examples<a class="headerlink" href="#7.-Review-some-of-the-most-likely-mislabeled-examples" title="Permalink to this headline">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cleanlab found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">)</span><span class="si">}</span><span class="s2"> potential label errors."</span><span class="p">)</span>
@@ -753,21 +793,20 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Cleanlab found 1227 potential label errors.
+Cleanlab found 145 potential label errors.
 Here are the indices of the top 15 most likely ones:
- [24798 18598  8729 61790 15942 59915  7010 39457  1352 12679 20820 55739
- 53216 13031 31134]
+ [59915 24798 19124 53216  2720 59701 50340  7010 40976 16376 23824   500
+ 44484  8729 31134]
 </pre></div></div>
 </div>
 <p>We’ll define a new <code class="docutils literal notranslate"><span class="pre">plot_examples</span></code> function to display any examples in a subplot conveniently.</p>
 <!-- This cell is for the collapsible block in the doc site -->
 <details>
 <summary markdown="1">Click here to view its code.</summary><div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
 
 <span class="k">def</span> <span class="nf">plot_examples</span><span class="p">(</span><span class="n">id_iter</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">id_iter</span><span class="p">):</span>
@@ -783,7 +822,7 @@ Here are the indices of the top 15 most likely ones:
 <!-- This cell is for the collapsible block in the doc site -->
 </details><p>Let’s start by having an overview of the top 15 most likely label errors. From here, we can see a few label errors and edge cases. Feel free to change the parameters to display more or fewer examples.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">(</span><span class="n">ranked_label_issues</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">)],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -794,13 +833,13 @@ Here are the indices of the top 15 most likely ones:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_image_27_0.png" src="../_images/tutorials_image_27_0.png"/>
+<img alt="../_images/tutorials_image_29_0.png" src="../_images/tutorials_image_29_0.png"/>
 </div>
 </div>
 <p>Let’s zoom into specific examples:</p>
-<p>Given label is <strong>4</strong> but looks more like a <strong>7</strong></p>
+<p>Given label is <strong>4</strong> but looks more like a <strong>7</strong>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">59915</span><span class="p">])</span>
@@ -811,12 +850,12 @@ Here are the indices of the top 15 most likely ones:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_image_30_0.png" src="../_images/tutorials_image_30_0.png"/>
+<img alt="../_images/tutorials_image_32_0.png" src="../_images/tutorials_image_32_0.png"/>
 </div>
 </div>
-<p>Given label is <strong>4</strong> but also looks like <strong>9</strong></p>
+<p>Given label is <strong>4</strong> but also looks like <strong>9</strong>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">24798</span><span class="p">])</span>
@@ -827,15 +866,15 @@ Here are the indices of the top 15 most likely ones:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_image_32_0.png" src="../_images/tutorials_image_32_0.png"/>
+<img alt="../_images/tutorials_image_34_0.png" src="../_images/tutorials_image_34_0.png"/>
 </div>
 </div>
-<p>Edge case of odd looking <strong>9</strong>s</p>
+<p>A very odd looking <strong>5</strong>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">18598</span><span class="p">,</span> <span class="mi">1352</span><span class="p">,</span> <span class="mi">61247</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">59701</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -843,10 +882,27 @@ Here are the indices of the top 15 most likely ones:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_image_34_0.png" src="../_images/tutorials_image_34_0.png"/>
+<img alt="../_images/tutorials_image_36_0.png" src="../_images/tutorials_image_36_0.png"/>
 </div>
 </div>
-<p>Cleanlab has shortlisted the most likely label errors to speed up your data cleaning process. With this list, you can decide whether to fix label errors, augment edge cases, or remove obscure examples.</p>
+<p>Given label is <strong>3</strong> but could be a <strong>7</strong>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_examples</span><span class="p">([</span><span class="mi">50340</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_image_38_0.png" src="../_images/tutorials_image_38_0.png"/>
+</div>
+</div>
+<p>Cleanlab has shortlisted the most likely label errors to speed up your data cleaning process. With this list, you can decide whether to fix label issues or prune some of these examples from the dataset.</p>
+<p>You can see that even widely-used datasets like MNIST contain problematic labels. Never blindly trust your data! You should always check it for potential issues, many of which can be easily identified by <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>.</p>
 </div>
 </div>
  
