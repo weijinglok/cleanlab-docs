@@ -317,7 +317,7 @@
 <!-- End of Version Warning Banner -->
 
  <div class="section" id="computing-out-of-sample-predicted-probabilities-with-cross-validation">
-<h1>Computing Out-of-Sample Predicted Probabilities with Cross-Validation<a class="headerlink" href="#computing-out-of-sample-predicted-probabilities-with-cross-validation" title="Permalink to this headline">#</a></h1>
+<span id="pred-probs-cross-val"></span><h1>Computing Out-of-Sample Predicted Probabilities with Cross-Validation<a class="headerlink" href="#computing-out-of-sample-predicted-probabilities-with-cross-validation" title="Permalink to this headline">#</a></h1>
 <p>Recall that <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> finds label issues in any dataset using some model’s predicted class probabilities output. However, predicted probabilities from your model must be out-of-sample! You should never provide predictions on the same datapoints used to train the model, as these will be overfitted and unsuitable for finding label issues. It is ok if your model was trained on a separate dataset and you are only using <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> to evaluate labels in data that was previously held out (e.g., only searching for label issues in the test data).</p>
 <p>To find label issues across all your data requires obtaining out-of-sample predicted probabilities for every datapoint in your dataset. This can be done via K-fold cross-validation as described below.</p>
 <div class="section" id="what-are-out-of-sample-predicted-probabilities">
