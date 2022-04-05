@@ -20,7 +20,6 @@ What is K-fold cross-validation?
 --------------------------------
 
 .. image:: ./pred-probs-cross-val.png
-    :width: 800
 
 The diagram above depicts K-fold cross-validation with K = 5. K-fold cross-validation partitions the entire dataset into *k* disjoint subsets of data called **folds**. K independent copies of our model are trained, where for each model copy, one fold of the data is held out from its training (the data in this fold may be viewed as a **validation set** for this copy of the model). Each copy of the model has a different validation set for which we can obtain out-of-sample predicted probabilities from this copy of the model. Since each datapoint is held-out from one copy of the model, this process allows us to get out-of-sample predictions for every datapoint! We, in particular, recommend applying stratified cross-validation, which tries to ensure the proportions of data from each class match across different folds.
 
