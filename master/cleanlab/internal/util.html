@@ -319,18 +319,6 @@
 
  <div class="section" id="module-cleanlab.internal.util">
 <span id="util"></span><h1>util<a class="headerlink" href="#module-cleanlab.internal.util" title="Permalink to this headline">#</a></h1>
-<p><strong>Classes:</strong></p>
-<div class="table-wrapper"><table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%"/>
-<col style="width: 90%"/>
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.VersionWarning" title="cleanlab.internal.util.VersionWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionWarning</span></code></a>(warning_str, ...)</p></td>
-<td><p>Functor that calls _python_version_is_compatible and manages the state of the bool variable warning_already_issued to make sure the same warning is never displayed multiple times.</p></td>
-</tr>
-</tbody>
-</table></div>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -385,31 +373,6 @@
 </tr>
 </tbody>
 </table></div>
-<dl class="py class">
-<dt class="sig sig-object py" id="cleanlab.internal.util.VersionWarning">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">VersionWarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">warning_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_compatible_versions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#VersionWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.VersionWarning" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Functor that calls _python_version_is_compatible
-and manages the state of the bool variable
-warning_already_issued to make sure the same warning
-is never displayed multiple times.</p>
-<p><strong>Methods:</strong></p>
-<div class="table-wrapper"><table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%"/>
-<col style="width: 90%"/>
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.VersionWarning.is_compatible" title="cleanlab.internal.util.VersionWarning.is_compatible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_compatible</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table></div>
-<dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.internal.util.VersionWarning.is_compatible">
-<span class="sig-name descname"><span class="pre">is_compatible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#VersionWarning.is_compatible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.VersionWarning.is_compatible" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-</dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.internal.util.assert_inputs_are_valid">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">assert_inputs_are_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#assert_inputs_are_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.assert_inputs_are_valid" title="Permalink to this definition">#</a></dt>

@@ -602,12 +602,12 @@ div.rendered_html tbody tr:hover {
 <p><strong>Data:</strong> <a class="reference external" href="https://www.openml.org/d/31">https://www.openml.org/d/31</a></p>
 <div class="section" id="1.-Install-required-dependencies">
 <h2><strong>1. Install required dependencies</strong><a class="headerlink" href="#1.-Install-required-dependencies" title="Permalink to this headline">#</a></h2>
-<p>Install the following dependencies with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>:</p>
-<ol class="arabic simple">
-<li><p>cleanlab</p></li>
-<li><p>sklearn</p></li>
-<li><p>pandas</p></li>
-</ol>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install all packages required for this tutorial as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pip install sklearn pandas
+!pip install cleanlab  # Make sure to install the version corresponding to this tutorial
+# E.g. if viewing master branch documentation: !pip install git+https://github.com/cleanlab/cleanlab.git
+</pre></div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -685,15 +685,15 @@ classifier via a simple scikit-learn wrapper:</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
 
-<span class="n">num_crossval_folds</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num_crossval_folds</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># chosen for efficiency here, values like 5 or 10 will generally work better</span>
 <span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">num_crossval_folds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"predict_proba"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="4.-Use-cleanlab-to-find-potential-label-errors">
-<h2><strong>4. Use cleanlab to find potential label errors</strong><a class="headerlink" href="#4.-Use-cleanlab-to-find-potential-label-errors" title="Permalink to this headline">#</a></h2>
-<p>Based on the given labels and out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> can quickly help us identify label issues. Here we request that the indices of the identified label issues be sorted by <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s self-confidence score, which measures the quality of each given label via the probability assigned to it in our model’s prediction.</p>
+<div class="section" id="4.-Use-cleanlab-to-find-label-issues">
+<h2><strong>4. Use cleanlab to find label issues</strong><a class="headerlink" href="#4.-Use-cleanlab-to-find-label-issues" title="Permalink to this headline">#</a></h2>
+<p>Based on the given labels and out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> can quickly help us identify label issues in our dataset. Here we request that the indices of the identified label issues be sorted by <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s self-confidence score, which measures the quality of each given label via the probability assigned to it in our model’s prediction.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -936,8 +936,8 @@ Cleanlab found 173 potential label errors.
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">acc</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test acuracy of original logistic regression: </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">acc_og</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test acuracy of original logistic regression: </span><span class="si">{</span><span class="n">acc_og</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -989,8 +989,8 @@ Fitting final model on the clean data ...
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">lnl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test acuracy of cleanlab's logistic regression: </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">acc_cl</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test acuracy of cleanlab's logistic regression: </span><span class="si">{</span><span class="n">acc_cl</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1086,7 +1086,7 @@ model during deployment.</p>
 <li><a class="reference internal" href="#1.-Install-required-dependencies"><strong>1. Install required dependencies</strong></a></li>
 <li><a class="reference internal" href="#2.-Load-and-process-the-data"><strong>2. Load and process the data</strong></a></li>
 <li><a class="reference internal" href="#3.-Select-a-classification-model-and-compute-out-of-sample-predicted-probabilities"><strong>3. Select a classification model and compute out-of-sample predicted probabilities</strong></a></li>
-<li><a class="reference internal" href="#4.-Use-cleanlab-to-find-potential-label-errors"><strong>4. Use cleanlab to find potential label errors</strong></a></li>
+<li><a class="reference internal" href="#4.-Use-cleanlab-to-find-label-issues"><strong>4. Use cleanlab to find label issues</strong></a></li>
 <li><a class="reference internal" href="#5.-Train-a-more-robust-model-from-noisy-labels"><strong>5. Train a more robust model from noisy labels</strong></a></li>
 </ul>
 </li>
