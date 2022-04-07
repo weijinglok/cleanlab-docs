@@ -344,7 +344,7 @@
 <span class="sd">indices of individual data.</span>
 
 <span class="sd">CAUTION: These label quality scores are computed based on `pred_probs` from your model that must be out-of-sample!</span>
-<span class="sd">You should never provide predictions on the same datapoints used to train the model,</span>
+<span class="sd">You should never provide predictions on the same examples used to train the model,</span>
 <span class="sd">as these will be overfit and unsuitable for finding label-errors.</span>
 <span class="sd">To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.</span>
 <span class="sd">Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
@@ -447,7 +447,7 @@
 <span class="sd">      The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
 
 <span class="sd">      CAUTION: `pred_probs` from your model must be out-of-sample!</span>
-<span class="sd">      You should never provide predictions on the same datapoints used to train the model,</span>
+<span class="sd">      You should never provide predictions on the same examples used to train the model,</span>
 <span class="sd">      as these will be overfit and unsuitable for finding label-errors.</span>
 <span class="sd">      To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.</span>
 <span class="sd">      Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
@@ -465,10 +465,10 @@
 <span class="sd">      Let `C = {0,1,...,K}` denote the classification task's specified set of classes.</span>
 
 <span class="sd">      The normalized_margin score works better for identifying class conditional label errors,</span>
-<span class="sd">      i.e. datapoints for which another label in C is appropriate but the given label is not.</span>
+<span class="sd">      i.e. examples for which another label in C is appropriate but the given label is not.</span>
 
 <span class="sd">      The self_confidence score works better for identifying alternative label issues corresponding</span>
-<span class="sd">      to bad datapoints that are: not from any of the classes in C, well-described by 2 or more labels in C,</span>
+<span class="sd">      to bad examples that are: not from any of the classes in C, well-described by 2 or more labels in C,</span>
 <span class="sd">      or generally just out-of-distribution (ie. anomalous outliers).</span>
 
 <span class="sd">      .. seealso::</span>
@@ -564,7 +564,7 @@
 <span class="sd">    pred_probs_list : List of np.array (shape (N, K))</span>
 <span class="sd">      Each element in this list should be an array of pred_probs in the same format</span>
 <span class="sd">      expected by the `get_label_quality_scores()` method.</span>
-<span class="sd">      Each element of `pred_probs_list` corresponds to the predictions from one model for all datapoints.</span>
+<span class="sd">      Each element of `pred_probs_list` corresponds to the predictions from one model for all examples.</span>
 
 <span class="sd">    method : {"self_confidence", "normalized_margin", "confidence_weighted_entropy"}, default="self_confidence"</span>
 <span class="sd">      Label quality scoring method. Default is "self_confidence".</span>
@@ -606,7 +606,7 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_probs_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="sd">"""</span>
-<span class="sd">            pred_probs_list only has one element. </span>
+<span class="sd">            pred_probs_list only has one element.</span>
 <span class="sd">            Consider using get_label_quality_scores() if you only have a single array of pred_probs.</span>
 <span class="sd">            """</span>
         <span class="p">)</span>

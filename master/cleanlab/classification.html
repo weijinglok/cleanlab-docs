@@ -320,7 +320,7 @@
  <div class="section" id="module-cleanlab.classification">
 <span id="classification"></span><h1>classification<a class="headerlink" href="#module-cleanlab.classification" title="Permalink to this headline">#</a></h1>
 <p>cleanlab package for multiclass, multi-label learning with noisy labels for any dataset and model.</p>
-<p>The LearningWithNoisyLabels class wraps around an instance of a
+<p>The CleanLearning class wraps around an instance of a
 classifier class. Your classifier must adhere to the sklearn template,
 meaning it must define four functions:</p>
 <ul class="simple">
@@ -330,7 +330,7 @@ meaning it must define four functions:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">clf.score(X,</span> <span class="pre">y,</span> <span class="pre">sample_weight</span> <span class="pre">=</span> <span class="pre">None)</span></code></p></li>
 </ul>
 <p>where <code class="docutils literal notranslate"><span class="pre">X</span></code> (of length <em>n</em>) contains the data/examples, <code class="docutils literal notranslate"><span class="pre">y</span></code> (of length <em>n</em>)
-contains the contains targets formatted as <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">K-1</span></code>, and
+contains the contains targets formatted as <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">num_classes-1</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> (of length <em>n</em>) re-weights examples in the loss function while
 training.</p>
 <p>Furthermore, your estimator should be correctly clonable via
@@ -349,12 +349,12 @@ We prune these. Comptuationally, this means pruning the examples with
 high probability of belong to a different class.</p>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cleanlab.classification</span> <span class="kn">import</span> <span class="n">LearningWithNoisyLabels</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cleanlab.classification</span> <span class="kn">import</span> <span class="n">CleanLearning</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LogReg</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span> <span class="o">=</span> <span class="n">LearningWithNoisyLabels</span><span class="p">(</span><span class="n">clf</span><span class="o">=</span><span class="n">LogReg</span><span class="p">())</span> <span class="c1"># Pass in any classifier.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">labels_maybe_with_errors</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">CleanLearning</span><span class="p">(</span><span class="n">clf</span><span class="o">=</span><span class="n">LogReg</span><span class="p">())</span> <span class="c1"># Pass in any classifier.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">labels_maybe_with_errors</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Estimate the predictions as if you had trained without label issues.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pred</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pred</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The easiest way to use any model (Tensorflow, caffe2, PyTorch, etc.)
@@ -378,7 +378,7 @@ the <code class="docutils literal notranslate"><span class="pre">sklearn.base.Ba
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p><cite>labels</cite> - The given (maybe noisy) labels in the original dataset, which may have errors.</p></li>
-<li><p>Class labels (K classes) must be formatted as natural numbers: 0, 1, …, K-1</p></li>
+<li><p>Class labels must be formatted as natural numbers: 0, 1, …, num_classes-1</p></li>
 </ul>
 </div>
 <div class="admonition note">
@@ -404,15 +404,16 @@ tilde(y) (used in confident learning paper), for ASCII encoding reasons.</p>
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels" title="cleanlab.classification.LearningWithNoisyLabels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LearningWithNoisyLabels</span></code></a>([clf, seed, ...])</p></td>
-<td><p>Automated and robust learning with noisy labels using any dataset and any model.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning" title="cleanlab.classification.CleanLearning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CleanLearning</span></code></a>([clf, seed, cv_n_folds, ...])</p></td>
+<td><p>CleanLearning = Machine Learning with cleaned data (even if with messy, error-prone data).</p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py class">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">LearningWithNoisyLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_label_issues_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cleanlab.classification.</span></span><span class="sig-name descname"><span class="pre">CleanLearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converge_latent_estimates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulearning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_label_issues_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
+<p>CleanLearning = Machine Learning with cleaned data (even if with messy, error-prone data).</p>
 <p>Automated and robust learning with noisy labels using any dataset and any model. This class
 trains a model <cite>clf</cite> with error-prone, noisy labels as if the model had been instead trained
 on a dataset with perfect labels. It achieves this by cleaning out the error and providing
@@ -452,32 +453,60 @@ Options that may especially impact accuracy include:
 <col style="width: 90%"/>
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="cleanlab.classification.LearningWithNoisyLabels.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, labels, *[, pred_probs, thresholds, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.find_label_issues" title="cleanlab.classification.CleanLearning.find_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_label_issues</span></code></a>([X, labels, pred_probs, ...])</p></td>
+<td><p>Runs cross-validation to get out-of-sample pred_probs from <cite>clf</cite> and then calls <cite>filter.find_label_issues(labels, pred_probs)</cite> to find label issues.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.fit" title="cleanlab.classification.CleanLearning.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, labels, *[, pred_probs, thresholds, ...])</p></td>
 <td><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if the model had been instead trained on a dataset with the correct labels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.get_label_issues" title="cleanlab.classification.LearningWithNoisyLabels.get_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_label_issues</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.get_label_issues" title="cleanlab.classification.CleanLearning.get_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_label_issues</span></code></a>()</p></td>
 <td><p>Accessor.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.get_params" title="cleanlab.classification.LearningWithNoisyLabels.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.get_params" title="cleanlab.classification.CleanLearning.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.predict" title="cleanlab.classification.LearningWithNoisyLabels.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.predict" title="cleanlab.classification.CleanLearning.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Returns a vector of predictions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.predict_proba" title="cleanlab.classification.LearningWithNoisyLabels.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.predict_proba" title="cleanlab.classification.CleanLearning.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Returns a vector of probabilities P(true_label=k) for each example in X.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.score" title="cleanlab.classification.LearningWithNoisyLabels.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.score" title="cleanlab.classification.CleanLearning.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
 <td><p>Returns the clf's score on a test set X with labels y.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.classification.LearningWithNoisyLabels.set_params" title="cleanlab.classification.LearningWithNoisyLabels.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.classification.CleanLearning.set_params" title="cleanlab.classification.CleanLearning.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_final_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.fit" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.find_label_issues">
+<span class="sig-name descname"><span class="pre">find_label_issues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.find_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.find_label_issues" title="Permalink to this definition">#</a></dt>
+<dd><p>Runs cross-validation to get out-of-sample pred_probs from <cite>clf</cite>
+and then calls <cite>filter.find_label_issues(labels, pred_probs)</cite> to find label issues.
+The resulting label_issues_mask is saved in self.label_issues_mask and returned.
+Kwargs for <cite>filter.find_label_issues</cite> must have already been specified
+in the initialization of CleanLearning, not here.</p>
+<p>Unlike <cite>filter.find_label_issues</cite>, which requires <cite>pred_probs</cite>,
+this method only requires a classifier and it can do the cross-validation training for you.
+Both methods return the same boolean mask that identifies which examples have label issues.</p>
+<p>Note: This method computes the label issues from scratch, to access previously-computed
+label issues from this CleanLearning instance, use <cite>self.get_label_issues()</cite>.</p>
+<p>This is the method called to find label issues inside <cite>CleanLearning.fit()</cite>.
+For descriptions of the arguments, see <cite>CleanLearning.fit()</cite> documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>label_issues_mask</strong> – This method returns a boolean mask for the entire dataset where True represents
+a label issue and False represents an example that is accurately labeled with high confidence.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_issues_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_final_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>This method trains the model <cite>self.clf</cite> with error-prone, noisy labels as if
 the model had been instead trained on a dataset with the correct labels.
 It achieves this by: first training <cite>clf</cite> via cross-validation on the noisy data,
@@ -488,22 +517,19 @@ pruning the data with label issues, and finally training <cite>clf</cite> on the
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code>) – Input feature matrix (N, D), 2D numpy array</p></li>
 <li><p><strong>labels</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> (shape (N, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – </p></li>
-<li><p><strong>probabilities.</strong> (<em>P</em><em>(</em><em>label=k</em><em>|</em><em>x</em><em>) </em><em>is a matrix with K model-predicted</em>) – </p></li>
-<li><p><strong>model-predicted</strong> (<em>Each row of this matrix corresponds to an example x and contains the</em>) – </p></li>
-<li><p><strong>class.</strong> (<em>probabilities that x belongs to each possible</em>) – </p></li>
-<li><p><strong>0</strong> (<em>The columns must be ordered such that these probabilities correspond to class</em>) – </p></li>
-<li><p><strong>1</strong> – </p></li>
-<li><p><strong>2</strong> – </p></li>
-<li><p><strong>...</strong> – </p></li>
-<li><p><strong>cross-validation.</strong> (<em>pred_probs should have been computed using 3</em><em> (or </em><em>higher</em><em>) </em><em>fold</em>) – <div class="admonition note">
+<em>Format requirements</em>: the labels must be in the set {0, 1, …, num_classes-1}.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> (shape (N, <code class="xref py py-class docutils literal notranslate"><span class="pre">num_classes))</span></code>) – <p>P(label=k|x) is a matrix with num_classes model-predicted probabilities.
+Each row of this matrix corresponds to an example <cite>x</cite> and contains the model-predicted
+probabilities that <cite>x</cite> belongs to each possible class.
+The columns must be ordered such that these probabilities correspond to class 0,1,2,…
+<cite>pred_probs</cite> should have been computed using 3 (or higher) fold cross-validation.</p>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you are not sure, leave <cite>pred_probs = None</cite> (default) and it will be computed
 for you using cross-validation with your model.</p>
 </div>
 </p></li>
-<li><p><strong>thresholds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> (list or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array)</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, 1)  or <code class="xref py py-class docutils literal notranslate"><span class="pre">(K,)</span></code>) – P(label^=k|label=k). List of probabilities used to determine the cutoff
+<li><p><strong>thresholds</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> (list or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array)</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(num_classes</span></code>, 1)  or <code class="xref py py-class docutils literal notranslate"><span class="pre">(num_classes,)</span></code>) – P(label^=k|label=k). List of probabilities used to determine the cutoff
 predicted probability necessary to consider an example as a given
 class label.
 Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>. These are computed for you automatically.
@@ -511,14 +537,21 @@ If an example has a predicted probability “greater” than
 this threshold, it is counted as having true_label = k. This is
 not used for pruning/filtering, only for estimating the noise rates using
 confident counts. Values in list should be between 0 and 1.</p></li>
-<li><p><strong>noise_matrix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A conditional probability matrix of the form P(label=k_s|true_label=k_y) containing
+<li><p><strong>noise_matrix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(num_classes</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">num_classes)</span></code>) – A conditional probability matrix of the form P(label=k_s|true_label=k_y) containing
 the fraction of examples in every class, labeled as every other class.
 Assumes columns of noise_matrix sum to 1.</p></li>
-<li><p><strong>inverse_noise_matrix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A conditional probability matrix of the form P(true_label=k_y|label=k_s). Contains
+<li><p><strong>inverse_noise_matrix</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(num_classes</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">num_classes)</span></code>) – A conditional probability matrix of the form P(true_label=k_y|label=k_s). Contains
 the estimated fraction observed examples in each class k_s, that are
 mislabeled examples from every other class k_y. If None, the
 inverse_noise_matrix will be computed from pred_probs and labels.
 Assumes columns of inverse_noise_matrix sum to 1.</p></li>
+<li><p><strong>label_issues_mask</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – A boolean mask for the entire dataset such as those returned by:
+<cite>CleanLearning.find_label_issues()</cite> or <cite>filter.find_label_issues()</cite>.
+If specified, examples corresponding to False entries will be pruned from the data before
+training the <cite>clf</cite> model.
+Providing this argument significantly reduces the time this method takes to run by
+skipping the slow cross validation training step necessary to pre-compute the boolean mask
+of label issues</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 <li><p><strong>clf_final_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional extra keyword arguments to pass into the final <cite>clf</cite> fit() on the cleaned data
 but not the <cite>clf</cite> fit() in each fold of cross-validation on the noisy data.
@@ -537,13 +570,13 @@ than during cross-validation.</p></li>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.get_label_issues">
-<span class="sig-name descname"><span class="pre">get_label_issues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.get_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.get_label_issues" title="Permalink to this definition">#</a></dt>
-<dd><p>Accessor. Returns <cite>self.label_issues_mask</cite> computed via <cite>filter.find_label_issues()</cite></p>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.get_label_issues">
+<span class="sig-name descname"><span class="pre">get_label_issues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.get_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.get_label_issues" title="Permalink to this definition">#</a></dt>
+<dd><p>Accessor. Returns <cite>self.label_issues_mask</cite> if previously already computed.</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.get_params" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.classification.CleanLearning.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -559,8 +592,8 @@ contained subobjects that are estimators.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.predict" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.predict" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a vector of predictions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -569,8 +602,8 @@ contained subobjects that are estimators.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.predict_proba" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.predict_proba" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a vector of probabilities P(true_label=k)
 for each example in X.</p>
 <dl class="field-list simple">
@@ -580,8 +613,8 @@ for each example in X.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.score">
-<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#LearningWithNoisyLabels.score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.score" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/classification.html#CleanLearning.score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.classification.CleanLearning.score" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the clf’s score on a test set X with labels y.
 Uses the model/clf’s default scoring function.</p>
 <dl class="field-list simple">
@@ -595,8 +628,8 @@ Uses the model/clf’s default scoring function.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="cleanlab.classification.LearningWithNoisyLabels.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.classification.LearningWithNoisyLabels.set_params" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cleanlab.classification.CleanLearning.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cleanlab.classification.CleanLearning.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have

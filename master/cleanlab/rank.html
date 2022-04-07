@@ -326,7 +326,7 @@ of the dataset you choose (including the entire dataset) and provide a <cite>lab
 every example. You can then do something like: <cite>np.argsort(label_quality_score)</cite> to obtain ranked
 indices of individual data.</p>
 <p>CAUTION: These label quality scores are computed based on <cite>pred_probs</cite> from your model that must be out-of-sample!
-You should never provide predictions on the same datapoints used to train the model,
+You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
 To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
@@ -399,7 +399,7 @@ Take the average of the scores with the chosen weighting scheme determined by we
 <li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
 <li><p><strong>pred_probs_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Each element in this list should be an array of pred_probs in the same format
 expected by the <cite>get_label_quality_scores()</cite> method.
-Each element of <cite>pred_probs_list</cite> corresponds to the predictions from one model for all datapoints.</p></li>
+Each element of <cite>pred_probs_list</cite> corresponds to the predictions from one model for all examples.</p></li>
 <li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">{"self_confidence",</span> <span class="pre">"normalized_margin",</span> <span class="pre">"confidence_weighted_entropy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"self_confidence"</span></code>) – <p>Label quality scoring method. Default is “self_confidence”.
 See <cite>get_label_quality_scores()</cite> for scenarios on when to use each method.</p>
 <div class="admonition seealso">
@@ -450,7 +450,7 @@ Each row of this matrix corresponds to an example x and contains the model-predi
 probabilities that x belongs to each possible class.
 The columns must be ordered such that these probabilities correspond to class 0,1,2,…</p>
 <p>CAUTION: <cite>pred_probs</cite> from your model must be out-of-sample!
-You should never provide predictions on the same datapoints used to train the model,
+You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
 To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
@@ -464,9 +464,9 @@ for the <a href="#id1"><span class="problematic" id="id2">`</span></a>i`th datap
 ‘confidence_weighted_entropy’ := entropy(P) / self_confidence</p>
 <p>Let <cite>C = {0,1,…,K}</cite> denote the classification task’s specified set of classes.</p>
 <p>The normalized_margin score works better for identifying class conditional label errors,
-i.e. datapoints for which another label in C is appropriate but the given label is not.</p>
+i.e. examples for which another label in C is appropriate but the given label is not.</p>
 <p>The self_confidence score works better for identifying alternative label issues corresponding
-to bad datapoints that are: not from any of the classes in C, well-described by 2 or more labels in C,
+to bad examples that are: not from any of the classes in C, well-described by 2 or more labels in C,
 or generally just out-of-distribution (ie. anomalous outliers).</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>

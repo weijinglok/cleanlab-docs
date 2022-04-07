@@ -343,9 +343,8 @@
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_X_y</span>
 
 
-<div class="viewcode-block" id="assert_inputs_are_valid"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.internal.util.assert_inputs_are_valid">[docs]</a><span class="k">def</span> <span class="nf">assert_inputs_are_valid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">pred_probs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">"""Checks that X, labels, and pred_probs</span>
-<span class="sd">    are correctly formatted"""</span>
+<div class="viewcode-block" id="assert_inputs_are_valid"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.internal.util.assert_inputs_are_valid">[docs]</a><span class="k">def</span> <span class="nf">assert_inputs_are_valid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">pred_probs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_empty_X</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">"""Checks that X, labels, and pred_probs are correctly formatted"""</span>
 
     <span class="k">if</span> <span class="n">pred_probs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)):</span>
@@ -366,16 +365,19 @@
         <span class="n">msg</span> <span class="o">+=</span> <span class="s2">"your case: np.unique(labels) = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">))</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-    <span class="c1"># Allow sparse matrices and check that they are valid format.</span>
-    <span class="n">check_X_y</span><span class="p">(</span>
-        <span class="n">X</span><span class="p">,</span>
-        <span class="n">s</span><span class="p">,</span>
-        <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span></div>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_empty_X</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"X cannot be None."</span><span class="p">)</span>
+
+        <span class="n">check_X_y</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">s</span><span class="p">,</span>
+            <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="remove_noise_from_class"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.internal.util.remove_noise_from_class">[docs]</a><span class="k">def</span> <span class="nf">remove_noise_from_class</span><span class="p">(</span><span class="n">noise_matrix</span><span class="p">,</span> <span class="n">class_without_noise</span><span class="p">):</span>
