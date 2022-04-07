@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="rank" href="rank.html" /><link rel="prev" title="classification" href="classification.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="noise_generation" href="noise_generation.html" /><link rel="prev" title="rank" href="rank.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>count - cleanlab</title>
@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -319,6 +323,11 @@
 
  <div class="section" id="module-cleanlab.count">
 <span id="count"></span><h1>count<a class="headerlink" href="#module-cleanlab.count" title="Permalink to this headline">#</a></h1>
+<p>Methods for estimating latent structures used for confident learning, including:
+* Latent prior of the unobserved, error-less labels: <cite>py</cite> a.k.a. $p(y)$
+* Latent noisy channel (noise matrix) characterizing the flipping rates: <cite>nm</cite> a.k.a. $P(given label | true label)$
+* Latent inverse noise matrix characterizing the flipping process: <cite>inv</cite> a.k.a. $P(true label | given label)$
+* Latent <cite>confident_joint</cite>, an un-normalized matrix that counts the confident subset of label errors under the joint distribution for true/given label.</p>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -332,34 +341,31 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.compute_confident_joint" title="cleanlab.count.compute_confident_joint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_confident_joint</span></code></a>(labels, pred_probs, *)</p></td>
 <td><p>Estimates P(labels,y), the confident counts of the latent joint distribution of true and noisy labels using observed labels and predicted probabilities pred_probs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.converge_estimates" title="cleanlab.count.converge_estimates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">converge_estimates</span></code></a>(ps, py, noise_matrix, ...)</p></td>
-<td><p>Computes py := P(true_label=k) and both noise_matrix and inverse_noise_matrix, by numerically converging ps := P(labels=k), py, and the noise matrices.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_confident_joint_and_cv_pred_proba" title="cleanlab.count.estimate_confident_joint_and_cv_pred_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_confident_joint_and_cv_pred_proba</span></code></a>(X, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_confident_joint_and_cv_pred_proba" title="cleanlab.count.estimate_confident_joint_and_cv_pred_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_confident_joint_and_cv_pred_proba</span></code></a>(X, ...)</p></td>
 <td><p>Estimates P(labels,y), the confident counts of the latent joint distribution of true and noisy labels using observed labels and predicted probabilities pred_probs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_cv_predicted_probabilities" title="cleanlab.count.estimate_cv_predicted_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_cv_predicted_probabilities</span></code></a>(X, labels)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_cv_predicted_probabilities" title="cleanlab.count.estimate_cv_predicted_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_cv_predicted_probabilities</span></code></a>(X, labels)</p></td>
 <td><p>This function computes the out-of-sample predicted probability [P(label=k|x)] for every example in X using cross validation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_joint" title="cleanlab.count.estimate_joint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_joint</span></code></a>(labels[, pred_probs, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_joint" title="cleanlab.count.estimate_joint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_joint</span></code></a>(labels[, pred_probs, ...])</p></td>
 <td><p>Estimates the joint distribution of label noise P(label=i, true_label=j) guaranteed to</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_latent" title="cleanlab.count.estimate_latent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_latent</span></code></a>(confident_joint, labels, *)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_latent" title="cleanlab.count.estimate_latent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_latent</span></code></a>(confident_joint, labels, *)</p></td>
 <td><p>Computes the latent prior p(y), the noise matrix P(labels|y) and the inverse noise matrix P(y|labels) from the <cite>confident_joint</cite> count(labels, y).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_noise_matrices" title="cleanlab.count.estimate_noise_matrices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_noise_matrices</span></code></a>(X, labels[, clf, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_noise_matrices" title="cleanlab.count.estimate_noise_matrices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_noise_matrices</span></code></a>(X, labels[, clf, ...])</p></td>
 <td><p>Estimates the noise_matrix of shape (K, K).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_py_and_noise_matrices_from_probabilities" title="cleanlab.count.estimate_py_and_noise_matrices_from_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_py_and_noise_matrices_from_probabilities</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_py_and_noise_matrices_from_probabilities" title="cleanlab.count.estimate_py_and_noise_matrices_from_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_py_and_noise_matrices_from_probabilities</span></code></a>(...)</p></td>
 <td><p>Computes the confident counts estimate of latent variables py and the noise rates using observed labels and predicted probabilities, pred_probs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba" title="cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_py_noise_matrices_and_cv_pred_proba</span></code></a>(X, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba" title="cleanlab.count.estimate_py_noise_matrices_and_cv_pred_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_py_noise_matrices_and_cv_pred_proba</span></code></a>(X, ...)</p></td>
 <td><p>This function computes the out-of-sample predicted probability P(label=k|x) for every example x in X using cross validation while also computing the confident counts noise rates within each cross-validated subset and returning the average noise rate across all examples.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.get_confident_thresholds" title="cleanlab.count.get_confident_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_confident_thresholds</span></code></a>(labels, pred_probs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.get_confident_thresholds" title="cleanlab.count.get_confident_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_confident_thresholds</span></code></a>(labels, pred_probs)</p></td>
 <td><p>Returns expected (average) "self-confidence" for each class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.count.num_label_issues" title="cleanlab.count.num_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_label_issues</span></code></a>(labels, pred_probs[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.num_label_issues" title="cleanlab.count.num_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_label_issues</span></code></a>(labels, pred_probs[, ...])</p></td>
 <td><p>Estimates the number of label issues in <cite>labels</cite>.</p></td>
 </tr>
 </tbody>
@@ -427,14 +433,14 @@ Each row of this matrix corresponds to an example <cite>x</cite> and contains th
 probabilities that <cite>x</cite> belongs to each possible class.
 The columns must be ordered such that these probabilities correspond to class 0,1,2,…
 <cite>pred_probs</cite> must be out-of-sample and should have been computed using 3 (or higher) fold cross-validation.</p></li>
-<li><p><strong>K</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">None)</span></code>) – Number of unique classes. Calculated as len(np.unique(labels)) when K == None</p></li>
-<li><p><strong>thresholds</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span> <span class="pre">(list</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array)</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, 1)  or <code class="xref py py-class docutils literal notranslate"><span class="pre">(K,)</span></code>) – P(label^=k|label=k). If an example has a predicted probability “greater” than
+<li><p><strong>K</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – Number of unique classes. Calculated as <cite>len(np.unique(labels))</cite> when <cite>K == None</cite>.</p></li>
+<li><p><strong>thresholds</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span> <span class="pre">(list</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array)</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, 1)  or <code class="xref py py-class docutils literal notranslate"><span class="pre">(K,)</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – P(label^=k|label=k). If an example has a predicted probability “greater” than
 this threshold, it is counted as having true_label = k. This is
 not used for filtering/pruning, only for estimating the noise rates using
-confident counts. This value should be between 0 and 1. Default is None.</p></li>
-<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span> <span class="pre">(default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">True)</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
+confident counts. This value should be between 0 and 1.</p></li>
+<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">True</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
 np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</p></li>
-<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, labels should be an iterable (e.g. list) of iterables, containing a
+<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – If true, labels should be an iterable (e.g. list) of iterables, containing a
 list of labels for each example, instead of just a single label.
 The multi-label setting supports classification tasks where an example has 1 or more labels.
 Example of a multi-labeled <cite>labels</cite> input: [[0,1], [1], [0,2], [0,1,2], [0], [1], …]</p></li>
@@ -472,52 +478,6 @@ This implementation is 100% accurate, it’s just not optimized for speed.</p>
 </div>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.count.converge_estimates">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.count.</span></span><span class="sig-name descname"><span class="pre">converge_estimates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_noise_matrix</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_noise_matrix_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_matrix_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/count.html#converge_estimates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.count.converge_estimates" title="Permalink to this definition">#</a></dt>
-<dd><p>Computes py := P(true_label=k) and both noise_matrix and inverse_noise_matrix,
-by numerically converging ps := P(labels=k), py, and the noise matrices.</p>
-<p>Forces numerical consistency of estimates. Each is estimated
-independently, but they are related mathematically with closed form
-equivalences. This will iteratively make them mathematically consistent.</p>
-<p>py := P(true_label=k) and the inverse noise matrix P(true_label=k_y|label=k_s) specify one
-another, meaning one can be computed from the other and vice versa.
-When numerical discrepancy exists due to poor estimation, they can be made
-to agree by repeatedly computing one from the other,
-for some a certain number of iterations (3-10 works fine.)</p>
-<p>Do not set iterations too high or performance will decrease as small
-deviations will get perturbed over and over and potentially magnified.</p>
-<p>Note that we have to first converge the inverse_noise_matrix and py,
-then we can update the noise_matrix, then repeat. This is because the
-inverse noise matrix depends on py (which is unknown/latent), but the
-noise matrix depends on ps (which is known), so there will be no change in
-the noise matrix if we recompute it when py and inverse_noise_matrix change.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">)</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">(1</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – The fraction (prior probability) of each observed, NOISY class P(labels = k).</p></li>
-<li><p><strong>py</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">)</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">(1</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – The estimated fraction (prior probability) of each TRUE class P(true_label = k).</p></li>
-<li><p><strong>noise_matrix</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A conditional probability matrix of the form P(label=k_s|true_label=k_y) containing
-the fraction of examples in every class, labeled as every other class.
-Assumes columns of noise_matrix sum to 1.</p></li>
-<li><p><strong>inverse_noise_matrix</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A conditional probability matrix of the form P(true_label=k_y|labels=k_s) representing
-the estimated fraction observed examples in each class k_s, that are
-mislabeled examples from every other class k_y. If None, the
-inverse_noise_matrix will be computed from pred_probs and labels.
-Assumes columns of inverse_noise_matrix sum to 1.</p></li>
-<li><p><strong>inv_noise_matrix_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(Default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">5)</span></code>) – Number of times to converge inverse noise matrix with py and noise mat.</p></li>
-<li><p><strong>noise_matrix_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(Default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">3)</span></code>) – Number of times to converge noise matrix with py and inverse noise mat.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Three</span> <span class="pre">np.arrays</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">the</span> <span class="pre">form</span> <span class="pre">(py</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">noise_matrix</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">inverse_noise_matrix)</span> <span class="pre">all</span></code></p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">having</span> <span class="pre">numerical</span> <span class="pre">agreement</span> <span class="pre">in</span> <span class="pre">terms</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">their</span> <span class="pre">mathematical</span> <span class="pre">relations.</span></code></p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.count.estimate_confident_joint_and_cv_pred_proba">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.count.</span></span><span class="sig-name descname"><span class="pre">estimate_confident_joint_and_cv_pred_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LogisticRegression()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_n_folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibrate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/count.html#estimate_confident_joint_and_cv_pred_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.count.estimate_confident_joint_and_cv_pred_proba" title="Permalink to this definition">#</a></dt>
 <dd><p>Estimates P(labels,y), the confident counts of the latent
@@ -550,9 +510,9 @@ out-of-sample probabilities for each example in X.</p></li>
 this threshold, it is counted as having true_label = k. This is
 not used for filtering/pruning, only for estimating the noise rates using
 confident counts. This value should be between 0 and 1. Default is None.</p></li>
-<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(default</span> <span class="pre">=</span> <span class="pre">None)</span></code>) – Set the default state of the random number generator used to split
+<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – Set the default state of the random number generator used to split
 the cross-validated folds. If None, uses np.random current random state.</p></li>
-<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span> <span class="pre">(default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">True)</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
+<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">True</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
 np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 </ul>
@@ -583,7 +543,7 @@ the number of training examples and K is the number of classes.</p>
 has predict_proba() and fit() defined.</p></li>
 <li><p><strong>cv_n_folds</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of cross-validation folds used to compute
 out-of-sample probabilities for each example in X.</p></li>
-<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(default</span> <span class="pre">=</span> <span class="pre">None)</span></code>) – Set the default state of the random number generator used to split
+<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – Set the default state of the random number generator used to split
 the cross-validated folds. If None, uses np.random current random state.</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 </ul>
@@ -643,7 +603,7 @@ counted into every pair (label=j, true_label=k) classes.</p></li>
 This method defines how to compute the latent prior p(true_label=k). Default is “cnt”.
 “cnt” works well even when the noise matrices are estimated poorly by using
 the matrix diagonals instead of all the probabilities.</p></li>
-<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, forces numerical consistency of estimates. Each is estimated
+<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – If True, forces numerical consistency of estimates. Each is estimated
 independently, but they are related mathematically with closed form
 equivalences. This will iteratively make them mathematically consistent.</p></li>
 </ul>
@@ -675,10 +635,10 @@ out-of-sample probabilities for each example in X.</p></li>
 this threshold, it is counted as having true_label = k. This is
 not used for filtering/pruning, only for estimating the noise rates using
 confident counts. This value should be between 0 and 1. Default is None.</p></li>
-<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, forces numerical consistency of estimates. Each is estimated
+<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">True</span></code>) – If True, forces numerical consistency of estimates. Each is estimated
 independently, but they are related mathematically with closed form
 equivalences. This will iteratively make them mathematically consistent.</p></li>
-<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(default</span> <span class="pre">=</span> <span class="pre">None)</span></code>) – Set the default state of the random number generator used to split
+<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – Set the default state of the random number generator used to split
 the cross-validated folds. If None, uses np.random current random state.</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 </ul>
@@ -716,13 +676,13 @@ The columns must be ordered such that these probabilities correspond to class 0,
 this threshold, it is counted as having true_label = k. This is
 not used for filtering/pruning, only for estimating the noise rates using
 confident counts. This value should be between 0 and 1. Default is None.</p></li>
-<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, forces numerical consistency of estimates. Each is estimated
+<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">True</span></code>) – If True, forces numerical consistency of estimates. Each is estimated
 independently, but they are related mathematically with closed form
 equivalences. This will iteratively make them mathematically consistent.</p></li>
 <li><p><strong>py_method</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span> <span class="pre">(Options</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">[``</span></code>”cnt”<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``"eqn"</span></code>, <code class="docutils literal notranslate"><span class="pre">"marginal"</span></code>, <code class="docutils literal notranslate"><span class="pre">"marginal_ps"</span></code><code class="xref py py-class docutils literal notranslate"><span class="pre">])</span></code>) – How to compute the latent prior p(true_label=k). Default is “cnt” as it often
 works well even when the noise matrices are estimated poorly by using
 the matrix diagonals instead of all the probabilities.</p></li>
-<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span> <span class="pre">(default</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">True)</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
+<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">True</span></code>) – Calibrates confident joint estimate P(label=i, true_label=j) such that
 np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</p></li>
 </ul>
 </dd>
@@ -758,13 +718,13 @@ out-of-sample probabilities for each example in X.</p></li>
 this threshold, it is counted as having true_label = k. This is
 not used for filtering/pruning, only for estimating the noise rates using
 confident counts. This value should be between 0 and 1. Default is None.</p></li>
-<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, forces numerical consistency of estimates. Each is estimated
+<li><p><strong>converge_latent_estimates</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – If True, forces numerical consistency of estimates. Each is estimated
 independently, but they are related mathematically with closed form
 equivalences. This will iteratively make them mathematically consistent.</p></li>
 <li><p><strong>py_method</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span> <span class="pre">(Options</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">[``</span></code>”cnt”<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``"eqn"</span></code>, <code class="docutils literal notranslate"><span class="pre">"marginal"</span></code>, <code class="docutils literal notranslate"><span class="pre">"marginal_ps"</span></code><code class="xref py py-class docutils literal notranslate"><span class="pre">])</span></code>) – How to compute the latent prior p(true_label=k). Default is “cnt” as it often
 works well even when the noise matrices are estimated poorly by using
 the matrix diagonals instead of all the probabilities.</p></li>
-<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(default</span> <span class="pre">=</span> <span class="pre">None)</span></code>) – Set the default state of the random number generator used to split
+<li><p><strong>seed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – Set the default state of the random number generator used to split
 the cross-validated folds. If None, uses np.random current random state.</p></li>
 <li><p><strong>clf_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into <cite>clf</cite> fit() method.</p></li>
 </ul>
@@ -849,23 +809,23 @@ counted into every pair (label=j, true_label=k) classes.</p></li>
       <footer>
          
         <div class="related-pages">
-          <a class="next-page" href="rank.html">
+          <a class="next-page" href="noise_generation.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">rank</div>
+                <div class="title">noise_generation</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="classification.html">
+          <a class="prev-page" href="rank.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">classification</div>
+                <div class="title">rank</div>
                 
               </div>
             </a>

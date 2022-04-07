@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/classification.html">classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -334,15 +338,13 @@
 <span class="c1"># You should have received a copy of the GNU Affero General Public License</span>
 <span class="c1"># along with cleanlab.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 
-
-<span class="sd">"""Filter (previously in Cleanlab 1.0, this module was called Pruning)</span>
-
-<span class="sd">Contains methods for estimating the latent indices of all label issues.</span>
-<span class="sd">This code uses advanced multiprocessing to speed up computation.</span>
-<span class="sd">see: https://research.wmz.ninja/articles/2018/03/ (link continued below)</span>
-<span class="sd">on-sharing-large-arrays-when-using-pythons-multiprocessing.html</span>
 <span class="sd">"""</span>
+<span class="sd">Methods to identify which examples have label issues. </span>
+<span class="sd">Some of this code uses advanced multiprocessing to speed up computation: </span>
+<span class="sd">https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html</span>
 
+<span class="sd">Note: Previously in cleanlab versions &lt;= 1.0.1, this module was called `pruning`.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MultiLabelBinarizer</span>
@@ -617,10 +619,6 @@
 <span class="sd">    The number of indices returned is controlled by `frac_noise`, reduce its value to identify fewer label issues.</span>
 <span class="sd">    Tip: If you encounter the error 'pred_probs is not defined', try setting `n_jobs = 1`.</span>
 
-<span class="sd">    WARNING! is a matrix with K model-predicted probabilities and num_to_remove_per_class parameters</span>
-<span class="sd">    are only supported when filter_by is either 'prune_by_noise_rate', 'prune_by_class', or 'both'.</span>
-<span class="sd">    They are not supported for methods 'confident_learning' or 'predicted_neq_given'. TODO.</span>
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
@@ -637,7 +635,7 @@
 <span class="sd">      CAUTION: `pred_probs` from your model must be out-of-sample!</span>
 <span class="sd">      You should never provide predictions on the same examples used to train the model,</span>
 <span class="sd">      as these will be overfit and unsuitable for finding label-errors.</span>
-<span class="sd">      To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.</span>
+<span class="sd">      To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use :ref:`cross-validation &lt;pred_probs_cross_val&gt;`.</span>
 <span class="sd">      Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
 <span class="sd">      labels in data that was previously held-out.</span>
 
@@ -692,7 +690,7 @@
 <span class="sd">      frac_noise * inverse_noise_rate_class_k * num_examples_with_s_equal_k</span>
 
 <span class="sd">    num_to_remove_per_class : list of int of length K (# of classes)</span>
-<span class="sd">      e.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return</span>
+<span class="sd">      E.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return</span>
 <span class="sd">      the indices of the 5 most likely mislabeled examples in class labels = 0,</span>
 <span class="sd">      and the most likely mislabeled example in class labels = 1.</span>
 
@@ -747,6 +745,13 @@
             <span class="s2">"'predicted_neq_given'."</span>
         <span class="p">)</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_str</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num_to_remove_per_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+        <span class="n">filter_by</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"confident_learning"</span><span class="p">,</span> <span class="s2">"predicted_neq_given"</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="c1"># TODO - add support for these two filters</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"filter_by 'confident_learning' or 'predicted_neq_given' is not supported (yet) when setting 'num_to_remove_per_class'"</span>
+        <span class="p">)</span>
 
     <span class="c1"># Set-up number of multiprocessing threads</span>
     <span class="k">if</span> <span class="n">n_jobs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -778,7 +783,7 @@
         <span class="c1"># Create `prune_count_matrix` with the number of examples to remove in each class and</span>
         <span class="c1"># leave at least min_examples_per_class examples per class.</span>
         <span class="c1"># `prune_count_matrix` is transposed relative to the confident_joint.</span>
-        <span class="n">prune_count_matrix</span> <span class="o">=</span> <span class="n">keep_at_least_n_per_class</span><span class="p">(</span>
+        <span class="n">prune_count_matrix</span> <span class="o">=</span> <span class="n">_keep_at_least_n_per_class</span><span class="p">(</span>
             <span class="n">prune_count_matrix</span><span class="o">=</span><span class="n">confident_joint</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
             <span class="n">n</span><span class="o">=</span><span class="n">min_examples_per_class</span><span class="p">,</span>
             <span class="n">frac_noise</span><span class="o">=</span><span class="n">frac_noise</span><span class="p">,</span>
@@ -917,7 +922,7 @@
     <span class="k">return</span> <span class="n">label_issues_mask</span></div>
 
 
-<div class="viewcode-block" id="keep_at_least_n_per_class"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.keep_at_least_n_per_class">[docs]</a><span class="k">def</span> <span class="nf">keep_at_least_n_per_class</span><span class="p">(</span><span class="n">prune_count_matrix</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frac_noise</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_keep_at_least_n_per_class</span><span class="p">(</span><span class="n">prune_count_matrix</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frac_noise</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">"""Make sure every class has at least n examples after removing noise.</span>
 <span class="sd">    Functionally, increase each column, increases the diagonal term #(true_label=k,label=k)</span>
 <span class="sd">    of prune_count_matrix until it is at least n, distributing the amount</span>
@@ -978,13 +983,13 @@
     <span class="c1"># Reduce (multiply) all noise rates (non-diagonal) by frac_noise and</span>
     <span class="c1"># increase diagonal by the total amount reduced in each column</span>
     <span class="c1"># to preserve column counts.</span>
-    <span class="n">new_mat</span> <span class="o">=</span> <span class="n">reduce_prune_counts</span><span class="p">(</span><span class="n">new_mat</span><span class="p">,</span> <span class="n">frac_noise</span><span class="p">)</span>
+    <span class="n">new_mat</span> <span class="o">=</span> <span class="n">_reduce_prune_counts</span><span class="p">(</span><span class="n">new_mat</span><span class="p">,</span> <span class="n">frac_noise</span><span class="p">)</span>
 
     <span class="c1"># These are counts, so return a matrix of ints.</span>
-    <span class="k">return</span> <span class="n">round_preserving_row_totals</span><span class="p">(</span><span class="n">new_mat</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">round_preserving_row_totals</span><span class="p">(</span><span class="n">new_mat</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="reduce_prune_counts"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.reduce_prune_counts">[docs]</a><span class="k">def</span> <span class="nf">reduce_prune_counts</span><span class="p">(</span><span class="n">prune_count_matrix</span><span class="p">,</span> <span class="n">frac_noise</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_reduce_prune_counts</span><span class="p">(</span><span class="n">prune_count_matrix</span><span class="p">,</span> <span class="n">frac_noise</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="sd">"""Reduce (multiply) all prune counts (non-diagonal) by frac_noise and</span>
 <span class="sd">    increase diagonal by the total amount reduced in each column to</span>
 <span class="sd">    preserve column counts.</span>
@@ -1012,12 +1017,12 @@
     <span class="p">)</span>
 
     <span class="c1"># These are counts, so return a matrix of ints.</span>
-    <span class="k">return</span> <span class="n">new_mat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">new_mat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="find_predicted_neq_given"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.find_predicted_neq_given">[docs]</a><span class="k">def</span> <span class="nf">find_predicted_neq_given</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">multi_label</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">"""This is the simplest baseline approach. Just consider</span>
-<span class="sd">    anywhere argmax != labels as a label error.</span>
+<span class="sd">    anywhere argmax(pred_probs) != labels as a label error.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1039,7 +1044,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        A boolean mask whose True entries indicate indices of examples that have label issues."""</span>
+<span class="sd">        A boolean mask (1D `np.array`) whose True entries indicate indices of examples that have label issues."""</span>
 
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">multi_label</span><span class="p">:</span>
@@ -1065,14 +1070,13 @@
 <span class="sd">    based on the argmax and given label instead of using the confident joint from</span>
 <span class="sd">    `count.compute_confident_joint`.</span>
 
-<span class="sd">    This method does not support multi-label labels.</span>
-
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
 <span class="sd">    labels : np.array</span>
 <span class="sd">        A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">        *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
+<span class="sd">        This method does not support multi-label labels.</span>
 
 <span class="sd">    pred_probs : np.array (shape (N, K))</span>
 <span class="sd">        P(label=k|x) is a matrix with K model-predicted probabilities.</span>

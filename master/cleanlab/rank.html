@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="filter" href="filter.html" /><link rel="prev" title="count" href="count.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="count" href="count.html" /><link rel="prev" title="filter" href="filter.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>rank - cleanlab</title>
@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter.html">filter</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -319,8 +323,8 @@
 
  <div class="section" id="module-cleanlab.rank">
 <span id="rank"></span><h1>rank<a class="headerlink" href="#module-cleanlab.rank" title="Permalink to this headline">#</a></h1>
-<p>Rank module provides methods to rank/order data by cleanlab’s <cite>label quality score</cite>.</p>
-<p>Except for <cite>order_label_issues</cite>, which operates only on the subset of the data identified
+<p>Methods to rank/order data by cleanlab’s <cite>label quality score</cite>.
+Except for <cite>order_label_issues</cite>, which operates only on the subset of the data identified
 as potential label issues/errors, the methods in the <cite>rank</cite> module can be used on whichever subset
 of the dataset you choose (including the entire dataset) and provide a <cite>label quality score</cite> for
 every example. You can then do something like: <cite>np.argsort(label_quality_score)</cite> to obtain ranked
@@ -328,7 +332,7 @@ indices of individual data.</p>
 <p>CAUTION: These label quality scores are computed based on <cite>pred_probs</cite> from your model that must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
-To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.
+To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
 labels in data that was previously held-out.</p>
 <p><strong>Functions:</strong></p>
@@ -452,7 +456,8 @@ The columns must be ordered such that these probabilities correspond to class 0,
 <p>CAUTION: <cite>pred_probs</cite> from your model must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
-To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.
+To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use
+<a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
 labels in data that was previously held-out.</p>
 </p></li>
@@ -586,23 +591,23 @@ passed to rank_by.</p>
       <footer>
          
         <div class="related-pages">
-          <a class="next-page" href="filter.html">
+          <a class="next-page" href="count.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">filter</div>
+                <div class="title">count</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="count.html">
+          <a class="prev-page" href="filter.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">count</div>
+                <div class="title">filter</div>
                 
               </div>
             </a>

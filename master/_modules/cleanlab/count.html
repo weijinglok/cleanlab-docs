@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/classification.html">classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -334,19 +338,13 @@
 <span class="c1"># You should have received a copy of the GNU Affero General Public License</span>
 <span class="c1"># along with cleanlab.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 
-
-<span class="c1"># ## Latent Estimation</span>
-<span class="c1">#</span>
-<span class="c1"># Contains methods for estimating latent structures used for confident learning.</span>
-<span class="c1"># * The latent prior of the unobserved, error-less labels $y$:</span>
-<span class="c1">#     denoted $p(y)$ (latex) &amp; '```py```' (code).</span>
-<span class="c1"># * The latent noisy channel (noise matrix) characterizing the flipping rates:</span>
-<span class="c1">#     denoted $P_{labels \vert y }$ (latex) &amp; '```nm```' (code).</span>
-<span class="c1"># * The latent inverse noise matrix characterizing flipping process:</span>
-<span class="c1">#     denoted $P_{y \vert labels}$ (latex) &amp; '```inv```' (code).</span>
-<span class="c1"># * The latent ```confident_joint```, an un-normalized counts matrix of</span>
-<span class="c1">#     counting a confident subset of the joint counts of label errors.</span>
-
+<span class="sd">"""</span>
+<span class="sd">Methods for estimating latent structures used for confident learning, including:</span>
+<span class="sd">* Latent prior of the unobserved, error-less labels: `py` a.k.a. $p(y)$</span>
+<span class="sd">* Latent noisy channel (noise matrix) characterizing the flipping rates: `nm` a.k.a. $P(given label | true label)$</span>
+<span class="sd">* Latent inverse noise matrix characterizing the flipping process: `inv` a.k.a. $P(true label | given label)$</span>
+<span class="sd">* Latent `confident_joint`, an un-normalized matrix that counts the confident subset of label errors under the joint distribution for true/given label.</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LogReg</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
@@ -546,11 +544,11 @@
 <span class="sd">        not used for filtering/pruning, only for estimating the noise rates using</span>
 <span class="sd">        confident counts. This value should be between 0 and 1. Default is None.</span>
 
-<span class="sd">    calibrate : bool (default: True)</span>
+<span class="sd">    calibrate : bool, default = True</span>
 <span class="sd">        Calibrates confident joint estimate P(label=i, true_label=j) such that</span>
 <span class="sd">        np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</span>
 
-<span class="sd">    return_indices_of_off_diagonals: bool</span>
+<span class="sd">    return_indices_of_off_diagonals: bool, default = False</span>
 <span class="sd">        If true returns indices of examples that were counted in off-diagonals</span>
 <span class="sd">        of confident joint as a baseline proxy for the label issues. This</span>
 <span class="sd">        sometimes works as well as filter.find_label_issues(confident_joint)."""</span>
@@ -631,20 +629,20 @@
 <span class="sd">        The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
 <span class="sd">        `pred_probs` must be out-of-sample and should have been computed using 3 (or higher) fold cross-validation.</span>
 
-<span class="sd">    K : int (default: None)</span>
-<span class="sd">        Number of unique classes. Calculated as len(np.unique(labels)) when K == None</span>
+<span class="sd">    K : int, default = None</span>
+<span class="sd">        Number of unique classes. Calculated as `len(np.unique(labels))` when `K == None`.</span>
 
-<span class="sd">    thresholds : iterable (list or np.array) of shape (K, 1)  or (K,)</span>
+<span class="sd">    thresholds : iterable (list or np.array) of shape (K, 1)  or (K,), default = None</span>
 <span class="sd">        P(label^=k|label=k). If an example has a predicted probability "greater" than</span>
 <span class="sd">        this threshold, it is counted as having true_label = k. This is</span>
 <span class="sd">        not used for filtering/pruning, only for estimating the noise rates using</span>
-<span class="sd">        confident counts. This value should be between 0 and 1. Default is None.</span>
+<span class="sd">        confident counts. This value should be between 0 and 1.</span>
 
-<span class="sd">    calibrate : bool (default: True)</span>
+<span class="sd">    calibrate : bool, default = True</span>
 <span class="sd">        Calibrates confident joint estimate P(label=i, true_label=j) such that</span>
 <span class="sd">        np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</span>
 
-<span class="sd">    multi_label : bool</span>
+<span class="sd">    multi_label : bool, default = False</span>
 <span class="sd">        If true, labels should be an iterable (e.g. list) of iterables, containing a</span>
 <span class="sd">        list of labels for each example, instead of just a single label.</span>
 <span class="sd">        The multi-label setting supports classification tasks where an example has 1 or more labels.</span>
@@ -777,8 +775,8 @@
 <span class="sd">        "cnt" works well even when the noise matrices are estimated poorly by using</span>
 <span class="sd">        the matrix diagonals instead of all the probabilities.</span>
 
-<span class="sd">    converge_latent_estimates : bool</span>
-<span class="sd">        If true, forces numerical consistency of estimates. Each is estimated</span>
+<span class="sd">    converge_latent_estimates : bool, default = False</span>
+<span class="sd">        If True, forces numerical consistency of estimates. Each is estimated</span>
 <span class="sd">        independently, but they are related mathematically with closed form</span>
 <span class="sd">        equivalences. This will iteratively make them mathematically consistent.</span>
 
@@ -809,7 +807,7 @@
     <span class="n">inv_noise_matrix</span> <span class="o">=</span> <span class="n">clip_noise_rates</span><span class="p">(</span><span class="n">inv_noise_matrix</span><span class="p">)</span>
     <span class="c1"># Make latent estimates mathematically agree in their algebraic relations.</span>
     <span class="k">if</span> <span class="n">converge_latent_estimates</span><span class="p">:</span>
-        <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inv_noise_matrix</span> <span class="o">=</span> <span class="n">converge_estimates</span><span class="p">(</span>
+        <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inv_noise_matrix</span> <span class="o">=</span> <span class="n">_converge_estimates</span><span class="p">(</span>
             <span class="n">ps</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inv_noise_matrix</span>
         <span class="p">)</span>
         <span class="c1"># Again clip py and noise rates into proper range [0,1)</span>
@@ -864,8 +862,8 @@
 <span class="sd">        not used for filtering/pruning, only for estimating the noise rates using</span>
 <span class="sd">        confident counts. This value should be between 0 and 1. Default is None.</span>
 
-<span class="sd">    converge_latent_estimates : bool</span>
-<span class="sd">        If true, forces numerical consistency of estimates. Each is estimated</span>
+<span class="sd">    converge_latent_estimates : bool, default = True</span>
+<span class="sd">        If True, forces numerical consistency of estimates. Each is estimated</span>
 <span class="sd">        independently, but they are related mathematically with closed form</span>
 <span class="sd">        equivalences. This will iteratively make them mathematically consistent.</span>
 
@@ -874,7 +872,7 @@
 <span class="sd">        works well even when the noise matrices are estimated poorly by using</span>
 <span class="sd">        the matrix diagonals instead of all the probabilities.</span>
 
-<span class="sd">    calibrate : bool (default: True)</span>
+<span class="sd">    calibrate : bool, default = True</span>
 <span class="sd">        Calibrates confident joint estimate P(label=i, true_label=j) such that</span>
 <span class="sd">        np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</span>
 
@@ -952,11 +950,11 @@
 <span class="sd">        not used for filtering/pruning, only for estimating the noise rates using</span>
 <span class="sd">        confident counts. This value should be between 0 and 1. Default is None.</span>
 
-<span class="sd">    seed : int (default = None)</span>
+<span class="sd">    seed : int, default = None</span>
 <span class="sd">        Set the default state of the random number generator used to split</span>
 <span class="sd">        the cross-validated folds. If None, uses np.random current random state.</span>
 
-<span class="sd">    calibrate : bool (default: True)</span>
+<span class="sd">    calibrate : bool, default = True</span>
 <span class="sd">        Calibrates confident joint estimate P(label=i, true_label=j) such that</span>
 <span class="sd">        np.sum(cj) == len(labels) and np.sum(cj, axis = 1) == np.bincount(labels).</span>
 
@@ -1085,8 +1083,8 @@
 <span class="sd">      not used for filtering/pruning, only for estimating the noise rates using</span>
 <span class="sd">      confident counts. This value should be between 0 and 1. Default is None.</span>
 
-<span class="sd">    converge_latent_estimates : bool</span>
-<span class="sd">      If true, forces numerical consistency of estimates. Each is estimated</span>
+<span class="sd">    converge_latent_estimates : bool, default = False</span>
+<span class="sd">      If True, forces numerical consistency of estimates. Each is estimated</span>
 <span class="sd">      independently, but they are related mathematically with closed form</span>
 <span class="sd">      equivalences. This will iteratively make them mathematically consistent.</span>
 
@@ -1095,7 +1093,7 @@
 <span class="sd">      works well even when the noise matrices are estimated poorly by using</span>
 <span class="sd">      the matrix diagonals instead of all the probabilities.</span>
 
-<span class="sd">    seed : int (default = None)</span>
+<span class="sd">    seed : int, default = None</span>
 <span class="sd">      Set the default state of the random number generator used to split</span>
 <span class="sd">      the cross-validated folds. If None, uses np.random current random state.</span>
 
@@ -1160,7 +1158,7 @@
 <span class="sd">      The number of cross-validation folds used to compute</span>
 <span class="sd">      out-of-sample probabilities for each example in X.</span>
 
-<span class="sd">    seed : int (default = None)</span>
+<span class="sd">    seed : int, default = None</span>
 <span class="sd">      Set the default state of the random number generator used to split</span>
 <span class="sd">      the cross-validated folds. If None, uses np.random current random state.</span>
 
@@ -1227,12 +1225,12 @@
 <span class="sd">      not used for filtering/pruning, only for estimating the noise rates using</span>
 <span class="sd">      confident counts. This value should be between 0 and 1. Default is None.</span>
 
-<span class="sd">    converge_latent_estimates : bool</span>
-<span class="sd">      If true, forces numerical consistency of estimates. Each is estimated</span>
+<span class="sd">    converge_latent_estimates : bool, default = True</span>
+<span class="sd">      If True, forces numerical consistency of estimates. Each is estimated</span>
 <span class="sd">      independently, but they are related mathematically with closed form</span>
 <span class="sd">      equivalences. This will iteratively make them mathematically consistent.</span>
 
-<span class="sd">    seed : int (default = None)</span>
+<span class="sd">    seed : int, default = None</span>
 <span class="sd">      Set the default state of the random number generator used to split</span>
 <span class="sd">      the cross-validated folds. If None, uses np.random current random state.</span>
 
@@ -1255,7 +1253,7 @@
     <span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="converge_estimates"><a class="viewcode-back" href="../../cleanlab/count.html#cleanlab.count.converge_estimates">[docs]</a><span class="k">def</span> <span class="nf">converge_estimates</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">_converge_estimates</span><span class="p">(</span>
     <span class="n">ps</span><span class="p">,</span>
     <span class="n">py</span><span class="p">,</span>
     <span class="n">noise_matrix</span><span class="p">,</span>
@@ -1264,8 +1262,9 @@
     <span class="n">inv_noise_matrix_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">noise_matrix_iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">"""Computes py := P(true_label=k) and both noise_matrix and inverse_noise_matrix,</span>
-<span class="sd">    by numerically converging ps := P(labels=k), py, and the noise matrices.</span>
+    <span class="sd">"""Updates py := P(true_label=k) and both `noise_matrix` and `inverse_noise_matrix`</span>
+<span class="sd">    to be numerically consistent with each other, by iteratively updating their estimates based on</span>
+<span class="sd">    the mathematical relationships between them.</span>
 
 <span class="sd">    Forces numerical consistency of estimates. Each is estimated</span>
 <span class="sd">    independently, but they are related mathematically with closed form</span>
@@ -1308,10 +1307,10 @@
 <span class="sd">        inverse_noise_matrix will be computed from pred_probs and labels.</span>
 <span class="sd">        Assumes columns of inverse_noise_matrix sum to 1.</span>
 
-<span class="sd">    inv_noise_matrix_iterations : int (Default: 5)</span>
+<span class="sd">    inv_noise_matrix_iterations : int, default = 5</span>
 <span class="sd">        Number of times to converge inverse noise matrix with py and noise mat.</span>
 
-<span class="sd">    noise_matrix_iterations : int (Default: 3)</span>
+<span class="sd">    noise_matrix_iterations : int, default = 3</span>
 <span class="sd">        Number of times to converge noise matrix with py and inverse noise mat.</span>
 
 <span class="sd">    Returns</span>
@@ -1327,7 +1326,7 @@
             <span class="n">ps</span><span class="o">=</span><span class="n">ps</span><span class="p">,</span> <span class="n">inverse_noise_matrix</span><span class="o">=</span><span class="n">inverse_noise_matrix</span><span class="p">,</span> <span class="n">py</span><span class="o">=</span><span class="n">py</span>
         <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inverse_noise_matrix</span></div>
+    <span class="k">return</span> <span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inverse_noise_matrix</span>
 
 
 <div class="viewcode-block" id="get_confident_thresholds"><a class="viewcode-back" href="../../cleanlab/count.html#cleanlab.count.get_confident_thresholds">[docs]</a><span class="k">def</span> <span class="nf">get_confident_thresholds</span><span class="p">(</span><span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>

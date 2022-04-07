@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="coteaching" href="coteaching.html" /><link rel="prev" title="filter" href="filter.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="experimental" href="experimental/index.html" /><link rel="prev" title="count" href="count.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>noise_generation - cleanlab</title>
@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -319,6 +323,10 @@
 
  <div class="section" id="module-cleanlab.noise_generation">
 <span id="noise-generation"></span><h1>noise_generation<a class="headerlink" href="#module-cleanlab.noise_generation" title="Permalink to this headline">#</a></h1>
+<p>Helper methods that are useful for benchmarking cleanlab’s core algorithms.
+These methods introduce synthetic noise into the labels of a classification dataset.
+Specifically, provides methods for generating valid noise matrices (for which learning with noise is possible),
+generating noisy labels given a noise matrix, generating valid noise matrices with a specific trace value, and more.</p>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -492,23 +500,23 @@ to K.</p>
       <footer>
          
         <div class="related-pages">
-          <a class="next-page" href="coteaching.html">
+          <a class="next-page" href="experimental/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">coteaching</div>
+                <div class="title">experimental</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="filter.html">
+          <a class="prev-page" href="count.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">filter</div>
+                <div class="title">count</div>
                 
               </div>
             </a>

@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="noise_generation" href="noise_generation.html" /><link rel="prev" title="rank" href="rank.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="rank" href="rank.html" /><link rel="prev" title="classification" href="classification.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>filter - cleanlab</title>
@@ -168,17 +168,21 @@
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coteaching.html">coteaching</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="example_models/cifar_cnn.html">cifar.cnn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_models/mnist_pytorch.html">mnist_pytorch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -319,11 +323,10 @@
 
  <div class="section" id="module-cleanlab.filter">
 <span id="filter"></span><h1>filter<a class="headerlink" href="#module-cleanlab.filter" title="Permalink to this headline">#</a></h1>
-<p>Filter (previously in Cleanlab 1.0, this module was called Pruning)</p>
-<p>Contains methods for estimating the latent indices of all label issues.
-This code uses advanced multiprocessing to speed up computation.
-see: <a class="reference external" href="https://research.wmz.ninja/articles/2018/03/">https://research.wmz.ninja/articles/2018/03/</a> (link continued below)
-on-sharing-large-arrays-when-using-pythons-multiprocessing.html</p>
+<p>Methods to identify which examples have label issues.
+Some of this code uses advanced multiprocessing to speed up computation:
+<a class="reference external" href="https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html">https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html</a></p>
+<p>Note: Previously in cleanlab versions &lt;= 1.0.1, this module was called <cite>pruning</cite>.</p>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -340,14 +343,8 @@ on-sharing-large-arrays-when-using-pythons-multiprocessing.html</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.filter.find_predicted_neq_given" title="cleanlab.filter.find_predicted_neq_given"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_predicted_neq_given</span></code></a>(labels, pred_probs, *)</p></td>
 <td><p>This is the simplest baseline approach.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.filter.keep_at_least_n_per_class" title="cleanlab.filter.keep_at_least_n_per_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keep_at_least_n_per_class</span></code></a>(...[, frac_noise])</p></td>
-<td><p>Make sure every class has at least n examples after removing noise.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.filter.multiclass_crossval_predict" title="cleanlab.filter.multiclass_crossval_predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_crossval_predict</span></code></a>(labels, pyx)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.filter.multiclass_crossval_predict" title="cleanlab.filter.multiclass_crossval_predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_crossval_predict</span></code></a>(labels, pyx)</p></td>
 <td><p>Returns a numpy 2D array of one-hot encoded multiclass predictions.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.filter.reduce_prune_counts" title="cleanlab.filter.reduce_prune_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_prune_counts</span></code></a>(prune_count_matrix[, ...])</p></td>
-<td><p>Reduce (multiply) all prune counts (non-diagonal) by frac_noise and increase diagonal by the total amount reduced in each column to preserve column counts.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -361,9 +358,6 @@ a label issue and False represents an example that is confidently/accurately lab
 (and corresponding indices) by.</p>
 <p>The number of indices returned is controlled by <cite>frac_noise</cite>, reduce its value to identify fewer label issues.
 Tip: If you encounter the error ‘pred_probs is not defined’, try setting <cite>n_jobs = 1</cite>.</p>
-<p>WARNING! is a matrix with K model-predicted probabilities and num_to_remove_per_class parameters
-are only supported when filter_by is either ‘prune_by_noise_rate’, ‘prune_by_class’, or ‘both’.
-They are not supported for methods ‘confident_learning’ or ‘predicted_neq_given’. TODO.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -376,7 +370,7 @@ The columns must be ordered such that these probabilities correspond to class 0,
 <p>CAUTION: <cite>pred_probs</cite> from your model must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
-To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use cross-validation.
+To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
 labels in data that was previously held-out.</p>
 </p></li>
@@ -421,7 +415,7 @@ Value in range (0, 1] that determines the fraction of noisy example
 indices to return based on the following formula for example class k.
 frac_noise * number_of_mislabeled_examples_in_class_k, or equivalently
 frac_noise * inverse_noise_rate_class_k * num_examples_with_s_equal_k</p></li>
-<li><p><strong>num_to_remove_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">length</span> <span class="pre">K</span> <span class="pre">(#</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes)</span></code>) – <p>e.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return
+<li><p><strong>num_to_remove_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">length</span> <span class="pre">K</span> <span class="pre">(#</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes)</span></code>) – <p>E.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return
 the indices of the 5 most likely mislabeled examples in class labels = 0,
 and the most likely mislabeled example in class labels = 1.</p>
 <div class="admonition note">
@@ -467,12 +461,12 @@ of argmax(pred_probs) and labels as the confident joint and then uses cleanlab
 <p>The only difference between this and find_label_issues is that it uses the confusion matrix
 based on the argmax and given label instead of using the confident joint from
 <cite>count.compute_confident_joint</cite>.</p>
-<p>This method does not support multi-label labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
+<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.
+This method does not support multi-label labels.</p></li>
 <li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – P(label=k|x) is a matrix with K model-predicted probabilities.
 Each row of this matrix corresponds to an example <cite>x</cite> and contains the model-predicted
 probabilities that <cite>x</cite> belongs to each possible class.
@@ -504,7 +498,7 @@ that’s different from their given label while computing the confident joint.</
 <dt class="sig sig-object py" id="cleanlab.filter.find_predicted_neq_given">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_predicted_neq_given</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_predicted_neq_given"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_predicted_neq_given" title="Permalink to this definition">#</a></dt>
 <dd><p>This is the simplest baseline approach. Just consider
-anywhere argmax != labels as a label error.</p>
+anywhere argmax(pred_probs) != labels as a label error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -521,39 +515,7 @@ Example of a multi-labeled <cite>labels</cite> input: [[0,1], [1], [0,2], [0,1,2
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">A</span> <span class="pre">boolean</span> <span class="pre">mask</span> <span class="pre">whose</span> <span class="pre">True</span> <span class="pre">entries</span> <span class="pre">indicate</span> <span class="pre">indices</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">examples</span> <span class="pre">that</span> <span class="pre">have</span> <span class="pre">label</span> <span class="pre">issues.</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.filter.keep_at_least_n_per_class">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">keep_at_least_n_per_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prune_count_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#keep_at_least_n_per_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.keep_at_least_n_per_class" title="Permalink to this definition">#</a></dt>
-<dd><p>Make sure every class has at least n examples after removing noise.
-Functionally, increase each column, increases the diagonal term #(true_label=k,label=k)
-of prune_count_matrix until it is at least n, distributing the amount
-increased by subtracting uniformly from the rest of the terms in the
-column. When frac_noise = 1.0, return all “confidently” estimated
-noise indices, otherwise this returns frac_noise fraction of all
-the noise counts, with diagonal terms adjusted to ensure column
-totals are preserved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prune_count_matrix</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A counts of mislabeled examples in every class. For this function.
-NOTE prune_count_matrix is transposed relative to confident_joint.</p></li>
-<li><p><strong>n</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of examples to make sure are left in each class.</p></li>
-<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – When frac_noise = 1.0, return all estimated noise indices.
-Value in range (0, 1] that determines the fraction of noisy example
-indices to return based on the following formula for example class k.
-frac_noise * number_of_mislabeled_examples_in_class_k, or
-frac_noise * inverse_noise_rate_class_k * num_examples_s_equal_k</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>prune_count_matrix</strong> – Number of examples to remove from each class, for every other class.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">A</span> <span class="pre">boolean</span> <span class="pre">mask</span> <span class="pre">(1D</span> <span class="pre">`np.array</span></code>) whose True entries indicate indices` of <code class="xref py py-class docutils literal notranslate"><span class="pre">examples</span> <span class="pre">that</span> <span class="pre">have</span> <span class="pre">label</span> <span class="pre">issues.</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -579,27 +541,6 @@ The columns must be ordered such that these probabilities correspond to class 0,
 </dd>
 </dl>
 </dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.filter.reduce_prune_counts">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">reduce_prune_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prune_count_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#reduce_prune_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.reduce_prune_counts" title="Permalink to this definition">#</a></dt>
-<dd><p>Reduce (multiply) all prune counts (non-diagonal) by frac_noise and
-increase diagonal by the total amount reduced in each column to
-preserve column counts.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prune_count_matrix</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">number</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes</span></code>) – A counts of mislabeled examples in every class. For this function, it
-does not matter what the rows or columns are, but the diagonal terms
-reflect the number of correctly labeled examples.</p></li>
-<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – When frac_noise = 1.0, return all estimated noise indices.
-Value in range (0, 1] that determines the fraction of noisy example
-indices to return based on the following formula for example class k.
-frac_noise * number_of_mislabeled_examples_in_class_k, or
-frac_noise * inverse_noise_rate_class_k * num_examples_s_equal_k.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 </div>
  
         </article>
@@ -607,23 +548,23 @@ frac_noise * inverse_noise_rate_class_k * num_examples_s_equal_k.</p></li>
       <footer>
          
         <div class="related-pages">
-          <a class="next-page" href="noise_generation.html">
+          <a class="next-page" href="rank.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">noise_generation</div>
+                <div class="title">rank</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="rank.html">
+          <a class="prev-page" href="classification.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">rank</div>
+                <div class="title">classification</div>
                 
               </div>
             </a>
