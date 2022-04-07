@@ -163,7 +163,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
@@ -332,7 +332,7 @@ indices of individual data.</p>
 <p>CAUTION: These label quality scores are computed based on <cite>pred_probs</cite> from your model that must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
-To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
+To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
 labels in data that was previously held-out.</p>
 <p><strong>Functions:</strong></p>
@@ -457,7 +457,7 @@ The columns must be ordered such that these probabilities correspond to class 0,
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
 To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use
-<a class="reference internal" href="../tutorials/pred_probs_cross_val/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
+<a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
 labels in data that was previously held-out.</p>
 </p></li>
