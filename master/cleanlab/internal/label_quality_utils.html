@@ -173,16 +173,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../noise_generation.html">noise_generation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experimental/fasttext.html">fasttext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental/mnist_pytorch.html">mnist_pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../example_models/cifar_cnn.html">cifar.cnn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../example_models/mnist_pytorch.html">mnist_pytorch</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">label_quality_utils</a></li>
@@ -341,7 +338,7 @@
 <span class="sig-prename descclassname"><span class="pre">cleanlab.internal.label_quality_utils.</span></span><span class="sig-name descname"><span class="pre">get_normalized_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="../../_modules/cleanlab/internal/label_quality_utils.html#get_normalized_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.label_quality_utils.get_normalized_entropy" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the normalized entropy of pred_probs.</p>
 <p>Normalized entropy is between 0 and 1. Higher values of entropy indicate higher uncertainty in the model’s prediction of the correct label.</p>
-<p>Read more about normalized entropy here: <a class="reference external" href="https://en.wikipedia.org/wiki/Entropy_(information_theory">https://en.wikipedia.org/wiki/Entropy_(information_theory</a>)</p>
+<p>Read more about normalized entropy <a class="reference external" href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">on Wikipedia</a>.</p>
 <p>Normalized entropy is used in active learning for uncertainty sampling: <a class="reference external" href="https://towardsdatascience.com/uncertainty-sampling-cheatsheet-ec57bc067c0b">https://towardsdatascience.com/uncertainty-sampling-cheatsheet-ec57bc067c0b</a></p>
 <p>Unlike label-quality scores, entropy only depends on the model’s predictions, not the given label.</p>
 <dl class="field-list simple">

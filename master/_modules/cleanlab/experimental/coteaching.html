@@ -173,16 +173,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cleanlab/noise_generation.html">noise_generation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/experimental/fasttext.html">fasttext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/cifar_cnn.html">cifar.cnn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/example_models/mnist_pytorch.html">mnist_pytorch</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -342,8 +339,10 @@
 <span class="sd">"""</span>
 <span class="sd">Implements the co-teaching algorithm for training neural networks on noisily-labeled data (Han et al., 2018).</span>
 <span class="sd">This module requires PyTorch (https://pytorch.org/get-started/locally/).</span>
-<span class="sd">Example using this module with cleanlab to achieve state of the art on CIFAR-10</span>
+<span class="sd">Example using this algorithm with cleanlab to achieve state of the art on CIFAR-10</span>
 <span class="sd">for learning with noisy labels is provided within: https://github.com/cleanlab/examples/</span>
+
+<span class="sd">``cifar_cnn.py`` provides an example model that can be trained via this algorithm.</span>
 <span class="sd">"""</span>
 
 <span class="c1"># Significant code was adapted from the following GitHub:</span>
