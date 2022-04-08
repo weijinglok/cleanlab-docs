@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="filter" href="filter.html" /><link rel="prev" title="Text Classification with TensorFlow, Keras, and Cleanlab" href="../tutorials/text.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="filter" href="filter.html" /><link rel="prev" title="Computing Out-of-Sample Predicted Probabilities with Cross-Validation" href="../tutorials/pred_probs_cross_val.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>classification - cleanlab</title>
@@ -168,7 +168,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
@@ -178,16 +182,13 @@
 <li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
 <li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/mnist_pytorch.html">mnist_pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="example_models/index.html">example_models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="example_models/cifar_cnn.html">cifar.cnn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_models/mnist_pytorch.html">mnist_pytorch</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
@@ -328,7 +329,7 @@
 
  <div class="section" id="module-cleanlab.classification">
 <span id="classification"></span><h1>classification<a class="headerlink" href="#module-cleanlab.classification" title="Permalink to this headline">#</a></h1>
-<p>cleanlab package for multiclass, multi-label learning with noisy labels for any dataset and model.</p>
+<p>cleanlab can be used for multiclass (or multi-label) learning with noisy labels for any dataset and model.</p>
 <p>The CleanLearning class wraps around an instance of a
 classifier class. Your classifier must adhere to the sklearn template,
 meaning it must define four functions:</p>
@@ -430,7 +431,7 @@ cleaned data while training.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>clf</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.classifier</span></code> compliant class (e.g. skorch wraps around PyTorch)) – See cleanlab.example_models for examples of sklearn wrappers around, e.g. PyTorch.
+<li><p><strong>clf</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.classifier</span></code> compliant class (e.g. skorch wraps around PyTorch)) – See <code class="docutils literal notranslate"><span class="pre">cleanlab.experimental</span></code> for examples of sklearn wrappers, e.g. around PyTorch and FastText.
 The clf object must have the following three functions defined:
 1. clf.predict_proba(X) # Predicted probabilities
 2. clf.predict(X) # Predict labels
@@ -673,14 +674,14 @@ possible to update each component of a nested object.</p>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../tutorials/text.html">
+          <a class="prev-page" href="../tutorials/pred_probs_cross_val.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Text Classification with TensorFlow, Keras, and Cleanlab</div>
+                <div class="title">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</div>
                 
               </div>
             </a>

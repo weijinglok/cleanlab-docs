@@ -79,7 +79,11 @@ When the ``.fit()`` method is called, it automatically removes any examples iden
    :hidden:
    :caption: Tutorials
 
+   tutorials/image
    tutorials/text
+   tutorials/tabular
+   tutorials/audio
+   tutorials/pred_probs_cross_val
 
 .. toctree::
    :caption: API Reference
@@ -92,7 +96,6 @@ When the ``.fit()`` method is called, it automatically removes any examples iden
    cleanlab/count
    cleanlab/noise_generation
    cleanlab/experimental/index
-   cleanlab/example_models/index
    cleanlab/internal/index
 
 .. toctree::
