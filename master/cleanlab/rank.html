@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="count" href="count.html" /><link rel="prev" title="filter" href="filter.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>rank - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="filter.html">filter</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -321,10 +339,10 @@
  <div class="section" id="module-cleanlab.rank">
 <span id="rank"></span><h1>rank<a class="headerlink" href="#module-cleanlab.rank" title="Permalink to this headline">#</a></h1>
 <p>Methods to rank/order data by cleanlab’s <cite>label quality score</cite>.
-Except for <cite>order_label_issues</cite>, which operates only on the subset of the data identified
-as potential label issues/errors, the methods in the <cite>rank</cite> module can be used on whichever subset
+Except for <a class="reference internal" href="#cleanlab.rank.order_label_issues" title="cleanlab.rank.order_label_issues"><code class="xref py py-func docutils literal notranslate"><span class="pre">order_label_issues</span></code></a>, which operates only on the subset of the data identified
+as potential label issues/errors, the methods in this module can be used on whichever subset
 of the dataset you choose (including the entire dataset) and provide a <cite>label quality score</cite> for
-every example. You can then do something like: <cite>np.argsort(label_quality_score)</cite> to obtain ranked
+every example. You can then do something like: <code class="docutils literal notranslate"><span class="pre">np.argsort(label_quality_score)</span></code> to obtain ranked
 indices of individual data.</p>
 <p>CAUTION: These label quality scores are computed based on <cite>pred_probs</cite> from your model that must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
@@ -369,62 +387,57 @@ where lower scores indicate labels less likely to be correct.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Predicted-probabilities in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Predicted-probabilities in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>label_quality_scores</strong> – Return a score (between 0 and 1) for each example of its likelihood of
+<dd class="field-even"><p><strong>label_quality_scores</strong> – An array of scores (between 0 and 1) for each example of its likelihood of
 being correctly labeled.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(float)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.rank.get_label_quality_ensemble_scores">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.rank.</span></span><span class="sig-name descname"><span class="pre">get_label_quality_ensemble_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'self_confidence'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_pred_probs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_ensemble_members_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'accuracy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="../_modules/cleanlab/rank.html#get_label_quality_ensemble_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.rank.get_label_quality_ensemble_scores" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cleanlab.rank.</span></span><span class="sig-name descname"><span class="pre">get_label_quality_ensemble_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.array</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'self_confidence'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_pred_probs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_ensemble_members_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'accuracy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="../_modules/cleanlab/rank.html#get_label_quality_ensemble_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.rank.get_label_quality_ensemble_scores" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns label quality scores based on predictions from an ensemble of models.</p>
 <p>This is a function to compute label-quality scores for classification datasets,
 where lower scores indicate labels less likely to be correct.</p>
 <p>Ensemble scoring requires a list of pred_probs from each model in the ensemble.</p>
 <p>For each pred_probs in list, compute label quality score.
-Take the average of the scores with the chosen weighting scheme determined by weight_ensemble_members_by.</p>
-<p>Score is between 0 and 1.
-1 - clean label (given label is likely correct).
-0 - dirty label (given label is likely incorrect).</p>
+Take the average of the scores with the chosen weighting scheme determined by <cite>weight_ensemble_members_by</cite>.</p>
+<p>Score is between 0 and 1:</p>
+<ul class="simple">
+<li><p>1 — clean label (given label is likely correct).</p></li>
+<li><p>0 — dirty label (given label is likely incorrect).</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>pred_probs_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Each element in this list should be an array of pred_probs in the same format
-expected by the <cite>get_label_quality_scores()</cite> method.
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>pred_probs_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List[np.array]</span></code>) – Each element in this list should be an array of pred_probs in the same format
+expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.
 Each element of <cite>pred_probs_list</cite> corresponds to the predictions from one model for all examples.</p></li>
-<li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">{"self_confidence",</span> <span class="pre">"normalized_margin",</span> <span class="pre">"confidence_weighted_entropy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"self_confidence"</span></code>) – <p>Label quality scoring method. Default is “self_confidence”.
-See <cite>get_label_quality_scores()</cite> for scenarios on when to use each method.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">self_confidence()</span></code>
-<code class="xref py py-func docutils literal notranslate"><span class="pre">normalized_margin()</span></code>
-<code class="xref py py-func docutils literal notranslate"><span class="pre">confidence_weighted_entropy()</span></code></p>
-</div>
+<li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">{"self_confidence",</span> <span class="pre">"normalized_margin",</span> <span class="pre">"confidence_weighted_entropy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"self_confidence"</span></code>) – Label quality scoring method. See <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a>
+for scenarios on when to use each method.</p></li>
+<li><p><strong>adjust_pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>optional</em>) – <cite>adjust_pred_probs</cite> in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>weight_ensemble_members_by</strong> (<code class="docutils literal notranslate"><span class="pre">{"uniform",</span> <span class="pre">"accuracy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"accuracy"</span></code>) – <p>Weighting scheme used to aggregate scores from each model:</p>
+<ul>
+<li><p>”uniform”: take the simple average of scores</p></li>
+<li><p>”accuracy”: take weighted average of scores, weighted by model accuracy</p></li>
+</ul>
 </p></li>
-<li><p><strong>adjust_pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – adjust_pred_probs in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>weight_ensemble_members_by</strong> (<code class="docutils literal notranslate"><span class="pre">{"uniform",</span> <span class="pre">"accuracy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"accuracy"</span></code>) – <dl class="simple">
-<dt>Weighting scheme used to aggregate scores from each model:</dt><dd><p>”uniform”: Take the simple average of scores
-“accuracy”: Take weighted average of scores, weighted by model accuracy</p>
-</dd>
-</dl>
-</p></li>
-<li><p><strong>verbose</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>) – Set this = 0 to suppress all print statements.</p></li>
+<li><p><strong>verbose</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>) – Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to suppress all print statements.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>label_quality_scores</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(float)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -438,62 +451,58 @@ See <cite>get_label_quality_scores()</cite> for scenarios on when to use each me
 <dd><p>Returns label quality scores for each datapoint.</p>
 <p>This is a function to compute label-quality scores for classification datasets,
 where lower scores indicate labels less likely to be correct.</p>
-<p>Score is between 0 and 1.
-1 - clean label (given label is likely correct).
+<p>Score is between 0 and 1.</p>
+<p>1 - clean label (given label is likely correct).
 0 - dirty label (given label is likely incorrect).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – <p>P(label=k|x) is a matrix with K model-predicted probabilities.
-Each row of this matrix corresponds to an example x and contains the model-predicted
-probabilities that x belongs to each possible class.
-The columns must be ordered such that these probabilities correspond to class 0,1,2,…</p>
-<p>CAUTION: <cite>pred_probs</cite> from your model must be out-of-sample!
+<em>Format requirements</em>: for dataset with K classes, labels must be in 0, 1, …, K-1.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>, <em>optional</em>) – <p>An array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">K)</span></code> of model-predicted probabilities,
+<code class="docutils literal notranslate"><span class="pre">P(label=k|x)</span></code>. Each row of this matrix corresponds
+to an example <cite>x</cite> and contains the model-predicted probabilities that
+<cite>x</cite> belongs to each possible class, for each of the K classes. The
+columns must be ordered such that these probabilities correspond to
+class 0, 1, …, K-1.</p>
+<p><strong>Caution</strong>: <cite>pred_probs</cite> from your model must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
-To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use
-<a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
+To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
-labels in data that was previously held-out.</p>
+data that was previously held-out.</p>
 </p></li>
 <li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">{"self_confidence",</span> <span class="pre">"normalized_margin",</span> <span class="pre">"confidence_weighted_entropy"}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">"self_confidence"</span></code>) – <p>Label quality scoring method.</p>
-<p>Letting <cite>k := labels[i]</cite> and <cite>P := pred_probs[i]</cite> denote the given label and predicted class-probabilities
-for the <a href="#id1"><span class="problematic" id="id2">`</span></a>i`th datapoint, its score can either be:
-‘normalized_margin’ := P[k] - max_{k’ != k}[ P[k’] ]
-‘self_confidence’ := P[k]
-‘confidence_weighted_entropy’ := entropy(P) / self_confidence</p>
-<p>Let <cite>C = {0,1,…,K}</cite> denote the classification task’s specified set of classes.</p>
+<p>Letting <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">labels[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">=</span> <span class="pre">pred_probs[i]</span></code> denote the given label and predicted class-probabilities
+for datapoint <em>i</em>, its score can either be:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'normalized_margin'</span></code>: <code class="docutils literal notranslate"><span class="pre">P[k]</span> <span class="pre">-</span> <span class="pre">max_{k'</span> <span class="pre">!=</span> <span class="pre">k}[</span> <span class="pre">P[k']</span> <span class="pre">]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'self_confidence'</span></code>: <code class="docutils literal notranslate"><span class="pre">P[k]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'confidence_weighted_entropy'</span></code>: <code class="docutils literal notranslate"><span class="pre">entropy(P)</span> <span class="pre">/</span> <span class="pre">self_confidence</span></code></p></li>
+</ul>
+<p>Let <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">{0,</span> <span class="pre">1,</span> <span class="pre">...,</span> <span class="pre">K}</span></code> denote the classification task’s specified set of classes.</p>
 <p>The normalized_margin score works better for identifying class conditional label errors,
 i.e. examples for which another label in C is appropriate but the given label is not.</p>
 <p>The self_confidence score works better for identifying alternative label issues corresponding
 to bad examples that are: not from any of the classes in C, well-described by 2 or more labels in C,
 or generally just out-of-distribution (ie. anomalous outliers).</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">self_confidence()</span></code>
-<code class="xref py py-func docutils literal notranslate"><span class="pre">normalized_margin()</span></code>
-<code class="xref py py-func docutils literal notranslate"><span class="pre">confidence_weighted_entropy()</span></code></p>
-</div>
 </p></li>
-<li><p><strong>adjust_pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – Account for class-imbalance in the label-quality scoring by adjusting predicted probabilities
+<li><p><strong>adjust_pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>optional</em>) – Account for class imbalance in the label-quality scoring by adjusting predicted probabilities
 via subtraction of class confident thresholds and renormalization.
-Set this = True if you prefer to account for class-imbalance.
-See paper “Confident Learning: Estimating Uncertainty in Dataset Labels” by Northcutt et al.
-<a class="reference external" href="https://arxiv.org/abs/1911.00068">https://arxiv.org/abs/1911.00068</a></p></li>
+Set this to <code class="docutils literal notranslate"><span class="pre">True</span></code> if you prefer to account for class-imbalance.
+See <a class="reference external" href="https://jair.org/index.php/jair/article/view/12125">Northcutt et al., 2021</a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>label_quality_scores</strong> – Scores are between 0 and 1 where lower scores indicate labels less likely to be correct.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(float)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">self_confidence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">normalized_margin</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">confidence_weighted_entropy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">_subtract_confident_thresholds</span></code></p>
+<p><a class="reference internal" href="#cleanlab.rank.get_self_confidence_for_each_label" title="cleanlab.rank.get_self_confidence_for_each_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_self_confidence_for_each_label</span></code></a>, <a class="reference internal" href="#cleanlab.rank.get_normalized_margin_for_each_label" title="cleanlab.rank.get_normalized_margin_for_each_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_normalized_margin_for_each_label</span></code></a>, <a class="reference internal" href="#cleanlab.rank.get_confidence_weighted_entropy_for_each_label" title="cleanlab.rank.get_confidence_weighted_entropy_for_each_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_confidence_weighted_entropy_for_each_label</span></code></a></p>
 </div>
 </dd></dl>
 <dl class="py function">
@@ -503,7 +512,7 @@ See paper “Confident Learning: Estimating Uncertainty in Dataset Labels” by 
 <p>This is a function to compute label-quality scores for classification datasets,
 where lower scores indicate labels less likely to be correct.</p>
 <p>Letting k denote the given label for a datapoint, the normalized margin is
-(p(label = k) - max(p(label != k))), i.e. the probability
+<code class="docutils literal notranslate"><span class="pre">(p(label</span> <span class="pre">=</span> <span class="pre">k)</span> <span class="pre">-</span> <span class="pre">max(p(label</span> <span class="pre">!=</span> <span class="pre">k)))</span></code>, i.e. the probability
 of the given label minus the probability of the argmax label that is not
 the given label. This gives you an idea of how likely an example is BOTH
 its given label AND not another label, and therefore, scores its likelihood
@@ -513,17 +522,16 @@ there is another label in the class that is better than the given label.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Predicted-probabilities in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Predicted-probabilities in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>label_quality_scores</strong> – Return a score (between 0 and 1) for each example of its likelihood of
-being correctly labeled.
-normalized_margin = prob_label - max_prob_not_label</p>
+<dd class="field-even"><p><strong>label_quality_scores</strong> – An array of scores (between 0 and 1) for each example of its likelihood of
+being correctly labeled. <code class="docutils literal notranslate"><span class="pre">normalized_margin</span> <span class="pre">=</span> <span class="pre">prob_label</span> <span class="pre">-</span> <span class="pre">max_prob_not_label</span></code></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(float)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -540,16 +548,16 @@ multi-label, and other types of label errors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Predicted-probabilities in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Predicted-probabilities in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>label_quality_scores</strong> – Return the holdout probability that each example in pred_probs belongs to its
+<dd class="field-even"><p><strong>label_quality_scores</strong> – An array of holdout probabilities that each example in <cite>pred_probs</cite> belongs to its
 label.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(float)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -561,23 +569,23 @@ label.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>label_issues_mask</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(bool)</span></code>) – Contains True if the index of labels is an error, o.w. false</p></li>
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Predicted-probabilities in the same format expected by the <cite>get_label_quality_scores()</cite> method.</p></li>
-<li><p><strong>rank_by</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span> <span class="pre">[``</span></code>’normalized_margin’<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``'self_confidence'</span></code>, <code class="docutils literal notranslate"><span class="pre">'confidence_weighted_entropy'</span></code><code class="xref py py-class docutils literal notranslate"><span class="pre">]</span></code>) – Score by which to order label error indices (in increasing order), either:
-‘normalized_margin’, ‘self_confidence’, or ‘confidence_weighted_entropy’.
-See <cite>get_label_quality_scores()</cite> documentation for description of these scores.</p></li>
-<li><p><strong>rank_by_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – Optional keyword arguments to pass into <cite>get_label_quality_scores()</cite> method.
-Accepted args include:
-adjust_pred_probs : bool, default = False</p></li>
+<li><p><strong>label_issues_mask</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A boolean mask for the entire dataset where <code class="docutils literal notranslate"><span class="pre">True</span></code> represents a label
+issue and <code class="docutils literal notranslate"><span class="pre">False</span></code> represents an example that is accurately labeled with
+high confidence.</p></li>
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Labels in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – Predicted-probabilities in the same format expected by the <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.</p></li>
+<li><p><strong>rank_by</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <em>optional</em>) – Score by which to order label error indices (in increasing order). See
+the <cite>method</cite> argument of <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a>.</p></li>
+<li><p><strong>rank_by_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>optional</em>) – Optional keyword arguments to pass into <a class="reference internal" href="#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_label_quality_scores</span></code></a> function.
+Accepted args include <cite>adjust_pred_probs</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>label_issues_idx</strong> – Return the index integers of the label issues, ordered by the label-quality scoring method
-passed to rank_by.</p>
+<dd class="field-even"><p><strong>label_issues_idx</strong> – Return an array of the indices of the label issues, ordered by the label-quality scoring method
+passed to <cite>rank_by</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(int)</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -661,5 +669,7 @@ passed to rank_by.</p>
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

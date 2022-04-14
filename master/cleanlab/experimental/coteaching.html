@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="cifar_cnn" href="cifar_cnn.html" /><link rel="prev" title="mnist_pytorch" href="mnist_pytorch.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>coteaching - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">experimental</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">experimental</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -490,5 +508,7 @@ computing top1 and top5 accuracy given output and true targets.</p></li>
     <script src="../../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

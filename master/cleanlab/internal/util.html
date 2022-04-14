@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="latent_algebra" href="latent_algebra.html" /><link rel="prev" title="internal" href="index.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>util - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">internal</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -336,40 +354,43 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.clip_values" title="cleanlab.internal.util.clip_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_values</span></code></a>(x[, low, high, new_sum])</p></td>
 <td><p>Clip all values in p to range [low,high].</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.confusion_matrix" title="cleanlab.internal.util.confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_matrix</span></code></a>(true, pred)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.compress_int_array" title="cleanlab.internal.util.compress_int_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress_int_array</span></code></a>(int_array, ...)</p></td>
+<td><p>Compresses dtype of np.array&lt;int&gt; if num_possible_values is small enough.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.confusion_matrix" title="cleanlab.internal.util.confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_matrix</span></code></a>(true, pred)</p></td>
 <td><p>Implements a confusion matrix for true labels and predicted labels.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.estimate_pu_f1" title="cleanlab.internal.util.estimate_pu_f1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_pu_f1</span></code></a>(s, prob_s_eq_1)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.estimate_pu_f1" title="cleanlab.internal.util.estimate_pu_f1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_pu_f1</span></code></a>(s, prob_s_eq_1)</p></td>
 <td><p>Computes Claesen's estimate of f1 in the pulearning setting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.int2onehot" title="cleanlab.internal.util.int2onehot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int2onehot</span></code></a>(labels)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.int2onehot" title="cleanlab.internal.util.int2onehot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int2onehot</span></code></a>(labels)</p></td>
 <td><p>Convert list of lists to a onehot matrix for multi-labels</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.onehot2int" title="cleanlab.internal.util.onehot2int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">onehot2int</span></code></a>(onehot_matrix)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.onehot2int" title="cleanlab.internal.util.onehot2int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">onehot2int</span></code></a>(onehot_matrix)</p></td>
 <td><p>Convert a onehot matrix for multi-labels to a list of lists of ints</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_inverse_noise_matrix" title="cleanlab.internal.util.print_inverse_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_inverse_noise_matrix</span></code></a>(inverse_noise_matrix)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_inverse_noise_matrix" title="cleanlab.internal.util.print_inverse_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_inverse_noise_matrix</span></code></a>(inverse_noise_matrix)</p></td>
 <td><p>Pretty prints the inverse noise matrix.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_joint_matrix" title="cleanlab.internal.util.print_joint_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_joint_matrix</span></code></a>(joint_matrix[, round_places])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_joint_matrix" title="cleanlab.internal.util.print_joint_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_joint_matrix</span></code></a>(joint_matrix[, round_places])</p></td>
 <td><p>Pretty prints the joint label noise matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_noise_matrix" title="cleanlab.internal.util.print_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_noise_matrix</span></code></a>(noise_matrix[, round_places])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_noise_matrix" title="cleanlab.internal.util.print_noise_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_noise_matrix</span></code></a>(noise_matrix[, round_places])</p></td>
 <td><p>Pretty prints the noise matrix.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_square_matrix" title="cleanlab.internal.util.print_square_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_square_matrix</span></code></a>(matrix[, left_name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.print_square_matrix" title="cleanlab.internal.util.print_square_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_square_matrix</span></code></a>(matrix[, left_name, ...])</p></td>
 <td><p>Pretty prints a matrix.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.remove_noise_from_class" title="cleanlab.internal.util.remove_noise_from_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_noise_from_class</span></code></a>(noise_matrix, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.remove_noise_from_class" title="cleanlab.internal.util.remove_noise_from_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_noise_from_class</span></code></a>(noise_matrix, ...)</p></td>
 <td><p>A helper function in the setting of PU learning.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_row_totals" title="cleanlab.internal.util.round_preserving_row_totals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_row_totals</span></code></a>(confident_joint)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_row_totals" title="cleanlab.internal.util.round_preserving_row_totals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_row_totals</span></code></a>(confident_joint)</p></td>
 <td><p>Rounds confident_joint cj to type int while preserving the totals of reach row.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_sum" title="cleanlab.internal.util.round_preserving_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_sum</span></code></a>(iterable)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.round_preserving_sum" title="cleanlab.internal.util.round_preserving_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">round_preserving_sum</span></code></a>(iterable)</p></td>
 <td><p>Rounds an iterable of floats while retaining the original summed value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.internal.util.value_counts" title="cleanlab.internal.util.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.internal.util.value_counts" title="cleanlab.internal.util.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>(x)</p></td>
 <td><p>Returns an np.array of shape (K, 1), with the value counts for every unique item in the labels list/array, where K is the number of unique entries in labels.</p></td>
 </tr>
 </tbody>
@@ -416,6 +437,11 @@ Preserves sum of x.</p>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="cleanlab.internal.util.compress_int_array">
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">compress_int_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_possible_values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#compress_int_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.compress_int_array" title="Permalink to this definition">#</a></dt>
+<dd><p>Compresses dtype of np.array&lt;int&gt; if num_possible_values is small enough.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.internal.util.confusion_matrix">
@@ -506,7 +532,7 @@ All integers from 0,1,…,K-1 must be represented.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.internal.util.print_square_matrix">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_square_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">A</span> <span class="pre">square</span> <span class="pre">matrix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels,y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_square_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_square_matrix" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cleanlab.internal.util.</span></span><span class="sig-name descname"><span class="pre">print_square_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">A</span> <span class="pre">square</span> <span class="pre">matrix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'s,y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cleanlab/internal/util.html#print_square_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.internal.util.print_square_matrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Pretty prints a matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -585,14 +611,18 @@ parameter is optional, but should be included if not obvious.</p>
 <dd><p>Returns an np.array of shape (K, 1), with the
 value counts for every unique item in the labels list/array,
 where K is the number of unique entries in labels.</p>
-<dl class="simple">
-<dt>Why this matters? Here is an example:</dt><dd><p>x = [np.random.randint(0,100) for i in range(100000)]</p>
-</dd>
-<dt>%timeit np.bincount(x)</dt><dd><p>–Result: 100 loops, best of 3: 3.9 ms per loop</p>
-</dd>
-<dt>%timeit np.unique(x, return_counts=True)[1]</dt><dd><p>–Result: 100 loops, best of 3: 7.47 ms per loop</p>
-</dd>
-</dl>
+<p>Why this matters? Here is an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> np.bincount(x)
+<span class="c1"># Result: 100 loops, best of 3: 3.9 ms per loop</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> np.unique(x, return_counts=True)[1]
+<span class="c1"># Result: 100 loops, best of 3: 7.47 ms per loop</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(one</span> <span class="pre">dimensional)</span></code>) – A list of discrete objects, like lists or strings, for
@@ -681,5 +711,7 @@ e.g. [“dog”,”dog”,”cat”] or [1,2,0,1,1,0,2]</p>
     <script src="../../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

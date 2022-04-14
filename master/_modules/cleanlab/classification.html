@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>cleanlab.classification - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -338,36 +356,37 @@
 <span class="sd">"""</span>
 <span class="sd">cleanlab can be used for multiclass (or multi-label) learning with noisy labels for any dataset and model.</span>
 
-<span class="sd">The CleanLearning class wraps around an instance of a</span>
-<span class="sd">classifier class. Your classifier must adhere to the sklearn template,</span>
+<span class="sd">The :py:class:`CleanLearning &lt;cleanlab.classification.CleanLearning&gt;` class wraps an instance of an</span>
+<span class="sd">sklearn classifier. The wrapped classifier must adhere to the `sklearn estimator API</span>
+<span class="sd">&lt;https://scikit-learn.org/stable/developers/develop.html#rolling-your-own-estimator&gt;`_,</span>
 <span class="sd">meaning it must define four functions:</span>
 
-<span class="sd">* ``clf.fit(X, y, sample_weight = None)``</span>
+<span class="sd">* ``clf.fit(X, y, sample_weight=None)``</span>
 <span class="sd">* ``clf.predict_proba(X)``</span>
 <span class="sd">* ``clf.predict(X)``</span>
-<span class="sd">* ``clf.score(X, y, sample_weight = None)``</span>
+<span class="sd">* ``clf.score(X, y, sample_weight=None)``</span>
 
-<span class="sd">where ``X`` (of length *n*) contains the data/examples, ``y`` (of length *n*)</span>
-<span class="sd">contains the contains targets formatted as ``0, 1, 2, ..., num_classes-1``, and</span>
-<span class="sd">``sample_weight`` (of length *n*) re-weights examples in the loss function while</span>
-<span class="sd">training.</span>
+<span class="sd">where `X` contains data, `y` contains labels (with elements in 0, 1, ..., K-1,</span>
+<span class="sd">where K is the number of classes), and `sample_weight` re-weights examples in</span>
+<span class="sd">the loss function while training.</span>
 
-<span class="sd">Furthermore, your estimator should be correctly clonable via</span>
-<span class="sd">`sklearn.base.clone`: cleanlab internally creates multiple instances of your</span>
+<span class="sd">Furthermore, the estimator should be correctly clonable via</span>
+<span class="sd">`sklearn.base.clone &lt;https://scikit-learn.org/stable/modules/generated/sklearn.base.clone.html&gt;`_:</span>
+<span class="sd">cleanlab internally creates multiple instances of the</span>
 <span class="sd">estimator, and if you e.g. manually wrap a PyTorch model, you must ensure that</span>
-<span class="sd">every call to your estimator's `__init__()` creates an independent instance of</span>
+<span class="sd">every call to the estimator's ``__init__()`` creates an independent instance of</span>
 <span class="sd">the model.</span>
 
 <span class="sd">Note</span>
 <span class="sd">----</span>
 <span class="sd">There are two new notions of confidence in this package:</span>
 
-<span class="sd">1. Confident **examples** -- examples we are confident are labeled correctly</span>
-<span class="sd">We prune everything else. Comptuationally, this means keeping the examples</span>
+<span class="sd">1. Confident *examples* --- examples we are confident are labeled correctly.</span>
+<span class="sd">We prune everything else. Mathematically, this means keeping the examples</span>
 <span class="sd">with high probability of belong to their provided label class.</span>
 
-<span class="sd">2. Confident **errors** -- examples we are confident are labeled erroneously.</span>
-<span class="sd">We prune these. Comptuationally, this means pruning the examples with</span>
+<span class="sd">2. Confident *errors* --- examples we are confident are labeled erroneously.</span>
+<span class="sd">We prune these. Mathematically, this means pruning the examples with</span>
 <span class="sd">high probability of belong to a different class.</span>
 
 <span class="sd">Examples</span>
@@ -379,76 +398,88 @@
 <span class="sd">&gt;&gt;&gt; # Estimate the predictions as if you had trained without label issues.</span>
 <span class="sd">&gt;&gt;&gt; pred = cl.predict(X_test)</span>
 
-<span class="sd">The easiest way to use any model (Tensorflow, caffe2, PyTorch, etc.)</span>
-<span class="sd">with ``cleanlab`` is to wrap it in a class that inherits</span>
-<span class="sd">the ``sklearn.base.BaseEstimator``:</span>
+<span class="sd">If the model is not sklearn-compatible by default, it might be the case that</span>
+<span class="sd">standard packages can adapt the model. For example, you can adapt PyTorch</span>
+<span class="sd">models using `skorch &lt;https://skorch.readthedocs.io/&gt;`_ and adapt Keras models</span>
+<span class="sd">using `SciKeras &lt;https://www.adriangb.com/scikeras/&gt;`_.</span>
+
+<span class="sd">If an open-source adapter doesn't already exist, you can manually wrap the</span>
+<span class="sd">model to be sklearn-compatible. This is made easy by inheriting from</span>
+<span class="sd">`sklearn.base.BaseEstimator</span>
+<span class="sd">&lt;https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html&gt;`_:</span>
 
 <span class="sd">.. code:: python</span>
 
 <span class="sd">    from sklearn.base import BaseEstimator</span>
-<span class="sd">    class YourModel(BaseEstimator): # Inherits sklearn base classifier</span>
+
+<span class="sd">    class YourModel(BaseEstimator):</span>
 <span class="sd">        def __init__(self, ):</span>
 <span class="sd">            pass</span>
-<span class="sd">        def fit(self, X, y, sample_weight = None):</span>
+<span class="sd">        def fit(self, X, y, sample_weight=None):</span>
 <span class="sd">            pass</span>
 <span class="sd">        def predict(self, X):</span>
 <span class="sd">            pass</span>
 <span class="sd">        def predict_proba(self, X):</span>
 <span class="sd">            pass</span>
-<span class="sd">        def score(self, X, y, sample_weight = None):</span>
+<span class="sd">        def score(self, X, y, sample_weight=None):</span>
 <span class="sd">            pass</span>
 
 <span class="sd">Note</span>
 <span class="sd">----</span>
 
-<span class="sd">* `labels` - The given (maybe noisy) labels in the original dataset, which may have errors.</span>
-<span class="sd">* Class labels must be formatted as natural numbers: 0, 1, ..., num_classes-1</span>
+<span class="sd">* `labels` refers to the given labels in the original dataset, which may have errors</span>
+<span class="sd">* labels must be integers in 0, 1, ..., K-1, where K is the total number of classes</span>
 
 <span class="sd">Note</span>
 <span class="sd">----</span>
 
-<span class="sd">Confident Learning is the state-of-the-art (Northcutt et al., 2021) for</span>
+<span class="sd">Confident learning is the state-of-the-art (`Northcutt et al., 2021 &lt;https://jair.org/index.php/jair/article/view/12125&gt;`_) for</span>
 <span class="sd">weak supervision, finding label issues in datasets, learning with noisy</span>
-<span class="sd">labels, uncertainty estimation, and more. It works with ANY classifier,</span>
-<span class="sd">including deep neural networks. See clf parameter.</span>
+<span class="sd">labels, uncertainty estimation, and more. It works with *any* classifier,</span>
+<span class="sd">including deep neural networks. See the `clf` parameter.</span>
 
 <span class="sd">Confident learning is a subfield of theory and algorithms of machine learning with noisy labels.</span>
 <span class="sd">Cleanlab achieves state-of-the-art performance of any open-sourced implementation of confident</span>
 <span class="sd">learning across a variety of tasks like multi-class classification, multi-label classification,</span>
 <span class="sd">and PU learning.</span>
 
-<span class="sd">Given any classifier having the predict_proba() method, an input feature</span>
-<span class="sd">matrix, `X`, and a discrete vector of noisy labels, `labels`, Confident Learning estimates the</span>
-<span class="sd">classifications that would be obtained if the `true_labels` had instead been provided</span>
-<span class="sd">to the classifier during training. `labels` denotes the noisy label instead of</span>
-<span class="sd">\\tilde(y) (used in confident learning paper), for ASCII encoding reasons.</span>
+<span class="sd">Given any classifier having the `predict_proba` method, an input feature</span>
+<span class="sd">matrix `X`, and a discrete vector of noisy labels `labels`, confident learning estimates the</span>
+<span class="sd">classifications that would be obtained if the *true labels* had instead been provided</span>
+<span class="sd">to the classifier during training. `labels` denotes the noisy labels instead of</span>
+<span class="sd">the :math:`\\tilde{y}` used in confident learning paper.</span>
 <span class="sd">"""</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LogReg</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">cleanlab.internal.util</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">assert_inputs_are_valid</span><span class="p">,</span>
     <span class="n">value_counts</span><span class="p">,</span>
+    <span class="n">compress_int_array</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">cleanlab.count</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">estimate_py_noise_matrices_and_cv_pred_proba</span><span class="p">,</span>
     <span class="n">estimate_py_and_noise_matrices_from_probabilities</span><span class="p">,</span>
     <span class="n">estimate_cv_predicted_probabilities</span><span class="p">,</span>
     <span class="n">estimate_latent</span><span class="p">,</span>
+    <span class="n">compute_confident_joint</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">cleanlab.internal.latent_algebra</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">compute_py_inv_noise_matrix</span><span class="p">,</span>
     <span class="n">compute_noise_matrix_from_inverse</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cleanlab.rank</span> <span class="kn">import</span> <span class="n">get_label_quality_scores</span>
 <span class="kn">from</span> <span class="nn">cleanlab</span> <span class="kn">import</span> <span class="nb">filter</span>
 
 
 <div class="viewcode-block" id="CleanLearning"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning">[docs]</a><span class="k">class</span> <span class="nc">CleanLearning</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>  <span class="c1"># Inherits sklearn classifier</span>
-    <span class="sd">"""CleanLearning = Machine Learning with cleaned data (even if with messy, error-prone data).</span>
+    <span class="sd">"""</span>
+<span class="sd">    CleanLearning = Machine Learning with cleaned data (even when training on messy, error-ridden data).</span>
 
 <span class="sd">    Automated and robust learning with noisy labels using any dataset and any model. This class</span>
 <span class="sd">    trains a model `clf` with error-prone, noisy labels as if the model had been instead trained</span>
@@ -457,41 +488,59 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    clf : :obj:`sklearn.classifier` compliant class (e.g. skorch wraps around PyTorch)</span>
-<span class="sd">      See ``cleanlab.experimental`` for examples of sklearn wrappers, e.g. around PyTorch and FastText.</span>
-<span class="sd">      The clf object must have the following three functions defined:</span>
-<span class="sd">      1. clf.predict_proba(X) # Predicted probabilities</span>
-<span class="sd">      2. clf.predict(X) # Predict labels</span>
-<span class="sd">      3. clf.fit(X, y, sample_weight) # Train classifier</span>
+<span class="sd">    clf : estimator instance, optional</span>
+<span class="sd">      A classifier implementing the `sklearn estimator API</span>
+<span class="sd">      &lt;https://scikit-learn.org/stable/developers/develop.html#rolling-your-own-estimator&gt;`_,</span>
+<span class="sd">      defining the following functions:</span>
+
+<span class="sd">      * ``clf.fit(X, y, sample_weight=None)``</span>
+<span class="sd">      * ``clf.predict_proba(X)``</span>
+<span class="sd">      * ``clf.predict(X)``</span>
+<span class="sd">      * ``clf.score(X, y, sample_weight=None)``</span>
+
+<span class="sd">      See :py:mod:`cleanlab.experimental` for examples of sklearn wrappers,</span>
+<span class="sd">      e.g. around PyTorch and FastText.</span>
+
+<span class="sd">      If the model is not sklearn-compatible by default, it might be the case that</span>
+<span class="sd">      standard packages can adapt the model. For example, you can adapt PyTorch</span>
+<span class="sd">      models using `skorch &lt;https://skorch.readthedocs.io/&gt;`_ and adapt Keras models</span>
+<span class="sd">      using `SciKeras &lt;https://www.adriangb.com/scikeras/&gt;`_.</span>
+
 <span class="sd">      Stores the classifier used in Confident Learning.</span>
-<span class="sd">      Default classifier used is logistic regression.</span>
+<span class="sd">      Default classifier used is `sklearn.linear_model.LogisticRegression</span>
+<span class="sd">      &lt;https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html&gt;`_.</span>
 
-<span class="sd">    seed : :obj:`int`, default: None</span>
+<span class="sd">    seed : int, optional</span>
 <span class="sd">      Set the default state of the random number generator used to split</span>
-<span class="sd">      the cross-validated folds. If None, uses np.random current random state.</span>
+<span class="sd">      the cross-validated folds. By default, uses `np.random` current random state.</span>
 
-<span class="sd">    cv_n_folds : :obj:`int`</span>
+<span class="sd">    cv_n_folds : int, default=5</span>
 <span class="sd">      This class needs holdout predicted probabilities for every data example</span>
 <span class="sd">      and if not provided, uses cross-validation to compute them.</span>
-<span class="sd">      cv_n_folds sets the number of cross-validation folds used to compute</span>
-<span class="sd">      out-of-sample probabilities for each example in X.</span>
+<span class="sd">      `cv_n_folds` sets the number of cross-validation folds used to compute</span>
+<span class="sd">      out-of-sample probabilities for each example in `X`.</span>
 
-<span class="sd">    converge_latent_estimates : :obj:`bool` (Default: False)</span>
+<span class="sd">    converge_latent_estimates : bool, optional</span>
 <span class="sd">      If true, forces numerical consistency of latent estimates. Each is</span>
 <span class="sd">      estimated independently, but they are related mathematically with closed</span>
 <span class="sd">      form equivalences. This will iteratively enforce consistency.</span>
 
-<span class="sd">    pulearning : :obj:`int` (0 or 1, default: None)</span>
+<span class="sd">    pulearning : {None, 0, 1}, default=None</span>
 <span class="sd">      Only works for 2 class datasets. Set to the integer of the class that is</span>
-<span class="sd">      perfectly labeled (certain no errors in that class).</span>
+<span class="sd">      perfectly labeled (you are certain that there are no errors in that class).</span>
 
-<span class="sd">    find_label_issues_kwargs : dict, default = {}</span>
-<span class="sd">      Optional keyword arguments to pass into `filter.find_label_issues()`.</span>
-<span class="sd">      Options that may especially impact accuracy include:</span>
-<span class="sd">      `filter_by`, `frac_noise`, `min_examples_per_class`</span>
+<span class="sd">    find_label_issues_kwargs : dict, optional</span>
+<span class="sd">      Keyword arguments to pass into :py:func:`filter.find_label_issues</span>
+<span class="sd">      &lt;cleanlab.filter.find_label_issues&gt;`. Options that may especially impact</span>
+<span class="sd">      accuracy include: `filter_by`, `frac_noise`, `min_examples_per_class`.</span>
 
-<span class="sd">    verbose : :obj:`int` (0 or 1, default: 1)</span>
-<span class="sd">      Controls how much output is printed. Set = 0 to suppress print statements.</span>
+<span class="sd">    label_quality_scores_kwargs : dict, optional</span>
+<span class="sd">      Keyword arguments to pass into :py:func:`rank.get_label_quality_scores</span>
+<span class="sd">      &lt;cleanlab.rank.get_label_quality_scores&gt;`. Options include: `method`, `adjust_pred_probs`.</span>
+
+<span class="sd">    verbose : bool, default=True</span>
+<span class="sd">      Controls how much output is printed. Set to ``False`` to suppress print</span>
+<span class="sd">      statements.</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -504,7 +553,8 @@
         <span class="n">converge_latent_estimates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">pulearning</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">find_label_issues_kwargs</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">label_quality_scores_kwargs</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="k">if</span> <span class="n">clf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -528,7 +578,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">converge_latent_estimates</span> <span class="o">=</span> <span class="n">converge_latent_estimates</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pulearning</span> <span class="o">=</span> <span class="n">pulearning</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span> <span class="o">=</span> <span class="n">find_label_issues_kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_quality_scores_kwargs</span> <span class="o">=</span> <span class="n">label_quality_scores_kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="o">=</span> <span class="kc">None</span>
@@ -549,89 +601,138 @@
         <span class="n">thresholds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">noise_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">inverse_noise_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">label_issues_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">label_issues</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">clf_kwargs</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">clf_final_kwargs</span><span class="o">=</span><span class="p">{},</span>
     <span class="p">):</span>
-        <span class="sd">"""This method trains the model `self.clf` with error-prone, noisy labels as if</span>
+        <span class="sd">"""</span>
+<span class="sd">        Train the model `clf` with error-prone, noisy labels as if</span>
 <span class="sd">        the model had been instead trained on a dataset with the correct labels.</span>
-<span class="sd">        It achieves this by: first training `clf` via cross-validation on the noisy data,</span>
+<span class="sd">        `fit` achieves this by first training `clf` via cross-validation on the noisy data,</span>
 <span class="sd">        using the resulting predicted probabilities to identify label issues,</span>
 <span class="sd">        pruning the data with label issues, and finally training `clf` on the remaining clean data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : :obj:`np.array`</span>
-<span class="sd">          Input feature matrix (N, D), 2D numpy array</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">          Input feature matrix of shape ``(N, ...)``, where N is the number of</span>
+<span class="sd">          examples. The classifier that this instance was initialized with,</span>
+<span class="sd">          `clf`, must be able to handle data with this shape.</span>
 
-<span class="sd">        labels : :obj:`np.array`</span>
-<span class="sd">          A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
-<span class="sd">          *Format requirements*: the labels must be in the set {0, 1, ..., num_classes-1}.</span>
+<span class="sd">        labels : np.array</span>
+<span class="sd">          An array of shape ``(N,)`` of noisy labels, i.e. some labels may be erroneous.</span>
+<span class="sd">          Elements must be in the set 0, 1, ..., K-1, where K is the number of classes.</span>
 
-<span class="sd">        pred_probs : :obj:`np.array` (shape (N, num_classes))</span>
-<span class="sd">          P(label=k|x) is a matrix with num_classes model-predicted probabilities.</span>
-<span class="sd">          Each row of this matrix corresponds to an example `x` and contains the model-predicted</span>
-<span class="sd">          probabilities that `x` belongs to each possible class.</span>
-<span class="sd">          The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
-<span class="sd">          `pred_probs` should have been computed using 3 (or higher) fold cross-validation.</span>
+<span class="sd">        pred_probs : np.array, optional</span>
+<span class="sd">          An array of shape ``(N, K)`` of model-predicted probabilities,</span>
+<span class="sd">          ``P(label=k|x)``. Each row of this matrix corresponds</span>
+<span class="sd">          to an example `x` and contains the model-predicted probabilities that</span>
+<span class="sd">          `x` belongs to each possible class, for each of the K classes. The</span>
+<span class="sd">          columns must be ordered such that these probabilities correspond to</span>
+<span class="sd">          class 0, 1, ..., K-1. `pred_probs` should have been computed using 3 (or</span>
+<span class="sd">          higher) fold cross-validation.</span>
 
 <span class="sd">          Note</span>
 <span class="sd">          ----</span>
-<span class="sd">          If you are not sure, leave `pred_probs = None` (default) and it will be computed</span>
-<span class="sd">          for you using cross-validation with your model.</span>
+<span class="sd">          If you are not sure, leave ``pred_probs=None`` (the default) and it</span>
+<span class="sd">          will be computed for you using cross-validation with the model.</span>
 
-<span class="sd">        thresholds : :obj:`iterable` (list or np.array) of shape (num_classes, 1)  or (num_classes,)</span>
-<span class="sd">          P(label^=k|label=k). List of probabilities used to determine the cutoff</span>
-<span class="sd">          predicted probability necessary to consider an example as a given</span>
-<span class="sd">          class label.</span>
-<span class="sd">          Default is ``None``. These are computed for you automatically.</span>
-<span class="sd">          If an example has a predicted probability "greater" than</span>
-<span class="sd">          this threshold, it is counted as having true_label = k. This is</span>
-<span class="sd">          not used for pruning/filtering, only for estimating the noise rates using</span>
-<span class="sd">          confident counts. Values in list should be between 0 and 1.</span>
+<span class="sd">        thresholds : array_like, optional</span>
+<span class="sd">          An array of shape ``(K, 1)`` or ``(K,)`` of per-class threshold</span>
+<span class="sd">          probabilities, used to determine the cutoff probability necessary to</span>
+<span class="sd">          consider an example as a given class label (see `Northcutt et al.,</span>
+<span class="sd">          2021 &lt;https://jair.org/index.php/jair/article/view/12125&gt;`_, Section</span>
+<span class="sd">          3.1, Equation 2).</span>
 
-<span class="sd">        noise_matrix : :obj:`np.array` of shape (num_classes, num_classes)</span>
-<span class="sd">          A conditional probability matrix of the form P(label=k_s|true_label=k_y) containing</span>
-<span class="sd">          the fraction of examples in every class, labeled as every other class.</span>
-<span class="sd">          Assumes columns of noise_matrix sum to 1.</span>
+<span class="sd">          This is for advanced users only. If not specified, these are computed</span>
+<span class="sd">          for you automatically. If an example has a predicted probability</span>
+<span class="sd">          greater than this threshold, it is counted as having true_label =</span>
+<span class="sd">          k. This is not used for pruning/filtering, only for estimating the</span>
+<span class="sd">          noise rates using confident counts.</span>
 
-<span class="sd">        inverse_noise_matrix : :obj:`np.array` of shape (num_classes, num_classes)</span>
-<span class="sd">          A conditional probability matrix of the form P(true_label=k_y|label=k_s). Contains</span>
-<span class="sd">          the estimated fraction observed examples in each class k_s, that are</span>
-<span class="sd">          mislabeled examples from every other class k_y. If None, the</span>
-<span class="sd">          inverse_noise_matrix will be computed from pred_probs and labels.</span>
-<span class="sd">          Assumes columns of inverse_noise_matrix sum to 1.</span>
+<span class="sd">        noise_matrix : np.array, optional</span>
+<span class="sd">          An array of shape ``(N, N)`` representing the conditional probability</span>
+<span class="sd">          matrix ``P(label=k_s | true label=k_y)``, the</span>
+<span class="sd">          fraction of examples in every class, labeled as every other class.</span>
+<span class="sd">          Assumes columns of `noise_matrix` sum to 1.</span>
 
-<span class="sd">        label_issues_mask : np.array&lt;bool&gt;, default = None</span>
-<span class="sd">          A boolean mask for the entire dataset such as those returned by:</span>
-<span class="sd">          `CleanLearning.find_label_issues()` or `filter.find_label_issues()`.</span>
-<span class="sd">          If specified, examples corresponding to False entries will be pruned from the data before</span>
-<span class="sd">          training the `clf` model.</span>
+<span class="sd">        inverse_noise_matrix : np.array, optional</span>
+<span class="sd">          An array of shape ``(N, N)`` representing the conditional probability</span>
+<span class="sd">          matrix ``P(true label=k_y | label=k_s)``,</span>
+<span class="sd">          the estimated fraction observed examples in each class ``k_s``</span>
+<span class="sd">          that are mislabeled examples from every other class ``k_y``,</span>
+<span class="sd">          Assumes columns of `inverse_noise_matrix` sum to 1.</span>
+
+<span class="sd">        label_issues : pd.DataFrame or np.array, optional</span>
+<span class="sd">          Specifies the label issues for each example in dataset.</span>
+<span class="sd">          If ``pd.DataFrame``, must be formatted as the one returned by:</span>
+<span class="sd">          :py:meth:`CleanLearning.find_label_issues</span>
+<span class="sd">          &lt;cleanlab.classification.CleanLearning.find_label_issues&gt;` or</span>
+<span class="sd">          :py:meth:`CleanLearning.get_label_issues</span>
+<span class="sd">          &lt;cleanlab.classification.CleanLearning.get_label_issues&gt;`.</span>
+<span class="sd">          If ``np.array``, must contain either boolean `label_issues_mask` as output by:</span>
+<span class="sd">          default :py:func:`filter.find_label_issues &lt;cleanlab.filter.find_label_issues&gt;`,</span>
+<span class="sd">          or integer indices as output by</span>
+<span class="sd">          :py:func:`filter.find_label_issues &lt;cleanlab.filter.find_label_issues&gt;`</span>
+<span class="sd">          with its `return_indices_ranked_by` argument specified.</span>
 <span class="sd">          Providing this argument significantly reduces the time this method takes to run by</span>
-<span class="sd">          skipping the slow cross validation training step necessary to pre-compute the boolean mask</span>
-<span class="sd">          of label issues</span>
+<span class="sd">          skipping the slow cross-validation step necessary to find label issues.</span>
+<span class="sd">          Examples identified to have label issues will be</span>
+<span class="sd">          pruned from the data before training the final `clf` model.</span>
 
-<span class="sd">        clf_kwargs : dict, default = {}</span>
-<span class="sd">          Optional keyword arguments to pass into `clf` fit() method.</span>
+<span class="sd">          Caution: If you provide `label_issues` without having previously called</span>
+<span class="sd">          :py:meth:`self.find_label_issues&lt;cleanlab.classification.CleanLearning.find_label_issues&gt;`,</span>
+<span class="sd">          e.g. as a ``np.array``, then some functionality like training with sample weights may be disabled.</span>
 
-<span class="sd">        clf_final_kwargs : dict, default = {}</span>
-<span class="sd">          Optional extra keyword arguments to pass into the final `clf` fit() on the cleaned data</span>
-<span class="sd">          but not the `clf` fit() in each fold of cross-validation on the noisy data.</span>
-<span class="sd">          The final fit() will also receive `clf_kwargs`,</span>
+<span class="sd">        clf_kwargs : dict, optional</span>
+<span class="sd">          Optional keyword arguments to pass into `clf`'s ``fit()`` method.</span>
+
+<span class="sd">        clf_final_kwargs : dict, optional</span>
+<span class="sd">          Optional extra keyword arguments to pass into the final `clf` ``fit()`` on the cleaned data</span>
+<span class="sd">          but not the `clf` ``fit()`` in each fold of cross-validation on the noisy data.</span>
+<span class="sd">          The final ``fit()`` will also receive `clf_kwargs`,</span>
 <span class="sd">          but these may be overwritten by values in `clf_final_kwargs`.</span>
-<span class="sd">          This can be useful for training differently in the final fit()</span>
+<span class="sd">          This can be useful for training differently in the final ``fit()``</span>
 <span class="sd">          than during cross-validation.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        tuple</span>
-<span class="sd">          (label_issues_mask, sample_weight)"""</span>
+<span class="sd">        CleanLearning</span>
+<span class="sd">          ``self`` - Fitted estimator that has all the same methods as any sklearn estimator.</span>
+
+
+<span class="sd">          After calling ``self.fit()``, this estimator also stores a few extra useful attributes, in particular</span>
+<span class="sd">          `self.label_issues_df`: a ``pd.DataFrame`` accessible via</span>
+<span class="sd">          :py:meth:`get_label_issues</span>
+<span class="sd">          &lt;cleanlab.classification.CleanLearning.get_label_issues&gt;`</span>
+<span class="sd">          of similar format as the one returned by: :py:meth:`CleanLearning.find_label_issues&lt;cleanlab.classification.CleanLearning.find_label_issues&gt;`.</span>
+<span class="sd">          See documentation of :py:meth:`CleanLearning.find_label_issues&lt;cleanlab.classification.CleanLearning.find_label_issues&gt;`</span>
+<span class="sd">          for column descriptions.</span>
+<span class="sd">          After calling ``self.fit()``, `self.label_issues_df` may also contain an extra column:</span>
+
+<span class="sd">          * *sample_weight*: Numeric values that were used to weight examples during</span>
+<span class="sd">            the final training of `clf` in ``CleanLearning.fit()``.</span>
+<span class="sd">            `sample_weight` column will only be present if sample weights were actually used.</span>
+<span class="sd">            These weights are assigned to each example based on the class it belongs to,</span>
+<span class="sd">            i.e. there are only num_classes unique sample_weight values.</span>
+<span class="sd">            The sample weight for an example belonging to class k is computed as ``1 / p(given_label = k | true_label = k)``.</span>
+<span class="sd">            This sample_weight normalizes the loss to effectively trick `clf` into learning with the distribution</span>
+<span class="sd">            of the true labels by accounting for the noisy data pruned out prior to training on cleaned data.</span>
+<span class="sd">            In other words, examples with label issues were removed, so this weights the data proportionally</span>
+<span class="sd">            so that the classifier trains as if it had all the true labels,</span>
+<span class="sd">            not just the subset of cleaned data left after pruning out the label issues.</span>
+<span class="sd">        """</span>
 
         <span class="n">clf_final_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">clf_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">clf_final_kwargs</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span> <span class="o">=</span> <span class="n">clf_final_kwargs</span>
 
-        <span class="k">if</span> <span class="n">label_issues_mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">label_issues_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues</span><span class="p">(</span>
+        <span class="k">if</span> <span class="n">label_issues</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">"If you already ran self.find_label_issues() and don't want to recompute, you "</span>
+                    <span class="s2">"should pass the label_issues in as a parameter to this function next time."</span>
+                <span class="p">)</span>
+            <span class="n">label_issues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues</span><span class="p">(</span>
                 <span class="n">X</span><span class="p">,</span>
                 <span class="n">labels</span><span class="p">,</span>
                 <span class="n">pred_probs</span><span class="o">=</span><span class="n">pred_probs</span><span class="p">,</span>
@@ -640,11 +741,29 @@
                 <span class="n">inverse_noise_matrix</span><span class="o">=</span><span class="n">inverse_noise_matrix</span><span class="p">,</span>
                 <span class="n">clf_kwargs</span><span class="o">=</span><span class="n">clf_kwargs</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"Using provided label_issues_mask instead of finding label issues."</span><span class="p">)</span>
 
-        <span class="c1"># Always overwrites `self.label_issues_mask` and ensures same length as `X` and `labels`.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="n">label_issues_mask</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># set args that may not have been set if `self.find_label_issues()` wasn't called yet</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Using provided label_issues instead of finding label issues."</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">"These will overwrite self.label_issues_df and will be returned by "</span>
+                        <span class="s2">"`self.get_label_issues()`. "</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># label_issues always overwrites self.label_issues_df. Ensure it is properly formatted:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_label_issues_arg</span><span class="p">(</span><span class="n">label_issues</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">"label_quality"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">pred_probs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Computing label quality scores based on given pred_probs ..."</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span><span class="p">[</span><span class="s2">"label_quality"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_label_quality_scores</span><span class="p">(</span>
+                <span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">label_quality_scores_kwargs</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span><span class="p">[</span><span class="s2">"is_label_issue"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="n">x_mask</span> <span class="o">=</span> <span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span>
         <span class="n">x_cleaned</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">x_mask</span><span class="p">]</span>
         <span class="n">labels_cleaned</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">x_mask</span><span class="p">]</span>
@@ -652,10 +771,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pruning </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples with label issues ..."</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Remaining clean data has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels_cleaned</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples."</span><span class="p">)</span>
 
-        <span class="c1"># Check if sample_weight in clf.fit()</span>
+        <span class="c1"># Check if sample_weight in args of clf.fit()</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="s2">"sample_weight"</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span><span class="o">.</span><span class="n">args</span>
-            <span class="ow">and</span> <span class="s2">"sample_weight"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_kwargs</span>
+            <span class="ow">and</span> <span class="s2">"sample_weight"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="p">):</span>
             <span class="c1"># Re-weight examples in the loss function for the final fitting</span>
             <span class="c1"># labels.t. the "apparent" original number of examples in each class</span>
@@ -664,63 +784,87 @@
                 <span class="nb">print</span><span class="p">(</span>
                     <span class="s2">"Assigning sample weights for final training based on estimated label quality."</span>
                 <span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels_cleaned</span><span class="p">))</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels_cleaned</span><span class="p">))</span>  <span class="c1"># length of pruned dataset</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">):</span>
                 <span class="n">sample_weight_k</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noise_matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">k</span><span class="p">],</span> <span class="mf">1e-3</span><span class="p">)</span>  <span class="c1"># clip sample weights</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">[</span><span class="n">labels_cleaned</span> <span class="o">==</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_weight_k</span>
+                <span class="n">sample_weight</span><span class="p">[</span><span class="n">labels_cleaned</span> <span class="o">==</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_weight_k</span>
 
+            <span class="n">sample_weight_expanded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+            <span class="p">)</span>  <span class="c1"># pad pruned examples with zeros, length of original dataset</span>
+            <span class="n">sample_weight_expanded</span><span class="p">[</span><span class="n">x_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_weight</span>
+            <span class="c1"># Store the sample weight for every example in the original, unfiltered dataset</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span><span class="p">[</span><span class="s2">"sample_weight"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_weight_expanded</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span><span class="p">[</span>
+                <span class="s2">"sample_weight"</span>
+            <span class="p">]</span>  <span class="c1"># pointer to here to avoid duplication</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">"Fitting final model on the clean data ..."</span><span class="p">)</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
                 <span class="n">x_cleaned</span><span class="p">,</span>
                 <span class="n">labels_cleaned</span><span class="p">,</span>
-                <span class="n">sample_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">,</span>
+                <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
                 <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="s2">"sample_weight"</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span><span class="o">.</span><span class="n">args</span>
+                <span class="ow">and</span> <span class="s2">"sample_weight"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_matrix</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">"Cannot utilize sample weights for final training. To utilize must either specify noise_matrix "</span>
+                    <span class="s2">"or have previously called self.find_label_issues() instead of filter.find_label_issues()"</span>
+                <span class="p">)</span>
+
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">"Fitting final model on the clean data ..."</span><span class="p">)</span>
             <span class="c1"># This is less accurate, but best we can do if no sample_weight.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_cleaned</span><span class="p">,</span> <span class="n">labels_cleaned</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">"Label issues stored in label_issues_df DataFrame accessible via: self.get_label_issues(). "</span>
+                <span class="s2">"Call self.save_space() to delete this potentially large DataFrame attribute."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="CleanLearning.predict"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">"""Returns a vector of predictions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : :obj:`np.array` of shape (n, m)</span>
-<span class="sd">          The test data as a feature matrix."""</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">          An array of shape ``(N, ...)`` of test data."""</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CleanLearning.predict_proba"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">"""Returns a vector of probabilities P(true_label=k)</span>
-<span class="sd">        for each example in X.</span>
+        <span class="sd">"""Returns a vector of predicted probabilities for each example in X,</span>
+<span class="sd">        ``P(true label=k)``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : :obj:`np.array` of shape (n, m)</span>
-<span class="sd">          The test data as a feature matrix."""</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">          An array of shape ``(N, ...)`` of test data."""</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CleanLearning.score"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">"""Returns the clf's score on a test set X with labels y.</span>
-<span class="sd">        Uses the model/clf's default scoring function.</span>
+        <span class="sd">"""Returns the `clf`'s score on a test set `X` with labels `y`.</span>
+<span class="sd">        Uses the model's default scoring function.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : :obj:`np.array` of shape (n, m)</span>
-<span class="sd">          The test data as a feature matrix.</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">          An array of shape ``(N, ...)`` of test data.</span>
 
-<span class="sd">        y : :obj:`np.array&lt;int&gt;` of shape (n,) or (n, 1)</span>
-<span class="sd">          The test classification labels as an array.</span>
+<span class="sd">        y : np.array</span>
+<span class="sd">          An array of shape ``(N,)`` or ``(N, 1)`` of test labels.</span>
 
-<span class="sd">        sample_weight : :obj:`np.array&lt;float&gt;` of shape (n,) or (n, 1)</span>
-<span class="sd">          Weights each example when computing the score / accuracy."""</span>
+<span class="sd">        sample_weight : np.array, optional</span>
+<span class="sd">          An array of shape ``(N,)`` or ``(N, 1)`` used to weight each example when computing the score."""</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">"score"</span><span class="p">):</span>
 
@@ -745,38 +889,65 @@
         <span class="n">thresholds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">noise_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">inverse_noise_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_space</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">clf_kwargs</span><span class="o">=</span><span class="p">{},</span>
     <span class="p">):</span>
-        <span class="sd">"""Runs cross-validation to get out-of-sample pred_probs from `clf`</span>
-<span class="sd">        and then calls `filter.find_label_issues(labels, pred_probs)` to find label issues.</span>
-<span class="sd">        The resulting label_issues_mask is saved in self.label_issues_mask and returned.</span>
-<span class="sd">        Kwargs for `filter.find_label_issues` must have already been specified</span>
-<span class="sd">        in the initialization of CleanLearning, not here.</span>
+        <span class="sd">"""</span>
+<span class="sd">        Identifies potential label issues in the dataset using confident learning.</span>
 
-<span class="sd">        Unlike `filter.find_label_issues`, which requires `pred_probs`,</span>
-<span class="sd">        this method only requires a classifier and it can do the cross-validation training for you.</span>
+<span class="sd">        Runs cross-validation to get out-of-sample pred_probs from `clf`</span>
+<span class="sd">        and then calls :py:func:`filter.find_label_issues</span>
+<span class="sd">        &lt;cleanlab.filter.find_label_issues&gt;` to find label issues.</span>
+<span class="sd">        These label issues are cached internally and returned in a pandas DataFrame.</span>
+<span class="sd">        Kwargs for :py:func:`filter.find_label_issues</span>
+<span class="sd">        &lt;cleanlab.filter.find_label_issues&gt;` must have already been specified</span>
+<span class="sd">        in the initialization of this class, not here.</span>
+
+<span class="sd">        Unlike :py:func:`filter.find_label_issues</span>
+<span class="sd">        &lt;cleanlab.filter.find_label_issues&gt;`, which requires `pred_probs`,</span>
+<span class="sd">        this method only requires a classifier and it can do the cross-validation for you.</span>
 <span class="sd">        Both methods return the same boolean mask that identifies which examples have label issues.</span>
+<span class="sd">        This is the preferred method to use if you plan to subsequently invoke:</span>
+<span class="sd">        :py:meth:`CleanLearning.fit()</span>
+<span class="sd">        &lt;cleanlab.classification.CleanLearning.fit&gt;`.</span>
 
-<span class="sd">        Note: This method computes the label issues from scratch, to access previously-computed</span>
-<span class="sd">        label issues from this CleanLearning instance, use `self.get_label_issues()`.</span>
+<span class="sd">        Note: this method computes the label issues from scratch. To access</span>
+<span class="sd">        previously-computed label issues from this :py:class:`CleanLearning</span>
+<span class="sd">        &lt;cleanlab.classification.CleanLearning&gt;` instance, use the</span>
+<span class="sd">        :py:meth:`get_label_issues</span>
+<span class="sd">        &lt;cleanlab.classification.CleanLearning.get_label_issues&gt;` method.</span>
 
-<span class="sd">        This is the method called to find label issues inside `CleanLearning.fit()`.</span>
-<span class="sd">        For descriptions of the arguments, see `CleanLearning.fit()` documentation.</span>
+<span class="sd">        This is the method called to find label issues inside</span>
+<span class="sd">        :py:meth:`CleanLearning.fit()</span>
+<span class="sd">        &lt;cleanlab.classification.CleanLearning.fit&gt;`</span>
+<span class="sd">        and they share mostly the same parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        save_space : bool, optional</span>
+<span class="sd">          If True, then returned `label_issues_df` will not be stored as attribute.</span>
+<span class="sd">          This means some other methods like `self.get_label_issues()` will no longer work.</span>
+
+
+<span class="sd">        For info about the **other parameters**, see the docstring of :py:meth:`CleanLearning.fit()</span>
+<span class="sd">        &lt;cleanlab.classification.CleanLearning.fit&gt;`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        label_issues_mask : np.array&lt;bool&gt;</span>
-<span class="sd">          This method returns a boolean mask for the entire dataset where True represents</span>
-<span class="sd">          a label issue and False represents an example that is accurately labeled with high confidence.</span>
-<span class="sd">        """</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">          pandas DataFrame of label issues for each example.</span>
+<span class="sd">          Unless `save_space` argument is specified, same DataFrame is also stored as</span>
+<span class="sd">          `self.label_issues_df` attribute accessible via</span>
+<span class="sd">          :py:meth:`get_label_issues&lt;cleanlab.classification.CleanLearning.get_label_issues&gt;`.</span>
+<span class="sd">          Each row represents an example from our dataset and</span>
+<span class="sd">          the DataFrame may contain the following columns:</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span>
-                <span class="s2">"Overwriting previously identified label issues stored at self.label_issues_mask. "</span>
-                <span class="s2">"`self.get_label_issues()` will now return the newly identified label issues. "</span>
-                <span class="s2">"If you already ran `self.find_label_issues()` and don't want to recompute, you"</span>
-                <span class="s2">"should pass the `label_issues_mask` in as a parameter to this function."</span>
-            <span class="p">)</span>
+<span class="sd">          * *is_label_issue*: boolean mask for the entire dataset where ``True`` represents a label issue and ``False`` represents an example that is accurately labeled with high confidence. This column is equivalent to `label_issues_mask` output from :py:func:`filter.find_label_issues&lt;cleanlab.filter.find_label_issues&gt;`.</span>
+<span class="sd">          * *label_quality*: Numeric score that measures the quality of each label (how likely it is to be correct, with lower scores indicating potentially erroneous labels).</span>
+<span class="sd">          * *given_label*: Integer indices corresponding to the class label originally given for this example (same as `labels` input). Included here for ease of comparison against `clf` predictions, only present if "predicted_label" column is present.</span>
+<span class="sd">          * *predicted_label*: Integer indices corresponding to the class predicted by trained `clf` model. Only present if ``pred_probs`` were provided as input or computed during label-issue-finding.</span>
+<span class="sd">          * *sample_weight*: Numeric values used to weight examples during the final training of `clf` in :py:meth:`CleanLearning.fit()&lt;cleanlab.classification.CleanLearning.fit&gt;`. This column not be present after `self.find_label_issues()` but may be added after call to :py:meth:`CleanLearning.fit()&lt;cleanlab.classification.CleanLearning.fit&gt;`. For more precise definition of sample weights, see documentation of :py:meth:`CleanLearning.fit()&lt;cleanlab.classification.CleanLearning.fit&gt;`</span>
+<span class="sd">        """</span>
 
         <span class="c1"># Check inputs</span>
         <span class="n">allow_empty_X</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">pred_probs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">True</span>
@@ -793,14 +964,13 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_n_folds</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">"Need more data from each class for cross-validation. "</span>
-                <span class="s2">"Try decreasing `cv_n_folds` (eg. to 2,3) in CleanLearning()"</span>
+                <span class="s2">"Try decreasing cv_n_folds (eg. to 2 or 3) in CleanLearning()"</span>
             <span class="p">)</span>
         <span class="c1"># 'ps' is p(labels=k)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ps</span> <span class="o">=</span> <span class="n">value_counts</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">clf_kwargs</span> <span class="o">=</span> <span class="n">clf_kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_label_issues_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span><span class="p">)</span>
-
         <span class="c1"># self._process_label_issues_kwargs might set self.confident_joint. If so, we should use it.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">py</span><span class="p">,</span> <span class="n">noise_matrix</span><span class="p">,</span> <span class="n">inv_noise_matrix</span> <span class="o">=</span> <span class="n">estimate_latent</span><span class="p">(</span>
@@ -865,7 +1035,6 @@
                     <span class="n">thresholds</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span>
                     <span class="n">converge_latent_estimates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">converge_latent_estimates</span><span class="p">,</span>
                 <span class="p">)</span>
-
         <span class="c1"># If needed, compute P(label=k|x), denoted pred_probs (the predicted probabilities)</span>
         <span class="k">if</span> <span class="n">pred_probs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
@@ -882,7 +1051,13 @@
                 <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
                 <span class="n">clf_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_kwargs</span><span class="p">,</span>
             <span class="p">)</span>
-
+        <span class="c1"># If needed, compute the confident_joint (e.g. occurs if noise_matrix was given)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="o">=</span> <span class="n">compute_confident_joint</span><span class="p">(</span>
+                <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                <span class="n">pred_probs</span><span class="o">=</span><span class="n">pred_probs</span><span class="p">,</span>
+                <span class="n">thresholds</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="c1"># if pulearning == the integer specifying the class without noise.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pulearning</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="c1"># pulearning = 1 (no error in 1 class) implies p(label=1|true_label=0) = 0</span>
@@ -897,35 +1072,100 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">"Using predicted probabilities to identify label issues ..."</span><span class="p">)</span>
-        <span class="c1"># Get the boolean mask of the label issues</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">find_label_issues</span><span class="p">(</span>
+        <span class="n">label_issues_mask</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">find_label_issues</span><span class="p">(</span>
             <span class="n">labels</span><span class="p">,</span>
             <span class="n">pred_probs</span><span class="p">,</span>
             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="n">get_label_quality_scores</span><span class="p">(</span>
+            <span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">label_quality_scores_kwargs</span>
+        <span class="p">)</span>
+        <span class="n">label_issues_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">"is_label_issue"</span><span class="p">:</span> <span class="n">label_issues_mask</span><span class="p">,</span> <span class="s2">"label_quality"</span><span class="p">:</span> <span class="n">label_quality_scores</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Identified </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples with label issues."</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Identified </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">label_issues_mask</span><span class="p">)</span><span class="si">}</span><span class="s2"> examples with label issues."</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span></div>
+        <span class="n">predicted_labels</span> <span class="o">=</span> <span class="n">pred_probs</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">label_issues_df</span><span class="p">[</span><span class="s2">"given_label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">compress_int_array</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+        <span class="n">label_issues_df</span><span class="p">[</span><span class="s2">"predicted_label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">compress_int_array</span><span class="p">(</span><span class="n">predicted_labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">save_space</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">"Overwriting previously identified label issues stored at self.label_issues_df. "</span>
+                    <span class="s2">"self.get_label_issues() will now return the newly identified label issues. "</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="o">=</span> <span class="n">label_issues_df</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="n">label_issues_df</span><span class="p">[</span>
+                <span class="s2">"is_label_issue"</span>
+            <span class="p">]</span>  <span class="c1"># pointer to here to avoid duplication</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>  <span class="c1"># pragma: no cover</span>
+                <span class="s2">"Not storing label_issues as attributes since save_space was specified."</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">label_issues_df</span></div>
 
 <div class="viewcode-block" id="CleanLearning.get_label_issues"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning.get_label_issues">[docs]</a>    <span class="k">def</span> <span class="nf">get_label_issues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Accessor. Returns `self.label_issues_mask` if previously already computed."""</span>
+        <span class="sd">"""</span>
+<span class="sd">        Accessor. Returns `label_issues_df` attribute if previously already computed.</span>
+<span class="sd">        This ``pd.DataFrame`` describes the label issues identified for each example</span>
+<span class="sd">        (each row corresponds to an example).</span>
+<span class="sd">        For column definitions, see the documentation of</span>
+<span class="sd">        :py:meth:`CleanLearning.find_label_issues&lt;cleanlab.classification.CleanLearning.find_label_issues&gt;`.</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">"The label issues have not yet been computed. "</span>
-                <span class="s2">"Run self.find_label_issues() or self.fit() first."</span>
+                <span class="s2">"Label issues have not yet been computed. Run `self.find_label_issues()` or `self.fit()` first."</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span></div>
+
+<div class="viewcode-block" id="CleanLearning.save_space"><a class="viewcode-back" href="../../cleanlab/classification.html#cleanlab.classification.CleanLearning.save_space">[docs]</a>    <span class="k">def</span> <span class="nf">save_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Clears non-sklearn attributes of this estimator to save space (in-place).</span>
+<span class="sd">        This includes the DataFrame attribute that stored label issues which may be large for big datasets.</span>
+<span class="sd">        You may want to call this method before deploying this model (i.e. if you just care about producing predictions).</span>
+<span class="sd">        After calling this method, certain non-prediction-related attributes/functionality will no longer be available</span>
+<span class="sd">        (e.g. you cannot call ``self.fit()`` anymore).</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"self.label_issues_df is already empty"</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_quality_scores_kwargs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_df</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_issues_mask</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">py</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ps</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noise_matrix</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inverse_noise_matrix</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clf_kwargs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clf_final_kwargs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Deleted non-sklearn attributes such as label_issues_df to save space."</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_process_label_issues_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">find_label_issues_kwargs</span><span class="p">):</span>
-        <span class="sd">"""Private helper function that is used to modify the arguments to passed to</span>
+        <span class="sd">"""</span>
+<span class="sd">        Private helper function that is used to modify the arguments to passed to</span>
 <span class="sd">        filter.find_label_issues via the CleanLearning.find_label_issues class. Because</span>
 <span class="sd">        this is a classification task, some default parameters change and some errors should</span>
 <span class="sd">        be throne if certain unsupported (for classification) arguments are passed in. This method</span>
 <span class="sd">        handles those parameters inside of find_label_issues_kwargs and throws an error if you pass</span>
 <span class="sd">        in a kwargs argument to filter.find_label_issues that is not supported by the</span>
-<span class="sd">        CleanLearning.find_label_issues() function."""</span>
+<span class="sd">        CleanLearning.find_label_issues() function.</span>
+<span class="sd">        """</span>
 
         <span class="c1"># Defaults for CleanLearning.find_label_issues() vs filter.find_label_issues()</span>
         <span class="n">DEFAULT_FIND_LABEL_ISSUES_KWARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"min_examples_per_class"</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
@@ -941,7 +1181,47 @@
         <span class="c1"># CleanLearning will use this to compute the noise_matrix and inverse_noise_matrix</span>
         <span class="k">if</span> <span class="s2">"confident_joint"</span> <span class="ow">in</span> <span class="n">find_label_issues_kwargs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">confident_joint</span> <span class="o">=</span> <span class="n">find_label_issues_kwargs</span><span class="p">[</span><span class="s2">"confident_joint"</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span> <span class="o">=</span> <span class="n">find_label_issues_kwargs</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">find_label_issues_kwargs</span> <span class="o">=</span> <span class="n">find_label_issues_kwargs</span>
+
+    <span class="k">def</span> <span class="nf">_process_label_issues_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_issues</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Helper method to get the label_issues input arg into a formatted DataFrame.</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label_issues</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">"is_label_issue"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"DataFrame label_issues must contain column: 'is_label_issue'. "</span>
+                    <span class="s2">"See CleanLearning.fit() documentation for label_issues column descriptions."</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_issues</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"label_issues and labels must have same length"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">"given_label"</span> <span class="ow">in</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span>
+                <span class="n">label_issues</span><span class="p">[</span><span class="s2">"given_label"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">!=</span> <span class="n">labels</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"labels must match label_issues['given_label']"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">label_issues</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label_issues</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"bool"</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"int"</span><span class="p">)]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"If label_issues is numpy.array, dtype must be 'bool' or 'int'."</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"bool"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"If label_issues is boolean numpy.array, must have same shape as labels"</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">label_issues</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"int"</span><span class="p">):</span>  <span class="c1"># convert to boolean mask</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">label_issues</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_issues</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">"If label_issues.dtype is 'int', must contain unique integer indices "</span>
+                        <span class="s2">"corresponding to examples with label issues such as output by: "</span>
+                        <span class="s2">"filter.find_label_issues(..., return_indices_ranked_by=...)"</span>
+                    <span class="p">)</span>
+                <span class="n">issue_indices</span> <span class="o">=</span> <span class="n">label_issues</span>
+                <span class="n">label_issues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">issue_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">label_issues</span><span class="p">[</span><span class="n">issue_indices</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"is_label_issue"</span><span class="p">:</span> <span class="n">label_issues</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"label_issues must be either pandas.DataFrame or numpy.array"</span><span class="p">)</span></div>
 </pre></div> 
         </article>
       </div>
@@ -1004,5 +1284,7 @@
     <script src="../../_static/tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

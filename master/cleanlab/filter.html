@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="rank" href="rank.html" /><link rel="prev" title="classification" href="classification.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>filter - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -320,10 +338,7 @@
 
  <div class="section" id="module-cleanlab.filter">
 <span id="filter"></span><h1>filter<a class="headerlink" href="#module-cleanlab.filter" title="Permalink to this headline">#</a></h1>
-<p>Methods to identify which examples have label issues.
-Some of this code uses advanced multiprocessing to speed up computation:
-<a class="reference external" href="https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html">https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html</a></p>
-<p>Note: Previously in cleanlab versions &lt;= 1.0.1, this module was called <cite>pruning</cite>.</p>
+<p>Methods to identify which examples have label issues.</p>
 <p><strong>Functions:</strong></p>
 <div class="table-wrapper"><table class="longtable docutils align-default">
 <colgroup>
@@ -332,115 +347,112 @@ Some of this code uses advanced multiprocessing to speed up computation:
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.filter.find_label_issues" title="cleanlab.filter.find_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_label_issues</span></code></a>(labels, pred_probs, *[, ...])</p></td>
-<td><p>By default, this method returns a boolean mask for the entire dataset where True represents a label issue and False represents an example that is confidently/accurately labeled.</p></td>
+<td><p>Identifies potential label issues in the dataset using confident learning.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.filter.find_label_issues_using_argmax_confusion_matrix" title="cleanlab.filter.find_label_issues_using_argmax_confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_label_issues_using_argmax_confusion_matrix</span></code></a>(...)</p></td>
-<td><p>This is a baseline approach.</p></td>
+<td><p>This is a baseline approach that uses the confusion matrix of <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span></code> and labels as the confident joint and then uses cleanlab (confident learning) to find the label issues using this matrix.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.filter.find_predicted_neq_given" title="cleanlab.filter.find_predicted_neq_given"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_predicted_neq_given</span></code></a>(labels, pred_probs, *)</p></td>
 <td><p>This is the simplest baseline approach.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cleanlab.filter.multiclass_crossval_predict" title="cleanlab.filter.multiclass_crossval_predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_crossval_predict</span></code></a>(labels, pyx)</p></td>
-<td><p>Returns a numpy 2D array of one-hot encoded multiclass predictions.</p></td>
 </tr>
 </tbody>
 </table></div>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.filter.find_label_issues">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_label_issues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prune_by_noise_rate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indices_ranked_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank_by_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_to_remove_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_label_issues" title="Permalink to this definition">#</a></dt>
-<dd><p>By default, this method returns a boolean mask for the entire dataset where True represents
-a label issue and False represents an example that is confidently/accurately labeled.</p>
-<p>You can return ONLY the indices of the label issues in your dataset, by setting
-<cite>return_indices_ranked_by</cite> to a string value specifying which label quality score to order the label issues
-(and corresponding indices) by.</p>
-<p>The number of indices returned is controlled by <cite>frac_noise</cite>, reduce its value to identify fewer label issues.
-Tip: If you encounter the error ‘pred_probs is not defined’, try setting <cite>n_jobs = 1</cite>.</p>
+<span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_label_issues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prune_by_noise_rate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indices_ranked_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank_by_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_to_remove_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_label_issues" title="Permalink to this definition">#</a></dt>
+<dd><p>Identifies potential label issues in the dataset using confident learning.</p>
+<p>Returns a boolean mask for the entire dataset where <code class="docutils literal notranslate"><span class="pre">True</span></code> represents
+a label issue and <code class="docutils literal notranslate"><span class="pre">False</span></code> represents an example that is confidently/accurately labeled.</p>
+<p>Instead of a mask, you can obtain <em>indices</em> of the label issues in your
+dataset by setting <cite>return_indices_ranked_by</cite> to specify the label quality
+score used to order the label issues.</p>
+<p>The number of indices returned is controlled by <cite>frac_noise</cite>: reduce its
+value to identify fewer label issues.</p>
+<p>Tip: if you encounter the error “pred_probs is not defined”, try setting
+<code class="docutils literal notranslate"><span class="pre">n_jobs=1</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – <p>P(label=k|x) is a matrix with K model-predicted probabilities.
-Each row of this matrix corresponds to an example x and contains the model-predicted
-probabilities that x belongs to each possible class.
-The columns must be ordered such that these probabilities correspond to class 0,1,2,…</p>
-<p>CAUTION: <cite>pred_probs</cite> from your model must be out-of-sample!
+<em>Format requirements</em>: for dataset with K classes, labels must be in 0, 1, …, K-1.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>, <em>optional</em>) – <p>An array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">K)</span></code> of model-predicted probabilities,
+<code class="docutils literal notranslate"><span class="pre">P(label=k|x)</span></code>. Each row of this matrix corresponds
+to an example <cite>x</cite> and contains the model-predicted probabilities that
+<cite>x</cite> belongs to each possible class, for each of the K classes. The
+columns must be ordered such that these probabilities correspond to
+class 0, 1, …, K-1.</p>
+<p><strong>Caution</strong>: <cite>pred_probs</cite> from your model must be out-of-sample!
 You should never provide predictions on the same examples used to train the model,
 as these will be overfit and unsuitable for finding label-errors.
 To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use <a class="reference internal" href="../tutorials/pred_probs_cross_val.html#pred-probs-cross-val"><span class="std std-ref">cross-validation</span></a>.
 Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating
-labels in data that was previously held-out.</p>
+data that was previously held-out.</p>
 </p></li>
-<li><p><strong>confident_joint</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(K</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K)</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span> <span class="pre">int)</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – A K x K integer matrix used for identifying label issues, which
-estimates a confident subset of the joint distribution of the noisy and true labels, P_{noisy_label,true_label}.
-Entry (j,k) in the matrix is the number of examples confidently counted into the pair of (noisy_label=j, true_label=k) classes.
-The <cite>confident joint</cite> can be computed using <cite>count.compute_confident_joint</cite>.
-If None, it is computed from the given (noisy) <cite>labels</cite> and <cite>pred_probs</cite>.</p></li>
-<li><p><strong>filter_by</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <em>default</em>: <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code>) – <dl class="simple">
-<dt>Possible Values: {‘prune_by_class’, ‘prune_by_noise_rate’, ‘both’,</dt><dd><p>’confident_learning’, ‘predicted_neq_given’}</p>
-</dd>
-</dl>
-<p>Method used for filtering/pruning out the label issues.
-1. ‘prune_by_noise_rate’: works by removing examples with
-<em>high probability</em> of being mislabeled for every non-diagonal in the confident joint
-(see <cite>prune_counts_matrix</cite> in <cite>filter.py</cite>). These are the examples where (with high
-confidence) the given label is unlikely to match the predicted label for the example.
-2. ‘prune_by_class’: works by removing the examples with <em>smallest
-probability</em> of belonging to their given class label for every class.
-3. ‘both’: Removes only the examples that would be filtered by both (1) AND (2).
-4. ‘confident_learning’: Returns the examples in the off-diagonals of the confident joint.
-These are the examples that are confidently predicted to be a different label than their
-given label.
-5. ‘predicted_neq_given’: Find examples where the predicted class
-(i.e. argmax of the predicted probabilities) does not match the given label.</p>
+<li><p><strong>confident_joint</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>, <em>optional</em>) – An array of shape <code class="docutils literal notranslate"><span class="pre">(K,</span> <span class="pre">K)</span></code> representing the confident joint, the matrix used for identifying label issues, which
+estimates a confident subset of the joint distribution of the noisy and true labels, <code class="docutils literal notranslate"><span class="pre">P_{noisy</span> <span class="pre">label,</span> <span class="pre">true</span> <span class="pre">label}</span></code>.
+Entry <code class="docutils literal notranslate"><span class="pre">(j,</span> <span class="pre">k)</span></code> in the matrix is the number of examples confidently counted into the pair of <code class="docutils literal notranslate"><span class="pre">(noisy</span> <span class="pre">label=j,</span> <span class="pre">true</span> <span class="pre">label=k)</span></code> classes.
+The <cite>confident_joint</cite> can be computed using <a class="reference internal" href="count.html#cleanlab.count.compute_confident_joint" title="cleanlab.count.compute_confident_joint"><code class="xref py py-func docutils literal notranslate"><span class="pre">count.compute_confident_joint</span></code></a>.
+If not provided, it is computed from the given (noisy) <cite>labels</cite> and <cite>pred_probs</cite>.</p></li>
+<li><p><strong>filter_by</strong> (<code class="docutils literal notranslate"><span class="pre">{'prune_by_class',</span> <span class="pre">'prune_by_noise_rate',</span> <span class="pre">'both',</span> <span class="pre">'confident_learning',</span> <span class="pre">'predicted_neq_given'}</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code>) – <p>Method used for filtering/pruning out the label issues:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code>: works by removing examples with <em>high probability</em> of being mislabeled for every non-diagonal in the confident joint (see <cite>prune_counts_matrix</cite> in <cite>filter.py</cite>). These are the examples where (with high confidence) the given label is unlikely to match the predicted label for the example.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'prune_by_class'</span></code>: works by removing the examples with <em>smallest probability</em> of belonging to their given class label for every class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'both'</span></code>: Removes only the examples that would be filtered by both <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code> and <code class="docutils literal notranslate"><span class="pre">'prune_by_class'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'confident_learning'</span></code>: Returns the examples in the off-diagonals of the confident joint. These are the examples that are confidently predicted to be a different label than their given label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'predicted_neq_given'</span></code>: Find examples where the predicted class (i.e. argmax of the predicted probabilities) does not match the given label.</p></li>
+</ul>
 </p></li>
-<li><p><strong>return_indices_ranked_by</strong> (<code class="docutils literal notranslate"><span class="pre">{:obj:`None`,</span> <span class="pre">:obj:`self_confidence`,</span> <span class="pre">:obj:`normalized_margin`,</span> <span class="pre">:obj:`confidence_weighted_entropy`}</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">None</span></code>) – If None, returns a boolean mask (true if example at index is label error)
-If not None, returns an array of the label error indices
-(instead of a bool mask) where error indices are ordered by the either:
-<code class="docutils literal notranslate"><span class="pre">'normalized_margin'</span> <span class="pre">:=</span> <span class="pre">normalized</span> <span class="pre">margin</span> <span class="pre">(p(label</span> <span class="pre">=</span> <span class="pre">k)</span> <span class="pre">-</span> <span class="pre">max(p(label</span> <span class="pre">!=</span> <span class="pre">k)))</span></code>
-<code class="docutils literal notranslate"><span class="pre">'self_confidence'</span> <span class="pre">:=</span> <span class="pre">[pred_probs[i][labels[i]]</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">label_issues_idx]</span></code>
-<code class="docutils literal notranslate"><span class="pre">'confidence_weighted_entropy'</span> <span class="pre">:=</span> <span class="pre">entropy(pred_probs)</span> <span class="pre">/</span> <span class="pre">self_confidence</span></code></p></li>
-<li><p><strong>rank_by_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>default</em> = <code class="docutils literal notranslate"><span class="pre">{}</span></code>) – Optional keyword arguments to pass into scoring functions for ranking by label quality score
-(see: <cite>get_label_quality_scores()</cite> in cleanlab/rank.py).
-Accepted args include: <cite>adjust_pred_probs</cite> (bool, default = False)</p></li>
-<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">False</span></code>) – If true, labels should be an iterable (e.g. list) of iterables, containing a
+<li><p><strong>return_indices_ranked_by</strong> (<code class="docutils literal notranslate"><span class="pre">{None,</span> <span class="pre">'self_confidence',</span> <span class="pre">'normalized_margin',</span> <span class="pre">'confidence_weighted_entropy'}</span></code>, <em>default</em> <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>) – <p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, returns a boolean mask (<code class="docutils literal notranslate"><span class="pre">True</span></code> if example at index is label error).
+If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, returns an array of the label error indices
+(instead of a boolean mask) where error indices are ordered:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'normalized_margin'</span></code>: <code class="docutils literal notranslate"><span class="pre">normalized</span> <span class="pre">margin</span> <span class="pre">(p(label</span> <span class="pre">=</span> <span class="pre">k)</span> <span class="pre">-</span> <span class="pre">max(p(label</span> <span class="pre">!=</span> <span class="pre">k)))</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'self_confidence'</span></code>: <code class="docutils literal notranslate"><span class="pre">[pred_probs[i][labels[i]]</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">label_issues_idx]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'confidence_weighted_entropy'</span></code>: <code class="docutils literal notranslate"><span class="pre">entropy(pred_probs)</span> <span class="pre">/</span> <span class="pre">self_confidence</span></code></p></li>
+</ul>
+</p></li>
+<li><p><strong>rank_by_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <em>optional</em>) – Optional keyword arguments to pass into scoring functions for ranking by
+label quality score (see <a class="reference internal" href="rank.html#cleanlab.rank.get_label_quality_scores" title="cleanlab.rank.get_label_quality_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">rank.get_label_quality_scores</span></code></a>).</p></li>
+<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, labels should be an iterable (e.g. list) of iterables, containing a
 list of labels for each example, instead of just a single label.
 The multi-label setting supports classification tasks where an example has 1 or more labels.
-Example of a multi-labeled <cite>labels</cite> input: [[0,1], [1], [0,2], [0,1,2], [0], [1], …]</p></li>
-<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) – When frac_noise = 1.0, return all “confident” estimated noise indices.
-Value in range (0, 1] that determines the fraction of noisy example
+Example of a multi-labeled <cite>labels</cite> input: <code class="docutils literal notranslate"><span class="pre">[[0,1],</span> <span class="pre">[1],</span> <span class="pre">[0,2],</span> <span class="pre">[0,1,2],</span> <span class="pre">[0],</span> <span class="pre">[1],</span> <span class="pre">...]</span></code>.</p></li>
+<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) – When <code class="docutils literal notranslate"><span class="pre">frac_noise=1.0</span></code>, return all “confident” estimated noise indices.
+Value in range <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1)</span></code> determine the fraction of noisy example
 indices to return based on the following formula for example class k.
-frac_noise * number_of_mislabeled_examples_in_class_k, or equivalently
-frac_noise * inverse_noise_rate_class_k * num_examples_with_s_equal_k</p></li>
-<li><p><strong>num_to_remove_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">length</span> <span class="pre">K</span> <span class="pre">(#</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">classes)</span></code>) – <p>E.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return
-the indices of the 5 most likely mislabeled examples in class labels = 0,
-and the most likely mislabeled example in class labels = 1.</p>
+frac_noise * number_of_mislabeled_examples_in_class_k.</p></li>
+<li><p><strong>num_to_remove_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – <p>An iterable of length K, the number of classes.
+E.g. if K = 3, <code class="docutils literal notranslate"><span class="pre">num_to_remove_per_class=[5,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> would return
+the indices of the 5 most likely mislabeled examples in class 0,
+and the most likely mislabeled example in class 2.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Only set this parameter if <code class="docutils literal notranslate"><span class="pre">filter_by</span> <span class="pre">==</span> <span class="pre">'prune_by_class'</span></code>
-You may use with <code class="docutils literal notranslate"><span class="pre">filter_by</span> <span class="pre">==</span> <span class="pre">'prune_by_noise_rate'</span></code>, but
-if <code class="docutils literal notranslate"><span class="pre">num_to_remove_per_class</span> <span class="pre">==</span> <span class="pre">k</span></code>, then either k-1, k, or k+1
-examples may be removed for any class. This is because noise rates
-are floats, and rounding may cause a one-off. If you need exactly
-‘k’ examples removed from every class, you should use <code class="docutils literal notranslate"><span class="pre">'prune_by_class'</span></code></p>
+<p>Only set this parameter if <code class="docutils literal notranslate"><span class="pre">filter_by='prune_by_class'</span></code>.
+You may use with <code class="docutils literal notranslate"><span class="pre">filter_by='prune_by_noise_rate'</span></code>, but
+if <code class="docutils literal notranslate"><span class="pre">num_to_remove_per_class=k</span></code>, then either k-1, k, or k+1
+examples may be removed for any class due to rounding error. If you need
+exactly ‘k’ examples removed from every class, you should use
+<code class="docutils literal notranslate"><span class="pre">filter_by='prune_by_class'</span></code>.</p>
 </div>
 </p></li>
-<li><p><strong>min_examples_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>) – Minimum number of examples per class to avoid flagging as label issues.
+<li><p><strong>min_examples_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">1</span></code>) – Minimum number of examples per class to avoid flagging as label issues.
 This is useful to avoid deleting too much data from one class
 when pruning noisy examples in datasets with rare classes.</p></li>
-<li><p><strong>n_jobs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span> <span class="pre">(Windows</span> <span class="pre">users</span> <span class="pre">may</span> <span class="pre">see</span> <span class="pre">a</span> <span class="pre">speed-up</span> <span class="pre">with</span> <span class="pre">n_jobs</span> <span class="pre">=</span> <span class="pre">1)</span></code>) – Number of processing threads used by multiprocessing. Default None
-sets to the number of processing threads on your CPU.
-Set this to 1 to REMOVE parallel processing (if its causing issues).</p></li>
-<li><p><strong>verbose</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">=</span> <span class="pre">0</span></code>) – If 0, no print statements. If 1, prints when multiprocessing happens.</p></li>
+<li><p><strong>n_jobs</strong> (<em>optional</em>) – Number of processing threads used by multiprocessing. Default <code class="docutils literal notranslate"><span class="pre">None</span></code>
+sets to the number of cores on your CPU.
+Set this to 1 to <em>disable</em> parallel processing (if its causing issues).
+Windows users may see a speed-up with <code class="docutils literal notranslate"><span class="pre">n_jobs=1</span></code>.</p></li>
+<li><p><strong>verbose</strong> (<em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, prints when multiprocessing happens.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><p><strong>label_issues_mask</strong> – This method returns a boolean mask for the entire dataset where True represents
-a label issue and False represents an example that is accurately labeled with high confidence.</p>
+<dd class="field-even"><p><p><strong>label_issues</strong> – A boolean mask for the entire dataset where <code class="docutils literal notranslate"><span class="pre">True</span></code> represents a
+label issue and <code class="docutils literal notranslate"><span class="pre">False</span></code> represents an example that is accurately
+labeled with high confidence.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can also return ONLY the indices of the label issues in your dataset, by setting
-return_indices_ranked_by = {<cite>self_confidence</cite>, <cite>normalized_margin</cite>}.</p>
+<p>You can also return the <em>indices</em> of the label issues in your dataset by setting
+<cite>return_indices_ranked_by</cite>.</p>
 </div>
 </p>
 </dd>
@@ -452,42 +464,37 @@ return_indices_ranked_by = {<cite>self_confidence</cite>, <cite>normalized_margi
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.filter.find_label_issues_using_argmax_confusion_matrix">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_label_issues_using_argmax_confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibrate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prune_by_noise_rate'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_label_issues_using_argmax_confusion_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_label_issues_using_argmax_confusion_matrix" title="Permalink to this definition">#</a></dt>
-<dd><p>This is a baseline approach. That uses the confusion matrix
-of argmax(pred_probs) and labels as the confident joint and then uses cleanlab
+<dd><p>This is a baseline approach that uses the confusion matrix
+of <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span></code> and labels as the confident joint and then uses cleanlab
 (confident learning) to find the label issues using this matrix.</p>
-<p>The only difference between this and find_label_issues is that it uses the confusion matrix
-based on the argmax and given label instead of using the confident joint from
-<cite>count.compute_confident_joint</cite>.</p>
+<p>The only difference between this and <a class="reference internal" href="#cleanlab.filter.find_label_issues" title="cleanlab.filter.find_label_issues"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_label_issues</span></code></a> is that it uses the confusion matrix
+based on the argmax and given label instead of using the confident joint
+from <a class="reference internal" href="count.html#cleanlab.count.compute_confident_joint" title="cleanlab.count.compute_confident_joint"><code class="xref py py-func docutils literal notranslate"><span class="pre">count.compute_confident_joint</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.
-This method does not support multi-label labels.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – P(label=k|x) is a matrix with K model-predicted probabilities.
-Each row of this matrix corresponds to an example <cite>x</cite> and contains the model-predicted
-probabilities that <cite>x</cite> belongs to each possible class.
-The columns must be ordered such that these probabilities correspond to class 0,1,2,…
-<cite>pred_probs</cite> should have been computed using 3 (or higher) fold cross-validation.</p></li>
-<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Set to True to calibrate the confusion matrix created by pred != given labels.
+<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – An array of shape <code class="docutils literal notranslate"><span class="pre">(N,)</span></code> of noisy labels, i.e. some labels may be erroneous.
+Elements must be in the set 0, 1, …, K-1, where K is the number of classes.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – An array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">K)</span></code> of model-predicted probabilities,
+<code class="docutils literal notranslate"><span class="pre">P(label=k|x)</span></code>. Each row of this matrix corresponds
+to an example <cite>x</cite> and contains the model-predicted probabilities that
+<cite>x</cite> belongs to each possible class, for each of the K classes. The
+columns must be ordered such that these probabilities correspond to
+class 0, 1, …, K-1. <cite>pred_probs</cite> should have been computed using 3 (or
+higher) fold cross-validation.</p></li>
+<li><p><strong>calibrate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>default</em> <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>) – Set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to calibrate the confusion matrix created by <code class="docutils literal notranslate"><span class="pre">pred</span> <span class="pre">!=</span> <span class="pre">given</span> <span class="pre">labels</span></code>.
 This calibration adjusts the confusion matrix / confident joint so that the
-prior(given noisy labels) is correct based on the original labels.</p></li>
-<li><p><strong>filter_by</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span> <span class="pre">(default</span></code>: <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code><code class="xref py py-class docutils literal notranslate"><span class="pre">)</span></code>) – Possible Values: ‘prune_by_class’, ‘prune_by_noise_rate’, or ‘both’.
-Method used for pruning/filtering out the label issues:
-1. ‘prune_by_noise_rate’: works by removing examples with
-<em>high probability</em> of being mislabeled for every non-diagonal in the confident joint
-(see <cite>prune_counts_matrix</cite> in <cite>filter.py</cite>). These are the examples where (with high
-confidence) the given label is unlikely to match the predicted label.
-2. ‘prune_by_class’: works by removing the examples with <em>smallest
-probability</em> of belonging to their given class label for every class.
-3. ‘both’: Finds the examples satisfying (1) AND (2) and
-removes their set conjunction.
-4. ‘confident_learning’: Find examples that are confidently labeled as a class
-that’s different from their given label while computing the confident joint.</p></li>
+prior (given noisy labels) is correct based on the original labels.</p></li>
+<li><p><strong>filter_by</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">'prune_by_noise_rate'</span></code>) – See <cite>filter_by</cite> argument of <a class="reference internal" href="#cleanlab.filter.find_label_issues" title="cleanlab.filter.find_label_issues"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_label_issues</span></code></a>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">A</span> <span class="pre">boolean</span> <span class="pre">mask</span> <span class="pre">whose</span> <span class="pre">True</span> <span class="pre">entries</span> <span class="pre">indicate</span> <span class="pre">indices</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">examples</span> <span class="pre">that</span> <span class="pre">have</span> <span class="pre">label</span> <span class="pre">issues.</span></code></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>label_issues_mask</strong> – A boolean mask for the entire dataset where <code class="docutils literal notranslate"><span class="pre">True</span></code> represents a
+label issue and <code class="docutils literal notranslate"><span class="pre">False</span></code> represents an example that is accurately
+labeled with high confidence.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -495,46 +502,31 @@ that’s different from their given label while computing the confident joint.</
 <dt class="sig sig-object py" id="cleanlab.filter.find_predicted_neq_given">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_predicted_neq_given</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_predicted_neq_given"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_predicted_neq_given" title="Permalink to this definition">#</a></dt>
 <dd><p>This is the simplest baseline approach. Just consider
-anywhere argmax(pred_probs) != labels as a label error.</p>
+anywhere <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span> <span class="pre">!=</span> <span class="pre">labels</span></code> as a label error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – A discrete vector of noisy labels, i.e. some labels may be erroneous.
-<em>Format requirements</em>: for dataset with K classes, labels must be in {0,1,…,K-1}.</p></li>
-<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – P(label=k|x) is a matrix with K model-predicted probabilities.
-Each row of this matrix corresponds to an example <cite>x</cite> and contains the model-predicted
-probabilities that <cite>x</cite> belongs to each possible class.
-The columns must be ordered such that these probabilities correspond to class 0,1,2,…
-<cite>pred_probs</cite> should have been computed using 3 (or higher) fold cross-validation.</p></li>
-<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Set to True if labels is multi-label (list of lists, or np.array of np.array)
+<em>Format requirements</em>: for dataset with K classes, labels must be in 0, 1, …, K-1.</p></li>
+<li><p><strong>pred_probs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>, <em>optional</em>) – An array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">K)</span></code> of model-predicted probabilities,
+<code class="docutils literal notranslate"><span class="pre">P(label=k|x)</span></code>. Each row of this matrix corresponds
+to an example <cite>x</cite> and contains the model-predicted probabilities that
+<cite>x</cite> belongs to each possible class, for each of the K classes. The
+columns must be ordered such that these probabilities correspond to
+class 0, 1, …, K-1.</p></li>
+<li><p><strong>multi_label</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, labels should be an iterable (e.g. list) of iterables, containing a
+list of labels for each example, instead of just a single label.
 The multi-label setting supports classification tasks where an example has 1 or more labels.
-Example of a multi-labeled <cite>labels</cite> input: [[0,1], [1], [0,2], [0,1,2], [0], [1], …]</p></li>
+Example of a multi-labeled <cite>labels</cite> input: <code class="docutils literal notranslate"><span class="pre">[[0,1],</span> <span class="pre">[1],</span> <span class="pre">[0,2],</span> <span class="pre">[0,1,2],</span> <span class="pre">[0],</span> <span class="pre">[1],</span> <span class="pre">...]</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">A</span> <span class="pre">boolean</span> <span class="pre">mask</span> <span class="pre">(1D</span> <span class="pre">`np.array</span></code>) whose True entries indicate indices` of <code class="xref py py-class docutils literal notranslate"><span class="pre">examples</span> <span class="pre">that</span> <span class="pre">have</span> <span class="pre">label</span> <span class="pre">issues.</span></code></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>label_issues_mask</strong> – A boolean mask for the entire dataset where <code class="docutils literal notranslate"><span class="pre">True</span></code> represents a
+label issue and <code class="docutils literal notranslate"><span class="pre">False</span></code> represents an example that is accurately
+labeled with high confidence.</p>
 </dd>
-</dl>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="cleanlab.filter.multiclass_crossval_predict">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">multiclass_crossval_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pyx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#multiclass_crossval_predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.multiclass_crossval_predict" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a numpy 2D array of one-hot encoded
-multiclass predictions. Each row in the array
-provides the predictions for a particular example.
-The boundary condition used to threshold predictions
-is computed by maximizing the F1 ROC curve.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">lists</span> <span class="pre">(length</span> <span class="pre">N)</span></code>) – These are multiclass labels. Each list in the list contains all the
-labels for that example.</p></li>
-<li><p><strong>pyx</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span> <span class="pre">(shape</span> <span class="pre">(N</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">K))</span></code>) – P(label=k|x) is a matrix with K model-predicted probabilities.
-Each row of this matrix corresponds to an example <cite>x</cite> and contains the model-predicted
-probabilities that <cite>x</cite> belongs to each possible class.
-The columns must be ordered such that these probabilities correspond to class 0,1,2,…
-<cite>pred_probs</cite> should have been computed using 3 (or higher) fold cross-validation.</p></li>
-</ul>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -618,5 +610,7 @@ The columns must be ordered such that these probabilities correspond to class 0,
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

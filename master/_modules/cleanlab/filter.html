@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>cleanlab.filter - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cleanlab/dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cleanlab/benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -336,11 +354,7 @@
 <span class="c1"># along with cleanlab.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 
 <span class="sd">"""</span>
-<span class="sd">Methods to identify which examples have label issues. </span>
-<span class="sd">Some of this code uses advanced multiprocessing to speed up computation: </span>
-<span class="sd">https://research.wmz.ninja/articles/2018/03/on-sharing-large-arrays-when-using-pythons-multiprocessing.html</span>
-
-<span class="sd">Note: Previously in cleanlab versions &lt;= 1.0.1, this module was called `pruning`.</span>
+<span class="sd">Methods to identify which examples have label issues.</span>
 <span class="sd">"""</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
@@ -554,7 +568,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">_pred_probs</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
 
 
-<div class="viewcode-block" id="multiclass_crossval_predict"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.multiclass_crossval_predict">[docs]</a><span class="k">def</span> <span class="nf">multiclass_crossval_predict</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pyx</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_multiclass_crossval_predict</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pyx</span><span class="p">):</span>
     <span class="sd">"""Returns a numpy 2D array of one-hot encoded</span>
 <span class="sd">    multiclass predictions. Each row in the array</span>
 <span class="sd">    provides the predictions for a particular example.</span>
@@ -588,7 +602,7 @@
     <span class="p">]</span>
     <span class="n">boundary</span> <span class="o">=</span> <span class="n">boundaries</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">f1s</span><span class="p">)]</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">pyx</span> <span class="o">&gt;</span> <span class="n">boundary</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pred</span></div>
+    <span class="k">return</span> <span class="n">pred</span>
 
 
 <div class="viewcode-block" id="find_label_issues"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.find_label_issues">[docs]</a><span class="k">def</span> <span class="nf">find_label_issues</span><span class="p">(</span>
@@ -604,125 +618,130 @@
     <span class="n">num_to_remove_per_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">min_examples_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">"""By default, this method returns a boolean mask for the entire dataset where True represents</span>
-<span class="sd">    a label issue and False represents an example that is confidently/accurately labeled.</span>
+    <span class="sd">"""</span>
+<span class="sd">    Identifies potential label issues in the dataset using confident learning.</span>
 
-<span class="sd">    You can return ONLY the indices of the label issues in your dataset, by setting</span>
-<span class="sd">    `return_indices_ranked_by` to a string value specifying which label quality score to order the label issues</span>
-<span class="sd">    (and corresponding indices) by.</span>
+<span class="sd">    Returns a boolean mask for the entire dataset where ``True`` represents</span>
+<span class="sd">    a label issue and ``False`` represents an example that is confidently/accurately labeled.</span>
 
-<span class="sd">    The number of indices returned is controlled by `frac_noise`, reduce its value to identify fewer label issues.</span>
-<span class="sd">    Tip: If you encounter the error 'pred_probs is not defined', try setting `n_jobs = 1`.</span>
+<span class="sd">    Instead of a mask, you can obtain *indices* of the label issues in your</span>
+<span class="sd">    dataset by setting `return_indices_ranked_by` to specify the label quality</span>
+<span class="sd">    score used to order the label issues.</span>
+
+<span class="sd">    The number of indices returned is controlled by `frac_noise`: reduce its</span>
+<span class="sd">    value to identify fewer label issues.</span>
+
+<span class="sd">    Tip: if you encounter the error "pred_probs is not defined", try setting</span>
+<span class="sd">    ``n_jobs=1``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
 <span class="sd">    labels : np.array</span>
 <span class="sd">      A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
-<span class="sd">      *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
+<span class="sd">      *Format requirements*: for dataset with K classes, labels must be in 0, 1, ..., K-1.</span>
 
-<span class="sd">    pred_probs : np.array (shape (N, K))</span>
-<span class="sd">      P(label=k|x) is a matrix with K model-predicted probabilities.</span>
-<span class="sd">      Each row of this matrix corresponds to an example x and contains the model-predicted</span>
-<span class="sd">      probabilities that x belongs to each possible class.</span>
-<span class="sd">      The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
+<span class="sd">    pred_probs : np.array, optional</span>
+<span class="sd">      An array of shape ``(N, K)`` of model-predicted probabilities,</span>
+<span class="sd">      ``P(label=k|x)``. Each row of this matrix corresponds</span>
+<span class="sd">      to an example `x` and contains the model-predicted probabilities that</span>
+<span class="sd">      `x` belongs to each possible class, for each of the K classes. The</span>
+<span class="sd">      columns must be ordered such that these probabilities correspond to</span>
+<span class="sd">      class 0, 1, ..., K-1.</span>
 
-<span class="sd">      CAUTION: `pred_probs` from your model must be out-of-sample!</span>
+<span class="sd">      **Caution**: `pred_probs` from your model must be out-of-sample!</span>
 <span class="sd">      You should never provide predictions on the same examples used to train the model,</span>
 <span class="sd">      as these will be overfit and unsuitable for finding label-errors.</span>
 <span class="sd">      To obtain out-of-sample predicted probabilities for every datapoint in your dataset, you can use :ref:`cross-validation &lt;pred_probs_cross_val&gt;`.</span>
 <span class="sd">      Alternatively it is ok if your model was trained on a separate dataset and you are only evaluating</span>
-<span class="sd">      labels in data that was previously held-out.</span>
+<span class="sd">      data that was previously held-out.</span>
 
-<span class="sd">    confident_joint : np.array (shape (K, K), type int), default = None</span>
-<span class="sd">      A K x K integer matrix used for identifying label issues, which</span>
-<span class="sd">      estimates a confident subset of the joint distribution of the noisy and true labels, P_{noisy_label,true_label}.</span>
-<span class="sd">      Entry (j,k) in the matrix is the number of examples confidently counted into the pair of (noisy_label=j, true_label=k) classes.</span>
-<span class="sd">      The `confident joint` can be computed using `count.compute_confident_joint`.</span>
-<span class="sd">      If None, it is computed from the given (noisy) `labels` and `pred_probs`.</span>
+<span class="sd">    confident_joint : np.array, optional</span>
+<span class="sd">      An array of shape ``(K, K)`` representing the confident joint, the matrix used for identifying label issues, which</span>
+<span class="sd">      estimates a confident subset of the joint distribution of the noisy and true labels, ``P_{noisy label, true label}``.</span>
+<span class="sd">      Entry ``(j, k)`` in the matrix is the number of examples confidently counted into the pair of ``(noisy label=j, true label=k)`` classes.</span>
+<span class="sd">      The `confident_joint` can be computed using :py:func:`count.compute_confident_joint &lt;cleanlab.count.compute_confident_joint&gt;`.</span>
+<span class="sd">      If not provided, it is computed from the given (noisy) `labels` and `pred_probs`.</span>
 
-<span class="sd">    filter_by : str, default: 'prune_by_noise_rate'</span>
-<span class="sd">      Possible Values: {'prune_by_class', 'prune_by_noise_rate', 'both',</span>
-<span class="sd">                        'confident_learning', 'predicted_neq_given'}</span>
-<span class="sd">      Method used for filtering/pruning out the label issues.</span>
-<span class="sd">      1. 'prune_by_noise_rate': works by removing examples with</span>
-<span class="sd">      *high probability* of being mislabeled for every non-diagonal in the confident joint</span>
-<span class="sd">      (see `prune_counts_matrix` in `filter.py`). These are the examples where (with high</span>
-<span class="sd">      confidence) the given label is unlikely to match the predicted label for the example.</span>
-<span class="sd">      2. 'prune_by_class': works by removing the examples with *smallest</span>
-<span class="sd">      probability* of belonging to their given class label for every class.</span>
-<span class="sd">      3. 'both': Removes only the examples that would be filtered by both (1) AND (2).</span>
-<span class="sd">      4. 'confident_learning': Returns the examples in the off-diagonals of the confident joint.</span>
-<span class="sd">      These are the examples that are confidently predicted to be a different label than their</span>
-<span class="sd">      given label.</span>
-<span class="sd">      5. 'predicted_neq_given': Find examples where the predicted class</span>
-<span class="sd">      (i.e. argmax of the predicted probabilities) does not match the given label.</span>
+<span class="sd">    filter_by : {'prune_by_class', 'prune_by_noise_rate', 'both', 'confident_learning', 'predicted_neq_given'}, default='prune_by_noise_rate'</span>
 
-<span class="sd">    return_indices_ranked_by : {:obj:`None`, :obj:`self_confidence`, :obj:`normalized_margin`, :obj:`confidence_weighted_entropy`}, default = None</span>
-<span class="sd">      If None, returns a boolean mask (true if example at index is label error)</span>
-<span class="sd">      If not None, returns an array of the label error indices</span>
-<span class="sd">      (instead of a bool mask) where error indices are ordered by the either:</span>
-<span class="sd">      ``'normalized_margin' := normalized margin (p(label = k) - max(p(label != k)))``</span>
-<span class="sd">      ``'self_confidence' := [pred_probs[i][labels[i]] for i in label_issues_idx]``</span>
-<span class="sd">      ``'confidence_weighted_entropy' := entropy(pred_probs) / self_confidence``</span>
+<span class="sd">      Method used for filtering/pruning out the label issues:</span>
 
-<span class="sd">    rank_by_kwargs : dict, default = {}</span>
-<span class="sd">      Optional keyword arguments to pass into scoring functions for ranking by label quality score</span>
-<span class="sd">      (see: `get_label_quality_scores()` in cleanlab/rank.py).</span>
-<span class="sd">      Accepted args include: `adjust_pred_probs` (bool, default = False)</span>
+<span class="sd">      - ``'prune_by_noise_rate'``: works by removing examples with *high probability* of being mislabeled for every non-diagonal in the confident joint (see `prune_counts_matrix` in `filter.py`). These are the examples where (with high confidence) the given label is unlikely to match the predicted label for the example.</span>
+<span class="sd">      - ``'prune_by_class'``: works by removing the examples with *smallest probability* of belonging to their given class label for every class.</span>
+<span class="sd">      - ``'both'``: Removes only the examples that would be filtered by both ``'prune_by_noise_rate'`` and ``'prune_by_class'``.</span>
+<span class="sd">      - ``'confident_learning'``: Returns the examples in the off-diagonals of the confident joint. These are the examples that are confidently predicted to be a different label than their given label.</span>
+<span class="sd">      - ``'predicted_neq_given'``: Find examples where the predicted class (i.e. argmax of the predicted probabilities) does not match the given label.</span>
 
-<span class="sd">    multi_label : bool, default = False</span>
-<span class="sd">      If true, labels should be an iterable (e.g. list) of iterables, containing a</span>
+<span class="sd">    return_indices_ranked_by : {None, 'self_confidence', 'normalized_margin', 'confidence_weighted_entropy'}, default=None</span>
+<span class="sd">      If ``None``, returns a boolean mask (``True`` if example at index is label error).</span>
+<span class="sd">      If not ``None``, returns an array of the label error indices</span>
+<span class="sd">      (instead of a boolean mask) where error indices are ordered:</span>
+
+<span class="sd">      - ``'normalized_margin'``: ``normalized margin (p(label = k) - max(p(label != k)))``</span>
+<span class="sd">      - ``'self_confidence'``: ``[pred_probs[i][labels[i]] for i in label_issues_idx]``</span>
+<span class="sd">      - ``'confidence_weighted_entropy'``: ``entropy(pred_probs) / self_confidence``</span>
+
+<span class="sd">    rank_by_kwargs : dict, optional</span>
+<span class="sd">      Optional keyword arguments to pass into scoring functions for ranking by</span>
+<span class="sd">      label quality score (see :py:func:`rank.get_label_quality_scores</span>
+<span class="sd">      &lt;cleanlab.rank.get_label_quality_scores&gt;`).</span>
+
+<span class="sd">    multi_label : bool, optional</span>
+<span class="sd">      If ``True``, labels should be an iterable (e.g. list) of iterables, containing a</span>
 <span class="sd">      list of labels for each example, instead of just a single label.</span>
 <span class="sd">      The multi-label setting supports classification tasks where an example has 1 or more labels.</span>
-<span class="sd">      Example of a multi-labeled `labels` input: [[0,1], [1], [0,2], [0,1,2], [0], [1], ...]</span>
+<span class="sd">      Example of a multi-labeled `labels` input: ``[[0,1], [1], [0,2], [0,1,2], [0], [1], ...]``.</span>
 
-<span class="sd">    frac_noise : float, default 1.0</span>
-<span class="sd">      When frac_noise = 1.0, return all "confident" estimated noise indices.</span>
-<span class="sd">      Value in range (0, 1] that determines the fraction of noisy example</span>
+<span class="sd">    frac_noise : float, default=1.0</span>
+<span class="sd">      When ``frac_noise=1.0``, return all "confident" estimated noise indices.</span>
+<span class="sd">      Value in range ``[0, 1)`` determine the fraction of noisy example</span>
 <span class="sd">      indices to return based on the following formula for example class k.</span>
-<span class="sd">      frac_noise * number_of_mislabeled_examples_in_class_k, or equivalently</span>
-<span class="sd">      frac_noise * inverse_noise_rate_class_k * num_examples_with_s_equal_k</span>
+<span class="sd">      frac_noise * number_of_mislabeled_examples_in_class_k.</span>
 
-<span class="sd">    num_to_remove_per_class : list of int of length K (# of classes)</span>
-<span class="sd">      E.g. if K = 3, num_to_remove_per_class = [5, 0, 1] would return</span>
-<span class="sd">      the indices of the 5 most likely mislabeled examples in class labels = 0,</span>
-<span class="sd">      and the most likely mislabeled example in class labels = 1.</span>
+<span class="sd">    num_to_remove_per_class : array_like</span>
+<span class="sd">      An iterable of length K, the number of classes.</span>
+<span class="sd">      E.g. if K = 3, ``num_to_remove_per_class=[5, 0, 1]`` would return</span>
+<span class="sd">      the indices of the 5 most likely mislabeled examples in class 0,</span>
+<span class="sd">      and the most likely mislabeled example in class 2.</span>
 
 <span class="sd">      Note</span>
 <span class="sd">      ----</span>
-<span class="sd">      Only set this parameter if ``filter_by == 'prune_by_class'``</span>
-<span class="sd">      You may use with ``filter_by == 'prune_by_noise_rate'``, but</span>
-<span class="sd">      if ``num_to_remove_per_class == k``, then either k-1, k, or k+1</span>
-<span class="sd">      examples may be removed for any class. This is because noise rates</span>
-<span class="sd">      are floats, and rounding may cause a one-off. If you need exactly</span>
-<span class="sd">      'k' examples removed from every class, you should use ``'prune_by_class'``</span>
+<span class="sd">      Only set this parameter if ``filter_by='prune_by_class'``.</span>
+<span class="sd">      You may use with ``filter_by='prune_by_noise_rate'``, but</span>
+<span class="sd">      if ``num_to_remove_per_class=k``, then either k-1, k, or k+1</span>
+<span class="sd">      examples may be removed for any class due to rounding error. If you need</span>
+<span class="sd">      exactly 'k' examples removed from every class, you should use</span>
+<span class="sd">      ``filter_by='prune_by_class'``.</span>
 
-<span class="sd">    min_examples_per_class : int, default = 1</span>
+<span class="sd">    min_examples_per_class : int, default=1</span>
 <span class="sd">      Minimum number of examples per class to avoid flagging as label issues.</span>
 <span class="sd">      This is useful to avoid deleting too much data from one class</span>
 <span class="sd">      when pruning noisy examples in datasets with rare classes.</span>
 
-<span class="sd">    n_jobs : int (Windows users may see a speed-up with n_jobs = 1)</span>
-<span class="sd">      Number of processing threads used by multiprocessing. Default None</span>
-<span class="sd">      sets to the number of processing threads on your CPU.</span>
-<span class="sd">      Set this to 1 to REMOVE parallel processing (if its causing issues).</span>
+<span class="sd">    n_jobs : optional</span>
+<span class="sd">      Number of processing threads used by multiprocessing. Default ``None``</span>
+<span class="sd">      sets to the number of cores on your CPU.</span>
+<span class="sd">      Set this to 1 to *disable* parallel processing (if its causing issues).</span>
+<span class="sd">      Windows users may see a speed-up with ``n_jobs=1``.</span>
 
-<span class="sd">    verbose : int, default = 0</span>
-<span class="sd">      If 0, no print statements. If 1, prints when multiprocessing happens.</span>
+<span class="sd">    verbose : optional</span>
+<span class="sd">      If ``True``, prints when multiprocessing happens.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    label_issues_mask : np.array&lt;bool&gt;</span>
-<span class="sd">      This method returns a boolean mask for the entire dataset where True represents</span>
-<span class="sd">      a label issue and False represents an example that is accurately labeled with high confidence.</span>
+<span class="sd">    label_issues : np.array</span>
+<span class="sd">      A boolean mask for the entire dataset where ``True`` represents a</span>
+<span class="sd">      label issue and ``False`` represents an example that is accurately</span>
+<span class="sd">      labeled with high confidence.</span>
 
 <span class="sd">      Note</span>
 <span class="sd">      ----</span>
-<span class="sd">      You can also return ONLY the indices of the label issues in your dataset, by setting</span>
-<span class="sd">      return_indices_ranked_by = {`self_confidence`, `normalized_margin`}."""</span>
+<span class="sd">      You can also return the *indices* of the label issues in your dataset by setting</span>
+<span class="sd">      `return_indices_ranked_by`.</span>
+<span class="sd">    """</span>
 
     <span class="k">assert</span> <span class="n">filter_by</span> <span class="ow">in</span> <span class="p">[</span>
         <span class="s2">"prune_by_noise_rate"</span><span class="p">,</span>
@@ -890,7 +909,7 @@
 
     <span class="c1"># Remove label issues if given label == model prediction</span>
     <span class="k">if</span> <span class="n">multi_label</span><span class="p">:</span>
-        <span class="n">pred</span> <span class="o">=</span> <span class="n">multiclass_crossval_predict</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">_multiclass_crossval_predict</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">)</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="n">MultiLabelBinarizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="n">pred_probs</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1019,29 +1038,35 @@
 
 <div class="viewcode-block" id="find_predicted_neq_given"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.find_predicted_neq_given">[docs]</a><span class="k">def</span> <span class="nf">find_predicted_neq_given</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">multi_label</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">"""This is the simplest baseline approach. Just consider</span>
-<span class="sd">    anywhere argmax(pred_probs) != labels as a label error.</span>
+<span class="sd">    anywhere ``argmax(pred_probs) != labels`` as a label error.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    labels : np.array</span>
-<span class="sd">        A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
-<span class="sd">        *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
+<span class="sd">      A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
+<span class="sd">      *Format requirements*: for dataset with K classes, labels must be in 0, 1, ..., K-1.</span>
 
-<span class="sd">    pred_probs : np.array (shape (N, K))</span>
-<span class="sd">        P(label=k|x) is a matrix with K model-predicted probabilities.</span>
-<span class="sd">        Each row of this matrix corresponds to an example `x` and contains the model-predicted</span>
-<span class="sd">        probabilities that `x` belongs to each possible class.</span>
-<span class="sd">        The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
-<span class="sd">        `pred_probs` should have been computed using 3 (or higher) fold cross-validation.</span>
+<span class="sd">    pred_probs : np.array, optional</span>
+<span class="sd">      An array of shape ``(N, K)`` of model-predicted probabilities,</span>
+<span class="sd">      ``P(label=k|x)``. Each row of this matrix corresponds</span>
+<span class="sd">      to an example `x` and contains the model-predicted probabilities that</span>
+<span class="sd">      `x` belongs to each possible class, for each of the K classes. The</span>
+<span class="sd">      columns must be ordered such that these probabilities correspond to</span>
+<span class="sd">      class 0, 1, ..., K-1.</span>
 
-<span class="sd">    multi_label : bool</span>
-<span class="sd">        Set to True if labels is multi-label (list of lists, or np.array of np.array)</span>
-<span class="sd">        The multi-label setting supports classification tasks where an example has 1 or more labels.</span>
-<span class="sd">        Example of a multi-labeled `labels` input: [[0,1], [1], [0,2], [0,1,2], [0], [1], ...]</span>
+<span class="sd">    multi_label : bool, optional</span>
+<span class="sd">      If ``True``, labels should be an iterable (e.g. list) of iterables, containing a</span>
+<span class="sd">      list of labels for each example, instead of just a single label.</span>
+<span class="sd">      The multi-label setting supports classification tasks where an example has 1 or more labels.</span>
+<span class="sd">      Example of a multi-labeled `labels` input: ``[[0,1], [1], [0,2], [0,1,2], [0], [1], ...]``.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        A boolean mask (1D `np.array`) whose True entries indicate indices of examples that have label issues."""</span>
+<span class="sd">    label_issues_mask : np.array</span>
+<span class="sd">      A boolean mask for the entire dataset where ``True`` represents a</span>
+<span class="sd">      label issue and ``False`` represents an example that is accurately</span>
+<span class="sd">      labeled with high confidence.</span>
+<span class="sd">    """</span>
 
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">multi_label</span><span class="p">:</span>
@@ -1059,51 +1084,47 @@
     <span class="n">calibrate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">filter_by</span><span class="o">=</span><span class="s2">"prune_by_noise_rate"</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">"""This is a baseline approach. That uses the confusion matrix</span>
-<span class="sd">    of argmax(pred_probs) and labels as the confident joint and then uses cleanlab</span>
+    <span class="sd">"""This is a baseline approach that uses the confusion matrix</span>
+<span class="sd">    of ``argmax(pred_probs)`` and labels as the confident joint and then uses cleanlab</span>
 <span class="sd">    (confident learning) to find the label issues using this matrix.</span>
 
-<span class="sd">    The only difference between this and find_label_issues is that it uses the confusion matrix</span>
-<span class="sd">    based on the argmax and given label instead of using the confident joint from</span>
-<span class="sd">    `count.compute_confident_joint`.</span>
+<span class="sd">    The only difference between this and :py:func:`find_label_issues</span>
+<span class="sd">    &lt;cleanlab.filter.find_label_issues&gt;` is that it uses the confusion matrix</span>
+<span class="sd">    based on the argmax and given label instead of using the confident joint</span>
+<span class="sd">    from :py:func:`count.compute_confident_joint</span>
+<span class="sd">    &lt;cleanlab.count.compute_confident_joint&gt;`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
 <span class="sd">    labels : np.array</span>
-<span class="sd">        A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
-<span class="sd">        *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
-<span class="sd">        This method does not support multi-label labels.</span>
+<span class="sd">        An array of shape ``(N,)`` of noisy labels, i.e. some labels may be erroneous.</span>
+<span class="sd">        Elements must be in the set 0, 1, ..., K-1, where K is the number of classes.</span>
 
 <span class="sd">    pred_probs : np.array (shape (N, K))</span>
-<span class="sd">        P(label=k|x) is a matrix with K model-predicted probabilities.</span>
-<span class="sd">        Each row of this matrix corresponds to an example `x` and contains the model-predicted</span>
-<span class="sd">        probabilities that `x` belongs to each possible class.</span>
-<span class="sd">        The columns must be ordered such that these probabilities correspond to class 0,1,2,...</span>
-<span class="sd">        `pred_probs` should have been computed using 3 (or higher) fold cross-validation.</span>
+<span class="sd">        An array of shape ``(N, K)`` of model-predicted probabilities,</span>
+<span class="sd">        ``P(label=k|x)``. Each row of this matrix corresponds</span>
+<span class="sd">        to an example `x` and contains the model-predicted probabilities that</span>
+<span class="sd">        `x` belongs to each possible class, for each of the K classes. The</span>
+<span class="sd">        columns must be ordered such that these probabilities correspond to</span>
+<span class="sd">        class 0, 1, ..., K-1. `pred_probs` should have been computed using 3 (or</span>
+<span class="sd">        higher) fold cross-validation.</span>
 
-<span class="sd">    calibrate : bool</span>
-<span class="sd">        Set to True to calibrate the confusion matrix created by pred != given labels.</span>
+<span class="sd">    calibrate : bool, default=True</span>
+<span class="sd">        Set to ``True`` to calibrate the confusion matrix created by ``pred != given labels``.</span>
 <span class="sd">        This calibration adjusts the confusion matrix / confident joint so that the</span>
-<span class="sd">        prior(given noisy labels) is correct based on the original labels.</span>
+<span class="sd">        prior (given noisy labels) is correct based on the original labels.</span>
 
-<span class="sd">    filter_by : str (default: 'prune_by_noise_rate')</span>
-<span class="sd">        Possible Values: 'prune_by_class', 'prune_by_noise_rate', or 'both'.</span>
-<span class="sd">        Method used for pruning/filtering out the label issues:</span>
-<span class="sd">        1. 'prune_by_noise_rate': works by removing examples with</span>
-<span class="sd">        *high probability* of being mislabeled for every non-diagonal in the confident joint</span>
-<span class="sd">        (see `prune_counts_matrix` in `filter.py`). These are the examples where (with high</span>
-<span class="sd">        confidence) the given label is unlikely to match the predicted label.</span>
-<span class="sd">        2. 'prune_by_class': works by removing the examples with *smallest</span>
-<span class="sd">        probability* of belonging to their given class label for every class.</span>
-<span class="sd">        3. 'both': Finds the examples satisfying (1) AND (2) and</span>
-<span class="sd">        removes their set conjunction.</span>
-<span class="sd">        4. 'confident_learning': Find examples that are confidently labeled as a class</span>
-<span class="sd">        that's different from their given label while computing the confident joint.</span>
+<span class="sd">    filter_by : str, default='prune_by_noise_rate'</span>
+<span class="sd">        See `filter_by` argument of :py:func:`find_label_issues &lt;cleanlab.filter.find_label_issues&gt;`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        A boolean mask whose True entries indicate indices of examples that have label issues."""</span>
+<span class="sd">    label_issues_mask : np.array</span>
+<span class="sd">      A boolean mask for the entire dataset where ``True`` represents a</span>
+<span class="sd">      label issue and ``False`` represents an example that is accurately</span>
+<span class="sd">      labeled with high confidence.</span>
+<span class="sd">    """</span>
 
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="n">confident_joint</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_probs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -1177,5 +1198,7 @@
     <script src="../../_static/tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="classification" href="../cleanlab/classification.html" /><link rel="prev" title="Audio Classification with SpeechBrain and Cleanlab" href="audio.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>Computing Out-of-Sample Predicted Probabilities with Cross-Validation - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -320,44 +338,44 @@
 
  <div class="section" id="computing-out-of-sample-predicted-probabilities-with-cross-validation">
 <span id="pred-probs-cross-val"></span><h1>Computing Out-of-Sample Predicted Probabilities with Cross-Validation<a class="headerlink" href="#computing-out-of-sample-predicted-probabilities-with-cross-validation" title="Permalink to this headline">#</a></h1>
-<p>Recall that <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> finds label issues in any dataset using some model’s predicted class probabilities output. However, predicted probabilities from your model must be out-of-sample! You should never provide predictions on the same datapoints used to train the model, as these will be overfitted and unsuitable for finding label issues. It is ok if your model was trained on a separate dataset and you are only using <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> to evaluate labels in data that was previously held out (e.g., only searching for label issues in the test data).</p>
+<p>Recall that cleanlab finds label issues in any dataset using some model’s predicted class probabilities output. However, predicted probabilities from your model must be out-of-sample! You should never provide predictions on the same datapoints used to train the model, as these will be overfitted and unsuitable for finding label issues. It is ok if your model was trained on a separate dataset and you are only using cleanlab to evaluate labels in data that was previously held out (e.g., only searching for label issues in the test data).</p>
 <p>To find label issues across all your data requires obtaining out-of-sample predicted probabilities for every datapoint in your dataset. This can be done via K-fold cross-validation as described below. Conventionally, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation">cross-validation</a> is used for model evaluation, but we’ll use it to compute out-of-sample predicted probabilities for the entire dataset.</p>
 <div class="section" id="out-of-sample-predicted-probabilities">
 <h2>Out-of-sample predicted probabilities?<a class="headerlink" href="#out-of-sample-predicted-probabilities" title="Permalink to this headline">#</a></h2>
-<p><strong>Predicted probabilities</strong> refer to a trained classification model’s probabilistic estimate of the correct label for each datapoint. For example, a model trained to classify images of cats vs. dogs may predict that a new image is a cat with 90% confidence and a dog with 10% confidence -  these are the model’s predicted probabilities for one datapoint. Whichever label with the highest predicted probability is often considered the model’s class prediction (i.e., cat for the aforementioned hypothetical image).</p>
+<p><strong>Predicted probabilities</strong> refer to a trained classification model’s probabilistic estimate of the correct label for each datapoint. For example, a model trained to classify images of cats vs. dogs may predict that a new image is a cat with 90% confidence and a dog with 10% confidence — these are the model’s predicted probabilities for one datapoint. Whichever label with the highest predicted probability is often considered the model’s class prediction (i.e., cat for the aforementioned hypothetical image).</p>
 <p><strong>Out-of-sample</strong> predicted probabilities refer to the model’s probabilistic predictions made only on datapoints that were not shown to the model during training. In contrast, in-sample predicted probabilities on the model’s training data will often be way overconfident and cannot be trusted. For example, in a traditional train-test split of the data, the train set will be shown to the model during its training, whereas the test set will only be used to evaluate the model’s performance after training. Predicted probabilities generated for the test set can thus be considered as out-of-sample.</p>
-<p>When using <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>, we will typically want to find label issues in all labeled data rather than just the test data. We can use K-fold cross-validation to generate out-of-sample predicted probabilities for every datapoint.</p>
+<p>When using cleanlab, we will typically want to find label issues in all labeled data rather than just the test data. We can use K-fold cross-validation to generate out-of-sample predicted probabilities for every datapoint.</p>
 </div>
 <div class="section" id="what-is-k-fold-cross-validation">
 <h2>What is K-fold cross-validation?<a class="headerlink" href="#what-is-k-fold-cross-validation" title="Permalink to this headline">#</a></h2>
 <img alt="Computing Out-of-Sample Predicted Probabilities from K-Fold Cross-Validation" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/pred_probs_cross_val.png"/>
-<p>The diagram above depicts K-fold cross-validation with K = 5. K-fold cross-validation partitions the entire dataset into <em>K</em> disjoint subsets of data called <strong>folds</strong>. <em>K</em> independent copies of our model are trained, where for each model copy, one fold of the data is held out from its training (the data in this fold may be viewed as a <strong>validation set</strong> for this copy of the model). Each copy of the model has a different validation set for which we can obtain out-of-sample predicted probabilities from this copy of the model. Since each datapoint is held-out from one copy of the model, this process allows us to get out-of-sample predictions for every datapoint! We, in particular, recommend applying stratified cross-validation, which tries to ensure the proportions of data from each class match across different folds.</p>
-<p>This method of producing out-of-sample predictions via cross-validation is also referred to as cross-validated prediction, out-of-folds predictions, K-fold bagging, etc. It can be easily applied to any <cite>sklearn</cite>-compatible model by invoking <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_predict.html">cross_val_predict</a>. An additional benefit is that cross-validation produces <a class="reference external" href="https://towardsdatascience.com/5-reasons-why-you-should-use-cross-validation-in-your-data-science-project-8163311a1e79">significantly superior estimates</a> of how the model will perform on new data.</p>
-<p>Here’s pseudocode for implementing K-fold cross-validation with K = 3:</p>
+<p>The diagram above depicts K-fold cross-validation with K = 5. K-fold cross-validation partitions the entire dataset into <em>K</em> disjoint subsets of data called <em>folds</em>. <em>K</em> independent copies of our model are trained, where for each model copy, one fold of the data is held out from its training (the data in this fold may be viewed as a <em>validation set</em> for this copy of the model). Each copy of the model has a different validation set for which we can obtain out-of-sample predicted probabilities from this copy of the model. Since each datapoint is held-out from one copy of the model, this process allows us to get out-of-sample predictions for every datapoint! We recommend applying <em>stratified</em> cross-validation, which tries to ensure the proportions of data from each class match across different folds.</p>
+<p>This method of producing out-of-sample predictions via cross-validation is also referred to as cross-validated prediction, out-of-folds predictions, and K-fold bagging. It can be easily applied to any <cite>sklearn</cite>-compatible model by invoking <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_predict.html">cross_val_predict</a>. An additional benefit is that cross-validation produces <a class="reference external" href="https://towardsdatascience.com/5-reasons-why-you-should-use-cross-validation-in-your-data-science-project-8163311a1e79">significantly superior estimates</a> of how the model will perform on new data.</p>
+<p>Here is pseudocode for manually implementing K-fold cross-validation with K = 3:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 0</span>
 <span class="c1"># Separate your data into three equal sized chunks (this is called 3-fold cross validation)</span>
 <span class="c1"># Data = A B C</span>
 
-<span class="c1"># Step 1 -- get oos pred probs for A</span>
+<span class="c1"># Step 1 -- get out-of-sample pred probs for A</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">B</span><span class="o">+</span><span class="n">C</span><span class="p">)</span>
 <span class="n">out_of_sample_pred_probs_for_A</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pred_proba</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
 
-<span class="c1"># Step 2 -- get oos pred probs for B</span>
+<span class="c1"># Step 2 -- get out-of-sample pred probs for B</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">A</span><span class="o">+</span><span class="n">C</span><span class="p">)</span>
 <span class="n">out_of_sample_pred_probs_for_B</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pred_proba</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">B</span><span class="p">)</span>
 
-<span class="c1"># Step 3 -- get oos pred probs for C</span>
+<span class="c1"># Step 3 -- get out-of-sample pred probs for C</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">A</span><span class="o">+</span><span class="n">B</span><span class="p">)</span>
 <span class="n">out_of_sample_pred_probs_for_C</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pred_proba</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">C</span><span class="p">)</span>
 
-<span class="c1"># Final step -- combine to get oos pred probs for entire dataset.</span>
+<span class="c1"># Final step -- combine to get out-of-sample pred probs for entire dataset.</span>
 <span class="n">out_of_sample_pred_probs</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">([</span>
-<span class="n">out_of_sample_pred_probs_for_A</span><span class="p">,</span>
-<span class="n">out_of_sample_pred_probs_for_B</span><span class="p">,</span>
-<span class="n">out_of_sample_pred_probs_for_C</span><span class="p">,</span>
+    <span class="n">out_of_sample_pred_probs_for_A</span><span class="p">,</span>
+    <span class="n">out_of_sample_pred_probs_for_B</span><span class="p">,</span>
+    <span class="n">out_of_sample_pred_probs_for_C</span><span class="p">,</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -462,5 +480,7 @@
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>

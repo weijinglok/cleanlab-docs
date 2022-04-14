@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Audio Classification with SpeechBrain and Cleanlab" href="audio.html" /><link rel="prev" title="Text Classification with TensorFlow, Keras, and Cleanlab" href="text.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>Classification with Tabular Data using Scikit-Learn and Cleanlab - cleanlab</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -140,15 +142,23 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
-  
-  <div class="sidebar-logo-container">
-    <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo"/>
-  </div>
-  
-  <span class="sidebar-brand-text">cleanlab</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -171,20 +181,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/filter.html">filter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/rank.html">rank</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cleanlab/count.html">count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cleanlab/noise_generation.html">noise_generation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/fasttext.html">fasttext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/coteaching.html">coteaching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/util.html">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migrating/migrate_v2.html">Migrating to v2.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Links</span></p>
 <ul>
@@ -274,7 +292,7 @@
           </label>
         </div>
         <article role="main">
-           
+          
 
 <noscript>
   <div class="admonition warning">
@@ -299,7 +317,7 @@
         const path_arr = window.location.pathname.split("/");
 
         if (path_arr.includes("master")) {
-            document.getElementById("doc_ver_warning").innerHTML = 
+            document.getElementById("doc_ver_warning").innerHTML =
             `<div class="admonition warning">
             <p class="admonition-title">Warning</p>
             <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
@@ -592,21 +610,22 @@ div.rendered_html tbody tr:hover {
 
 </script><div class="section" id="Classification-with-Tabular-Data-using-Scikit-Learn-and-Cleanlab">
 <h1>Classification with Tabular Data using Scikit-Learn and Cleanlab<a class="headerlink" href="#Classification-with-Tabular-Data-using-Scikit-Learn-and-Cleanlab" title="Permalink to this headline">#</a></h1>
-<p>In this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> with scikit-learn models to find potential label errors in the German Credit dataset. This dataset contains 1,000 individuals described by 20 features, each labeled as either “good” or “bad” credit risk. <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> automatically shortlists <em>hundreds</em> of examples from this dataset that confuse our ML model; many of which are potential label errors (due to annotator mistakes), edge cases, and otherwise ambiguous examples.</p>
+<p>In this tutorial, we will use cleanlab with scikit-learn models to find potential label errors in the <a class="reference external" href="https://www.openml.org/d/31">German Credit dataset</a>. This dataset contains 1,000 individuals described by 20 features, each labeled as either “good” or “bad” credit risk. cleanlab automatically shortlists <em>hundreds</em> of examples from this dataset that confuse our ML model; many of which are potential label errors (due to annotator mistakes), edge cases, and otherwise ambiguous examples.</p>
 <p><strong>Overview of what we’ll do in this tutorial:</strong></p>
 <ul class="simple">
 <li><p>Build a simple credit risk classifier with scikit-learn’s logistic regression.</p></li>
 <li><p>Use this classifier to compute out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, via cross validation.</p></li>
-<li><p>Identify potential label errors in the data with <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s <code class="docutils literal notranslate"><span class="pre">find_label_issues</span></code> method.</p></li>
-<li><p>Train a robust version of the same logistic regression model via <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s <code class="docutils literal notranslate"><span class="pre">CleanLearning</span></code> wrapper.</p></li>
+<li><p>Identify potential label errors in the data with cleanlab’s <code class="docutils literal notranslate"><span class="pre">find_label_issues</span></code> method.</p></li>
+<li><p>Train a robust version of the same logistic regression model via cleanlab’s <code class="docutils literal notranslate"><span class="pre">CleanLearning</span></code> wrapper.</p></li>
 </ul>
-<p><strong>Data:</strong> <a class="reference external" href="https://www.openml.org/d/31">https://www.openml.org/d/31</a></p>
 <div class="section" id="1.-Install-required-dependencies">
 <h2><strong>1. Install required dependencies</strong><a class="headerlink" href="#1.-Install-required-dependencies" title="Permalink to this headline">#</a></h2>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install all packages required for this tutorial as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pip install sklearn pandas
-!pip install cleanlab  # Make sure to install the version corresponding to this tutorial
-# E.g. if viewing master branch documentation: !pip install git+https://github.com/cleanlab/cleanlab.git
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install sklearn pandas
+<span class="o">!</span>pip install cleanlab
+<span class="c1"># Make sure to install the version corresponding to this tutorial</span>
+<span class="c1"># E.g. if viewing master branch documentation:</span>
+<span class="c1">#     !pip install git+https://github.com/cleanlab/cleanlab.git</span>
 </pre></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -639,7 +658,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>Next we preprocess the data. Here we apply one-hot encoding to features with categorical data, and standardize features with numeric data. We also perform label encoding on the labels - “bad” is encoded as 0 and “good” is encoded as 1.</p>
+<p>Next we preprocess the data. Here we apply one-hot encoding to features with categorical data, and standardize features with numeric data. We also perform label encoding on the labels — “bad” is encoded as 0 and “good” is encoded as 1.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -666,7 +685,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="3.-Select-a-classification-model-and-compute-out-of-sample-predicted-probabilities">
 <h2><strong>3. Select a classification model and compute out-of-sample predicted probabilities</strong><a class="headerlink" href="#3.-Select-a-classification-model-and-compute-out-of-sample-predicted-probabilities" title="Permalink to this headline">#</a></h2>
-<p>Here we use a simple Logistic Regression model, but you can choose <em>any</em> suitable scikit-learn model for this tutorial.</p>
+<p>Here we use a simple logistic regression model, but you can choose any suitable scikit-learn model for this tutorial.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -677,7 +696,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>To identify label issues, <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> requires a probabilistic prediction from your model for every datapoint. However, these predictions will be <em>overfitted</em> (and thus unreliable) for examples the model was previously trained on. <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is intended to only be used with <strong>out-of-sample</strong> predicted probabilities, i.e., on examples held out from the model during the training.</p>
+<p>To identify label issues, cleanlab requires a probabilistic prediction from your model for every datapoint. However, these predictions will be <em>overfitted</em> (and thus unreliable) for examples the model was previously trained on. cleanlab is intended to only be used with <strong>out-of-sample</strong> predicted probabilities, i.e., on examples held out from the model during the training.</p>
 <p>K-fold cross-validation is a straightforward way to produce out-of-sample predicted probabilities for every datapoint in the dataset by training K copies of our model on different data subsets and using each copy to predict on the subset of data it did not see during training. An additional benefit of cross-validation is that it provides a more reliable evaluation of our model than a single training/validation split. We can obtain cross-validated out-of-sample predicted probabilities from any
 classifier via a simple scikit-learn wrapper:</p>
 <div class="nbinput nblast docutils container">
@@ -686,15 +705,21 @@ classifier via a simple scikit-learn wrapper:</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
 
-<span class="n">num_crossval_folds</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># chosen for efficiency here, values like 5 or 10 will generally work better</span>
-<span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">num_crossval_folds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"predict_proba"</span><span class="p">)</span>
+<span class="n">num_crossval_folds</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># for efficiency; values like 5 or 10 will generally work better</span>
+<span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span>
+    <span class="n">clf</span><span class="p">,</span>
+    <span class="n">X_scaled</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="n">num_crossval_folds</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">"predict_proba"</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="4.-Use-cleanlab-to-find-label-issues">
 <h2><strong>4. Use cleanlab to find label issues</strong><a class="headerlink" href="#4.-Use-cleanlab-to-find-label-issues" title="Permalink to this headline">#</a></h2>
-<p>Based on the given labels and out-of-sample predicted probabilities, <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> can quickly help us identify label issues in our dataset. Here we request that the indices of the identified label issues be sorted by <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>’s self-confidence score, which measures the quality of each given label via the probability assigned to it in our model’s prediction.</p>
+<p>Based on the given labels and out-of-sample predicted probabilities, cleanlab can quickly help us identify label issues in our dataset. Here we request that the indices of the identified label issues be sorted by cleanlab’s self-confidence score, which measures the quality of each given label via the probability assigned to it in our model’s prediction.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -909,7 +934,12 @@ Cleanlab found 173 potential label errors.
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_encoded</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -950,7 +980,7 @@ Cleanlab found 173 potential label errors.
 Test accuracy of original logistic regression: 0.736
 </pre></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> provides a wrapper class that can be easily applied to any scikit-learn compatible model. Once wrapped, the resulting model can still be used in the exact same manner, but it will now train more robustly if the data have noisy labels.</p>
+<p>cleanlab provides a wrapper class that can be easily applied to any scikit-learn compatible model. Once wrapped, the resulting model can still be used in the exact same manner, but it will now train more robustly if the data have noisy labels.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -962,28 +992,14 @@ Test accuracy of original logistic regression: 0.736
 </pre></div>
 </div>
 </div>
-<p>The following operations take place when we train the <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>-wrapped model: The original model is trained in a cross-validated fashion to produce out-of-sample predicted probabilities. Then, these predicted probabilities are used to identify label issues, which are then removed from the dataset. Finally, the original model is trained on the remaining clean subset of the data once more.</p>
-<div class="nbinput docutils container">
+<p>The following operations take place when we train the cleanlab-wrapped model: The original model is trained in a cross-validated fashion to produce out-of-sample predicted probabilities. Then, these predicted probabilities are used to identify label issues, which are then removed from the dataset. Finally, the original model is trained on the remaining clean subset of the data once more.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Computing out of sample predicted probabilites via 5-fold cross validation. May take a while ...
-Using predicted probabilities to identify label issues ...
-Identified 120 examples with label issues.
-Pruning 120 examples with label issues ...
-Remaining clean data has 630 examples.
-Assigning sample weights for final training based on estimated label quality.
-Fitting final model on the clean data ...
-</pre></div></div>
 </div>
 <p>We can get predictions from the resulting model and evaluate them, just like how we did it for the original scikit-learn model.</p>
 <div class="nbinput docutils container">
@@ -1004,8 +1020,8 @@ Fitting final model on the clean data ...
 Test accuracy of cleanlab's logistic regression: 0.744
 </pre></div></div>
 </div>
-<p>We can see that the test set accuracy slightly improved as a result of the data cleaning. Note that this will not always be the case, especially when we evaluate on test data that are themselves noisy. The best practice is to run <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> to identify potential label issues and then manually review them, before blindly trusting any accuracy metrics. In particular, the most effort should be made to ensure high-quality test data, which is supposed to reflect the expected performance of our
-model during deployment.</p>
+<p>We can see that the test set accuracy slightly improved as a result of the data cleaning. Note that this will not always be the case, especially when we evaluate on test data that are themselves noisy. The best practice is to run cleanlab to identify potential label issues and then manually review them, before blindly trusting any accuracy metrics. In particular, the most effort should be made to ensure high-quality test data, which is supposed to reflect the expected performance of our model
+during deployment.</p>
 </div>
 </div>
  
@@ -1110,7 +1126,7 @@ model during deployment.</p>
     <script src="../_static/copybutton.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    </body>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>
