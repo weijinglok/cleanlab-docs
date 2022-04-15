@@ -173,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -342,8 +343,9 @@
 this migration guide can help you update your existing code to work with v2.0.0 in no time!
 Below we outline the major updates and code substitutions to be aware of.
 The full change-log is listed in the <a class="reference external" href="https://github.com/cleanlab/cleanlab/releases/tag/v2.0.0">v2.0.0. Release Notes</a>.</p>
-<div class="section" id="method-and-class-name-changes">
-<h2>Method and class name changes<a class="headerlink" href="#method-and-class-name-changes" title="Permalink to this headline">#</a></h2>
+<div class="section" id="function-and-class-name-changes">
+<h2>Function and class name changes<a class="headerlink" href="#function-and-class-name-changes" title="Permalink to this headline">#</a></h2>
+<p>This section covers the most commonly-used functionality from Cleanlab 1.0.</p>
 <div class="line-block">
 <div class="line"><strong>Old:</strong> <code class="docutils literal notranslate"><span class="pre">pruning.get_noise_indices(s,</span> <span class="pre">psx,</span> <span class="pre">prune_method,</span> <span class="pre">sorted_index_method,</span> <span class="pre">...)</span></code></div>
 <div class="line">–&gt;</div>
@@ -374,28 +376,44 @@ The full change-log is listed in the <a class="reference external" href="https:/
 </div>
 <div class="section" id="module-name-changes">
 <h2>Module name changes<a class="headerlink" href="#module-name-changes" title="Permalink to this headline">#</a></h2>
+<p>Reorganized modules:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.pruning</span></code> –&gt; <a class="reference internal" href="../cleanlab/filter.html#module-cleanlab.filter" title="cleanlab.filter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.filter</span></code></a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.latent_estimation</span></code> –&gt; <a class="reference internal" href="../cleanlab/count.html#module-cleanlab.count" title="cleanlab.count"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.count</span></code></a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.models</span></code> –&gt; <a class="reference internal" href="../cleanlab/experimental/index.html#module-cleanlab.experimental" title="cleanlab.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.experimental</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.noise_generation</span></code> –&gt; <a class="reference internal" href="../cleanlab/benchmarking/noise_generation.html#module-cleanlab.benchmarking.noise_generation" title="cleanlab.benchmarking.noise_generation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.benchmarking.noise_generation</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.baseline_methods</span></code> –&gt; incorporated into <a class="reference internal" href="../cleanlab/filter.html#module-cleanlab.filter" title="cleanlab.filter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.filter</span></code></a></p></li>
 </ul>
-<p>Note: The <code class="docutils literal notranslate"><span class="pre">cleanlab.coteaching</span></code> module has also been moved into <a class="reference internal" href="../cleanlab/experimental/coteaching.html#module-cleanlab.experimental.coteaching" title="cleanlab.experimental.coteaching"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.experimental.coteaching</span></code></a>.</p>
+<p>Internal and experimental functionality, marked as such and not guaranteed to be stable between releases:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.models</span></code> –&gt; <a class="reference internal" href="../cleanlab/experimental/index.html#module-cleanlab.experimental" title="cleanlab.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.experimental</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.coteaching</span></code> –&gt; <a class="reference internal" href="../cleanlab/experimental/coteaching.html#module-cleanlab.experimental.coteaching" title="cleanlab.experimental.coteaching"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.experimental.coteaching</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.latent_algebra</span></code> –&gt; <a class="reference internal" href="../cleanlab/internal/latent_algebra.html#module-cleanlab.internal.latent_algebra" title="cleanlab.internal.latent_algebra"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.internal.latent_algebra</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.util</span></code> –&gt; <a class="reference internal" href="../cleanlab/internal/util.html#module-cleanlab.internal.util" title="cleanlab.internal.util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.internal.util</span></code></a></p></li>
+</ul>
 </div>
 <div class="section" id="new-modules">
 <h2>New modules<a class="headerlink" href="#new-modules" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="../cleanlab/rank.html#module-cleanlab.rank" title="cleanlab.rank"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.rank</span></code></a> : Moved all ranking and ordering functions from <code class="docutils literal notranslate"><span class="pre">cleanlab.pruning</span></code> and <code class="docutils literal notranslate"><span class="pre">cleanlab.filter</span></code> to here. This module contains methods to score the label quality of each example and rank your data by the quality of their labels.</p></li>
 <li><p><a class="reference internal" href="../cleanlab/dataset.html#module-cleanlab.dataset" title="cleanlab.dataset"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.dataset</span></code></a> : New methods to print summaries of overall types of label issues most common in a dataset.</p></li>
-<li><p><a class="reference internal" href="../cleanlab/internal/index.html#module-cleanlab.internal" title="cleanlab.internal"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.internal</span></code></a> : Moved all advanced code and utility methods to this module, including the old <code class="docutils literal notranslate"><span class="pre">cleanlab.latent_algebra</span></code> module. Researchers may find useful functions in here.</p></li>
+<li><p><a class="reference internal" href="../cleanlab/rank.html#module-cleanlab.rank" title="cleanlab.rank"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.rank</span></code></a> : Moved all ranking and ordering functions from <code class="docutils literal notranslate"><span class="pre">cleanlab.pruning</span></code> to here. This module contains methods to score the label quality of each example and rank your data by the quality of their labels.</p></li>
+<li><p><a class="reference internal" href="../cleanlab/internal/index.html#module-cleanlab.internal" title="cleanlab.internal"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.internal</span></code></a> and <a class="reference internal" href="../cleanlab/experimental/index.html#module-cleanlab.experimental" title="cleanlab.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.experimental</span></code></a>: Moved all advanced code and utility methods to this module, including the old <code class="docutils literal notranslate"><span class="pre">cleanlab.latent_algebra</span></code> module. Researchers may find useful functions in here.</p></li>
+</ul>
+</div>
+<div class="section" id="removed-modules">
+<h2>Removed modules<a class="headerlink" href="#removed-modules" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanlab.polyplex</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="common-argument-and-variable-name-changes">
 <h2>Common argument and variable name changes<a class="headerlink" href="#common-argument-and-variable-name-changes" title="Permalink to this headline">#</a></h2>
+<p>Here are some common name and terminology changes in Cleanlab 2.0:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">labels</span></code>  (the given labels in the data, which are potentially noisy)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">psx</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>  (predicted probabilities output by trained classifier)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">label_error</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">label_issue</span></code>  (a label that is likely to be wrong)</p></li>
 </ul>
+<p>See the documentation for individual functions for details on how argument names changed.</p>
 </div>
 </div>
  
@@ -467,9 +485,10 @@ The full change-log is listed in the <a class="reference external" href="https:/
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">How to migrate to 2.0.0 from versions pre 1.0.1</a><ul>
-<li><a class="reference internal" href="#method-and-class-name-changes">Method and class name changes</a></li>
+<li><a class="reference internal" href="#function-and-class-name-changes">Function and class name changes</a></li>
 <li><a class="reference internal" href="#module-name-changes">Module name changes</a></li>
 <li><a class="reference internal" href="#new-modules">New modules</a></li>
+<li><a class="reference internal" href="#removed-modules">Removed modules</a></li>
 <li><a class="reference internal" href="#common-argument-and-variable-name-changes">Common argument and variable name changes</a></li>
 </ul>
 </li>
