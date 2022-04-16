@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -632,14 +636,13 @@
 <span class="sd">    score used to order the label issues.</span>
 
 <span class="sd">    The number of indices returned is controlled by `frac_noise`: reduce its</span>
-<span class="sd">    value to identify fewer label issues.</span>
+<span class="sd">    value to identify fewer label issues. If you aren't sure, leave this set to 1.0.</span>
 
 <span class="sd">    Tip: if you encounter the error "pred_probs is not defined", try setting</span>
 <span class="sd">    ``n_jobs=1``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    labels : np.array</span>
 <span class="sd">      A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">      *Format requirements*: for dataset with K classes, labels must be in 0, 1, ..., K-1.</span>
@@ -697,9 +700,14 @@
 <span class="sd">      Example of a multi-labeled `labels` input: ``[[0,1], [1], [0,2], [0,1,2], [0], [1], ...]``.</span>
 
 <span class="sd">    frac_noise : float, default=1.0</span>
-<span class="sd">      When ``frac_noise=1.0``, return all "confident" estimated noise indices.</span>
-<span class="sd">      Value in range ``[0, 1)`` determine the fraction of noisy example</span>
-<span class="sd">      indices to return based on the following formula for example class k.</span>
+<span class="sd">      Used to only return the "top" ``frac_noise * num_label_issues``. The choice of which "top"</span>
+<span class="sd">      label issues to return is dependent on the `filter_by` method used. It works by reducing the</span>
+<span class="sd">      size of the off-diagonals of the `joint` distribution of given labels and true labels</span>
+<span class="sd">      proportionally by `frac_noise` prior to estimating label issues with each method.</span>
+<span class="sd">      This parameter only applies for `filter_by=both`, `filter_by=prune_by_class`, and</span>
+<span class="sd">      `filter_by=prune_by_noise_rate` methods and currently is unused by other methods.</span>
+<span class="sd">      When ``frac_noise=1.0``, return all "confident" estimated noise indices (recommended).</span>
+
 <span class="sd">      frac_noise * number_of_mislabeled_examples_in_class_k.</span>
 
 <span class="sd">    num_to_remove_per_class : array_like</span>
@@ -951,7 +959,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    prune_count_matrix : np.array of shape (K, K), K = number of classes</span>
 <span class="sd">        A counts of mislabeled examples in every class. For this function.</span>
 <span class="sd">        NOTE prune_count_matrix is transposed relative to confident_joint.</span>
@@ -959,18 +966,18 @@
 <span class="sd">    n : int</span>
 <span class="sd">        Number of examples to make sure are left in each class.</span>
 
-<span class="sd">    frac_noise : float</span>
-<span class="sd">        When frac_noise = 1.0, return all estimated noise indices.</span>
-<span class="sd">        Value in range (0, 1] that determines the fraction of noisy example</span>
-<span class="sd">        indices to return based on the following formula for example class k.</span>
-<span class="sd">        frac_noise * number_of_mislabeled_examples_in_class_k, or</span>
-<span class="sd">        frac_noise * inverse_noise_rate_class_k * num_examples_s_equal_k</span>
+<span class="sd">    frac_noise : float, default=1.0</span>
+<span class="sd">      Used to only return the "top" ``frac_noise * num_label_issues``. The choice of which "top"</span>
+<span class="sd">      label issues to return is dependent on the `filter_by` method used. It works by reducing the</span>
+<span class="sd">      size of the off-diagonals of the `prune_count_matrix` of given labels and true labels</span>
+<span class="sd">      proportionally by `frac_noise` prior to estimating label issues with each method.</span>
+<span class="sd">      When frac_noise=1.0, return all "confident" estimated noise indices (recommended).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-
 <span class="sd">    prune_count_matrix : np.array of shape (K, K), K = number of classes</span>
-<span class="sd">        Number of examples to remove from each class, for every other class."""</span>
+<span class="sd">        This the same as the confident_joint, but has been transposed and the counts are adjusted.</span>
+<span class="sd">    """</span>
 
     <span class="n">prune_count_matrix_diagonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">prune_count_matrix</span><span class="p">)</span>
 
@@ -1013,18 +1020,18 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    prune_count_matrix : np.array of shape (K, K), K = number of classes</span>
 <span class="sd">        A counts of mislabeled examples in every class. For this function, it</span>
 <span class="sd">        does not matter what the rows or columns are, but the diagonal terms</span>
 <span class="sd">        reflect the number of correctly labeled examples.</span>
 
 <span class="sd">    frac_noise : float</span>
-<span class="sd">        When frac_noise = 1.0, return all estimated noise indices.</span>
-<span class="sd">        Value in range (0, 1] that determines the fraction of noisy example</span>
-<span class="sd">        indices to return based on the following formula for example class k.</span>
-<span class="sd">        frac_noise * number_of_mislabeled_examples_in_class_k, or</span>
-<span class="sd">        frac_noise * inverse_noise_rate_class_k * num_examples_s_equal_k."""</span>
+<span class="sd">      Used to only return the "top" ``frac_noise * num_label_issues``. The choice of which "top"</span>
+<span class="sd">      label issues to return is dependent on the `filter_by` method used. It works by reducing the</span>
+<span class="sd">      size of the off-diagonals of the `prune_count_matrix` of given labels and true labels</span>
+<span class="sd">      proportionally by `frac_noise` prior to estimating label issues with each method.</span>
+<span class="sd">      When frac_noise=1.0, return all "confident" estimated noise indices (recommended).</span>
+<span class="sd">    """</span>
 
     <span class="n">new_mat</span> <span class="o">=</span> <span class="n">prune_count_matrix</span> <span class="o">*</span> <span class="n">frac_noise</span>
     <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">new_mat</span><span class="p">,</span> <span class="n">prune_count_matrix</span><span class="o">.</span><span class="n">diagonal</span><span class="p">())</span>
@@ -1038,8 +1045,7 @@
 
 
 <div class="viewcode-block" id="find_predicted_neq_given"><a class="viewcode-back" href="../../cleanlab/filter.html#cleanlab.filter.find_predicted_neq_given">[docs]</a><span class="k">def</span> <span class="nf">find_predicted_neq_given</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">multi_label</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">"""This is the simplest baseline approach. Just consider</span>
-<span class="sd">    anywhere ``argmax(pred_probs) != labels`` as a label error.</span>
+    <span class="sd">"""A simple baseline approach that considers ``argmax(pred_probs) != labels`` as a label error.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1097,7 +1103,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    labels : np.array</span>
 <span class="sd">        An array of shape ``(N,)`` of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">        Elements must be in the set 0, 1, ..., K-1, where K is the number of classes.</span>

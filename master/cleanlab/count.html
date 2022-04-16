@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -384,7 +388,7 @@
 <td><p>Returns expected (average) "self-confidence" for each class.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.count.num_label_issues" title="cleanlab.count.num_label_issues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_label_issues</span></code></a>(labels, pred_probs[, ...])</p></td>
-<td><p>Estimates the number of label issues in <cite>labels</cite>.</p></td>
+<td><p>Estimates the number of label issues in the <cite>labels</cite> of a dataset.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -864,14 +868,22 @@ higher) fold cross-validation.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.count.num_label_issues">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.count.</span></span><span class="sig-name descname"><span class="pre">num_label_issues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/count.html#num_label_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.count.num_label_issues" title="Permalink to this definition">#</a></dt>
-<dd><p>Estimates the number of label issues in <cite>labels</cite>.</p>
+<dd><p>Estimates the number of label issues in the <cite>labels</cite> of a dataset.</p>
 <p>This method is <strong>more accurate</strong> than <code class="docutils literal notranslate"><span class="pre">sum(find_label_issues())</span></code> because its computed using only
 the trace of the confident joint, ignoring all off-diagonals (which are used by <cite>find_label_issues</cite> and are harder to
 estimate). Here, we sum over only diagonal elements in the joint (which have more data
 are more constrained, and therefore easier to compute).</p>
 <p>TL;DR: use this method to get the most accurate estimate of number of label issues when you
-don’t need the indices of the label issues. This is the canonical way to find errors
-by combining a ranking/scoring function from <a class="reference internal" href="rank.html#module-cleanlab.rank" title="cleanlab.rank"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.rank</span></code></a> with <cite>num_label_issues</cite>.</p>
+don’t need the indices of the label issues.</p>
+<p>You can use this method to label issues by using <cite>num_label_issues</cite> as the cutoff threshold
+used with ranking/scoring functions from <a class="reference internal" href="rank.html#module-cleanlab.rank" title="cleanlab.rank"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.rank</span></code></a> with <cite>num_label_issues</cite>. There
+are two cases when you should use this approach instead of <a class="reference internal" href="filter.html#cleanlab.filter.find_label_issues" title="cleanlab.filter.find_label_issues"><code class="xref py py-func docutils literal notranslate"><span class="pre">filter.find_label_issues</span></code></a>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>As we add more label and data quality scoring functions in <a class="reference internal" href="rank.html#module-cleanlab.rank" title="cleanlab.rank"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cleanlab.rank</span></code></a>, this approach will always work.</p></li>
+<li><p>If you have a custom score to rank your data by label quality and you just need to know the cut-off of likely label issues.</p></li>
+</ol>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

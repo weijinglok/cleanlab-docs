@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Computing Out-of-Sample Predicted Probabilities with Cross-Validation" href="pred_probs_cross_val.html" /><link rel="prev" title="Audio Classification with SpeechBrain and Cleanlab" href="audio.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Image Classification with PyTorch and Cleanlab" href="image.html" /><link rel="prev" title="cleanlab documentation" href="../index.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>Cleanlab 2.0: The Workflows of Data-centric AI - cleanlab</title>
@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -620,7 +624,8 @@ div.rendered_html tbody tr:hover {
 <li><p>Generate an overall label health score to track improvements in your labels as you clean your datasets over time.</p></li>
 </ul>
 <p>This tutorial provides an in-depth survey of many possible different ways that cleanlab can be utilized for Data-Centric AI. If you have a different use-case in mind that is not supported, please <a class="reference external" href="https://github.com/cleanlab/cleanlab/issues">tell us about it</a>!</p>
-<p><strong>cleanlab is grounded in theory and science</strong>. Learn more: <a class="reference external" href="https://cleanlab.ai/research">Research Publications</a> | <a class="reference external" href="https://labelerrors.com/">Label Errors found by cleanlab</a> | <a class="reference external" href="https://github.com/cleanlab/examples">Examples using cleanlab</a></p>
+<p><strong>cleanlab is grounded in theory and science</strong>. Learn more:</p>
+<p><a class="reference external" href="https://cleanlab.ai/research">Research Publications</a> | <a class="reference external" href="https://labelerrors.com/">Label Errors found by cleanlab</a> | <a class="reference external" href="https://github.com/cleanlab/examples">Examples using cleanlab</a></p>
 <div class="section" id="Install-dependencies-and-import-them">
 <h2>Install dependencies and import them<a class="headerlink" href="#Install-dependencies-and-import-them" title="Permalink to this headline">#</a></h2>
 <p>You can use pip to install all packages required for this tutorial as follows:</p>
@@ -647,104 +652,106 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-<div class="section" id="Create-the-data-used-for-this-tutorial-(can-skip-these-details)">
-<h2>Create the data used for this tutorial (can skip these details)<a class="headerlink" href="#Create-the-data-used-for-this-tutorial-(can-skip-these-details)" title="Permalink to this headline">#</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="section" id="Create-the-data-(can-skip-these-details)">
+<h2>Create the data (can skip these details)<a class="headerlink" href="#Create-the-data-(can-skip-these-details)" title="Permalink to this headline">#</a></h2>
+<details><p>Click here to see data-generation code</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SEED = 0
+
+def make_data(
+    means=[[3, 2], [7, 7], [0, 8], [0, 10]],
+    covs=[
+        [[5, -1.5], [-1.5, 1]],
+        [[1, 0.5], [0.5, 4]],
+        [[5, 1], [1, 5]],
+        [[3, 1], [1, 1]],
+    ],
+    sizes=[100, 50, 50, 50],
+    avg_trace=0.8,
+    seed=SEED,  # set to None for non-reproducible randomness
+):
+    np.random.seed(seed=SEED)
+
+    K = len(means)  # number of classes
+    data = []
+    labels = []
+    test_data = []
+    test_labels = []
+
+    for idx in range(K):
+        data.append(
+            np.random.multivariate_normal(
+                mean=means[idx], cov=covs[idx], size=sizes[idx]
+            )
+        )
+        test_data.append(
+            np.random.multivariate_normal(
+                mean=means[idx], cov=covs[idx], size=sizes[idx]
+            )
+        )
+        labels.append(np.array([idx for i in range(sizes[idx])]))
+        test_labels.append(np.array([idx for i in range(sizes[idx])]))
+    X_train = np.vstack(data)
+    y_train = np.hstack(labels)
+    X_test = np.vstack(test_data)
+    y_test = np.hstack(test_labels)
+
+    # Compute p(y=k) the prior distribution over true labels.
+    py_true = np.bincount(y_train) / float(len(y_train))
+
+    noise_matrix_true = noise_generation.generate_noise_matrix_from_trace(
+        K,
+        trace=avg_trace * K,
+        py=py_true,
+        valid_noise_matrix=True,
+        seed=SEED,
+    )
+
+    # Generate our noisy labels using the noise_marix.
+    s = noise_generation.generate_noisy_labels(y_train, noise_matrix_true)
+    s_test = noise_generation.generate_noisy_labels(y_test, noise_matrix_true)
+    ps = np.bincount(s) / float(len(s))  # Prior distribution over noisy labels
+
+    return {
+        "data": X_train,
+        "true_labels": y_train,  # You never get to see these perfect labels.
+        "labels": s,  # Instead, you have these labels, which have some errors.
+        "test_data": X_test,
+        "test_labels": y_test,  # Perfect labels used for "true" measure of model's performance during deployment.
+        "noisy_test_labels": s_test,  # With IID train/test split, you'd have these labels, which also have some errors.
+        "ps": ps,
+        "py_true": py_true,
+        "noise_matrix_true": noise_matrix_true,
+        "class_names": ["purple", "blue", "seafoam green", "yellow"],
+    }
+
+
+data_dict = make_data()
+for key, val in data_dict.items():  # Map data_dict to variables in namespace
+    exec(key + "=val")
+
+# Display dataset visually using matplotlib
+def plot_data(data, circles, title, alpha=1.0):
+    plt.figure(figsize=(14, 5))
+    plt.scatter(data[:, 0], data[:, 1], c=labels, s=60)
+    for i in circles:
+        plt.plot(
+            data[i][0],
+            data[i][1],
+            "o",
+            markerfacecolor="none",
+            markeredgecolor="red",
+            markersize=14,
+            markeredgewidth=2.5,
+            alpha=alpha
+        )
+    _ = plt.title(title, fontsize=25)
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="k">def</span> <span class="nf">make_data</span><span class="p">(</span>
-    <span class="n">means</span><span class="o">=</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
-    <span class="n">covs</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
-        <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span>
-        <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span>
-        <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
-    <span class="p">],</span>
-    <span class="n">sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-    <span class="n">avg_trace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>  <span class="c1"># set to None for non-reproducible randomness</span>
-<span class="p">):</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
-
-    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>  <span class="c1"># number of classes</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">test_data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">test_labels</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
-                <span class="n">mean</span><span class="o">=</span><span class="n">means</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="n">covs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">test_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
-                <span class="n">mean</span><span class="o">=</span><span class="n">means</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="n">covs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">idx</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">])]))</span>
-        <span class="n">test_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">idx</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">])]))</span>
-    <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
-    <span class="n">y_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
-
-    <span class="c1"># Compute p(y=k) the prior distribution over true labels.</span>
-    <span class="n">py_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
-
-    <span class="n">noise_matrix_true</span> <span class="o">=</span> <span class="n">noise_generation</span><span class="o">.</span><span class="n">generate_noise_matrix_from_trace</span><span class="p">(</span>
-        <span class="n">K</span><span class="p">,</span>
-        <span class="n">trace</span><span class="o">=</span><span class="n">avg_trace</span> <span class="o">*</span> <span class="n">K</span><span class="p">,</span>
-        <span class="n">py</span><span class="o">=</span><span class="n">py_true</span><span class="p">,</span>
-        <span class="n">valid_noise_matrix</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Generate our noisy labels using the noise_marix.</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">noise_generation</span><span class="o">.</span><span class="n">generate_noisy_labels</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">noise_matrix_true</span><span class="p">)</span>
-    <span class="n">s_test</span> <span class="o">=</span> <span class="n">noise_generation</span><span class="o">.</span><span class="n">generate_noisy_labels</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">noise_matrix_true</span><span class="p">)</span>
-    <span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># Prior distribution over noisy labels</span>
-
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">"data"</span><span class="p">:</span> <span class="n">X_train</span><span class="p">,</span>
-        <span class="s2">"true_labels"</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span>  <span class="c1"># You never get to see these perfect labels.</span>
-        <span class="s2">"labels"</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span>  <span class="c1"># Instead, you have these labels, which have some errors.</span>
-        <span class="s2">"test_data"</span><span class="p">:</span> <span class="n">X_test</span><span class="p">,</span>
-        <span class="s2">"test_labels"</span><span class="p">:</span> <span class="n">y_test</span><span class="p">,</span>  <span class="c1"># Perfect labels used for "true" measure of model's performance during deployment.</span>
-        <span class="s2">"noisy_test_labels"</span><span class="p">:</span> <span class="n">s_test</span><span class="p">,</span>  <span class="c1"># With IID train/test split, you'd have these labels, which also have some errors.</span>
-        <span class="s2">"ps"</span><span class="p">:</span> <span class="n">ps</span><span class="p">,</span>
-        <span class="s2">"py_true"</span><span class="p">:</span> <span class="n">py_true</span><span class="p">,</span>
-        <span class="s2">"noise_matrix_true"</span><span class="p">:</span> <span class="n">noise_matrix_true</span><span class="p">,</span>
-        <span class="s2">"class_names"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"purple"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"seafoam green"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">],</span>
-    <span class="p">}</span>
-
-
-<span class="n">data_dict</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># Map data_dict to variables in namespace</span>
-    <span class="n">exec</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">"=val"</span><span class="p">)</span>
-
-<span class="c1"># Display dataset visually using matplotlib</span>
-<span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">circles</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">circles</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
-            <span class="s2">"o"</span><span class="p">,</span>
-            <span class="n">markerfacecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
-            <span class="n">markeredgecolor</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span>
-            <span class="n">markersize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
-            <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span>
-        <span class="p">)</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-
-<span class="n">true_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">true_labels</span> <span class="o">!=</span> <span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</details><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">true_labels</span> <span class="o">!=</span> <span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">plot_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">circles</span><span class="o">=</span><span class="n">true_errors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"A realistic, messy dataset with 4 classes"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -753,7 +760,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_indepth_overview_6_0.png" src="../_images/tutorials_indepth_overview_6_0.png"/>
+<img alt="../_images/tutorials_indepth_overview_8_0.png" src="../_images/tutorials_indepth_overview_8_0.png"/>
 </div>
 </div>
 <p>The figure above represents a toy dataset we’ll use to demonstrate various cleanlab functionality. In this data, the features <em>X</em> are 2-dimensional and examples are colored according to their <em>given</em> label above.</p>
@@ -762,7 +769,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Workflow-1:-Use-CleanLearning()-for-everything">
 <h2><strong>Workflow 1:</strong> Use CleanLearning() for everything<a class="headerlink" href="#Workflow-1:-Use-CleanLearning()-for-everything" title="Permalink to this headline">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yourFavoriteModel</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
@@ -779,7 +786,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -856,7 +863,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Clean-Learning-=-Machine-Learning-with-cleaned-data">
 <h3>Clean Learning = Machine Learning with cleaned data<a class="headerlink" href="#Clean-Learning-=-Machine-Learning-with-cleaned-data" title="Permalink to this headline">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For comparison, this is how you would have trained your model normally (without Cleanlab)</span>
@@ -886,7 +893,7 @@ Accuracy using yourFavoriteModel (+ CleanLearning): 86%
 <div class="section" id="Workflow-2:-Use-CleanLearning-to-find_label_issues-in-one-line-of-code">
 <h2><strong>Workflow 2:</strong> Use CleanLearning to find_label_issues in one line of code<a class="headerlink" href="#Workflow-2:-Use-CleanLearning-to-find_label_issues-in-one-line-of-code" title="Permalink to this headline">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One line of code. Literally.</span>
@@ -897,7 +904,7 @@ Accuracy using yourFavoriteModel (+ CleanLearning): 86%
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -968,7 +975,7 @@ Accuracy using yourFavoriteModel (+ CleanLearning): 86%
 <div class="section" id="Visualize-the-twenty-examples-with-lowest-label-quality-to-see-if-Cleanlab-works.">
 <h3>Visualize the twenty examples with lowest label quality to see if Cleanlab works.<a class="headerlink" href="#Visualize-the-twenty-examples-with-lowest-label-quality-to-see-if-Cleanlab-works." title="Permalink to this headline">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lowest_quality_labels</span> <span class="o">=</span> <span class="n">issues</span><span class="p">[</span><span class="s2">"label_quality"</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="mi">20</span><span class="p">]</span>
@@ -980,13 +987,13 @@ Accuracy using yourFavoriteModel (+ CleanLearning): 86%
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_indepth_overview_16_0.png" src="../_images/tutorials_indepth_overview_16_0.png"/>
+<img alt="../_images/tutorials_indepth_overview_18_0.png" src="../_images/tutorials_indepth_overview_18_0.png"/>
 </div>
 </div>
 <p>Above, the top 20 label issues circled in red are found automatically using cleanlab (no true labels given).</p>
 <p>If you’ve already computed the label issues using <code class="docutils literal notranslate"><span class="pre">CleanLearning</span></code>, you can pass them into <code class="docutils literal notranslate"><span class="pre">fit()</span></code> and it will train <strong>much</strong> faster (skips label-issue identification step).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CleanLearning can train faster if issues are provided at fitting time.</span>
@@ -995,7 +1002,7 @@ Accuracy using yourFavoriteModel (+ CleanLearning): 86%
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1015,7 +1022,7 @@ CleanLearning(clf=LogisticRegression(random_state=0),
 </ul>
 <p>cleanlab automatically finds data-set level issues like this, in one line of code. Check this out!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cleanlab</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">find_overlapping_classes</span><span class="p">(</span>
@@ -1027,7 +1034,7 @@ CleanLearning(clf=LogisticRegression(random_state=0),
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1132,7 +1139,7 @@ CleanLearning(clf=LogisticRegression(random_state=0),
 <li><p>the top two classes found automatically by <code class="docutils literal notranslate"><span class="pre">cleanlab.dataset.find_overlapping_classes()</span></code></p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yourFavoriteModel1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
@@ -1176,7 +1183,7 @@ CleanLearning(clf=LogisticRegression(random_state=0),
 <h2><strong>Workflow 4:</strong> Clean your test set too if you’re doing ML with noisy labels!<a class="headerlink" href="#Workflow-4:-Clean-your-test-set-too-if-you’re-doing-ML-with-noisy-labels!" title="Permalink to this headline">#</a></h2>
 <p>If your test and training data were randomly split (IID), then be aware that your test labels are likely noisy too! It is thus important to fix label issues in them before we can trust measures like test accuracy. * More about what can go wrong if you don’t use a clean test set <a class="reference external" href="https://arxiv.org/abs/2103.14749">in this paper</a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
@@ -1223,7 +1230,7 @@ Actual Test Accuracy (on corrected test labels) using yourFavoriteModel (+ Clean
 <h2><strong>Workflow 5:</strong> One score to rule them all – use cleanlab’s overall dataset health score<a class="headerlink" href="#Workflow-5:-One-score-to-rule-them-all-–-use-cleanlab’s-overall-dataset-health-score" title="Permalink to this headline">#</a></h2>
 <p>This score can be fairly compared across datasets or across versions of a dataset to track overall dataset quality (a.k.a. <em>dataset health</em>) over time.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One line of code.</span>
@@ -1247,7 +1254,7 @@ Actual Test Accuracy (on corrected test labels) using yourFavoriteModel (+ Clean
 <h3>How accurate is this dataset health score?<a class="headerlink" href="#How-accurate-is-this-dataset-health-score?" title="Permalink to this headline">#</a></h3>
 <p>Because we know the true labels (we created this toy dataset), we can compare with ground truth.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_acc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">labels</span> <span class="o">!=</span> <span class="n">true_labels</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
@@ -1293,7 +1300,7 @@ Answer: Data points that fall in between two overlapping distributions are often
 </li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_probs</span> <span class="o">=</span> <span class="n">cleanlab</span><span class="o">.</span><span class="n">count</span><span class="o">.</span><span class="n">estimate_cv_predicted_probabilities</span><span class="p">(</span>
@@ -1345,7 +1352,7 @@ pred_probs is a (250, 4) matrix of predicted probabilites
 <div class="section" id="Use-cleanlab-to-estimate-and-visualize-the-joint-distribution-of-label-noise-and-noise-matrix-of-label-flipping-rates:">
 <h4>Use cleanlab to estimate and visualize the joint distribution of label noise and noise matrix of label flipping rates:<a class="headerlink" href="#Use-cleanlab-to-estimate-and-visualize-the-joint-distribution-of-label-noise-and-noise-matrix-of-label-flipping-rates:" title="Permalink to this headline">#</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
@@ -1400,7 +1407,7 @@ s=3 |   0.02    0.02    0.22    0.61
 </div>
 <p>In some applications, you may have a priori knowledge regarding some of these quantities. In this case, you can pass them directly into cleanlab which may be able to leverage this information to better identify label issues.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cl3</span> <span class="o">=</span> <span class="n">cleanlab</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">CleanLearning</span><span class="p">(</span><span class="n">yourFavoriteModel</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
@@ -1415,7 +1422,7 @@ s=3 |   0.02    0.02    0.22    0.61
 <p>Features of <code class="docutils literal notranslate"><span class="pre">cleanlab.filter.find_label_issues</span></code>: * Versatility – Choose from several <a class="reference external" href="https://arxiv.org/abs/1911.00068">state-of-the-art</a> label-issue detection algorithms using <code class="docutils literal notranslate"><span class="pre">filter_by=</span></code>. * Works with any model by using predicted probabilities (no model needed). * one line of code :)</p>
 <p>Remember <code class="docutils literal notranslate"><span class="pre">CleanLearning.find_label_issues</span></code>? It uses this method internally.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get out of sample predicted probabilities via cross-validation.</span>
@@ -1441,7 +1448,7 @@ s=3 |   0.02    0.02    0.22    0.61
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1456,7 +1463,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 <div class="section" id="Again,-we-can-visualize-the-twenty-examples-with-lowest-label-quality-to-see-if-Cleanlab-works.">
 <h4>Again, we can visualize the twenty examples with lowest label quality to see if Cleanlab works.<a class="headerlink" href="#Again,-we-can-visualize-the-twenty-examples-with-lowest-label-quality-to-see-if-Cleanlab-works." title="Permalink to this headline">#</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">circles</span><span class="o">=</span><span class="n">label_issues_indices</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Top 20 label issues found by cleanlab.filter.find_label_issues()"</span><span class="p">)</span>
@@ -1467,7 +1474,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_indepth_overview_40_0.png" src="../_images/tutorials_indepth_overview_40_0.png"/>
+<img alt="../_images/tutorials_indepth_overview_42_0.png" src="../_images/tutorials_indepth_overview_42_0.png"/>
 </div>
 </div>
 </div>
@@ -1478,7 +1485,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 <li><p>Here, we evaluate precision/recall/f1/accuracy of detecting true label issues for each method.</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span>
@@ -1536,7 +1543,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1615,7 +1622,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 <h3><strong>Workflow 6.3 (rank):</strong> Automatically rank every example by a unique label quality score. Find errors using <code class="docutils literal notranslate"><span class="pre">cleanlab.count.num_label_issues</span></code> as a threshold.<a class="headerlink" href="#Workflow-6.3-(rank):-Automatically-rank-every-example-by-a-unique-label-quality-score.-Find-errors-using-cleanlab.count.num_label_issues-as-a-threshold." title="Permalink to this headline">#</a></h3>
 <p>cleanlab can analyze every label in a dataset and provide a numerical score gauging its overall quality. Low-quality labels indicate examples that should be more closely inspected, perhaps because their given label is incorrect, or simply because they represent an ambiguous edge-case that’s worth a second look.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate the number of label issues</span>
@@ -1639,7 +1646,7 @@ array([ 99,   8,  64,  45,  83, 213, 212, 218, 152, 197, 196, 170, 167,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1657,7 +1664,7 @@ array([ 99,   8,  64, 107,  10,  16,  51,  63, 121, 213, 212, 218, 117,
 <div class="section" id="Again,-we-can-visualize-the-label-issues-found-to-see-if-Cleanlab-works.">
 <h4>Again, we can visualize the label issues found to see if Cleanlab works.<a class="headerlink" href="#Again,-we-can-visualize-the-label-issues-found-to-see-if-Cleanlab-works." title="Permalink to this headline">#</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">circles</span><span class="o">=</span><span class="n">label_issues_indices</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Top 20 label issues using cleanlab.rank with cleanlab.count.num_label_issues()"</span><span class="p">)</span>
@@ -1668,7 +1675,7 @@ array([ 99,   8,  64, 107,  10,  16,  51,  63, 121, 213, 212, 218, 117,
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_indepth_overview_46_0.png" src="../_images/tutorials_indepth_overview_46_0.png"/>
+<img alt="../_images/tutorials_indepth_overview_48_0.png" src="../_images/tutorials_indepth_overview_48_0.png"/>
 </div>
 </div>
 </div>
@@ -1685,7 +1692,7 @@ array([ 99,   8,  64, 107,  10,  16,  51,  63, 121, 213, 212, 218, 117,
 <div class="section" id="Workflow-7:-Ensembling-label-quality-scores-from-multiple-predictors">
 <h2><strong>Workflow 7:</strong> Ensembling label quality scores from multiple predictors<a class="headerlink" href="#Workflow-7:-Ensembling-label-quality-scores-from-multiple-predictors" title="Permalink to this headline">#</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span><span class="p">,</span> <span class="n">RandomForestClassifier</span>
@@ -1735,23 +1742,23 @@ array([ 99,   8,  64, 107,  10,  16,  51,  63, 121, 213, 212, 218, 117,
       <footer>
          
         <div class="related-pages">
-          <a class="next-page" href="pred_probs_cross_val.html">
+          <a class="next-page" href="image.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</div>
+                <div class="title">Image Classification with PyTorch and Cleanlab</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="audio.html">
+          <a class="prev-page" href="../index.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Audio Classification with SpeechBrain and Cleanlab</div>
+                <div class="title">Home</div>
                 
               </div>
             </a>
@@ -1807,7 +1814,7 @@ array([ 99,   8,  64, 107,  10,  16,  51,  63, 121, 213, 212, 218, 117,
             <ul>
 <li><a class="reference internal" href="#">Cleanlab 2.0: The Workflows of Data-centric AI</a><ul>
 <li><a class="reference internal" href="#Install-dependencies-and-import-them">Install dependencies and import them</a></li>
-<li><a class="reference internal" href="#Create-the-data-used-for-this-tutorial-(can-skip-these-details)">Create the data used for this tutorial (can skip these details)</a></li>
+<li><a class="reference internal" href="#Create-the-data-(can-skip-these-details)">Create the data (can skip these details)</a></li>
 <li><a class="reference internal" href="#Workflow-1:-Use-CleanLearning()-for-everything"><strong>Workflow 1:</strong> Use CleanLearning() for everything</a><ul>
 <li><a class="reference internal" href="#Clean-Learning-=-Machine-Learning-with-cleaned-data">Clean Learning = Machine Learning with cleaned data</a></li>
 </ul>

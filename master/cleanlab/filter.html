@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -354,7 +358,7 @@
 <td><p>This is a baseline approach that uses the confusion matrix of <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span></code> and labels as the confident joint and then uses cleanlab (confident learning) to find the label issues using this matrix.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cleanlab.filter.find_predicted_neq_given" title="cleanlab.filter.find_predicted_neq_given"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_predicted_neq_given</span></code></a>(labels, pred_probs, *)</p></td>
-<td><p>This is the simplest baseline approach.</p></td>
+<td><p>A simple baseline approach that considers <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span> <span class="pre">!=</span> <span class="pre">labels</span></code> as a label error.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -368,7 +372,7 @@ a label issue and <code class="docutils literal notranslate"><span class="pre">F
 dataset by setting <cite>return_indices_ranked_by</cite> to specify the label quality
 score used to order the label issues.</p>
 <p>The number of indices returned is controlled by <cite>frac_noise</cite>: reduce its
-value to identify fewer label issues.</p>
+value to identify fewer label issues. If you aren’t sure, leave this set to 1.0.</p>
 <p>Tip: if you encounter the error “pred_probs is not defined”, try setting
 <code class="docutils literal notranslate"><span class="pre">n_jobs=1</span></code>.</p>
 <dl class="field-list simple">
@@ -418,10 +422,15 @@ label quality score (see <a class="reference internal" href="rank.html#cleanlab.
 list of labels for each example, instead of just a single label.
 The multi-label setting supports classification tasks where an example has 1 or more labels.
 Example of a multi-labeled <cite>labels</cite> input: <code class="docutils literal notranslate"><span class="pre">[[0,1],</span> <span class="pre">[1],</span> <span class="pre">[0,2],</span> <span class="pre">[0,1,2],</span> <span class="pre">[0],</span> <span class="pre">[1],</span> <span class="pre">...]</span></code>.</p></li>
-<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) – When <code class="docutils literal notranslate"><span class="pre">frac_noise=1.0</span></code>, return all “confident” estimated noise indices.
-Value in range <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1)</span></code> determine the fraction of noisy example
-indices to return based on the following formula for example class k.
-frac_noise * number_of_mislabeled_examples_in_class_k.</p></li>
+<li><p><strong>frac_noise</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) – <p>Used to only return the “top” <code class="docutils literal notranslate"><span class="pre">frac_noise</span> <span class="pre">*</span> <span class="pre">num_label_issues</span></code>. The choice of which “top”
+label issues to return is dependent on the <cite>filter_by</cite> method used. It works by reducing the
+size of the off-diagonals of the <cite>joint</cite> distribution of given labels and true labels
+proportionally by <cite>frac_noise</cite> prior to estimating label issues with each method.
+This parameter only applies for <cite>filter_by=both</cite>, <cite>filter_by=prune_by_class</cite>, and
+<cite>filter_by=prune_by_noise_rate</cite> methods and currently is unused by other methods.
+When <code class="docutils literal notranslate"><span class="pre">frac_noise=1.0</span></code>, return all “confident” estimated noise indices (recommended).</p>
+<p>frac_noise * number_of_mislabeled_examples_in_class_k.</p>
+</p></li>
 <li><p><strong>num_to_remove_per_class</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – <p>An iterable of length K, the number of classes.
 E.g. if K = 3, <code class="docutils literal notranslate"><span class="pre">num_to_remove_per_class=[5,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> would return
 the indices of the 5 most likely mislabeled examples in class 0,
@@ -502,8 +511,7 @@ labeled with high confidence.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.filter.find_predicted_neq_given">
 <span class="sig-prename descclassname"><span class="pre">cleanlab.filter.</span></span><span class="sig-name descname"><span class="pre">find_predicted_neq_given</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/filter.html#find_predicted_neq_given"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.filter.find_predicted_neq_given" title="Permalink to this definition">#</a></dt>
-<dd><p>This is the simplest baseline approach. Just consider
-anywhere <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span> <span class="pre">!=</span> <span class="pre">labels</span></code> as a label error.</p>
+<dd><p>A simple baseline approach that considers <code class="docutils literal notranslate"><span class="pre">argmax(pred_probs)</span> <span class="pre">!=</span> <span class="pre">labels</span></code> as a label error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

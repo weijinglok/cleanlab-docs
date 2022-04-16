@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -409,7 +413,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    noise_matrix : np.array of shape (K, K), K = number of classes</span>
 <span class="sd">        A conditional probability matrix of the form P(label=k_s|true_label=k_y) containing</span>
 <span class="sd">        the fraction of examples in every class, labeled as every other class.</span>
@@ -445,7 +448,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    noise_matrix : np.array of shape (K, K), K = number of classes</span>
 <span class="sd">        A conditional probability matrix containing the fraction of</span>
 <span class="sd">        examples in every class, labeled as every other class.</span>
@@ -481,7 +483,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    x : np.array</span>
 <span class="sd">        An array / list of values to be clipped.</span>
 
@@ -496,7 +497,6 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-
 <span class="sd">    x : np.array</span>
 <span class="sd">        A list of clipped values, summing to the same sum as x."""</span>
 
@@ -542,7 +542,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    x : list or np.array (one dimensional)</span>
 <span class="sd">        A list of discrete objects, like lists or strings, for</span>
 <span class="sd">        example, class labels 'y' when training a classifier.</span>
@@ -791,6 +790,16 @@
     <span class="k">if</span> <span class="n">compressed_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">int_array</span> <span class="o">=</span> <span class="n">int_array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">compressed_type</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">int_array</span></div>
+
+
+<div class="viewcode-block" id="smart_display_dataframe"><a class="viewcode-back" href="../../../cleanlab/internal/util.html#cleanlab.internal.util.smart_display_dataframe">[docs]</a><span class="k">def</span> <span class="nf">smart_display_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">"""Display a pandas dataframe if in a jupyter notebook, otherwise print it to console."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
 </pre></div> 
         </article>
       </div>

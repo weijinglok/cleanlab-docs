@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -375,7 +379,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    labels : np.array</span>
 <span class="sd">          A discrete vector of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">          *Format requirements*: for dataset with K classes, labels must be in {0,1,...,K-1}.</span>
@@ -397,7 +400,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    ps : np.array (shape (K, ) or (1, K))</span>
 <span class="sd">        The fraction (prior probability) of each observed, NOISY class P(labels = k).</span>
 
@@ -424,7 +426,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    py : np.array (shape (K, 1))</span>
 <span class="sd">        The fraction (prior probability) of each TRUE class label, P(true_label = k)</span>
 
@@ -545,7 +546,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    ps : np.array (shape (K, ) or (1, K))</span>
 <span class="sd">        The fraction (prior probability) of each observed, noisy label, P(labels = k)</span>
 
@@ -571,7 +571,6 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-
 <span class="sd">    py : np.array (shape (K, ) or (1, K))</span>
 <span class="sd">        The fraction (prior probability) of each TRUE class label, P(true_label = k)."""</span>
 
@@ -620,7 +619,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    pred_probs : np.array (shape (N, K))</span>
 <span class="sd">        P(label=k|x) is a matrix with K model-predicted probabilities.</span>
 <span class="sd">        Each row of this matrix corresponds to an example `x` and contains the model-predicted</span>
@@ -642,7 +640,6 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-
 <span class="sd">    pyx : np.array (shape (N, K))</span>
 <span class="sd">        P(true_label=k|x) is a matrix with K model-predicted probabilities.</span>
 <span class="sd">        Each row of this matrix corresponds to an example `x` and contains the model-predicted</span>

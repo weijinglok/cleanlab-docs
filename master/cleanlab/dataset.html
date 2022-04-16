@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -376,7 +380,7 @@ difference between the classes prior to having annotators label the data.</p>
 <p>This method works by providing any one (and only one) of the following inputs:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, or</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">joint</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint</span></code> and <code class="docutils literal notranslate"><span class="pre">num_examples</span></code>, or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">confident_joint</span></code></p></li>
 </ol>
 <p>Only provide <strong>exactly one of the above input options</strong>, do not provide a combination.</p>
@@ -455,13 +459,20 @@ Each row corresponds to a pair of classes.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="cleanlab.dataset.health_summary">
-<span class="sig-prename descclassname"><span class="pre">cleanlab.dataset.</span></span><span class="sig-name descname"><span class="pre">health_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asymmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_examples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/dataset.html#health_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.dataset.health_summary" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cleanlab.dataset.</span></span><span class="sig-name descname"><span class="pre">health_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asymmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_examples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confident_joint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cleanlab/dataset.html#health_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cleanlab.dataset.health_summary" title="Permalink to this definition">#</a></dt>
 <dd><p>Prints a health summary of your datasets including results for useful statistics like:</p>
 <ul class="simple">
 <li><p>The classes with the most and least label issues</p></li>
 <li><p>Classes that overlap and could potentially be merged</p></li>
 <li><p>Overall data label quality health score statistics for your dataset</p></li>
 </ul>
+<p>This method works by providing any one (and only one) of the following inputs:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint</span></code> and <code class="docutils literal notranslate"><span class="pre">num_examples</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confident_joint</span></code></p></li>
+</ol>
+<p>Only provide <strong>exactly one of the above input options</strong>, do not provide a combination.</p>
 <p><strong>Parameters</strong>: For parameter info, see the docstring of <a class="reference internal" href="#cleanlab.dataset.find_overlapping_classes" title="cleanlab.dataset.find_overlapping_classes"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_overlapping_classes</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -487,6 +498,13 @@ Intuitively, the score is the average correctness of the given labels across all
 dataset. So a score of 1 suggests your data is perfectly labeled and a score of 0.5 suggests
 that, on average across all classes, about half of the label may have issues. Thus, a higher
 score implies higher quality labels, with 1 implying labels that have no issues.</p>
+<p>This method works by providing any one (and only one) of the following inputs:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint</span></code> and <code class="docutils literal notranslate"><span class="pre">num_examples</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confident_joint</span></code></p></li>
+</ol>
+<p>Only provide <strong>exactly one of the above input options</strong>, do not provide a combination.</p>
 <p><strong>Parameters</strong>: For parameter info, see the docstring of <a class="reference internal" href="#cleanlab.dataset.find_overlapping_classes" title="cleanlab.dataset.find_overlapping_classes"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_overlapping_classes</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -506,6 +524,13 @@ A score of 0.5 implies that, on average, half of the dataset’s label have esti
 by “Label Quality Score”, ascending, so the most problematic classes are reported first.</p>
 <p>Score values are unnormalized and may tend to be very small. What matters is their relative
 ranking across the classes.</p>
+<p>This method works by providing any one (and only one) of the following inputs:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">pred_probs</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint</span></code> and <code class="docutils literal notranslate"><span class="pre">num_examples</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confident_joint</span></code></p></li>
+</ol>
+<p>Only provide <strong>exactly one of the above input options</strong>, do not provide a combination.</p>
 <p><strong>Parameters</strong>: For parameter info, see the docstring of <a class="reference internal" href="#cleanlab.dataset.find_overlapping_classes" title="cleanlab.dataset.find_overlapping_classes"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_overlapping_classes</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -519,9 +544,9 @@ perfect quality. Columns:</p>
 <ul class="simple">
 <li><p><em>Class Index</em>: The index of the class in 0, 1, …, K-1.</p></li>
 <li><p><em>Label Issues</em>: <code class="docutils literal notranslate"><span class="pre">count(given_label</span> <span class="pre">=</span> <span class="pre">k,</span> <span class="pre">true_label</span> <span class="pre">!=</span> <span class="pre">k)</span></code>, estimated number of label issues in the class (usually the most accurate method).</p></li>
-<li><p><em>Inverse Label Issues</em>: <code class="docutils literal notranslate"><span class="pre">count(given_label</span> <span class="pre">!=</span> <span class="pre">k,</span> <span class="pre">true_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated number of times this class occurs in other classes in the dataset.</p></li>
-<li><p><em>Label Noise</em>: <code class="docutils literal notranslate"><span class="pre">prob(true_label</span> <span class="pre">!=</span> <span class="pre">k</span> <span class="pre">|</span> <span class="pre">given_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated proportion of label issues in the class. This is computed by taking the number of “Label Issues” in each class and dividing it by the total number of examples in each class.</p></li>
-<li><p><em>Inverse Label Noise</em>: <code class="docutils literal notranslate"><span class="pre">prob(given_label</span> <span class="pre">!=</span> <span class="pre">k</span> <span class="pre">|</span> <span class="pre">true_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated proportion of times this class label occurs in other classes in the dataset.</p></li>
+<li><p><em>Inverse Label Issues</em>: <code class="docutils literal notranslate"><span class="pre">count(given_label</span> <span class="pre">!=</span> <span class="pre">k,</span> <span class="pre">true_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated number of examples in the dataset that should actually be labeled as class k but have been given another label.</p></li>
+<li><p><em>Label Noise</em>: <code class="docutils literal notranslate"><span class="pre">prob(true_label</span> <span class="pre">!=</span> <span class="pre">k</span> <span class="pre">|</span> <span class="pre">given_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated proportion of label issues in the class. This is computed by taking the number of examples with “Label Issues” in the given class and dividing it by the total number of examples in that class.</p></li>
+<li><p><em>Inverse Label Noise</em>: <code class="docutils literal notranslate"><span class="pre">prob(given_label</span> <span class="pre">!=</span> <span class="pre">k</span> <span class="pre">|</span> <span class="pre">true_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>, estimated proportion of examples in the dataset that should actually be labeled as class k but have been given another label.</p></li>
 <li><p><em>Label Quality Score</em>: <code class="docutils literal notranslate"><span class="pre">p(true_label</span> <span class="pre">=</span> <span class="pre">k</span> <span class="pre">|</span> <span class="pre">given_label</span> <span class="pre">=</span> <span class="pre">k)</span></code>. This is the proportion of examples in the class that are labeled correctly, i.e. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">label_noise</span></code>.</p></li>
 </ul>
 <p>By default, the DataFrame is ordered by “Label Quality Score”, ascending.</p>

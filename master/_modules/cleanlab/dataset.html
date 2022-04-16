@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -382,6 +386,14 @@
 <span class="sd">    Score values are unnormalized and may tend to be very small. What matters is their relative</span>
 <span class="sd">    ranking across the classes.</span>
 
+<span class="sd">    This method works by providing any one (and only one) of the following inputs:</span>
+
+<span class="sd">    1. ``labels`` and ``pred_probs``, or</span>
+<span class="sd">    2. ``joint`` and ``num_examples``, or</span>
+<span class="sd">    3. ``confident_joint``</span>
+
+<span class="sd">    Only provide **exactly one of the above input options**, do not provide a combination.</span>
+
 <span class="sd">    **Parameters**: For parameter info, see the docstring of :py:func:`find_overlapping_classes &lt;cleanlab.dataset.find_overlapping_classes&gt;`.</span>
 
 <span class="sd">    Returns</span>
@@ -397,9 +409,9 @@
 
 <span class="sd">        * *Class Index*: The index of the class in 0, 1, ..., K-1.</span>
 <span class="sd">        * *Label Issues*: ``count(given_label = k, true_label != k)``, estimated number of label issues in the class (usually the most accurate method).</span>
-<span class="sd">        * *Inverse Label Issues*: ``count(given_label != k, true_label = k)``, estimated number of times this class occurs in other classes in the dataset.</span>
-<span class="sd">        * *Label Noise*: ``prob(true_label != k | given_label = k)``, estimated proportion of label issues in the class. This is computed by taking the number of "Label Issues" in each class and dividing it by the total number of examples in each class.</span>
-<span class="sd">        * *Inverse Label Noise*: ``prob(given_label != k | true_label = k)``, estimated proportion of times this class label occurs in other classes in the dataset.</span>
+<span class="sd">        * *Inverse Label Issues*: ``count(given_label != k, true_label = k)``, estimated number of examples in the dataset that should actually be labeled as class k but have been given another label.</span>
+<span class="sd">        * *Label Noise*: ``prob(true_label != k | given_label = k)``, estimated proportion of label issues in the class. This is computed by taking the number of examples with "Label Issues" in the given class and dividing it by the total number of examples in that class.</span>
+<span class="sd">        * *Inverse Label Noise*: ``prob(given_label != k | true_label = k)``, estimated proportion of examples in the dataset that should actually be labeled as class k but have been given another label.</span>
 <span class="sd">        * *Label Quality Score*: ``p(true_label = k | given_label = k)``. This is the proportion of examples in the class that are labeled correctly, i.e. ``1 - label_noise``.</span>
 
 <span class="sd">        By default, the DataFrame is ordered by "Label Quality Score", ascending.</span>
@@ -458,7 +470,7 @@
 <span class="sd">    This method works by providing any one (and only one) of the following inputs:</span>
 
 <span class="sd">    1. ``labels`` and ``pred_probs``, or</span>
-<span class="sd">    2. ``joint``, or</span>
+<span class="sd">    2. ``joint`` and ``num_examples``, or</span>
 <span class="sd">    3. ``confident_joint``</span>
 
 <span class="sd">    Only provide **exactly one of the above input options**, do not provide a combination.</span>
@@ -612,6 +624,14 @@
 <span class="sd">    that, on average across all classes, about half of the label may have issues. Thus, a higher</span>
 <span class="sd">    score implies higher quality labels, with 1 implying labels that have no issues.</span>
 
+<span class="sd">    This method works by providing any one (and only one) of the following inputs:</span>
+
+<span class="sd">    1. ``labels`` and ``pred_probs``, or</span>
+<span class="sd">    2. ``joint`` and ``num_examples``, or</span>
+<span class="sd">    3. ``confident_joint``</span>
+
+<span class="sd">    Only provide **exactly one of the above input options**, do not provide a combination.</span>
+
 <span class="sd">    **Parameters**: For parameter info, see the docstring of :py:func:`find_overlapping_classes &lt;cleanlab.dataset.find_overlapping_classes&gt;`.</span>
 
 <span class="sd">    Returns</span>
@@ -651,12 +671,21 @@
     <span class="n">joint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">confident_joint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">multi_label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">"""Prints a health summary of your datasets including results for useful statistics like:</span>
 
 <span class="sd">    * The classes with the most and least label issues</span>
 <span class="sd">    * Classes that overlap and could potentially be merged</span>
 <span class="sd">    * Overall data label quality health score statistics for your dataset</span>
+
+<span class="sd">    This method works by providing any one (and only one) of the following inputs:</span>
+
+<span class="sd">    1. ``labels`` and ``pred_probs``, or</span>
+<span class="sd">    2. ``joint`` and ``num_examples``, or</span>
+<span class="sd">    3. ``confident_joint``</span>
+
+<span class="sd">    Only provide **exactly one of the above input options**, do not provide a combination.</span>
 
 <span class="sd">    **Parameters**: For parameter info, see the docstring of :py:func:`find_overlapping_classes &lt;cleanlab.dataset.find_overlapping_classes&gt;`.</span>
 
@@ -670,6 +699,7 @@
 <span class="sd">        - ``"classes_by_label_quality"``, corresponding to :py:func:`rank_classes_by_label_quality &lt;cleanlab.dataset.rank_classes_by_label_quality&gt;`</span>
 <span class="sd">        - ``"overlapping_classes"``, corresponding to :py:func:`find_overlapping_classes &lt;cleanlab.dataset.find_overlapping_classes&gt;`</span>
 <span class="sd">    """</span>
+    <span class="kn">from</span> <span class="nn">cleanlab.internal.util</span> <span class="kn">import</span> <span class="n">smart_display_dataframe</span>
 
     <span class="k">if</span> <span class="n">joint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">joint</span> <span class="o">=</span> <span class="n">estimate_joint</span><span class="p">(</span>
@@ -681,15 +711,20 @@
     <span class="k">if</span> <span class="n">num_examples</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">num_examples</span> <span class="o">=</span> <span class="n">_get_num_examples</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span>
-        <span class="s2">"*"</span> <span class="o">*</span> <span class="mi">56</span>
-        <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">+</span> <span class="s2">"Generating a Cleanlab Dataset Health Summary</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">" for your dataset with </span><span class="si">{</span><span class="n">num_examples</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> examples and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> classes.</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">+</span> <span class="s2">"Note, Cleanlab is not a medical doctor... yet.</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">+</span> <span class="s2">"*"</span> <span class="o">*</span> <span class="mi">56</span>
-        <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">longest_line</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"|   for your dataset with </span><span class="si">{</span><span class="n">num_examples</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> examples "</span>
+            <span class="sa">f</span><span class="s2">"and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> classes.  |</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"-"</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longest_line</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">"|  Generating a Cleanlab Dataset Health Summary</span><span class="si">{</span><span class="s1">' '</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longest_line</span><span class="p">)</span> <span class="o">-</span> <span class="mi">49</span><span class="p">)</span><span class="si">}</span><span class="s2">|</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="n">longest_line</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">"|  Note, Cleanlab is not a medical doctor... yet.</span><span class="si">{</span><span class="s1">' '</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longest_line</span><span class="p">)</span> <span class="o">-</span> <span class="mi">51</span><span class="p">)</span><span class="si">}</span><span class="s2">|</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">longest_line</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="n">df_class_label_quality</span> <span class="o">=</span> <span class="n">rank_classes_by_label_quality</span><span class="p">(</span>
         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
@@ -700,9 +735,10 @@
         <span class="n">confident_joint</span><span class="o">=</span><span class="n">confident_joint</span><span class="p">,</span>
         <span class="n">multi_label</span><span class="o">=</span><span class="n">multi_label</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Overall Class Quality and Noise across your dataset (below)"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">df_class_label_quality</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Overall Class Quality and Noise across your dataset (below)"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">smart_display_dataframe</span><span class="p">(</span><span class="n">df_class_label_quality</span><span class="p">)</span>
 
     <span class="n">df_overlapping_classes</span> <span class="o">=</span> <span class="n">find_overlapping_classes</span><span class="p">(</span>
         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
@@ -714,17 +750,28 @@
         <span class="n">confident_joint</span><span class="o">=</span><span class="n">confident_joint</span><span class="p">,</span>
         <span class="n">multi_label</span><span class="o">=</span><span class="n">multi_label</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span>
-        <span class="s2">"</span><span class="se">\n</span><span class="s2">Class Overlap. In some cases, you may want to merge classes in the top rows (below)"</span>
-        <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">83</span>
-        <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
-        <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"</span><span class="se">\n</span><span class="s2">Class Overlap. In some cases, you may want to merge classes in the top rows (below)"</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">83</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">smart_display_dataframe</span><span class="p">(</span><span class="n">df_overlapping_classes</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+    <span class="n">health_score</span> <span class="o">=</span> <span class="n">overall_label_health_score</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+        <span class="n">pred_probs</span><span class="o">=</span><span class="n">pred_probs</span><span class="p">,</span>
+        <span class="n">num_examples</span><span class="o">=</span><span class="n">num_examples</span><span class="p">,</span>
+        <span class="n">joint</span><span class="o">=</span><span class="n">joint</span><span class="p">,</span>
+        <span class="n">confident_joint</span><span class="o">=</span><span class="n">confident_joint</span><span class="p">,</span>
+        <span class="n">multi_label</span><span class="o">=</span><span class="n">multi_label</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">df_overlapping_classes</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">()</span>
-    <span class="n">health_score</span> <span class="o">=</span> <span class="n">overall_label_health_score</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="o">=</span><span class="n">pred_probs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Generated with &lt;3 from Cleanlab."</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Generated with &lt;3 from Cleanlab.</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">"overall_label_health_score"</span><span class="p">:</span> <span class="n">health_score</span><span class="p">,</span>
         <span class="s2">"joint"</span><span class="p">:</span> <span class="n">joint</span><span class="p">,</span>

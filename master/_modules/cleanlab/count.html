@@ -169,11 +169,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/image.html">Image Classification with PyTorch and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/dataset_health.html">Find Dataset-level Issues for Dataset Curation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
@@ -241,6 +242,9 @@
         </li>
     </ul>
 </div>
+
+<br>
+<br>
 
 <script
     type="text/javascript"
@@ -389,7 +393,7 @@
     <span class="n">pred_probs</span><span class="p">,</span>
     <span class="n">confident_joint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">"""Estimates the number of label issues in `labels`.</span>
+    <span class="sd">"""Estimates the number of label issues in the `labels` of a dataset.</span>
 
 <span class="sd">    This method is **more accurate** than ``sum(find_label_issues())`` because its computed using only</span>
 <span class="sd">    the trace of the confident joint, ignoring all off-diagonals (which are used by `find_label_issues` and are harder to</span>
@@ -397,12 +401,16 @@
 <span class="sd">    are more constrained, and therefore easier to compute).</span>
 
 <span class="sd">    TL;DR: use this method to get the most accurate estimate of number of label issues when you</span>
-<span class="sd">    don't need the indices of the label issues. This is the canonical way to find errors</span>
-<span class="sd">    by combining a ranking/scoring function from :py:mod:`cleanlab.rank` with `num_label_issues`.</span>
+<span class="sd">    don't need the indices of the label issues.</span>
+
+<span class="sd">    You can use this method to label issues by using `num_label_issues` as the cutoff threshold</span>
+<span class="sd">    used with ranking/scoring functions from :py:mod:`cleanlab.rank` with `num_label_issues`. There</span>
+<span class="sd">    are two cases when you should use this approach instead of :py:func:`filter.find_label_issues &lt;cleanlab.filter.find_label_issues&gt;`:</span>
+<span class="sd">      1. As we add more label and data quality scoring functions in :py:mod:`cleanlab.rank`, this approach will always work.</span>
+<span class="sd">      2. If you have a custom score to rank your data by label quality and you just need to know the cut-off of likely label issues.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    labels : np.array</span>
 <span class="sd">      An array of shape ``(N,)`` of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">      Elements must be in the set 0, 1, ..., K-1, where K is the number of classes.</span>
@@ -452,7 +460,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    confident_joint : np.array</span>
 <span class="sd">      An array of shape ``(K, K)`` representing the confident joint, the matrix used for identifying label issues, which</span>
 <span class="sd">      estimates a confident subset of the joint distribution of the noisy and true labels, ``P_{noisy label, true label}``.</span>
@@ -662,7 +669,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    labels : np.array</span>
 <span class="sd">      An array of shape ``(N,)`` of noisy labels, i.e. some labels may be erroneous.</span>
 <span class="sd">      Elements must be in the set 0, 1, ..., K-1, where K is the number of classes.</span>
@@ -1230,7 +1236,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    X : np.array</span>
 <span class="sd">      Input feature matrix of shape ``(N, ...)``, where N is the number of</span>
 <span class="sd">      examples. The classifier that this instance was initialized with,</span>
@@ -1387,7 +1392,6 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-
 <span class="sd">    ps : np.array (shape (K, ) or (1, K))</span>
 <span class="sd">        The fraction (prior probability) of each observed, NOISY class P(labels = k).</span>
 
