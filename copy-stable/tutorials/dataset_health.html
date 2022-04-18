@@ -1,0 +1,3773 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Computing Out-of-Sample Predicted Probabilities with Cross-Validation" href="pred_probs_cross_val.html" /><link rel="prev" title="Audio Classification with SpeechBrain and Cleanlab" href="audio.html" />
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/cleanlab/assets/a4483476d449f2f05a4c7cde329e72358099cc07/cleanlab/cleanlab_favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+        <title>Find Dataset-level Issues for Dataset Curation - cleanlab</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">cleanlab</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a style="padding-bottom: 0px;" class="sidebar-brand centered" href="../index.html">
+    
+    <div class="sidebar-logo-container">
+        <img class="sidebar-logo" src="https://raw.githubusercontent.com/cleanlab/assets/master/cleanlab/cleanlab_logo_only.png" alt="Logo" />
+    </div>
+    
+    <span style="margin-bottom:0px" class="sidebar-brand-text">
+        cleanlab
+    </span>
+    
+</a>
+
+<div class="centered">
+    <a style="margin-top: 6px;" class="github-button" href="https://github.com/cleanlab/cleanlab" data-size="large" data-show-count="true"
+    aria-label="Star cleanlab/cleanlab on GitHub">Star</a>
+</div>
+<form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Quickstart</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="indepth_overview.html">Cleanlab 2.0: The Workflows of Data-centric AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image Classification with PyTorch and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text Classification with TensorFlow, Keras, and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular.html">Classification with Tabular Data using Scikit-Learn and Cleanlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio.html">Audio Classification with SpeechBrain and Cleanlab</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Find Dataset-level Issues for Dataset Curation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pred_probs_cross_val.html">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/filter.html">filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/rank.html">rank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/count.html">count</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cleanlab/dataset.html">dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/benchmarking/index.html">benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/benchmarking/noise_generation.html">noise_generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/experimental/index.html">experimental</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/fasttext.html">fasttext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/mnist_pytorch.html">mnist_pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/coteaching.html">coteaching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/experimental/cifar_cnn.html">cifar_cnn</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cleanlab/internal/index.html">internal</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/latent_algebra.html">latent_algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cleanlab/internal/label_quality_utils.html">label_quality_utils</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migrating/migrate_v2.html">Migrating to v2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://cleanlab.ai">Website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/cleanlab/cleanlab">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/cleanlab/">PyPI</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://anaconda.org/Cleanlab/cleanlab">Conda</a></li>
+</ul>
+
+</div>
+
+
+<!-- Start of versioning -->
+
+<div class="sidebar-tree">
+    <p class="caption" role="heading">
+        <span class="caption-text">Versions</span>
+    </p>
+    <ul>
+        <li class="toctree-l1">
+            <a
+                id="version_number"
+                class="reference internal"
+                href="/cleanlab-docs/"
+                >stable</a
+            >
+        </li>
+        <li class="toctree-l1">
+            <a
+                id="commit_hash"
+                class="reference internal"
+                href="/cleanlab-docs/master/"
+                >developer</a
+            >
+        </li>
+        <li class="toctree-l1">
+            <a
+                id="v1.0.1"
+                class="reference internal"
+                href="/cleanlab-docs/v1.0.1/"
+                >v1.0.1</a
+            >
+        </li>
+    </ul>
+</div>
+
+<br>
+<br>
+
+<script
+    type="text/javascript"
+    src="/cleanlab-docs/versioning.js"
+></script>
+
+<script type="text/javascript">
+    window.addEventListener("load", () => {
+        const version_number = Version.version_number;
+        const commit_hash = Version.commit_hash;
+
+        document.getElementById("version_number").innerHTML =
+            "stable <code class='docutils literal notranslate'><span class='pre'> (" +
+            version_number +
+            ")</span></code>";
+        document.getElementById("commit_hash").innerHTML =
+            "master <code class='docutils literal notranslate'><span class='pre'> (" +
+            commit_hash.slice(0, 7) +
+            "&hellip;)</span></code>";
+    });
+</script>
+
+<!-- End of versioning -->
+
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+
+<noscript>
+  <div class="admonition warning">
+    <p class="admonition-title">Warning</p>
+    <p>Parts of this site uses JavaScript, but your browser does not support it.</p>
+  </div>
+</noscript>
+
+
+
+<!-- Start of Version Warning Banner -->
+
+<p id="doc_ver_warning"></p>
+
+<script
+    type="text/javascript"
+    src="/cleanlab-docs/versioning.js"
+></script>
+<script type="text/javascript">
+    window.addEventListener("load", () => {
+        const version_number = Version.version_number;
+        const path_arr = window.location.pathname.split("/");
+
+        if (path_arr.includes("master")) {
+            document.getElementById("doc_ver_warning").innerHTML =
+            `<div class="admonition warning">
+            <p class="admonition-title">Warning</p>
+            <p>This version of the documentation corresponds to the master branch of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> source code from <a href="https://github.com/cleanlab/cleanlab/">GitHub</a>. To see the documentation for the latest <code class="docutils literal notranslate"><span class="pre">pip</span></code>-installed version, click <a href="/cleanlab-docs/">here</a>.</p>
+            </div>`;
+        } else if (!path_arr.includes(version_number)) {
+            document.getElementById("doc_ver_warning").innerHTML =
+            `<div class="admonition warning">
+            <p class="admonition-title">Warning</p>
+            <p>This documentation is for an old version (<code class="docutils literal notranslate"><span class="pre">copy-stable</span></code>) of <code class="docutils literal notranslate"><span class="pre">cleanlab</span></code>. To see the documentation for the latest stable version (<code class="docutils literal notranslate"><span class="pre">` + version_number + `</span></code>), click <a href="/cleanlab-docs/">here</a>.</p>
+            </div>`;
+        } else {
+            document.getElementById("doc_ver_warning").remove();
+        }
+    });
+</script>
+
+<!-- End of Version Warning Banner -->
+
+ 
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<style>
+    .nbinput .prompt,
+    .nboutput .prompt {
+        display: none;
+    }
+
+    .output_area {
+        max-height: 300px;
+        overflow: auto;
+    }
+
+    .dataframe {
+        background: #D7D7D7;
+    }
+
+    th {
+        color:black;
+    }
+</style>
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        const h1_element = document.getElementsByTagName("h1");
+        h1_element[0].insertAdjacentHTML("afterend", `
+        <p>
+            <a style="background-color:white;color:black;padding:4px 12px;text-decoration:none;display:inline-block;border-radius:8px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19)" href="https://colab.research.google.com/github/weijinglok/cleanlab-docs/blob/master/copy-stable/tutorials/dataset_health.ipynb" target="_blank">
+            <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Google Colab Logo" style="width:40px;height:40px;vertical-align:middle">
+            <span style="vertical-align:middle">Run in Google Colab</span>
+            </a>
+        </p>
+        `);
+    })
+
+</script><div class="section" id="Find-Dataset-level-Issues-for-Dataset-Curation">
+<h1>Find Dataset-level Issues for Dataset Curation<a class="headerlink" href="#Find-Dataset-level-Issues-for-Dataset-Curation" title="Permalink to this headline">#</a></h1>
+<p>This tutorial shows how <code class="docutils literal notranslate"><span class="pre">cleanlab.dataset.health_summary()</span></code> helps you automatically:</p>
+<ul class="simple">
+<li><p>Score and rank the overall label quality of each class, useful for deciding whether to remove or keep certain classes.</p></li>
+<li><p>Identify overlapping classes that you can merge to make the learning task less ambiguous.</p></li>
+<li><p>Generate an overall dataset and label quality health score to track improvements in your labels over time as you clean your datasets.</p></li>
+</ul>
+<div class="section" id="Install-dependencies-and-import-them">
+<h2>Install dependencies and import them<a class="headerlink" href="#Install-dependencies-and-import-them" title="Permalink to this headline">#</a></h2>
+<p>You can use pip to install all packages required for this tutorial as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pip install requests
+!pip install cleanlab
+# Make sure to install the version corresponding to this tutorial
+# E.g. if viewing master branch documentation:
+#     !pip install git+https://github.com/cleanlab/cleanlab.git
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">cleanlab</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Fetch-the-data-(can-skip-these-details)">
+<h2>Fetch the data (can skip these details)<a class="headerlink" href="#Fetch-the-data-(can-skip-these-details)" title="Permalink to this headline">#</a></h2>
+<details><p>Below is the code used for fetching data.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Note: This pulldown content is for docs.cleanlab.ai, if running on local Jupyter or Colab, please ignore it.
+
+mnist_test_set = ["0", "1" ,"2", "3", "4", "5", "6", "7", "8", "9"]
+imagenet_val_set = ["tench", "goldfish", "great white shark", "tiger shark", "hammerhead shark", "electric ray", "stingray", "cock", "hen", "ostrich", "brambling", "goldfinch", "house finch", "junco", "indigo bunting", "American robin", "bulbul", "jay", "magpie", "chickadee", "American dipper", "kite", "bald eagle", "vulture", "great grey owl", "fire salamander", "smooth newt", "newt", "spotted salamander", "axolotl", "American bullfrog", "tree frog", "tailed frog", "loggerhead sea turtle", "leatherback sea turtle", "mud turtle", "terrapin", "box turtle", "banded gecko", "green iguana", "Carolina anole", "desert grassland whiptail lizard", "agama", "frilled-necked lizard", "alligator lizard", "Gila monster", "European green lizard", "chameleon", "Komodo dragon", "Nile crocodile", "American alligator", "triceratops", "worm snake", "ring-necked snake", "eastern hog-nosed snake", "smooth green snake", "kingsnake", "garter snake", "water snake", "vine snake", "night snake", "boa constrictor", "African rock python", "Indian cobra", "green mamba", "sea snake", "Saharan horned viper", "eastern diamondback rattlesnake", "sidewinder", "trilobite", "harvestman", "scorpion", "yellow garden spider", "barn spider", "European garden spider", "southern black widow", "tarantula", "wolf spider", "tick", "centipede", "black grouse", "ptarmigan", "ruffed grouse", "prairie grouse", "peacock", "quail", "partridge", "grey parrot", "macaw", "sulphur-crested cockatoo", "lorikeet", "coucal", "bee eater", "hornbill", "hummingbird", "jacamar", "toucan", "duck", "red-breasted merganser", "goose", "black swan", "tusker", "echidna", "platypus", "wallaby", "koala", "wombat", "jellyfish", "sea anemone", "brain coral", "flatworm", "nematode", "conch", "snail", "slug", "sea slug", "chiton", "chambered nautilus", "Dungeness crab", "rock crab", "fiddler crab", "red king crab", "American lobster", "spiny lobster", "crayfish", "hermit crab", "isopod", "white stork", "black stork", "spoonbill", "flamingo", "little blue heron", "great egret", "bittern", "crane (bird)", "limpkin", "common gallinule", "American coot", "bustard", "ruddy turnstone", "dunlin", "common redshank", "dowitcher", "oystercatcher", "pelican", "king penguin", "albatross", "grey whale", "killer whale", "dugong", "sea lion", "Chihuahua", "Japanese Chin", "Maltese", "Pekingese", "Shih Tzu", "King Charles Spaniel", "Papillon", "toy terrier", "Rhodesian Ridgeback", "Afghan Hound", "Basset Hound", "Beagle", "Bloodhound", "Bluetick Coonhound", "Black and Tan Coonhound", "Treeing Walker Coonhound", "English foxhound", "Redbone Coonhound", "borzoi", "Irish Wolfhound", "Italian Greyhound", "Whippet", "Ibizan Hound", "Norwegian Elkhound", "Otterhound", "Saluki", "Scottish Deerhound", "Weimaraner", "Staffordshire Bull Terrier", "American Staffordshire Terrier", "Bedlington Terrier", "Border Terrier", "Kerry Blue Terrier", "Irish Terrier", "Norfolk Terrier", "Norwich Terrier", "Yorkshire Terrier", "Wire Fox Terrier", "Lakeland Terrier", "Sealyham Terrier", "Airedale Terrier", "Cairn Terrier", "Australian Terrier", "Dandie Dinmont Terrier", "Boston Terrier", "Miniature Schnauzer", "Giant Schnauzer", "Standard Schnauzer", "Scottish Terrier", "Tibetan Terrier", "Australian Silky Terrier", "Soft-coated Wheaten Terrier", "West Highland White Terrier", "Lhasa Apso", "Flat-Coated Retriever", "Curly-coated Retriever", "Golden Retriever", "Labrador Retriever", "Chesapeake Bay Retriever", "German Shorthaired Pointer", "Vizsla", "English Setter", "Irish Setter", "Gordon Setter", "Brittany", "Clumber Spaniel", "English Springer Spaniel", "Welsh Springer Spaniel", "Cocker Spaniels", "Sussex Spaniel", "Irish Water Spaniel", "Kuvasz", "Schipperke", "Groenendael", "Malinois", "Briard", "Australian Kelpie", "Komondor", "Old English Sheepdog", "Shetland Sheepdog", "collie", "Border Collie", "Bouvier des Flandres", "Rottweiler", "German Shepherd Dog", "Dobermann", "Miniature Pinscher", "Greater Swiss Mountain Dog", "Bernese Mountain Dog", "Appenzeller Sennenhund", "Entlebucher Sennenhund", "Boxer", "Bullmastiff", "Tibetan Mastiff", "French Bulldog", "Great Dane", "St. Bernard", "husky", "Alaskan Malamute", "Siberian Husky", "Dalmatian", "Affenpinscher", "Basenji", "pug", "Leonberger", "Newfoundland", "Pyrenean Mountain Dog", "Samoyed", "Pomeranian", "Chow Chow", "Keeshond", "Griffon Bruxellois", "Pembroke Welsh Corgi", "Cardigan Welsh Corgi", "Toy Poodle", "Miniature Poodle", "Standard Poodle", "Mexican hairless dog", "grey wolf", "Alaskan tundra wolf", "red wolf", "coyote", "dingo", "dhole", "African wild dog", "hyena", "red fox", "kit fox", "Arctic fox", "grey fox", "tabby cat", "tiger cat", "Persian cat", "Siamese cat", "Egyptian Mau", "cougar", "lynx", "leopard", "snow leopard", "jaguar", "lion", "tiger", "cheetah", "brown bear", "American black bear", "polar bear", "sloth bear", "mongoose", "meerkat", "tiger beetle", "ladybug", "ground beetle", "longhorn beetle", "leaf beetle", "dung beetle", "rhinoceros beetle", "weevil", "fly", "bee", "ant", "grasshopper", "cricket", "stick insect", "cockroach", "mantis", "cicada", "leafhopper", "lacewing", "dragonfly", "damselfly", "red admiral", "ringlet", "monarch butterfly", "small white", "sulphur butterfly", "gossamer-winged butterfly", "starfish", "sea urchin", "sea cucumber", "cottontail rabbit", "hare", "Angora rabbit", "hamster", "porcupine", "fox squirrel", "marmot", "beaver", "guinea pig", "common sorrel", "zebra", "pig", "wild boar", "warthog", "hippopotamus", "ox", "water buffalo", "bison", "ram", "bighorn sheep", "Alpine ibex", "hartebeest", "impala", "gazelle", "dromedary", "llama", "weasel", "mink", "European polecat", "black-footed ferret", "otter", "skunk", "badger", "armadillo", "three-toed sloth", "orangutan", "gorilla", "chimpanzee", "gibbon", "siamang", "guenon", "patas monkey", "baboon", "macaque", "langur", "black-and-white colobus", "proboscis monkey", "marmoset", "white-headed capuchin", "howler monkey", "titi", "Geoffroy's spider monkey", "common squirrel monkey", "ring-tailed lemur", "indri", "Asian elephant", "African bush elephant", "red panda", "giant panda", "snoek", "eel", "coho salmon", "rock beauty", "clownfish", "sturgeon", "garfish", "lionfish", "pufferfish", "abacus", "abaya", "academic gown", "accordion", "acoustic guitar", "aircraft carrier", "airliner", "airship", "altar", "ambulance", "amphibious vehicle", "analog clock", "apiary", "apron", "waste container", "assault rifle", "backpack", "bakery", "balance beam", "balloon", "ballpoint pen", "Band-Aid", "banjo", "baluster", "barbell", "barber chair", "barbershop", "barn", "barometer", "barrel", "wheelbarrow", "baseball", "basketball", "bassinet", "bassoon", "swimming cap", "bath towel", "bathtub", "station wagon", "lighthouse", "beaker", "military cap", "beer bottle", "beer glass", "bell-cot", "bib", "tandem bicycle", "bikini", "ring binder", "binoculars", "birdhouse", "boathouse", "bobsleigh", "bolo tie", "poke bonnet", "bookcase", "bookstore", "bottle cap", "bow", "bow tie", "brass", "bra", "breakwater", "breastplate", "broom", "bucket", "buckle", "bulletproof vest", "high-speed train", "butcher shop", "taxicab", "cauldron", "candle", "cannon", "canoe", "can opener", "cardigan", "car mirror", "carousel", "tool kit", "carton", "car wheel", "automated teller machine", "cassette", "cassette player", "castle", "catamaran", "CD player", "cello", "mobile phone", "chain", "chain-link fence", "chain mail", "chainsaw", "chest", "chiffonier", "chime", "china cabinet", "Christmas stocking", "church", "movie theater", "cleaver", "cliff dwelling", "cloak", "clogs", "cocktail shaker", "coffee mug", "coffeemaker", "coil", "combination lock", "computer keyboard", "confectionery store", "container ship", "convertible", "corkscrew", "cornet", "cowboy boot", "cowboy hat", "cradle", "crane (machine)", "crash helmet", "crate", "infant bed", "Crock Pot", "croquet ball", "crutch", "cuirass", "dam", "desk", "desktop computer", "rotary dial telephone", "diaper", "digital clock", "digital watch", "dining table", "dishcloth", "dishwasher", "disc brake", "dock", "dog sled", "dome", "doormat", "drilling rig", "drum", "drumstick", "dumbbell", "Dutch oven", "electric fan", "electric guitar", "electric locomotive", "entertainment center", "envelope", "espresso machine", "face powder", "feather boa", "filing cabinet", "fireboat", "fire engine", "fire screen sheet", "flagpole", "flute", "folding chair", "football helmet", "forklift", "fountain", "fountain pen", "four-poster bed", "freight car", "French horn", "frying pan", "fur coat", "garbage truck", "gas mask", "gas pump", "goblet", "go-kart", "golf ball", "golf cart", "gondola", "gong", "gown", "grand piano", "greenhouse", "grille", "grocery store", "guillotine", "barrette", "hair spray", "half-track", "hammer", "hamper", "hair dryer", "hand-held computer", "handkerchief", "hard disk drive", "harmonica", "harp", "harvester", "hatchet", "holster", "home theater", "honeycomb", "hook", "hoop skirt", "horizontal bar", "horse-drawn vehicle", "hourglass", "iPod", "clothes iron", "jack-o'-lantern", "jeans", "jeep", "T-shirt", "jigsaw puzzle", "pulled rickshaw", "joystick", "kimono", "knee pad", "knot", "lab coat", "ladle", "lampshade", "laptop computer", "lawn mower", "lens cap", "paper knife", "library", "lifeboat", "lighter", "limousine", "ocean liner", "lipstick", "slip-on shoe", "lotion", "speaker", "loupe", "sawmill", "magnetic compass", "mail bag", "mailbox", "tights", "tank suit", "manhole cover", "maraca", "marimba", "mask", "match", "maypole", "maze", "measuring cup", "medicine chest", "megalith", "microphone", "microwave oven", "military uniform", "milk can", "minibus", "miniskirt", "minivan", "missile", "mitten", "mixing bowl", "mobile home", "Model T", "modem", "monastery", "monitor", "moped", "mortar", "square academic cap", "mosque", "mosquito net", "scooter", "mountain bike", "tent", "computer mouse", "mousetrap", "moving van", "muzzle", "nail", "neck brace", "necklace", "nipple", "notebook computer", "obelisk", "oboe", "ocarina", "odometer", "oil filter", "organ", "oscilloscope", "overskirt", "bullock cart", "oxygen mask", "packet", "paddle", "paddle wheel", "padlock", "paintbrush", "pajamas", "palace", "pan flute", "paper towel", "parachute", "parallel bars", "park bench", "parking meter", "passenger car", "patio", "payphone", "pedestal", "pencil case", "pencil sharpener", "perfume", "Petri dish", "photocopier", "plectrum", "Pickelhaube", "picket fence", "pickup truck", "pier", "piggy bank", "pill bottle", "pillow", "ping-pong ball", "pinwheel", "pirate ship", "pitcher", "hand plane", "planetarium", "plastic bag", "plate rack", "plow", "plunger", "Polaroid camera", "pole", "police van", "poncho", "billiard table", "soda bottle", "pot", "potter's wheel", "power drill", "prayer rug", "printer", "prison", "projectile", "projector", "hockey puck", "punching bag", "purse", "quill", "quilt", "race car", "racket", "radiator", "radio", "radio telescope", "rain barrel", "recreational vehicle", "reel", "reflex camera", "refrigerator", "remote control", "restaurant", "revolver", "rifle", "rocking chair", "rotisserie", "eraser", "rugby ball", "ruler", "running shoe", "safe", "safety pin", "salt shaker", "sandal", "sarong", "saxophone", "scabbard", "weighing scale", "school bus", "schooner", "scoreboard", "CRT screen", "screw", "screwdriver", "seat belt", "sewing machine", "shield", "shoe store", "shoji", "shopping basket", "shopping cart", "shovel", "shower cap", "shower curtain", "ski", "ski mask", "sleeping bag", "slide rule", "sliding door", "slot machine", "snorkel", "snowmobile", "snowplow", "soap dispenser", "soccer ball", "sock", "solar thermal collector", "sombrero", "soup bowl", "space bar", "space heater", "space shuttle", "spatula", "motorboat", "spider web", "spindle", "sports car", "spotlight", "stage", "steam locomotive", "through arch bridge", "steel drum", "stethoscope", "scarf", "stone wall", "stopwatch", "stove", "strainer", "tram", "stretcher", "couch", "stupa", "submarine", "suit", "sundial", "sunglass", "sunglasses", "sunscreen", "suspension bridge", "mop", "sweatshirt", "swimsuit", "swing", "switch", "syringe", "table lamp", "tank", "tape player", "teapot", "teddy bear", "television", "tennis ball", "thatched roof", "front curtain", "thimble", "threshing machine", "throne", "tile roof", "toaster", "tobacco shop", "toilet seat", "torch", "totem pole", "tow truck", "toy store", "tractor", "semi-trailer truck", "tray", "trench coat", "tricycle", "trimaran", "tripod", "triumphal arch", "trolleybus", "trombone", "tub", "turnstile", "typewriter keyboard", "umbrella", "unicycle", "upright piano", "vacuum cleaner", "vase", "vault", "velvet", "vending machine", "vestment", "viaduct", "violin", "volleyball", "waffle iron", "wall clock", "wallet", "wardrobe", "military aircraft", "sink", "washing machine", "water bottle", "water jug", "water tower", "whiskey jug", "whistle", "wig", "window screen", "window shade", "Windsor tie", "wine bottle", "wing", "wok", "wooden spoon", "wool", "split-rail fence", "shipwreck", "yawl", "yurt", "website", "comic book", "crossword", "traffic sign", "traffic light", "dust jacket", "menu", "plate", "guacamole", "consomme", "hot pot", "trifle", "ice cream", "ice pop", "baguette", "bagel", "pretzel", "cheeseburger", "hot dog", "mashed potato", "cabbage", "broccoli", "cauliflower", "zucchini", "spaghetti squash", "acorn squash", "butternut squash", "cucumber", "artichoke", "bell pepper", "cardoon", "mushroom", "Granny Smith", "strawberry", "orange", "lemon", "fig", "pineapple", "banana", "jackfruit", "custard apple", "pomegranate", "hay", "carbonara", "chocolate syrup", "dough", "meatloaf", "pizza", "pot pie", "burrito", "red wine", "espresso", "cup", "eggnog", "alp", "bubble", "cliff", "coral reef", "geyser", "lakeshore", "promontory", "shoal", "seashore", "valley", "volcano", "baseball player", "bridegroom", "scuba diver", "rapeseed", "daisy", "yellow lady's slipper", "corn", "acorn", "rose hip", "horse chestnut seed", "coral fungus", "agaric", "gyromitra", "stinkhorn mushroom", "earth star", "hen-of-the-woods", "bolete", "ear", "toilet paper"]
+cifar10_test_set = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+cifar100_test_set = ['apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle', 'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel', 'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock', 'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur', 'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster', 'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion', 'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse', 'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear', 'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine', 'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose', 'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake', 'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table', 'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout', 'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman', 'worm']
+caltech256 = ["ak47", "american-flag", "backpack", "baseball-bat", "baseball-glove", "basketball-hoop", "bat", "bathtub", "bear", "beer-mug", "billiards", "binoculars", "birdbath", "blimp", "bonsai", "boom-box", "bowling-ball", "bowling-pin", "boxing-glove", "brain", "breadmaker", "buddha", "bulldozer", "butterfly", "cactus", "cake", "calculator", "camel", "cannon", "canoe", "car-tire", "cartman", "cd", "centipede", "cereal-box", "chandelier", "chess-board", "chimp", "chopsticks", "cockroach", "coffee-mug", "coffin", "coin", "comet", "computer-keyboard", "computer-monitor", "computer-mouse", "conch", "cormorant", "covered-wagon", "cowboy-hat", "crab", "desk-globe", "diamond-ring", "dice", "dog", "dolphin", "doorknob", "drinking-straw", "duck", "dumb-bell", "eiffel-tower", "electric-guitar", "elephant", "elk", "ewer", "eyeglasses", "fern", "fighter-jet", "fire-extinguisher", "fire-hydrant", "fire-truck", "fireworks", "flashlight", "floppy-disk", "football-helmet", "french-horn", "fried-egg", "frisbee", "frog", "frying-pan", "galaxy", "gas-pump", "giraffe", "goat", "golden-gate-bridge", "goldfish", "golf-ball", "goose", "gorilla", "grand-piano", "grapes", "grasshopper", "guitar-pick", "hamburger", "hammock", "harmonica", "harp", "harpsichord", "hawksbill", "head-phones", "helicopter", "hibiscus", "homer-simpson", "horse", "horseshoe-crab", "hot-air-balloon", "hot-dog", "hot-tub", "hourglass", "house-fly", "human-skeleton", "hummingbird", "ibis", "ice-cream-cone", "iguana", "ipod", "iris", "jesus-christ", "joy-stick", "kangaroo", "kayak", "ketch", "killer-whale", "knife", "ladder", "laptop", "lathe", "leopards", "license-plate", "lightbulb", "light-house", "lightning", "llama", "mailbox", "mandolin", "mars", "mattress", "megaphone", "menorah", "microscope", "microwave", "minaret", "minotaur", "motorbikes", "mountain-bike", "mushroom", "mussels", "necktie", "octopus", "ostrich", "owl", "palm-pilot", "palm-tree", "paperclip", "paper-shredder", "pci-card", "penguin", "people", "pez-dispenser", "photocopier", "picnic-table", "playing-card", "porcupine", "pram", "praying-mantis", "pyramid", "raccoon", "radio-telescope", "rainbow", "refrigerator", "revolver", "rifle", "rotary-phone", "roulette-wheel", "saddle", "saturn", "school-bus", "scorpion", "screwdriver", "segway", "self-propelled-lawn-mower", "sextant", "sheet-music", "skateboard", "skunk", "skyscraper", "smokestack", "snail", "snake", "sneaker", "snowmobile", "soccer-ball", "socks", "soda-can", "spaghetti", "speed-boat", "spider", "spoon", "stained-glass", "starfish", "steering-wheel", "stirrups", "sunflower", "superman", "sushi", "swan", "swiss-army-knife", "sword", "syringe", "tambourine", "teapot", "teddy-bear", "teepee", "telephone-box", "tennis-ball", "tennis-court", "tennis-racket", "theodolite", "toaster", "tomato", "tombstone", "top-hat", "touring-bike", "tower-pisa", "traffic-light", "treadmill", "triceratops", "tricycle", "trilobite", "tripod", "t-shirt", "tuning-fork", "tweezer", "umbrella", "unicorn", "vcr", "video-projector", "washing-machine", "watch", "waterfall", "watermelon", "welding-mask", "wheelbarrow", "windmill", "wine-bottle", "xylophone", "yarmulke", "yo-yo", "zebra", "airplanes", "car-side", "faces-easy", "greyhound", "tennis-shoes", "toad"]
+twenty_news_test_set = ['alt.atheism', 'comp.graphics', 'comp.os.ms-windows.misc', 'comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware', 'comp.windows.x', 'misc.forsale', 'rec.autos', 'rec.motorcycles', 'rec.sport.baseball', 'rec.sport.hockey', 'sci.crypt', 'sci.electronics', 'sci.med', 'sci.space', 'soc.religion.christian', 'talk.politics.guns', 'talk.politics.mideast', 'talk.politics.misc', 'talk.religion.misc']
+amazon = ['Negative', 'Neutral', 'Positive']
+imdb_test_set = ["Negative", "Positive"]
+
+ALL_CLASSES = {
+    'imagenet_val_set': imagenet_val_set,
+    'caltech256': caltech256,
+    'mnist_test_set': mnist_test_set,
+    'cifar10_test_set': cifar10_test_set,
+    'cifar100_test_set': cifar100_test_set,
+    'imdb_test_set': imdb_test_set,
+    '20news_test_set': twenty_news_test_set,
+    'amazon': amazon,
+}
+
+
+def _load_classes_predprobs_labels(dataset_name):
+    """Helper function to load data from the labelerrors.com datasets."""
+
+    base = 'https://github.com/cleanlab/label-errors/raw/'
+    url_base = base + '5392f6c71473055060be3044becdde1cbc18284d'
+    url_labels = url_base + '/original_test_labels/{}_original_labels.npy'
+    url_probs =  url_base + '/cross_validated_predicted_probabilities/{}_pyx.npy'
+    NUM_PARTS = {'amazon': 3, 'imagenet_val_set': 4}  # pred_probs files broken up into parts for larger datatsets
+
+    response = requests.get(url_labels.format(dataset_name))
+    labels = np.load(io.BytesIO(response.content), allow_pickle=True)
+    if dataset_name in NUM_PARTS:
+        pred_probs_parts = []
+        for i in range(1, NUM_PARTS[dataset_name] + 1):
+            url = url_probs.format(dataset_name).replace(
+                '.npy',
+                f'.part{i}_of_{NUM_PARTS[dataset_name]}.npy',
+            )
+            response = requests.get(url)
+            pred_probs_parts.append(
+                np.load(io.BytesIO(response.content), allow_pickle=True))
+        pred_probs = np.vstack(pred_probs_parts)
+    else:
+        response = requests.get(url_probs.format(dataset_name))
+        pred_probs = np.load(io.BytesIO(response.content), allow_pickle=True)
+    print(f"\nLoaded the '{dataset_name}' dataset with predicted "
+          f"probabilities of shape {pred_probs.shape}\n")
+
+    return pred_probs, labels, ALL_CLASSES[dataset_name]
+</pre></div>
+</div>
+</details></div>
+<div class="section" id="Start-of-tutorial:-Evaluate-the-health-of-8-popular-datasets">
+<h2><strong>Start of tutorial:</strong> Evaluate the health of 8 popular datasets<a class="headerlink" href="#Start-of-tutorial:-Evaluate-the-health-of-8-popular-datasets" title="Permalink to this headline">#</a></h2>
+<p>This tutorial shows the output of running <code class="docutils literal notranslate"><span class="pre">cleanlab.dataset.health_summary()</span></code> on 8 popular datasets below:</p>
+<ul class="simple">
+<li><p>5 image datasets: ImageNet, Caltech256, MNIST, CIFAR-10, CIFAR-100</p></li>
+<li><p>3 text datasets: IMDB Reviews, 20 News Groups, Amazon Reviews</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">cleanlab.dataset.health_summary()</span></code> works with several kinds of inputs (see docstring). In this tutorial, we input:</p>
+<ol class="arabic simple">
+<li><p>out-of-sample predicted probabilities (e.g. computed via <a class="reference external" href="https://docs.cleanlab.ai/master/tutorials/pred_probs_cross_val.html">cross-validation</a>)</p></li>
+<li><p>labels (can contain label errors and various issues)</p></li>
+</ol>
+<p>For the 8 datasets, we’ve precomputed and loaded these for you. See <a class="reference external" href="https://labelerrors.com/">labelerrors.com</a> for more info about the label issues in these datasets.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATASETS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'imagenet_val_set'</span><span class="p">,</span> <span class="s1">'caltech256'</span><span class="p">,</span> <span class="s1">'mnist_test_set'</span><span class="p">,</span> <span class="s1">'cifar10_test_set'</span><span class="p">,</span>
+            <span class="s1">'cifar100_test_set'</span><span class="p">,</span> <span class="s1">'imdb_test_set'</span><span class="p">,</span> <span class="s1">'20news_test_set'</span><span class="p">,</span> <span class="s1">'amazon'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="n">DATASETS</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🎯 "</span> <span class="o">+</span> <span class="n">dataset_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" 🎯</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># load class names, given labels, and predicted probabilities from already-trained model</span>
+    <span class="n">pred_probs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_names</span> <span class="o">=</span> <span class="n">_load_classes_predprobs_labels</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span>
+
+    <span class="c1"># run 1 line of code to evaluate the health of your dataset</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">cleanlab</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">health_summary</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+🎯 Imagenet_val_set 🎯
+
+
+Loaded the 'imagenet_val_set' dataset with predicted probabilities of shape (50000, 1000)
+
+---------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary               |
+|   for your dataset with 50,000 examples and 1,000 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.             |
+---------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>sunglass</td>
+<td>836</td>
+<td>40</td>
+<td>27</td>
+<td>0.80</td>
+<td>0.729730</td>
+<td>0.20</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Toy Poodle</td>
+<td>265</td>
+<td>38</td>
+<td>8</td>
+<td>0.76</td>
+<td>0.400000</td>
+<td>0.24</td>
+</tr>
+<tr>
+<th>2</th>
+<td>tiger cat</td>
+<td>282</td>
+<td>38</td>
+<td>29</td>
+<td>0.76</td>
+<td>0.707317</td>
+<td>0.24</td>
+</tr>
+<tr>
+<th>3</th>
+<td>CRT screen</td>
+<td>782</td>
+<td>37</td>
+<td>22</td>
+<td>0.74</td>
+<td>0.628571</td>
+<td>0.26</td>
+</tr>
+<tr>
+<th>4</th>
+<td>Saharan horned viper</td>
+<td>66</td>
+<td>36</td>
+<td>4</td>
+<td>0.72</td>
+<td>0.222222</td>
+<td>0.28</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>995</th>
+<td>ringlet</td>
+<td>322</td>
+<td>0</td>
+<td>2</td>
+<td>0.00</td>
+<td>0.038462</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>996</th>
+<td>monarch butterfly</td>
+<td>323</td>
+<td>0</td>
+<td>0</td>
+<td>0.00</td>
+<td>0.000000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>997</th>
+<td>magpie</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>0.00</td>
+<td>0.038462</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>998</th>
+<td>go-kart</td>
+<td>573</td>
+<td>0</td>
+<td>5</td>
+<td>0.00</td>
+<td>0.090909</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>999</th>
+<td>fox squirrel</td>
+<td>335</td>
+<td>0</td>
+<td>5</td>
+<td>0.00</td>
+<td>0.090909</td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table></div>
+<p>1000 rows × 7 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>corn</td>
+<td>ear</td>
+<td>987</td>
+<td>998</td>
+<td>44</td>
+<td>0.00088</td>
+</tr>
+<tr>
+<th>1</th>
+<td>bathtub</td>
+<td>tub</td>
+<td>435</td>
+<td>876</td>
+<td>38</td>
+<td>0.00076</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Carolina anole</td>
+<td>European green lizard</td>
+<td>40</td>
+<td>46</td>
+<td>38</td>
+<td>0.00076</td>
+</tr>
+<tr>
+<th>3</th>
+<td>tights</td>
+<td>tank suit</td>
+<td>638</td>
+<td>639</td>
+<td>36</td>
+<td>0.00072</td>
+</tr>
+<tr>
+<th>4</th>
+<td>laptop computer</td>
+<td>notebook computer</td>
+<td>620</td>
+<td>681</td>
+<td>35</td>
+<td>0.00070</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>499495</th>
+<td>Kerry Blue Terrier</td>
+<td>pill bottle</td>
+<td>183</td>
+<td>720</td>
+<td>0</td>
+<td>0.00000</td>
+</tr>
+<tr>
+<th>499496</th>
+<td>Kerry Blue Terrier</td>
+<td>piggy bank</td>
+<td>183</td>
+<td>719</td>
+<td>0</td>
+<td>0.00000</td>
+</tr>
+<tr>
+<th>499497</th>
+<td>Kerry Blue Terrier</td>
+<td>pier</td>
+<td>183</td>
+<td>718</td>
+<td>0</td>
+<td>0.00000</td>
+</tr>
+<tr>
+<th>499498</th>
+<td>Kerry Blue Terrier</td>
+<td>pickup truck</td>
+<td>183</td>
+<td>717</td>
+<td>0</td>
+<td>0.00000</td>
+</tr>
+<tr>
+<th>499499</th>
+<td>ear</td>
+<td>toilet paper</td>
+<td>998</td>
+<td>999</td>
+<td>0</td>
+<td>0.00000</td>
+</tr>
+</tbody>
+</table></div>
+<p>499500 rows × 6 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 18% (8,772 of the 50,000) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.82.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Caltech256 🎯
+
+
+Loaded the 'caltech256' dataset with predicted probabilities of shape (29780, 256)
+
+-------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary             |
+|   for your dataset with 29,780 examples and 256 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.           |
+-------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>tennis-shoes</td>
+<td>254</td>
+<td>37</td>
+<td>33</td>
+<td>0.359223</td>
+<td>0.333333</td>
+<td>0.640777</td>
+</tr>
+<tr>
+<th>1</th>
+<td>skateboard</td>
+<td>184</td>
+<td>37</td>
+<td>23</td>
+<td>0.359223</td>
+<td>0.258427</td>
+<td>0.640777</td>
+</tr>
+<tr>
+<th>2</th>
+<td>chopsticks</td>
+<td>38</td>
+<td>29</td>
+<td>20</td>
+<td>0.341176</td>
+<td>0.263158</td>
+<td>0.658824</td>
+</tr>
+<tr>
+<th>3</th>
+<td>drinking-straw</td>
+<td>58</td>
+<td>28</td>
+<td>18</td>
+<td>0.337349</td>
+<td>0.246575</td>
+<td>0.662651</td>
+</tr>
+<tr>
+<th>4</th>
+<td>yo-yo</td>
+<td>248</td>
+<td>33</td>
+<td>37</td>
+<td>0.330000</td>
+<td>0.355769</td>
+<td>0.670000</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>251</th>
+<td>raccoon</td>
+<td>167</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>252</th>
+<td>hummingbird</td>
+<td>112</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>253</th>
+<td>hourglass</td>
+<td>109</td>
+<td>0</td>
+<td>2</td>
+<td>0.000000</td>
+<td>0.022989</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>254</th>
+<td>starfish</td>
+<td>200</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>255</th>
+<td>saturn</td>
+<td>176</td>
+<td>0</td>
+<td>5</td>
+<td>0.000000</td>
+<td>0.049505</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table></div>
+<p>256 rows × 7 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>sneaker</td>
+<td>tennis-shoes</td>
+<td>190</td>
+<td>254</td>
+<td>66</td>
+<td>0.002216</td>
+</tr>
+<tr>
+<th>1</th>
+<td>frisbee</td>
+<td>yo-yo</td>
+<td>78</td>
+<td>248</td>
+<td>29</td>
+<td>0.000974</td>
+</tr>
+<tr>
+<th>2</th>
+<td>duck</td>
+<td>goose</td>
+<td>59</td>
+<td>88</td>
+<td>26</td>
+<td>0.000873</td>
+</tr>
+<tr>
+<th>3</th>
+<td>beer-mug</td>
+<td>coffee-mug</td>
+<td>9</td>
+<td>40</td>
+<td>22</td>
+<td>0.000739</td>
+</tr>
+<tr>
+<th>4</th>
+<td>frog</td>
+<td>toad</td>
+<td>79</td>
+<td>255</td>
+<td>22</td>
+<td>0.000739</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>32635</th>
+<td>cormorant</td>
+<td>covered-wagon</td>
+<td>48</td>
+<td>49</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>32636</th>
+<td>conch</td>
+<td>toad</td>
+<td>47</td>
+<td>255</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>32637</th>
+<td>conch</td>
+<td>tennis-shoes</td>
+<td>47</td>
+<td>254</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>32638</th>
+<td>conch</td>
+<td>greyhound</td>
+<td>47</td>
+<td>253</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>32639</th>
+<td>tennis-shoes</td>
+<td>toad</td>
+<td>254</td>
+<td>255</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table></div>
+<p>32640 rows × 6 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 8% (2,420 of the 29,780) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.92.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Mnist_test_set 🎯
+
+
+Loaded the 'mnist_test_set' dataset with predicted probabilities of shape (10000, 10)
+
+------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary            |
+|   for your dataset with 10,000 examples and 10 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.          |
+------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>0.002242</td>
+<td>0.002242</td>
+<td>0.997758</td>
+</tr>
+<tr>
+<th>1</th>
+<td>6</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>0.002088</td>
+<td>0.001045</td>
+<td>0.997912</td>
+</tr>
+<tr>
+<th>2</th>
+<td>8</td>
+<td>8</td>
+<td>2</td>
+<td>0</td>
+<td>0.002053</td>
+<td>0.000000</td>
+<td>0.997947</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0.001980</td>
+<td>0.000991</td>
+<td>0.998020</td>
+</tr>
+<tr>
+<th>4</th>
+<td>7</td>
+<td>7</td>
+<td>2</td>
+<td>3</td>
+<td>0.001946</td>
+<td>0.002915</td>
+<td>0.998054</td>
+</tr>
+<tr>
+<th>5</th>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>0.001938</td>
+<td>0.002904</td>
+<td>0.998062</td>
+</tr>
+<tr>
+<th>6</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0.001020</td>
+<td>0.001020</td>
+<td>0.998980</td>
+</tr>
+<tr>
+<th>7</th>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>0.001018</td>
+<td>0.002035</td>
+<td>0.998982</td>
+</tr>
+<tr>
+<th>8</th>
+<td>9</td>
+<td>9</td>
+<td>1</td>
+<td>2</td>
+<td>0.000991</td>
+<td>0.001980</td>
+<td>0.999009</td>
+</tr>
+<tr>
+<th>9</th>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>2</td>
+<td>7</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>1</th>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>6</td>
+<td>2</td>
+<td>0.0002</td>
+</tr>
+<tr>
+<th>2</th>
+<td>4</td>
+<td>9</td>
+<td>4</td>
+<td>9</td>
+<td>2</td>
+<td>0.0002</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td>2</td>
+<td>0.0002</td>
+</tr>
+<tr>
+<th>4</th>
+<td>2</td>
+<td>8</td>
+<td>2</td>
+<td>8</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>5</th>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>6</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>6</th>
+<td>3</td>
+<td>7</td>
+<td>3</td>
+<td>7</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>7</th>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>8</th>
+<td>8</td>
+<td>9</td>
+<td>8</td>
+<td>9</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>9</th>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>10</th>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>11</th>
+<td>3</td>
+<td>8</td>
+<td>3</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>12</th>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>13</th>
+<td>0</td>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>14</th>
+<td>4</td>
+<td>7</td>
+<td>4</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>15</th>
+<td>4</td>
+<td>8</td>
+<td>4</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>16</th>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>17</th>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>18</th>
+<td>5</td>
+<td>7</td>
+<td>5</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>19</th>
+<td>5</td>
+<td>8</td>
+<td>5</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>20</th>
+<td>5</td>
+<td>9</td>
+<td>5</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>21</th>
+<td>6</td>
+<td>7</td>
+<td>6</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>22</th>
+<td>6</td>
+<td>8</td>
+<td>6</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>23</th>
+<td>6</td>
+<td>9</td>
+<td>6</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>24</th>
+<td>7</td>
+<td>8</td>
+<td>7</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>25</th>
+<td>7</td>
+<td>9</td>
+<td>7</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>26</th>
+<td>3</td>
+<td>9</td>
+<td>3</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>27</th>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>28</th>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>29</th>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>30</th>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>31</th>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>32</th>
+<td>1</td>
+<td>6</td>
+<td>1</td>
+<td>6</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>33</th>
+<td>1</td>
+<td>7</td>
+<td>1</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>34</th>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>35</th>
+<td>1</td>
+<td>9</td>
+<td>1</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>36</th>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>37</th>
+<td>3</td>
+<td>6</td>
+<td>3</td>
+<td>6</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>38</th>
+<td>2</td>
+<td>5</td>
+<td>2</td>
+<td>5</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>39</th>
+<td>2</td>
+<td>6</td>
+<td>2</td>
+<td>6</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>40</th>
+<td>0</td>
+<td>9</td>
+<td>0</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>41</th>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>42</th>
+<td>2</td>
+<td>9</td>
+<td>2</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>43</th>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>44</th>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 0% (15 of the 10,000) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 1.00.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Cifar10_test_set 🎯
+
+
+Loaded the 'cifar10_test_set' dataset with predicted probabilities of shape (10000, 10)
+
+------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary            |
+|   for your dataset with 10,000 examples and 10 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.          |
+------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>cat</td>
+<td>3</td>
+<td>71</td>
+<td>67</td>
+<td>0.071</td>
+<td>0.067269</td>
+<td>0.929</td>
+</tr>
+<tr>
+<th>1</th>
+<td>dog</td>
+<td>5</td>
+<td>46</td>
+<td>59</td>
+<td>0.046</td>
+<td>0.058243</td>
+<td>0.954</td>
+</tr>
+<tr>
+<th>2</th>
+<td>bird</td>
+<td>2</td>
+<td>35</td>
+<td>32</td>
+<td>0.035</td>
+<td>0.032096</td>
+<td>0.965</td>
+</tr>
+<tr>
+<th>3</th>
+<td>truck</td>
+<td>9</td>
+<td>31</td>
+<td>12</td>
+<td>0.031</td>
+<td>0.012232</td>
+<td>0.969</td>
+</tr>
+<tr>
+<th>4</th>
+<td>deer</td>
+<td>4</td>
+<td>22</td>
+<td>26</td>
+<td>0.022</td>
+<td>0.025896</td>
+<td>0.978</td>
+</tr>
+<tr>
+<th>5</th>
+<td>frog</td>
+<td>6</td>
+<td>20</td>
+<td>13</td>
+<td>0.020</td>
+<td>0.013092</td>
+<td>0.980</td>
+</tr>
+<tr>
+<th>6</th>
+<td>automobile</td>
+<td>1</td>
+<td>18</td>
+<td>13</td>
+<td>0.018</td>
+<td>0.013065</td>
+<td>0.982</td>
+</tr>
+<tr>
+<th>7</th>
+<td>airplane</td>
+<td>0</td>
+<td>16</td>
+<td>31</td>
+<td>0.016</td>
+<td>0.030542</td>
+<td>0.984</td>
+</tr>
+<tr>
+<th>8</th>
+<td>ship</td>
+<td>8</td>
+<td>13</td>
+<td>21</td>
+<td>0.013</td>
+<td>0.020833</td>
+<td>0.987</td>
+</tr>
+<tr>
+<th>9</th>
+<td>horse</td>
+<td>7</td>
+<td>12</td>
+<td>10</td>
+<td>0.012</td>
+<td>0.010020</td>
+<td>0.988</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>cat</td>
+<td>dog</td>
+<td>3</td>
+<td>5</td>
+<td>73</td>
+<td>0.0073</td>
+</tr>
+<tr>
+<th>1</th>
+<td>automobile</td>
+<td>truck</td>
+<td>1</td>
+<td>9</td>
+<td>20</td>
+<td>0.0020</td>
+</tr>
+<tr>
+<th>2</th>
+<td>bird</td>
+<td>cat</td>
+<td>2</td>
+<td>3</td>
+<td>20</td>
+<td>0.0020</td>
+</tr>
+<tr>
+<th>3</th>
+<td>airplane</td>
+<td>ship</td>
+<td>0</td>
+<td>8</td>
+<td>16</td>
+<td>0.0016</td>
+</tr>
+<tr>
+<th>4</th>
+<td>bird</td>
+<td>deer</td>
+<td>2</td>
+<td>4</td>
+<td>15</td>
+<td>0.0015</td>
+</tr>
+<tr>
+<th>5</th>
+<td>deer</td>
+<td>dog</td>
+<td>4</td>
+<td>5</td>
+<td>14</td>
+<td>0.0014</td>
+</tr>
+<tr>
+<th>6</th>
+<td>cat</td>
+<td>frog</td>
+<td>3</td>
+<td>6</td>
+<td>13</td>
+<td>0.0013</td>
+</tr>
+<tr>
+<th>7</th>
+<td>bird</td>
+<td>frog</td>
+<td>2</td>
+<td>6</td>
+<td>13</td>
+<td>0.0013</td>
+</tr>
+<tr>
+<th>8</th>
+<td>cat</td>
+<td>deer</td>
+<td>3</td>
+<td>4</td>
+<td>12</td>
+<td>0.0012</td>
+</tr>
+<tr>
+<th>9</th>
+<td>airplane</td>
+<td>cat</td>
+<td>0</td>
+<td>3</td>
+<td>10</td>
+<td>0.0010</td>
+</tr>
+<tr>
+<th>10</th>
+<td>airplane</td>
+<td>truck</td>
+<td>0</td>
+<td>9</td>
+<td>8</td>
+<td>0.0008</td>
+</tr>
+<tr>
+<th>11</th>
+<td>ship</td>
+<td>truck</td>
+<td>8</td>
+<td>9</td>
+<td>7</td>
+<td>0.0007</td>
+</tr>
+<tr>
+<th>12</th>
+<td>bird</td>
+<td>dog</td>
+<td>2</td>
+<td>5</td>
+<td>7</td>
+<td>0.0007</td>
+</tr>
+<tr>
+<th>13</th>
+<td>dog</td>
+<td>horse</td>
+<td>5</td>
+<td>7</td>
+<td>6</td>
+<td>0.0006</td>
+</tr>
+<tr>
+<th>14</th>
+<td>cat</td>
+<td>horse</td>
+<td>3</td>
+<td>7</td>
+<td>6</td>
+<td>0.0006</td>
+</tr>
+<tr>
+<th>15</th>
+<td>airplane</td>
+<td>bird</td>
+<td>0</td>
+<td>2</td>
+<td>5</td>
+<td>0.0005</td>
+</tr>
+<tr>
+<th>16</th>
+<td>airplane</td>
+<td>automobile</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>0.0005</td>
+</tr>
+<tr>
+<th>17</th>
+<td>automobile</td>
+<td>ship</td>
+<td>1</td>
+<td>8</td>
+<td>4</td>
+<td>0.0004</td>
+</tr>
+<tr>
+<th>18</th>
+<td>cat</td>
+<td>ship</td>
+<td>3</td>
+<td>8</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>19</th>
+<td>horse</td>
+<td>truck</td>
+<td>7</td>
+<td>9</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>20</th>
+<td>deer</td>
+<td>horse</td>
+<td>4</td>
+<td>7</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>21</th>
+<td>deer</td>
+<td>frog</td>
+<td>4</td>
+<td>6</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>22</th>
+<td>bird</td>
+<td>ship</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>23</th>
+<td>bird</td>
+<td>horse</td>
+<td>2</td>
+<td>7</td>
+<td>3</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<th>24</th>
+<td>dog</td>
+<td>truck</td>
+<td>5</td>
+<td>9</td>
+<td>2</td>
+<td>0.0002</td>
+</tr>
+<tr>
+<th>25</th>
+<td>automobile</td>
+<td>frog</td>
+<td>1</td>
+<td>6</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>26</th>
+<td>airplane</td>
+<td>horse</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>27</th>
+<td>airplane</td>
+<td>frog</td>
+<td>0</td>
+<td>6</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>28</th>
+<td>cat</td>
+<td>truck</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>29</th>
+<td>airplane</td>
+<td>dog</td>
+<td>0</td>
+<td>5</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>30</th>
+<td>automobile</td>
+<td>dog</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>31</th>
+<td>bird</td>
+<td>truck</td>
+<td>2</td>
+<td>9</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>32</th>
+<td>deer</td>
+<td>truck</td>
+<td>4</td>
+<td>9</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>33</th>
+<td>dog</td>
+<td>frog</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>34</th>
+<td>frog</td>
+<td>ship</td>
+<td>6</td>
+<td>8</td>
+<td>1</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<th>35</th>
+<td>horse</td>
+<td>ship</td>
+<td>7</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>36</th>
+<td>frog</td>
+<td>truck</td>
+<td>6</td>
+<td>9</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>37</th>
+<td>frog</td>
+<td>horse</td>
+<td>6</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>38</th>
+<td>automobile</td>
+<td>deer</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>39</th>
+<td>dog</td>
+<td>ship</td>
+<td>5</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>40</th>
+<td>airplane</td>
+<td>deer</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>41</th>
+<td>automobile</td>
+<td>horse</td>
+<td>1</td>
+<td>7</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>42</th>
+<td>automobile</td>
+<td>bird</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>43</th>
+<td>automobile</td>
+<td>cat</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>44</th>
+<td>deer</td>
+<td>ship</td>
+<td>4</td>
+<td>8</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 3% (284 of the 10,000) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.97.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Cifar100_test_set 🎯
+
+
+Loaded the 'cifar100_test_set' dataset with predicted probabilities of shape (10000, 100)
+
+-------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary             |
+|   for your dataset with 10,000 examples and 100 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.           |
+-------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>boy</td>
+<td>11</td>
+<td>54</td>
+<td>38</td>
+<td>0.54</td>
+<td>0.452381</td>
+<td>0.46</td>
+</tr>
+<tr>
+<th>1</th>
+<td>girl</td>
+<td>35</td>
+<td>53</td>
+<td>40</td>
+<td>0.53</td>
+<td>0.459770</td>
+<td>0.47</td>
+</tr>
+<tr>
+<th>2</th>
+<td>seal</td>
+<td>72</td>
+<td>49</td>
+<td>56</td>
+<td>0.49</td>
+<td>0.523364</td>
+<td>0.51</td>
+</tr>
+<tr>
+<th>3</th>
+<td>man</td>
+<td>46</td>
+<td>45</td>
+<td>47</td>
+<td>0.45</td>
+<td>0.460784</td>
+<td>0.55</td>
+</tr>
+<tr>
+<th>4</th>
+<td>shark</td>
+<td>73</td>
+<td>43</td>
+<td>46</td>
+<td>0.43</td>
+<td>0.446602</td>
+<td>0.57</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>95</th>
+<td>road</td>
+<td>68</td>
+<td>5</td>
+<td>11</td>
+<td>0.05</td>
+<td>0.103774</td>
+<td>0.95</td>
+</tr>
+<tr>
+<th>96</th>
+<td>skunk</td>
+<td>75</td>
+<td>5</td>
+<td>3</td>
+<td>0.05</td>
+<td>0.030612</td>
+<td>0.95</td>
+</tr>
+<tr>
+<th>97</th>
+<td>orange</td>
+<td>53</td>
+<td>3</td>
+<td>12</td>
+<td>0.03</td>
+<td>0.110092</td>
+<td>0.97</td>
+</tr>
+<tr>
+<th>98</th>
+<td>motorcycle</td>
+<td>48</td>
+<td>3</td>
+<td>5</td>
+<td>0.03</td>
+<td>0.049020</td>
+<td>0.97</td>
+</tr>
+<tr>
+<th>99</th>
+<td>wardrobe</td>
+<td>94</td>
+<td>3</td>
+<td>5</td>
+<td>0.03</td>
+<td>0.049020</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table></div>
+<p>100 rows × 7 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>girl</td>
+<td>woman</td>
+<td>35</td>
+<td>98</td>
+<td>34</td>
+<td>0.0034</td>
+</tr>
+<tr>
+<th>1</th>
+<td>boy</td>
+<td>man</td>
+<td>11</td>
+<td>46</td>
+<td>32</td>
+<td>0.0032</td>
+</tr>
+<tr>
+<th>2</th>
+<td>maple_tree</td>
+<td>willow_tree</td>
+<td>47</td>
+<td>96</td>
+<td>26</td>
+<td>0.0026</td>
+</tr>
+<tr>
+<th>3</th>
+<td>maple_tree</td>
+<td>oak_tree</td>
+<td>47</td>
+<td>52</td>
+<td>25</td>
+<td>0.0025</td>
+</tr>
+<tr>
+<th>4</th>
+<td>otter</td>
+<td>seal</td>
+<td>55</td>
+<td>72</td>
+<td>25</td>
+<td>0.0025</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>4945</th>
+<td>cattle</td>
+<td>whale</td>
+<td>19</td>
+<td>95</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>4946</th>
+<td>cattle</td>
+<td>willow_tree</td>
+<td>19</td>
+<td>96</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>4947</th>
+<td>cattle</td>
+<td>woman</td>
+<td>19</td>
+<td>98</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>4948</th>
+<td>cattle</td>
+<td>worm</td>
+<td>19</td>
+<td>99</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<th>4949</th>
+<td>woman</td>
+<td>worm</td>
+<td>98</td>
+<td>99</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+</tbody>
+</table></div>
+<p>4950 rows × 6 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 23% (2,252 of the 10,000) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.77.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Imdb_test_set 🎯
+
+
+Loaded the 'imdb_test_set' dataset with predicted probabilities of shape (25000, 2)
+
+-----------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary           |
+|   for your dataset with 25,000 examples and 2 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.         |
+-----------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Negative</td>
+<td>0</td>
+<td>708</td>
+<td>601</td>
+<td>0.05664</td>
+<td>0.048495</td>
+<td>0.94336</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Positive</td>
+<td>1</td>
+<td>601</td>
+<td>708</td>
+<td>0.04808</td>
+<td>0.056159</td>
+<td>0.95192</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Negative</td>
+<td>Positive</td>
+<td>0</td>
+<td>1</td>
+<td>1309</td>
+<td>0.05236</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 5% (1,309 of the 25,000) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.95.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 20news_test_set 🎯
+
+
+Loaded the '20news_test_set' dataset with predicted probabilities of shape (7532, 20)
+
+-----------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary           |
+|   for your dataset with 7,532 examples and 20 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.         |
+-----------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>alt.atheism</td>
+<td>0</td>
+<td>11</td>
+<td>3</td>
+<td>0.034483</td>
+<td>0.009646</td>
+<td>0.965517</td>
+</tr>
+<tr>
+<th>1</th>
+<td>comp.os.ms-windows.misc</td>
+<td>2</td>
+<td>12</td>
+<td>8</td>
+<td>0.030457</td>
+<td>0.020513</td>
+<td>0.969543</td>
+</tr>
+<tr>
+<th>2</th>
+<td>comp.sys.ibm.pc.hardware</td>
+<td>3</td>
+<td>11</td>
+<td>14</td>
+<td>0.028061</td>
+<td>0.035443</td>
+<td>0.971939</td>
+</tr>
+<tr>
+<th>3</th>
+<td>comp.windows.x</td>
+<td>5</td>
+<td>10</td>
+<td>2</td>
+<td>0.025316</td>
+<td>0.005168</td>
+<td>0.974684</td>
+</tr>
+<tr>
+<th>4</th>
+<td>misc.forsale</td>
+<td>6</td>
+<td>8</td>
+<td>20</td>
+<td>0.020513</td>
+<td>0.049751</td>
+<td>0.979487</td>
+</tr>
+<tr>
+<th>5</th>
+<td>talk.religion.misc</td>
+<td>19</td>
+<td>5</td>
+<td>11</td>
+<td>0.019920</td>
+<td>0.042802</td>
+<td>0.980080</td>
+</tr>
+<tr>
+<th>6</th>
+<td>rec.autos</td>
+<td>7</td>
+<td>7</td>
+<td>2</td>
+<td>0.017677</td>
+<td>0.005115</td>
+<td>0.982323</td>
+</tr>
+<tr>
+<th>7</th>
+<td>comp.sys.mac.hardware</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>0.012987</td>
+<td>0.005236</td>
+<td>0.987013</td>
+</tr>
+<tr>
+<th>8</th>
+<td>sci.electronics</td>
+<td>12</td>
+<td>5</td>
+<td>10</td>
+<td>0.012723</td>
+<td>0.025126</td>
+<td>0.987277</td>
+</tr>
+<tr>
+<th>9</th>
+<td>talk.politics.guns</td>
+<td>16</td>
+<td>4</td>
+<td>3</td>
+<td>0.010989</td>
+<td>0.008264</td>
+<td>0.989011</td>
+</tr>
+<tr>
+<th>10</th>
+<td>comp.graphics</td>
+<td>1</td>
+<td>4</td>
+<td>11</td>
+<td>0.010283</td>
+<td>0.027778</td>
+<td>0.989717</td>
+</tr>
+<tr>
+<th>11</th>
+<td>talk.politics.misc</td>
+<td>18</td>
+<td>3</td>
+<td>0</td>
+<td>0.009677</td>
+<td>0.000000</td>
+<td>0.990323</td>
+</tr>
+<tr>
+<th>12</th>
+<td>sci.space</td>
+<td>14</td>
+<td>3</td>
+<td>4</td>
+<td>0.007614</td>
+<td>0.010127</td>
+<td>0.992386</td>
+</tr>
+<tr>
+<th>13</th>
+<td>sci.crypt</td>
+<td>11</td>
+<td>2</td>
+<td>2</td>
+<td>0.005051</td>
+<td>0.005051</td>
+<td>0.994949</td>
+</tr>
+<tr>
+<th>14</th>
+<td>sci.med</td>
+<td>13</td>
+<td>2</td>
+<td>2</td>
+<td>0.005051</td>
+<td>0.005051</td>
+<td>0.994949</td>
+</tr>
+<tr>
+<th>15</th>
+<td>rec.motorcycles</td>
+<td>8</td>
+<td>2</td>
+<td>0</td>
+<td>0.005025</td>
+<td>0.000000</td>
+<td>0.994975</td>
+</tr>
+<tr>
+<th>16</th>
+<td>rec.sport.hockey</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+<td>0.005013</td>
+<td>0.000000</td>
+<td>0.994987</td>
+</tr>
+<tr>
+<th>17</th>
+<td>soc.religion.christian</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>18</th>
+<td>talk.politics.mideast</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>19</th>
+<td>rec.sport.baseball</td>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+<td>0.000000</td>
+<td>0.005013</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>alt.atheism</td>
+<td>talk.religion.misc</td>
+<td>0</td>
+<td>19</td>
+<td>14</td>
+<td>0.001859</td>
+</tr>
+<tr>
+<th>1</th>
+<td>comp.os.ms-windows.misc</td>
+<td>comp.sys.ibm.pc.hardware</td>
+<td>2</td>
+<td>3</td>
+<td>10</td>
+<td>0.001328</td>
+</tr>
+<tr>
+<th>2</th>
+<td>misc.forsale</td>
+<td>sci.electronics</td>
+<td>6</td>
+<td>12</td>
+<td>7</td>
+<td>0.000929</td>
+</tr>
+<tr>
+<th>3</th>
+<td>misc.forsale</td>
+<td>rec.autos</td>
+<td>6</td>
+<td>7</td>
+<td>7</td>
+<td>0.000929</td>
+</tr>
+<tr>
+<th>4</th>
+<td>comp.os.ms-windows.misc</td>
+<td>comp.windows.x</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>0.000664</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>185</th>
+<td>comp.sys.mac.hardware</td>
+<td>rec.motorcycles</td>
+<td>4</td>
+<td>8</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>186</th>
+<td>comp.sys.mac.hardware</td>
+<td>rec.sport.baseball</td>
+<td>4</td>
+<td>9</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>187</th>
+<td>comp.sys.mac.hardware</td>
+<td>rec.sport.hockey</td>
+<td>4</td>
+<td>10</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>188</th>
+<td>comp.sys.mac.hardware</td>
+<td>sci.crypt</td>
+<td>4</td>
+<td>11</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>189</th>
+<td>talk.politics.misc</td>
+<td>talk.religion.misc</td>
+<td>18</td>
+<td>19</td>
+<td>0</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table></div>
+<p>190 rows × 6 columns</p>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 1% (96 of the 7,532) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.99.
+
+Generated with &lt;3 from Cleanlab.
+
+
+🎯 Amazon 🎯
+
+
+Loaded the 'amazon' dataset with predicted probabilities of shape (9996437, 3)
+
+--------------------------------------------------------------
+|  Generating a Cleanlab Dataset Health Summary              |
+|   for your dataset with 9,996,437 examples and 3 classes.  |
+|  Note, Cleanlab is not a medical doctor... yet.            |
+--------------------------------------------------------------
+
+Overall Class Quality and Noise across your dataset (below)
+------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name</th>
+<th>Class Index</th>
+<th>Label Issues</th>
+<th>Inverse Label Issues</th>
+<th>Label Noise</th>
+<th>Inverse Label Noise</th>
+<th>Label Quality Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Neutral</td>
+<td>1</td>
+<td>228667</td>
+<td>287149</td>
+<td>0.192393</td>
+<td>0.230267</td>
+<td>0.807607</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Negative</td>
+<td>0</td>
+<td>142732</td>
+<td>132872</td>
+<td>0.155587</td>
+<td>0.146413</td>
+<td>0.844413</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Positive</td>
+<td>2</td>
+<td>203006</td>
+<td>154384</td>
+<td>0.025728</td>
+<td>0.019687</td>
+<td>0.974272</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Class Overlap. In some cases, you may want to merge classes in the top rows (below)
+-----------------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Class Name A</th>
+<th>Class Name B</th>
+<th>Class Index A</th>
+<th>Class Index B</th>
+<th>Num Overlapping Examples</th>
+<th>Joint Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Neutral</td>
+<td>Positive</td>
+<td>1</td>
+<td>2</td>
+<td>298801</td>
+<td>0.029891</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Negative</td>
+<td>Neutral</td>
+<td>0</td>
+<td>1</td>
+<td>217015</td>
+<td>0.021709</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Negative</td>
+<td>Positive</td>
+<td>0</td>
+<td>2</td>
+<td>58589</td>
+<td>0.005861</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ * Overall, about 6% (574,405 of the 9,996,437) labels in your dataset have potential issues.
+ ** The overall label health score for this dataset is: 0.94.
+
+Generated with &lt;3 from Cleanlab.
+
+</pre></div></div>
+</div>
+</div>
+</div>
+ 
+        </article>
+      </div>
+      <footer>
+         
+        <div class="related-pages">
+          <a class="next-page" href="pred_probs_cross_val.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Computing Out-of-Sample Predicted Probabilities with Cross-Validation</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="audio.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Audio Classification with SpeechBrain and Cleanlab</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Cleanlab Inc.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/cleanlab/cleanlab" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+
+<script type="text/javascript">
+    window.addEventListener("load", () => {
+        let elements = document.getElementsByClassName("left-details");
+
+        elements[0].insertAdjacentHTML(
+            "afterbegin",
+            `<code class="docutils literal notranslate"><span class="pre">cleanlab</span></code> is distributed on <a href="https://pypi.org/project/cleanlab/">PyPI</a> and <a href="https://anaconda.org/conda-forge/cleanlab">conda</a>.`
+        );
+    });
+</script>
+
+
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Find Dataset-level Issues for Dataset Curation</a><ul>
+<li><a class="reference internal" href="#Install-dependencies-and-import-them">Install dependencies and import them</a></li>
+<li><a class="reference internal" href="#Fetch-the-data-(can-skip-these-details)">Fetch the data (can skip these details)</a></li>
+<li><a class="reference internal" href="#Start-of-tutorial:-Evaluate-the-health-of-8-popular-datasets"><strong>Start of tutorial:</strong> Evaluate the health of 8 popular datasets</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
