@@ -240,6 +240,14 @@
                 >developer</a
             >
         </li>
+        <li class="toctree-l1">
+            <a
+                id="v1.0.1"
+                class="reference internal"
+                href="/cleanlab-docs/v1.0.1/"
+                >v1.0.1</a
+            >
+        </li>
     </ul>
 </div>
 
@@ -599,6 +607,14 @@ div.rendered_html tbody tr:hover {
         max-height: 300px;
         overflow: auto;
     }
+
+    .dataframe {
+        background: #D7D7D7;
+    }
+
+    th {
+        color:black;
+    }
 </style>
 <script type="text/javascript">
     window.addEventListener('load', () => {
@@ -654,8 +670,10 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Create-the-data-(can-skip-these-details)">
 <h2>Create the data (can skip these details)<a class="headerlink" href="#Create-the-data-(can-skip-these-details)" title="Permalink to this headline">#</a></h2>
-<details><p>Click here to see data-generation code</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SEED = 0
+<details><p>Below is the code used for data-generation.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Note: This pulldown content is for docs.cleanlab.ai, if running on local Jupyter or Colab, please ignore it.
+
+SEED = 0
 
 def make_data(
     means=[[3, 2], [7, 7], [0, 8], [0, 10]],
