@@ -3,7 +3,7 @@ name: Copy latest stable release artifacts to the stable dir
 on:
   push:
 
-  worfklow_dispatch:
+  workflow_dispatch:
 
 jobs:
   copy:
