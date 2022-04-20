@@ -19,5 +19,7 @@ jobs:
           rm -rf stable
           mkdir stable
           cp -R $LATEST_RELEASE stable
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           git commit . -m "Replace stable directory"
           git push
