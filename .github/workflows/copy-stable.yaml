@@ -19,5 +19,5 @@ jobs:
           rm -rf stable
           mkdir stable
           cp -R $LATEST_RELEASE stable
-          ls
+          git commit . -m "Replace stable directory"
           git push
