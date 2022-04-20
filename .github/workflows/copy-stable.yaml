@@ -1,0 +1,25 @@
+name: Copy latest stable release artifacts to the stable dir
+
+on:
+  push:
+
+  worfklow_dispath:
+
+jobs:
+  copy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps: 
+      - uses: actions/checkout@v3
+        
+      - run: |
+        LATEST_RELEASE=`cat latest_release.txt`
+        echo $LATEST_RELEASE
+        rm -rf stable
+        mkdir stable
+        cp -R $LATEST_RELEASE stable
+        ls
+        git push
+
+
