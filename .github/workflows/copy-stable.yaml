@@ -22,7 +22,7 @@ jobs:
         run: |
             LATEST_RELEASE=`cat latest_release.txt`
             rm -rf stable/*
-            cp -r $LATEST_RELEASE stable
+            cp -a $LATEST_RELEASE/. stable
             git add .
             git commit -m "Replace stable directory"
             git push
