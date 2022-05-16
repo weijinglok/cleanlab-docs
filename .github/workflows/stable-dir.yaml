@@ -21,7 +21,7 @@ jobs:
 
       - name: Get the latest stable version number
         id: get-latest-version
-        run: echo "::set-output name=version::$(cat latest_version.txt)"
+        run: echo "::set-output name=version::$(cat latest_release.txt)"
 
       - name: Delete current stable dir
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Copy latest stable version content to "stable" directory
         run: |
           mkdir stable
-          cp -R ${{ steps.get-latest-version.outputs.version }}/* stable
+          cp -a ${{ steps.get-latest-version.outputs.version }}/* stable
 
       - name: Commit and push
         run: |
