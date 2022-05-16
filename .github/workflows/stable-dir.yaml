@@ -23,11 +23,15 @@ jobs:
         id: get-latest-version
         run: echo "::set-output name=version::$(cat latest_version.txt)"
 
-      - name: Copy latest stable version content to "stable" directory
+      - name: Delete current stable dir
         run: |
           git rm -r stable
+
+      - name: Copy latest stable version content to "stable" directory
           mkdir stable
           cp -R ${{ steps.get-latest-version.outputs.version }}/* stable
+
+      - name: Commit and push
           git add -A
           git commit -m "Update stable dir"
           git push
