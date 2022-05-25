@@ -1,4 +1,4 @@
 var Version = {
-  version_number: "v2.0.2",
-  commit_hash: "4aab0b0a56fdb3892962466a35fd5bedaf702192",
+  version_number: "test-new-tf-tag",
+  commit_hash: "29ef9959c46dedb4c1d8098b54902aef10cffbe3",
 };
