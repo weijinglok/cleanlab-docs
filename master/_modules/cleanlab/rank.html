@@ -391,6 +391,7 @@
     <span class="n">_subtract_confident_thresholds</span><span class="p">,</span>
     <span class="n">get_normalized_entropy</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span>
 
 
 <div class="viewcode-block" id="order_label_issues"><a class="viewcode-back" href="../../cleanlab/rank.html#cleanlab.rank.order_label_issues">[docs]</a><span class="k">def</span> <span class="nf">order_label_issues</span><span class="p">(</span>
@@ -571,6 +572,7 @@
     <span class="n">adjust_pred_probs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">weight_ensemble_members_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"accuracy"</span><span class="p">,</span>
     <span class="n">custom_weights</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">log_loss_search_T_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">,</span> <span class="mf">2e2</span><span class="p">],</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
     <span class="sd">"""Returns label quality scores based on predictions from an ensemble of models.</span>
@@ -605,16 +607,21 @@
 <span class="sd">    adjust_pred_probs : bool, optional</span>
 <span class="sd">      `adjust_pred_probs` in the same format expected by the :py:func:`get_label_quality_scores &lt;cleanlab.rank.get_label_quality_scores&gt;` function.</span>
 
-<span class="sd">    weight_ensemble_members_by : {"uniform", "accuracy", "custom"}, default="accuracy"</span>
+<span class="sd">    weight_ensemble_members_by : {"uniform", "accuracy", "log_loss_search", "custom"}, default="accuracy"</span>
 <span class="sd">      Weighting scheme used to aggregate scores from each model:</span>
 
-<span class="sd">      - "uniform": take the simple average of scores</span>
-<span class="sd">      - "accuracy": take weighted average of scores, weighted by model accuracy</span>
-<span class="sd">      - "custom": take weighted average of scores using custom weights that the user passes to the custom_weights parameter.</span>
+<span class="sd">      - "uniform": Take the simple average of scores.</span>
+<span class="sd">      - "accuracy": Take weighted average of scores, weighted by model accuracy.</span>
+<span class="sd">      - "log_loss_search": Take weighted average of scores, weighted by exp(t * -log_loss) where t is selected from log_loss_search_T_values parameter and log_loss is the log-loss between a model's pred_probs and the given labels.</span>
+<span class="sd">      - "custom": Take weighted average of scores using custom weights that the user passes to the custom_weights parameter.</span>
 
 <span class="sd">    custom_weights : np.array, default=None</span>
 <span class="sd">      Weights used to aggregate scores from each model if weight_ensemble_members_by="custom".</span>
 <span class="sd">      Length of this array must match the number of models: len(pred_probs_list).</span>
+
+<span class="sd">    log_loss_search_T_values : List, default=[1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 2e2]</span>
+<span class="sd">      List of t values considered if weight_ensemble_members_by="log_loss_search".</span>
+<span class="sd">      We will choose the value of t that leads to weights which produce the best log-loss when used to form a weighted average of pred_probs from the models.</span>
 
 <span class="sd">    verbose : bool, default=True</span>
 <span class="sd">      Set to ``False`` to suppress all print statements.</span>
@@ -628,6 +635,8 @@
 <span class="sd">    get_label_quality_scores</span>
 
 <span class="sd">    """</span>
+
+    <span class="n">MIN_ALLOWED</span> <span class="o">=</span> <span class="mf">1e-6</span>  <span class="c1"># lower-bound clipping threshold to prevents 0 in logs and division</span>
 
     <span class="c1"># Check pred_probs_list for errors</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span>
@@ -651,6 +660,46 @@
 <span class="s2">            custom_weights provided but weight_ensemble_members_by is not "custom"!</span>
 <span class="s2">            """</span>
         <span class="p">)</span>
+
+    <span class="c1"># This weighting scheme performs search of t in log_loss_search_T_values for "best" log loss</span>
+    <span class="k">if</span> <span class="n">weight_ensemble_members_by</span> <span class="o">==</span> <span class="s2">"log_loss_search"</span><span class="p">:</span>
+
+        <span class="c1"># Initialize variables for log loss search</span>
+        <span class="n">pred_probs_avg_log_loss_weighted</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">neg_log_loss_weights</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">best_eval_log_loss</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">log_loss_search_T_values</span><span class="p">:</span>
+
+            <span class="n">neg_log_loss_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># pred_probs for each model</span>
+            <span class="k">for</span> <span class="n">pred_probs</span> <span class="ow">in</span> <span class="n">pred_probs_list</span><span class="p">:</span>
+
+                <span class="n">pred_probs_clipped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
+                    <span class="n">pred_probs</span><span class="p">,</span> <span class="n">a_min</span><span class="o">=</span><span class="n">MIN_ALLOWED</span><span class="p">,</span> <span class="n">a_max</span><span class="o">=</span><span class="kc">None</span>
+                <span class="p">)</span>  <span class="c1"># lower-bound clipping threshold to prevents 0 in logs when calculating log loss</span>
+                <span class="n">pred_probs_clipped</span> <span class="o">/=</span> <span class="n">pred_probs_clipped</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># renormalize</span>
+
+                <span class="n">neg_log_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">log_loss</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs_clipped</span><span class="p">)))</span>
+                <span class="n">neg_log_loss_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neg_log_loss</span><span class="p">)</span>
+
+            <span class="c1"># weights using negative log loss</span>
+            <span class="n">neg_log_loss_weights_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">neg_log_loss_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">neg_log_loss_list</span><span class="p">)</span>
+
+            <span class="c1"># weighted average using negative log loss</span>
+            <span class="n">pred_probs_avg_log_loss_weighted_temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">neg_log_loss_weights_temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pred_probs_list</span><span class="p">)]</span>
+            <span class="p">)</span>
+
+            <span class="c1"># evaluate log loss with this weighted average pred_probs</span>
+            <span class="n">eval_log_loss</span> <span class="o">=</span> <span class="n">log_loss</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_probs_avg_log_loss_weighted_temp</span><span class="p">)</span>
+
+            <span class="c1"># check if eval_log_loss is the best so far (lower the better)</span>
+            <span class="k">if</span> <span class="n">best_eval_log_loss</span> <span class="o">&gt;</span> <span class="n">eval_log_loss</span><span class="p">:</span>
+                <span class="n">best_eval_log_loss</span> <span class="o">=</span> <span class="n">eval_log_loss</span>
+                <span class="n">pred_probs_avg_log_loss_weighted</span> <span class="o">=</span> <span class="n">pred_probs_avg_log_loss_weighted_temp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">neg_log_loss_weights</span> <span class="o">=</span> <span class="n">neg_log_loss_weights_temp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="c1"># Generate scores for each model's pred_probs</span>
     <span class="n">scores_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -684,10 +733,22 @@
     <span class="k">elif</span> <span class="n">weight_ensemble_members_by</span> <span class="o">==</span> <span class="s2">"accuracy"</span><span class="p">:</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">)</span>  <span class="c1"># Weight by relative accuracy</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"Ensemble members will be weighted by: their relative accuracy"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Ensemble members will be weighted by their relative accuracy"</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">acc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> accuracy : </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> weights  : </span><span class="si">{</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> weight   : </span><span class="si">{</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="c1"># Aggregate scores with weighted average</span>
+        <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">scores_ensemble</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">weight_ensemble_members_by</span> <span class="o">==</span> <span class="s2">"log_loss_search"</span><span class="p">:</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">neg_log_loss_weights</span>  <span class="c1"># Weight by exp(t * -log_loss) where t is found by searching through log_loss_search_T_values</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">"Ensemble members will be weighted by log-loss between their predicted probabilities and given labels"</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> weight   : </span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="c1"># Aggregate scores with weighted average</span>
         <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">scores_ensemble</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
