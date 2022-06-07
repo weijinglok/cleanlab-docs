@@ -392,6 +392,7 @@
     <span class="n">get_normalized_entropy</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
 
 
 <div class="viewcode-block" id="order_label_issues"><a class="viewcode-back" href="../../cleanlab/rank.html#cleanlab.rank.order_label_issues">[docs]</a><span class="k">def</span> <span class="nf">order_label_issues</span><span class="p">(</span>
@@ -893,6 +894,57 @@
     <span class="n">label_quality_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">label_quality_scores</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">clipped_scores</span>
 
     <span class="k">return</span> <span class="n">label_quality_scores</span></div>
+
+
+<div class="viewcode-block" id="get_knn_distance_ood_scores"><a class="viewcode-back" href="../../cleanlab/rank.html#cleanlab.rank.get_knn_distance_ood_scores">[docs]</a><span class="k">def</span> <span class="nf">get_knn_distance_ood_scores</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">nbrs</span><span class="p">:</span> <span class="n">NearestNeighbors</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="sd">"""Returns the KNN distance out-of-distribution (OOD) score for each datapoint.</span>
+
+<span class="sd">    This is a function to compute OOD scores where higher scores indicate the datapoint is more likely to be OOD.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    features : np.array</span>
+<span class="sd">      Feature matrix of shape (N, M), where N is the number of datapoints and M is the number of features.</span>
+<span class="sd">      This is the "query set" of features for each datapoint which are used for nearest neighbor search.</span>
+
+<span class="sd">    nbrs : sklearn.neighbors.NearestNeighbors</span>
+<span class="sd">      Instantiated NearestNeighbors class object that's been fitted on a dataset in the same feature space.</span>
+<span class="sd">      Note that the distance metric and n_neighbors is specified when instantiating this class.</span>
+<span class="sd">      See: https://scikit-learn.org/stable/modules/neighbors.html</span>
+
+<span class="sd">    k : int, default=None</span>
+<span class="sd">      Number of neighbors to use when calculating average distance to neighbors.</span>
+<span class="sd">      This value k needs to be less than or equal to max_k which is the n_neighbors used when fitting instantiated NearestNeighbors class object.</span>
+<span class="sd">      If k=None, then by default k=min(10, max_k) is used where max_k is extracted from the given nbrs.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    avg_nbrs_distances : np.array</span>
+<span class="sd">      Average distance to k-nearest neighbors for each datapoint which is used as a score for OOD detection.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># number of neighbors specified when fitting instantiated NearestNeighbors class object</span>
+    <span class="n">max_k</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">n_neighbors</span>
+
+    <span class="c1"># if k is not provided, then use default</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_k</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">max_k</span>
+    <span class="p">),</span> <span class="sa">f</span><span class="s2">"Chosen k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> cannot be greater than n_neighbors=</span><span class="si">{</span><span class="n">max_k</span><span class="si">}</span><span class="s2"> which was used when fitting NearestNeighbors object!"</span>
+
+    <span class="c1"># Get distances to k-nearest neighbors</span>
+    <span class="c1"># Note that the nbrs object contains the specification of distance metric and n_neighbors (k value)</span>
+    <span class="c1"># If our query set of features matches the training set used to fit nbrs, the nearest neighbor of each point is the point itself, at a distance of zero.</span>
+    <span class="n">distances</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="c1"># Calculate average distance to k-nearest neighbors</span>
+    <span class="n">avg_nbrs_distances</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">avg_nbrs_distances</span></div>
 </pre></div> 
         </article>
       </div>
